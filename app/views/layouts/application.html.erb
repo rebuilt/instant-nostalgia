@@ -10,6 +10,25 @@
   </head>
 
   <body>
+    <header>
+      <div class="site-header">
+        <div class="content-wrapper">
+          <div class="logo">
+            <%= link_to root_path do  %>
+              <span>Instant Nostalgia</span>
+            <% end %>
+          </div>
+
+          <nav class="site-header__nav">
+            <ul class="main-navigation">
+              <li><%= link_to t('sign_up'), root_path  %></li>
+              <li><%= link_to t('login'), root_path  %></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
     <%= yield %>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
   </body>
