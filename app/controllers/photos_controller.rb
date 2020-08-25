@@ -1,7 +1,5 @@
 class PhotosController < ApplicationController
-  def index
-    puts error
-  end
+  def index; end
 
   def show; end
 
