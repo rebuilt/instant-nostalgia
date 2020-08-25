@@ -29,7 +29,12 @@
       </div>
     </header>
 
+
     <%= yield %>
+
+  <% I18n.available_locales.each do |locale| %>
+    <%= link_to locale, url_for(locale: locale) %>
+  <% end %>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
   </body>
 </html>
