@@ -19,5 +19,7 @@ module CapstoneProjectWadC5S4750
     config.generators do |g|
       g.test_framework :test_unit, fixture: false
     end
+
+    config.i18n.default_locale = :en
   end
 end
