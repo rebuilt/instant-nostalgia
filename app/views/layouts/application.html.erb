@@ -11,30 +11,38 @@
 
   <body>
     <header>
-      <div class="site-header">
-        <div class="content-wrapper">
-          <div class="logo">
-            <%= link_to root_path do  %>
-              <span>Instant Nostalgia</span>
-            <% end %>
-          </div>
-
-          <nav class="site-header__nav">
-            <ul class="main-navigation">
-              <li><%= link_to t('sign_up'), root_path  %></li>
-              <li><%= link_to t('login'), root_path  %></li>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <%= link_to "Instant Nostalgia", root_path, class: "navbar-brand"  %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <%= link_to t('map'), photos_path, class: "nav-link active"  %>
+              </li>
+              <li class="nav-item">
+                <%= link_to t('upload'), new_photo_path, class: "nav-link"  %>
+              </li>
+              <li class="nav-item">
+                <%= link_to t('sign_up'), root_path , class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to t('login'), root_path , class: "nav-link" %>
+              </li>
             </ul>
-          </nav>
+          </div>
         </div>
-      </div>
+      </nav>
     </header>
 
 
     <%= yield %>
 
-  <% I18n.available_locales.each do |locale| %>
-    <%= link_to locale, url_for(locale: locale) %>
-  <% end %>
+    <% I18n.available_locales.each do |locale| %>
+      <%= link_to locale, url_for(locale: locale) %>
+    <% end %>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
   </body>
 </html>
