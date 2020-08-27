@@ -8,6 +8,6 @@ class Photo < ApplicationRecord
   def populate_with(metadata)
     # update(file_name: image.filename,
     #        latitude: metadata['GPSLatitude'])
-    update(address: metadata)
+    update(address: metadata, file_name: image.filename)
   end
 end
