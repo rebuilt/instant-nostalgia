@@ -12,9 +12,9 @@ class PhotosController < ApplicationController
 
   def create
     photo = Photo.new(photo_params)
+    photo.save
     metadata = photo.read_image_metadata
     photo.populate_with(metadata)
-    photo.save
     redirect_to photos_path
   end
 

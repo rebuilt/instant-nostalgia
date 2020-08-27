@@ -2,10 +2,10 @@ class Photo < ApplicationRecord
   has_one_attached :image
 
   def read_image_metadata
-    # TODO: implement
+    MiniMagick::Image.open(image).exif
   end
 
-  def populate_with
-    # TODO: implement
+  def populate_with(metadata)
+    update(address: metadata['ApertureValue'])
   end
 end

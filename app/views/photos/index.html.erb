@@ -18,6 +18,9 @@
   <% @photos.each do |photo|  %>
     <li>
       <%= image_tag(photo.image, style: "height: 100px; width: 100px;") if photo.image.attached? %>
+      <p>  
+      <%= photo.address  %> 
+      </p>
     </li>
   <% end %>
   <% end %>
