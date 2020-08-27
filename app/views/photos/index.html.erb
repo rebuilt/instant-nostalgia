@@ -16,11 +16,9 @@
 <ul>
   <% if @photos.present?  %>
   <% @photos.each do |photo|  %>
-    <% photo.images.each do |image|  %>
     <li>
-      <%= image_tag image, style: "height: 100px; width: 100px;" %>
+      <%= image_tag(photo.image, style: "height: 100px; width: 100px;") if photo.image.attached? %>
     </li>
-  <% end %>
   <% end %>
   <% end %>
 

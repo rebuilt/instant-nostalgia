@@ -11,13 +11,16 @@ class PhotosController < ApplicationController
   end
 
   def create
-    Photo.create!(photo_params)
+    photo = Photo.new(photo_params)
+    metadata = photo.read_image_metadata
+    photo.populate_with(metadata)
+    photo.save
     redirect_to photos_path
   end
 
   private
 
   def photo_params
-    params.require(:photo).permit(images: [])
+    params.require(:photo).permit(:image)
   end
 end

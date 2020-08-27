@@ -17,8 +17,8 @@
   <% end %>
 
   <%= form_with(model: @photo) do |form|  %>
-    <%= form.label :images  %>
-    <%= form.file_field :images, multiple: true  %>
+    <%= form.label :image  %>
+    <%= form.file_field :image %>
     <%= form.submit  %>
   <% end %>
 
