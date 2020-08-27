@@ -53,6 +53,9 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  # Don't overwrite files when assigning active storage records
+  config.active_storage.replace_on_assign_to_many = false
+
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
 
