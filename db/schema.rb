@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_27_191200) do
+ActiveRecord::Schema.define(version: 2020_08_27_191856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,12 @@ ActiveRecord::Schema.define(version: 2020_08_27_191200) do
     t.float "latitude_in_decimal"
     t.string "longitude_in_degrees"
     t.float "longitude_in_decimal"
+    t.string "city"
+    t.string "state"
+    t.string "state_code"
+    t.string "postal_code"
+    t.string "country"
+    t.string "country_code"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
