@@ -12,3 +12,22 @@
   <span data-target="hello.output">
   </span>
 </div>
+
+<ul>
+  <% if @photos.present?  %>
+  <% @photos.each do |photo|  %>
+    <% photo.images.each do |image|  %>
+    <li>
+      <%= image_tag image, style: "height: 100px; width: 100px;" %>
+    </li>
+  <% end %>
+  <% end %>
+  <% end %>
+
+</ul>
+<%# form do |f| %>
+<%#  f.input :images, as: :file, input_html: { multiple: true } %>
+<%#  f.object.images.each do |image| %>
+<%#   span image_tag(image) %>
+<%#  end %>
+<%# end %>

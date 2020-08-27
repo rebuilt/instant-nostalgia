@@ -1,5 +1,8 @@
 class PhotosController < ApplicationController
-  def index; end
+  def index
+    # @photos = Photo.all.with_attached_image
+    @photos = Photo.all
+  end
 
   def show; end
 
@@ -8,15 +11,11 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = Photo.new(photo_params)
-    respond_to do |format|
-      if @photo.save
-        format.html { redirect_to photos_path }
-      else
-        format.html { render :new }
-      end
-    end
+    Photo.create!(photo_params)
+    redirect_to photos_path
   end
+
+  private
 
   def photo_params
     params.require(:photo).permit(images: [])
