@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
   def index
-    # @photos = Photo.all.with_attached_image
-    @photos = Photo.all
+    @photos = Photo.all.with_attached_image
+    # @photos = Photo.all
   end
 
   def show; end
