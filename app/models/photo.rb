@@ -1,3 +1,5 @@
+require 'time'
+
 class Photo < ApplicationRecord
   has_one_attached :image
 
@@ -8,6 +10,10 @@ class Photo < ApplicationRecord
   def populate_with(metadata)
     # update(file_name: image.filename,
     #        latitude: metadata['GPSLatitude'])
-    update(address: metadata, file_name: image.filename)
+    update(file_name: image.filename,
+           latitude_in_degrees: "#{metadata['GPSLatitude']}, #{metadata['GPSLatitudeRef']}",
+           longitude_in_degrees: "#{metadata['GPSLongitude']}, #{metadata['GPSLongitudeRef']}",
+           date_time_digitized: DateTime.strptime(metadata['DateTime'], '%Y:%m:%d %H:%M:%S'))
+    # "2019:07:31 12:57:57"
   end
 end

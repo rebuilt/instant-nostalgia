@@ -19,10 +19,16 @@
     <li>
       <%= image_tag(photo.image, style: "height: 100px; width: 100px;") if photo.image.attached? %>
       <p>  
-      <%= photo.address  %> 
+      <%= photo.file_name  %> 
       </p>
 <p>  
-      <%= photo.file_name  %> 
+      <%= photo.latitude_in_degrees  %> 
+      </p>
+      <p>  
+      <%= photo.longitude_in_degrees  %> 
+      </p>
+<p>  
+      <%= photo.date_time_digitized  %> 
       </p>
     </li>
   <% end %>
