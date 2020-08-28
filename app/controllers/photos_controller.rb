@@ -1,10 +1,11 @@
 class PhotosController < ApplicationController
   def index
-    @photos = Photo.all.with_attached_image
-    # @photos = Photo.all
+    @photos = Photo.all.includes(image_attachment: :blob)
   end
 
-  def show; end
+  def show
+    @photo = Photo.find(params[:id])
+  end
 
   def new
     @photo = Photo.new
