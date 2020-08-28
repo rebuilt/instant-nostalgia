@@ -16,8 +16,7 @@ class Photo < ApplicationRecord
 
   def initialize_latlong_decimals
     coordinates = Coordinates.new(latitude_in_degrees, longitude_in_degrees)
-    gps = Gps.new(coordinates)
-    coordinates = gps.to_degrees(coordinates)
+    coordinates = Gps.new.to_decimal(coordinates)
     update(latitude_in_decimal: coordinates.latitude,
            longitude_in_decimal: coordinates.longitude)
   end

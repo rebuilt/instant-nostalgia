@@ -1,5 +1,5 @@
 class Gps
-  def to_degrees(coordinates)
+  def to_decimal(coordinates)
     Coordinates.new(convertDMSToDD(coordinates.latitude), convertDMSToDD(coordinates.longitude))
   end
 
