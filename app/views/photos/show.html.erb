@@ -1,2 +1,71 @@
-<h1>Photos#show</h1>
-<p>Find me in app/views/photos/show.html.erb</p>
+<main>
+  <div class="content-wrapper hr">
+    <div class="media">
+      <div class="media__figure">
+        <%= image_tag( @photo.image, style: "width: 50%; height 50%" ) if @photo.image.attached?  %> 
+      </div>
+      <div class="media__body">
+        <div class="goal">
+          <div class="goal__owner">
+            <p>Created by <a href="#">Frederick Rose</a></p>
+          </div>
+          <div class="goal__intro">
+            <p>
+            We can put a description about our Idea here!
+            </p>
+
+          <p>  <%= @photo.file_name  %> </p>
+          <p>  <%= @photo.latitude_in_degrees  %> </p>
+          <p>  <%= @photo.longitude_in_degrees  %> </p>
+          <p>  <%= @photo.date_time_digitized  %> </p>
+          <p>  <%= @photo.latitude_in_decimal %> </p>
+          <p>  <%= @photo.longitude_in_decimal %> </p>
+          </div>
+          <div class="goal__meta">
+            <span>Created on <time datetime="<%= @photo.created_at.strftime("%d %b '%y")  %>"><%= @photo.created_at.strftime("%d %b '%y")  %></time></span>
+            <span><a href="#comments">3 comments</a></span>
+          </div>
+          <ul class="tags-list">
+            <li><a href="#nature">Nature</a></li>
+            <li><a href="#swimming">Swimming</a></li>
+            <li>
+              <a href="#travel" class="selected">
+                Travel
+                <i class="remove-tag">&times;</i>
+              </a>
+            </li>
+            <li><a href="#tag4" data-filter="tag-4">Tag 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content-wrapper">
+    <div class="comments">
+      <h2 class="comments__title">Discussion <span>3 comments</span></h2>
+
+      <%# <% if @display_add_comment  %1> %>
+      <%#   <%= form_for([@photo, @comment], html: {class: 'comments__input'},remote: true) do |f| %1> %>
+      <%#     <img class="avatar" src="<%= asset_path('avatar.png')  %1>" alt="Portrait of logged in user"> %>
+      <%#     <div class="input-group"> %>
+      <%#       <%= f.label(:body, 'Add a comment', class: 'input-group__label')  %1> %>
+      <%#       <%= f.text_area(:body, class: 'input-group__field')  %1> %>
+      <%#     </div> %>
+      <%#     <%= f.submit('Post', class: "btn btn--primary" )  %1> %>
+      <%#   <% end %1> %>
+      <%# <% end %1> %>
+
+      <%# <ul id="commentList" class="comments__listing"> %>
+      <%#   <% @photo.comments.each do |comment|  %1> %>
+      <%#     <li class="comment"> %>
+      <%#       <img class="avatar" src="<%= asset_path('avatar.png')  %1>"  alt="Portrait of commenter"> %>
+      <%#       <div class="comment__body"> %>
+      <%#         <h3 class="comment__title"><%= comment.user.name  %1> <time datetime="<%= comment.created_at  %1>"><%= time_ago_in_words(comment.created_at)  %1></time></h3> %>
+      <%#         <p> <%= comment.body  %1> </p> %>
+      <%#       </div> %>
+      <%#     </li> %>
+      <%#   <% end %1> %>
+      <%# </ul> %>
+    </div>
+  </div>
+</main>
