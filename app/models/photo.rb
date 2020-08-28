@@ -1,4 +1,4 @@
-require 'time'
+require_relative 'gps'
 
 class Photo < ApplicationRecord
   has_one_attached :image
@@ -8,12 +8,17 @@ class Photo < ApplicationRecord
   end
 
   def populate_with(metadata)
-    # update(file_name: image.filename,
-    #        latitude: metadata['GPSLatitude'])
     update(file_name: image.filename,
            latitude_in_degrees: "#{metadata['GPSLatitude']}, #{metadata['GPSLatitudeRef']}",
            longitude_in_degrees: "#{metadata['GPSLongitude']}, #{metadata['GPSLongitudeRef']}",
            date_time_digitized: DateTime.strptime(metadata['DateTime'], '%Y:%m:%d %H:%M:%S'))
-    # "2019:07:31 12:57:57"
+  end
+
+  def initialize_latlong_decimals
+    coordinates = Coordinates.new(latitude_in_degrees, longitude_in_degrees)
+    gps = Gps.new(coordinates)
+    coordinates = gps.to_degrees(coordinates)
+    update(latitude_in_decimal: coordinates.latitude,
+           longitude_in_decimal: coordinates.longitude)
   end
 end

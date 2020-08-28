@@ -15,29 +15,35 @@
 
 <ul>
   <% if @photos.present?  %>
-  <% @photos.each do |photo|  %>
-    <li>
-      <%= image_tag(photo.image, style: "height: 100px; width: 100px;") if photo.image.attached? %>
-      <p>  
-      <%= photo.file_name  %> 
-      </p>
-<p>  
-      <%= photo.latitude_in_degrees  %> 
-      </p>
-      <p>  
-      <%= photo.longitude_in_degrees  %> 
-      </p>
-<p>  
-      <%= photo.date_time_digitized  %> 
-      </p>
-    </li>
-  <% end %>
+    <% @photos.each do |photo|  %>
+      <li>
+        <%= image_tag(photo.image, style: "height: 100px; width: 100px;") if photo.image.attached? %>
+        <p>  
+        <%= photo.file_name  %> 
+        </p>
+        <p>  
+        <%= photo.latitude_in_degrees  %> 
+        </p>
+        <p>  
+        <%= photo.longitude_in_degrees  %> 
+        </p>
+        <p>  
+        <%= photo.date_time_digitized  %> 
+        </p>
+
+        <p>  
+        <%= "#{ photo.latitude_in_decimal }"  %> 
+        </p>
+
+        <p>  
+        <%= photo.longitude_in_decimal  %> 
+        </p>
+
+        <p>
+        Canary
+        </p>
+      </li>
+    <% end %>
   <% end %>
 
 </ul>
-<%# form do |f| %>
-<%#  f.input :images, as: :file, input_html: { multiple: true } %>
-<%#  f.object.images.each do |image| %>
-<%#   span image_tag(image) %>
-<%#  end %>
-<%# end %>
