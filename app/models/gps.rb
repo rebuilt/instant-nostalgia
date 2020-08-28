@@ -5,19 +5,18 @@ class Gps
 
   def convertDMSToDD(coordinate)
     units = parse(coordinate)
-    puts units
     decimal = units[:degrees] + units[:minutes] / 60 + units[:seconds] / 3600
     decimal *= -1 if units[:direction] == 'S' || units[:direction] == 'W'
     decimal
   end
 
-  def parse(coordinates)
-    coordinates = coordinates.split(',')
+  def parse(coordinate)
+    coordinate = coordinate.split(',')
     output = {}
-    output[:degrees] = divide(coordinates[0])
-    output[:minutes] = divide(coordinates[1])
-    output[:seconds] = divide(coordinates[2])
-    output[:direction] = coordinates[3].strip
+    output[:degrees] = divide(coordinate[0])
+    output[:minutes] = divide(coordinate[1])
+    output[:seconds] = divide(coordinate[2])
+    output[:direction] = coordinate[3].strip
     output
   end
 
