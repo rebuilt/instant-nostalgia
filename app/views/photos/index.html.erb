@@ -27,21 +27,38 @@
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: <%= @photos.first.latitude_in_decimal  %> , lng: <%= @photos.first.longitude_in_decimal  %>  },
-    zoom: 8
+    zoom: 12
   });
 
-  <% @photos.each do |photo|  %> 
-  addMarkers(<%= photo.latitude_in_decimal %> , <%= photo.longitude_in_decimal  %> );
-<% end %>
+  addMarkers();
 }
 
 function addMarkers(latitude, longitude){
-  var marker = new google.maps.Marker({
-    position: {lat: latitude  , lng: longitude },
-    map: map,
-    title: 'Hello World!'
-  });
+  let index = 0
+  <% @photos.each do |photo|  %> 
+  var image = {
+    url: '<%= rails_blob_path(photo.image, disposition: "attachment", only_path: true) %>' ,
+    size: new google.maps.Size(100,100),
+    origin: new google.maps.Point(0,0),
+    anchor: new google.maps.Point(0,32)
+  };
 
+    var shape = {
+    coords: [1, 1, 1, 20, 18, 20, 18, 1],
+    type: 'poly'
+  };
+
+  var marker = new google.maps.Marker({
+    position: {lat: <%= photo.latitude_in_decimal %> , lng: <%= photo.longitude_in_decimal  %> },
+    map: map,
+    title: 'Hello World!',
+    icon: image,
+    shape: shape,
+    zIndex: index
+   });
+  index = index +1;
+
+<% end %>
 }
 
   </script>
