@@ -3,7 +3,7 @@
     <div id="map">Map!</div>
 
 
-<ul>
+<ul class="photo-container">
   <% if @photos.present?  %>
     <% @photos.each do |photo|  %>
       <li>
@@ -37,7 +37,8 @@ function addMarkers(latitude, longitude){
   let index = 0
   <% @photos.each do |photo|  %> 
   var image = {
-    url: '<%= rails_blob_path(photo.image, disposition: "attachment", only_path: true) %>' ,
+    <%# url: '<%= rails_blob_path(photo.image, disposition: "attachment", only_path: true) %1>' , %>
+    url: '<%= rails_representation_url(photo.image.variant(resize: '100x100'), disposition: "attachment", only_path: true) %>' ,
     size: new google.maps.Size(100,100),
     origin: new google.maps.Point(0,0),
     anchor: new google.maps.Point(0,32)
