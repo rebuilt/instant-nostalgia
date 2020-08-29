@@ -1,17 +1,7 @@
 <h1>Photos#index</h1>
 
-<p>Find me in app/views/photos/index.html.erb</p>
+    <div id="map">Map!</div>
 
-<div data-controller="hello">
-  <input data-target="hello.name" type="text">
-
-  <button data-action="click->hello#greet">
-    Greet
-  </button>
-
-  <span data-target="hello.output">
-  </span>
-</div>
 
 <ul>
   <% if @photos.present?  %>
@@ -31,3 +21,38 @@
   <% end %>
 
 </ul>
+
+  <script>
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: <%= @photos.first.latitude_in_decimal  %> , lng: <%= @photos.first.longitude_in_decimal  %>  },
+    zoom: 8
+  });
+
+  <% @photos.each do |photo|  %> 
+  addMarkers(<%= photo.latitude_in_decimal %> , <%= photo.longitude_in_decimal  %> );
+<% end %>
+}
+
+function addMarkers(latitude, longitude){
+  var marker = new google.maps.Marker({
+    position: {lat: latitude  , lng: longitude },
+    map: map,
+    title: 'Hello World!'
+  });
+
+}
+
+  </script>
+
+<%# <div data-controller="hello"> %>
+<%#   <input data-target="hello.name" type="text"> %>
+
+<%#   <button data-action="click->hello#greet"> %>
+<%#     Greet %>
+<%#   </button> %>
+
+<%#   <span data-target="hello.output"> %>
+<%#   </span> %>
+<%# </div> %>
