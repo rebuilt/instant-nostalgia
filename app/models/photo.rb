@@ -8,18 +8,18 @@ class Photo < ApplicationRecord
   end
 
   def populate_with(metadata)
-    if metadata['GPSLatitude'].nil?
+    if has_location_data?(metadata)
+      update(file_name: image.filename,
+             latitude_in_degrees: "#{metadata['GPSLatitude']}, #{metadata['GPSLatitudeRef']}",
+             longitude_in_degrees: "#{metadata['GPSLongitude']}, #{metadata['GPSLongitudeRef']}",
+             date_time_digitized: DateTime.strptime(metadata['DateTime'], '%Y:%m:%d %H:%M:%S'))
+    else
       update(file_name: image.filename,
              latitude_in_degrees: '0',
              longitude_in_degrees: '0',
              date_time_digitized: DateTime.strptime(metadata['DateTime'], '%Y:%m:%d %H:%M:%S'),
              latitude_in_decimal: 0,
              longitude_in_decimal: 0)
-    else
-      update(file_name: image.filename,
-             latitude_in_degrees: "#{metadata['GPSLatitude']}, #{metadata['GPSLatitudeRef']}",
-             longitude_in_degrees: "#{metadata['GPSLongitude']}, #{metadata['GPSLongitudeRef']}",
-             date_time_digitized: DateTime.strptime(metadata['DateTime'], '%Y:%m:%d %H:%M:%S'))
     end
   end
 
@@ -36,5 +36,11 @@ class Photo < ApplicationRecord
     return false if latitude_in_degrees == '0' && longitude_in_degrees == '0'
 
     true
+  end
+
+  private
+
+  def has_location_data?(metadata)
+    metadata['GPSLatitude'].present?
   end
 end
