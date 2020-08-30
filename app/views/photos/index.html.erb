@@ -45,8 +45,7 @@
         <% unless photo.latitude_in_decimal == 0 && photo.longitude_in_decimal == 0  %>    
         var index = 0
     var image = {
-      url: '<%= rails_representation_url(photo.image.variant(resize: '100x100'), disposition: "attachment", only_path: true) %>' ,
-      size: new google.maps.Size(100,100),
+      url: '<%= rails_representation_url(photo.image.variant(resize: '200x200'), disposition: "attachment", only_path: true) %>' ,
       origin: new google.maps.Point(0,0),
       anchor: new google.maps.Point(0,32)
     };
