@@ -1,28 +1,26 @@
 class Gps
-  def to_decimal(coordinates)
+  def self.to_decimal(coordinates)
     Coordinates.new(convertDMSToDD(coordinates.latitude), convertDMSToDD(coordinates.longitude))
   end
 
-  private
-
-  def convertDMSToDD(coordinate)
+  def self.convertDMSToDD(coordinate)
     units = parse(coordinate)
     decimal = calculate(units)
     decimal = add_sign(decimal, units)
     decimal
   end
 
-  def add_sign(decimal, units)
+  def self.add_sign(decimal, units)
     # Add a negative sign if direction is south or west.  Do nothing otherwise
     decimal *= -1 if units[:direction] == 'S' || units[:direction] == 'W'
     decimal
   end
 
-  def calculate(units)
+  def self.calculate(units)
     units[:degrees] + units[:minutes] / 60 + units[:seconds] / 3600
   end
 
-  def parse(coordinate)
+  def self.parse(coordinate)
     coordinate = coordinate.split(',')
     output = {}
     output[:degrees] = divide(coordinate[0])
@@ -32,10 +30,16 @@ class Gps
     output
   end
 
-  def divide(statement)
+  def self.divide(statement)
     numbers = statement.split('/')
     (numbers[0].to_f / numbers[1].to_f)
   end
+
+  private_class_method :convertDMSToDD
+  private_class_method :add_sign
+  private_class_method :calculate
+  private_class_method :parse
+  private_class_method :divide
 end
 
 Coordinates = Struct.new(:latitude, :longitude)
