@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   scope '/:locale' do
     resources :photos
     resources :users
+    resources :sessions, only: %i[new create destroy]
   end
 end
