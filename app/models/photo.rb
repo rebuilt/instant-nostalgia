@@ -27,7 +27,7 @@ class Photo < ApplicationRecord
     return unless location?
 
     coordinates = Coordinates.new(latitude_in_degrees, longitude_in_degrees)
-    coordinates = Gps.new.to_decimal(coordinates)
+    coordinates = Gps.to_decimal(coordinates)
     update(latitude_in_decimal: coordinates.latitude,
            longitude_in_decimal: coordinates.longitude)
   end
