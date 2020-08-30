@@ -1,0 +1,27 @@
+<main>
+  <section class="envelope">
+    <header class="text--center">
+      <h1 class="gamma">Log in</h1>
+    </header>
+    <% if(flash.any?)  %>
+      <div class="container message-container">
+        <% flash.each do |name, message|  %>
+          <div class="message <%= name  %> "> <%= message  %> </div>
+        <% end %>
+      </div>
+    <% end %>
+    <%= form_tag( sessions_path) do %>
+      <div class="input-group
+        <%= label(:email,'Email', class: "input-group__label" )  %>
+        <%= text_field_tag(:email,nil, class: 'input-group__field', placeholder: "e.g. me@epfl.ch"  )%>
+      </div>
+      <div class="input-group">
+        <%= label(:password,'Password', class: "input-group__label" )  %>
+        <%= text_field_tag(:password, nil, class: 'input-group__field')%>
+      </div>
+      <div class="prompt">
+        <%= submit_tag('Log in', class: "btn btn--primary prompt__confirm" )  %>
+      </div>
+    <% end %>
+  </section>
+</main>
