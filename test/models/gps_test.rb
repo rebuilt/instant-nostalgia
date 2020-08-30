@@ -35,8 +35,7 @@ class PhotoTest < ActiveSupport::TestCase
 
   def conversion(latitude, longitude, expected_latitude, expected_longitude)
     coordinates = Coordinates.new(latitude, longitude)
-    gps = Gps.new
-    coordinates = gps.to_decimal(coordinates)
+    coordinates = Gps.to_decimal(coordinates)
 
     assert_in_delta coordinates.latitude, expected_latitude, 0.01
     assert_in_delta coordinates.longitude, expected_longitude, 0.01
