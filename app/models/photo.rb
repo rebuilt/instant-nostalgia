@@ -2,6 +2,7 @@ require_relative 'gps'
 
 class Photo < ApplicationRecord
   has_one_attached :image, dependent: :purge_later
+  belongs_to :user
 
   def read_image_metadata
     MiniMagick::Image.open(image).exif
