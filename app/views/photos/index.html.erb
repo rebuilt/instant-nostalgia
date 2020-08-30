@@ -25,19 +25,19 @@
   <script>
 
 function initMap() {
+  <% if @photos.size >0  %>  
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: <%= @photos.first.latitude_in_decimal  %> , lng: <%= @photos.first.longitude_in_decimal  %>  },
     zoom: 12
   });
-
-  addMarkers();
+    addMarkers(); 
+<% end %>
 }
 
 function addMarkers(latitude, longitude){
   let index = 0
   <% @photos.each do |photo|  %> 
   var image = {
-    <%# url: '<%= rails_blob_path(photo.image, disposition: "attachment", only_path: true) %1>' , %>
     url: '<%= rails_representation_url(photo.image.variant(resize: '100x100'), disposition: "attachment", only_path: true) %>' ,
     size: new google.maps.Size(100,100),
     origin: new google.maps.Point(0,0),
