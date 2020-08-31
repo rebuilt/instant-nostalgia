@@ -2,7 +2,7 @@ require 'test_helper'
 include ActionDispatch::TestProcess
 
 class UploadsTest < ActiveSupport::TestCase
-  test 'upload a file' do
+  test 'upload a file without location data' do
     count = ActiveStorage::Attachment.count
     image = fixture_file_upload(Rails.root.join('public', 'images', '20170827_093118.jpg'), 'image/jpg')
 
@@ -17,7 +17,9 @@ class UploadsTest < ActiveSupport::TestCase
     assert_equal '0', photo.latitude_in_degrees
     assert_equal '0', photo.longitude_in_degrees
     assert_equal '20170827_093118.jpg', photo.file_name
+  end
 
+  test 'upload a file with location data' do
     count = ActiveStorage::Attachment.count
     image = fixture_file_upload(Rails.root.join('public', 'images', '20190731_125829.jpg'), 'image/jpg')
 
