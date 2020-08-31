@@ -1,24 +1,26 @@
 require_relative 'gps'
+require_relative 'metadata'
 
 class Photo < ApplicationRecord
   has_one_attached :image, dependent: :purge_later
   belongs_to :user
 
   def read_image_metadata
-    MiniMagick::Image.open(image).exif
+    metadata = MiniMagick::Image.open(image).exif
+    Metadata.new(metadata)
   end
 
   def populate_with(metadata)
-    if has_location_data?(metadata)
+    if metadata.has_location?
       update(file_name: image.filename,
-             latitude_in_degrees: "#{metadata['GPSLatitude']}, #{metadata['GPSLatitudeRef']}",
-             longitude_in_degrees: "#{metadata['GPSLongitude']}, #{metadata['GPSLongitudeRef']}",
-             date_time_digitized: DateTime.strptime(metadata['DateTime'], '%Y:%m:%d %H:%M:%S'))
+             latitude_in_degrees: metadata.latitude,
+             longitude_in_degrees: metadata.longitude,
+             date_time_digitized: metadata.date_time_digitized)
     else
       update(file_name: image.filename,
              latitude_in_degrees: '0',
              longitude_in_degrees: '0',
-             date_time_digitized: DateTime.strptime(metadata['DateTime'], '%Y:%m:%d %H:%M:%S'),
+             date_time_digitized: metadata.date_time_digitized,
              latitude_in_decimal: 0,
              longitude_in_decimal: 0)
     end
@@ -37,11 +39,5 @@ class Photo < ApplicationRecord
     return false if latitude_in_degrees == '0' && longitude_in_degrees == '0'
 
     true
-  end
-
-  private
-
-  def has_location_data?(metadata)
-    metadata['GPSLatitude'].present?
   end
 end
