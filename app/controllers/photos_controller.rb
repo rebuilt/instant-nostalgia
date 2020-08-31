@@ -12,7 +12,9 @@ class PhotosController < ApplicationController
   end
 
   def create
-    photo = Photo.create(photo_params)
+    photo = Photo.new(photo_params)
+    photo.user = User.new
+    photo.save
     metadata = photo.read_image_metadata
     photo.populate_with(metadata)
     photo.initialize_latlong_decimals
