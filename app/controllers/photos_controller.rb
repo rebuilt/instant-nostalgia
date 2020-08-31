@@ -4,7 +4,7 @@ class PhotosController < ApplicationController
   end
 
   def show
-    @photo = Photo.find(params[:id]).includes(image_attachment: :blob)
+    @photo = Photo.includes(image_attachment: :blob).find(params[:id])
   end
 
   def new
