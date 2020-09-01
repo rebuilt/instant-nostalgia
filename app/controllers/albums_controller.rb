@@ -10,11 +10,9 @@ class AlbumsController < ApplicationController
 
     respond_to do |format|
       if @album.save
-        format.html { redirect_to @album, notice: 'Album was successfully created.' }
-        format.json { render :show, status: :created, location: @album }
+        format.html { redirect_to albums_path, notice: 'Album was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
       end
     end
   end
