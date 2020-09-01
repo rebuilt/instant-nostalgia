@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'welcom#index'
+  root to: 'welcome#index'
   get 'login', to: 'session#new'
   get 'signup', to: 'user#new'
   scope '/:locale' do
