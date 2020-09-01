@@ -41,10 +41,9 @@
       <tr>
         <td><%= album.title %></td>
         <td><%= album.user_id %></td>
-        <td><%= album.photos_id %></td>
         <td><%= link_to 'Show', album %></td>
-        <td><%= link_to 'Edit', edit_album_path(album) %></td>
-        <td><%= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Share', album %></td>
       </tr>
     <% end %>
   </tbody>
