@@ -8,10 +8,8 @@ class UploadsTest < ActiveSupport::TestCase
 
     user = User.new
     photo = Photo.create(image: image, user: user)
+    photo.init
     assert_equal ActiveStorage::Attachment.count, count + 1
-    metadata = photo.read_image_metadata
-    photo.populate_with(metadata)
-    photo.initialize_latlong_decimals
     assert_equal 0, photo.latitude_in_decimal
     assert_equal 0, photo.longitude_in_decimal
     assert_equal '0', photo.latitude_in_degrees
@@ -25,10 +23,8 @@ class UploadsTest < ActiveSupport::TestCase
 
     user = User.new
     photo = Photo.create(image: image, user: user)
+    photo.init
     assert_equal ActiveStorage::Attachment.count, count + 1
-    metadata = photo.read_image_metadata
-    photo.populate_with(metadata)
-    photo.initialize_latlong_decimals
     assert_in_delta 46.41853, photo.latitude_in_decimal, 0.01
     assert_in_delta 6.95111, photo.longitude_in_decimal, 0.01
     assert_equal '46/1, 25/1, 67229/10000, N', photo.latitude_in_degrees
