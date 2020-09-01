@@ -7,6 +7,6 @@ Rails.application.routes.draw do
     resources :photos
     resources :users
     resources :sessions, only: %i[new create destroy]
-    resources :albums, only: %i[index]
+    resources :albums, only: %i[index create update destroy]
   end
 end
