@@ -33,6 +33,7 @@ en:
   welcome: 'Welcome'
   upload: 'Upload'
   map: 'Map'
+  albums: 'Albums'
   sign_up: 'Sign Up'
   login: 'Login'
   logout: 'Log out'
