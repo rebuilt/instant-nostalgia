@@ -15,9 +15,7 @@ class PhotosController < ApplicationController
     photo = Photo.new(photo_params)
     photo.user = User.new
     photo.save
-    metadata = photo.read_image_metadata
-    photo.populate_with(metadata)
-    photo.initialize_latlong_decimals
+    photo.init
     redirect_to photos_path
   end
 
