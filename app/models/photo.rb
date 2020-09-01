@@ -11,6 +11,9 @@ class Photo < ApplicationRecord
     initialize_latlong_decimals
   end
 
+  scope :with_image, -> { includes(image_attachment: :blob) }
+  scope :belongs_to_user, ->(user) { where(user: user) }
+
   private
 
   def read_image_metadata
