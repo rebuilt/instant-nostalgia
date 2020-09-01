@@ -5,6 +5,14 @@ class Photo < ApplicationRecord
   has_one_attached :image, dependent: :purge_later
   belongs_to :user
 
+  def init
+    metadata = read_image_metadata
+    populate_with(metadata)
+    initialize_latlong_decimals
+  end
+
+  private
+
   def read_image_metadata
     metadata = MiniMagick::Image.open(image).exif
     Metadata.new(metadata)
