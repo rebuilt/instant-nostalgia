@@ -5,4 +5,11 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: true
   validates :username, uniqueness: true
+  validates :email, :password, presence: true
+
+  before_validation :downcase_email
+
+  def downcase_email
+    self.email = email.downcase
+  end
 end
