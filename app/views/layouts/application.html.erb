@@ -22,20 +22,11 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <%= link_to t('map'), photos_path, class: "nav-link active"  %>
-              </li>
-              <li class="nav-item">
-                <%= link_to t('upload'), new_photo_path, class: "nav-link"  %>
-              </li>
-              <li class="nav-item">
-                <%= link_to t('sign_up'), new_user_path , class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to t('login'), new_session_path , class: "nav-link" %>
-              </li>
-            </ul>
+            <% if logged_in?  %>            
+              <%= render(partial: "authenticated_user_header") %> 
+            <% else  %>
+              <%= render(partial: "anonymous_user_header") %> 
+            <% end %>
           </div>
         </div>
       </nav>
