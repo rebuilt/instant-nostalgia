@@ -8,28 +8,18 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOKYnV1ICIa4zYFItn5WS9pXN2I6ECRXw&callback=initMap&libraries=&v=weekly" defer ></script>
 
   </head>
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <%= link_to "Instant Nostalgia", root_path, class: "navbar-brand"  %>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <% if logged_in?  %>            
-              <%= render(partial: "authenticated_user_header") %> 
-            <% else  %>
-              <%= render(partial: "anonymous_user_header") %> 
-            <% end %>
-          </div>
-        </div>
-      </nav>
+      <% if logged_in?  %>            
+        <%= render(partial: "authenticated_user_header") %> 
+      <% else  %>
+        <%= render(partial: "anonymous_user_header") %> 
+      <% end %>
     </header>
 
     <%= yield %>
