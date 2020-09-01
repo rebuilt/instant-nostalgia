@@ -1,10 +1,10 @@
 class PhotosController < ApplicationController
   def index
-    @photos = Photo.all.includes(image_attachment: :blob)
+    @photos = Photo.all.with_image.belongs_to_user(current_user)
   end
 
   def show
-    @photo = Photo.includes(image_attachment: :blob).find(params[:id])
+    @photo = Photo.with_image.belongs_to_user(current_user).find(params[:id])
   end
 
   def new
@@ -13,7 +13,7 @@ class PhotosController < ApplicationController
 
   def create
     photo = Photo.new(photo_params)
-    photo.user = User.new
+    photo.user = current_user
     photo.save
     photo.init
     redirect_to photos_path
