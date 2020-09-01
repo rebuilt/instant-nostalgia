@@ -60,6 +60,7 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.1)
     backport (1.1.2)
+    bcrypt (3.1.15)
     benchmark (0.1.0)
     better_errors (2.7.1)
       coderay (>= 1.0.0)
@@ -286,6 +287,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   better_errors
   binding_of_caller
   bootsnap (>= 1.4.2)
