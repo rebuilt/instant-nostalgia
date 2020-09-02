@@ -2,6 +2,11 @@ class AlbumsController < ApplicationController
   def index
     @album = Album.new
     @albums = Album.all
+    @user = current_user
+  end
+
+  def show
+    @album = Album.find(params[:id])
   end
 
   def create
@@ -18,6 +23,7 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
+    @album = Album.find(params[:id])
     @album.destroy
     respond_to do |format|
       format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
