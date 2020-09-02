@@ -12,11 +12,16 @@ class PhotosController < ApplicationController
   end
 
   def create
-    photo = Photo.new(photo_params)
-    photo.user = current_user
-    photo.save
-    photo.init
-    redirect_to photos_path
+    @photo = Photo.new(photo_params)
+    @photo.user = current_user
+    respond_to do |format|
+      if @photo.save
+        @photo.init
+        format.html { redirect_to photos_path }
+      else
+        format.html { render :new }
+      end
+    end
   end
 
   private
