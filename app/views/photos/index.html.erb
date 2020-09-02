@@ -1,27 +1,27 @@
 <h1>Photos#index</h1>
+<div class="main">
+  <div id="map" >Please <%= link_to('upload', new_photo_path)  %> some photos to get started</div>
 
-<div id="map">Please <%= link_to('upload', new_photo_path)  %> some photos to get started</div>
-
-
-<ul class="photo-container">
-  <% if @photos.present?  %>
-    <% @photos.each do |photo|  %>
-      <li>
-        <%= link_to photo_path(photo) do  %>
-          <%= image_tag(photo.image, style: "height: 100px; width: 100px;") if photo.image.attached? %>
-          <p>  <%= photo.file_name  %> </p>
-          <p>  <%= photo.latitude_in_degrees  %> </p>
-          <p>  <%= photo.longitude_in_degrees  %> </p>
-          <p>  <%= photo.date_time_digitized  %> </p>
-          <p>  <%= photo.latitude_in_decimal %> </p>
-          <p>  <%= photo.longitude_in_decimal %> </p>
-        <% end %>
-      </li>
+  <ul class="photo-container">
+    <% if @photos.present?  %>
+      <% @photos.each do |photo|  %>
+        <li>
+          <%= link_to photo_path(photo) do  %>
+            <%= image_tag(photo.image, style: "height: 100px; width: 100px;") if photo.image.attached? %>
+            <%# <p>  <%= photo.file_name  %1> </p> %>
+            <%# <p>  <%= photo.latitude_in_degrees  %1> </p> %>
+            <%# <p>  <%= photo.longitude_in_degrees  %1> </p> %>
+            <%# <p>  <%= photo.date_time_digitized  %1> </p> %>
+            <%# <p>  <%= photo.latitude_in_decimal %1> </p> %>
+            <%# <p>  <%= photo.longitude_in_decimal %1> </p> %>
+          <% end %>
+        </li>
+      <% end %>
     <% end %>
-  <% end %>
 
-</ul>
+  </ul>
 
+</div>
 <script>
   document.addEventListener("turbolinks:load", function(){
     map = document.getElementById("map");
