@@ -1,0 +1,9 @@
+<h1>Show Album</h1>
+
+<div class="photos">
+  <% @album.photos.each do |photo|   %>
+    <%= link_to photo_path(photo) do  %>
+      <%= image_tag(photo.image, style: "height: 100px; width: 100px;") if photo.image.attached? %>
+    <% end %>
+  <% end %>
+</div>
