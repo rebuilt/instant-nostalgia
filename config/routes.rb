@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'shares/index'
+  get 'shares/new'
   get 'albums/index'
   root to: 'welcome#index'
   get 'login', to: 'session#new'
