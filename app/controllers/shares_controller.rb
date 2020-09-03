@@ -1,11 +1,11 @@
 class SharesController < ApplicationController
   def index
-    @albums = Share.where(album_id: params[:id])
-    @shares = Share.where(user_id: current_user)
+    @shared_by_me = Album.where(user: current_user)
+    @shared_with_me = User.find(current_user.id).shares
   end
 
   def new
-    puts params
+    @album = Album.find(params[:album_id])
   end
 
   def create; end
