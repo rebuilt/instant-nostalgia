@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :photos
   has_many :albums
+  has_many :shares
+  has_many :authorized_albums, through: :shares, source: :album
 
   has_secure_password
 
