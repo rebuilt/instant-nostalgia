@@ -1,2 +1,23 @@
-<h1>Shares#index</h1>
-<p>Find me in app/views/shares/index.html.erb</p>
+<h1>Albums I am sharing</h1>
+<ul>
+<% @albums.each do |album|  %>
+  <li>
+  <p>
+  <%= album.title  %> : Share with another user 
+  <%= link_to("Share", new_share_path(album) )  %>
+  </p>
+</li>
+<% end %>
+</ul>
+<h1>Albums shared with me</h1>
+
+<ul>
+<% @shares.each do |share|  %>
+  <li>
+  <p>
+  <%= share.title  %> : Share with another user 
+  <%= link_to("View", album_path(share.album_id) )  %>
+  </p>
+</li>
+<% end %>
+</ul>
