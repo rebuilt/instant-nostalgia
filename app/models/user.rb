@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   has_many :photos
   has_many :albums
-  has_many :albums, through: :shares
 
   has_secure_password
 
