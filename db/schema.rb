@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_01_203554) do
+ActiveRecord::Schema.define(version: 2020_09_03_130020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,11 @@ ActiveRecord::Schema.define(version: 2020_09_01_203554) do
   create_table "albums_photos", id: false, force: :cascade do |t|
     t.bigint "album_id", null: false
     t.bigint "photo_id", null: false
+  end
+
+  create_table "albums_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "album_id", null: false
   end
 
   create_table "photos", force: :cascade do |t|
