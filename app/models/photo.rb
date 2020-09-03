@@ -5,6 +5,7 @@ class Photo < ApplicationRecord
   has_one_attached :image, dependent: :purge_later
   belongs_to :user
   has_and_belongs_to_many :albums
+  # has many users through comments
 
   def init
     metadata = read_image_metadata
