@@ -5,5 +5,6 @@
     <%= link_to photo_path(photo) do  %>
       <%= image_tag(photo.image, style: "height: 100px; width: 100px;") if photo.image.attached? %>
     <% end %>
+    <%= link_to "Remove", photo_album_path([@album, photo.id]) , method: :delete, data: {confirm: 'Are you sure you want to remove this photo from the album?'} %>
   <% end %>
 </div>
