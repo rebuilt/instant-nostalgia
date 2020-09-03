@@ -7,6 +7,5 @@ class ShareTest < ActiveSupport::TestCase
     album = Album.new(title: 'first', user: user)
     share = Share.new(user: user2, album: album)
     assert share.save
-    assert_equal share.album, Share.where(album: album.id)
   end
 end
