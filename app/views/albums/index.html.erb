@@ -20,7 +20,6 @@
     <%= form.text_field :title %>
   </div>
 
-
   <div class="actions">
     <%= form.submit %>
   </div>
@@ -49,38 +48,24 @@
   </tbody>
 </table>
 
-
 <div class="photos">
   <h2>Your Photos</h2>
 
+  <%= form_with(url: photo_album_path(1), method: :patch, local: true) do |form| %>
+    <div class="actions">
+      <p>Add to album</p>
+      <%= select_tag("album", options_from_collection_for_select(@user.albums, "id", "title"))  %> 
+      <%= form.submit("Add to album") %>
+    </div>
 
-<%= form_with(url: album_path(1), method: :patch, local: true) do |form| %>
-  <% if @album.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
-    <% end %>      
-
-  <div class="actions">
-    <p>Add to album</p>
-    <%= select_tag("albums", options_from_collection_for_select(@user.albums, "id", "title"))  %> 
-    <%= form.submit("Add to album") %>
-  </div>
-
-  <% @user.photos.each do |photo|   %>
- <%= hidden_field_tag "hidden_checked[#{photo.id}]", false %>
- <%# <%= hidden_field_tag "checked[#{photo.id}]", true %1> %>
- <%# <%= check_box_tag(name: "checked[#{photo.id}]", value: "#{photo.id}", checked: false)  %1> %> 
- <%# <%= check_box_tag(name: "checked[#{photo.id}]", value: "photo#{photo.id}", checked: false)  %1> %> 
- <%# <%= check_box_tag(name: "checked[#{photo.id}]", value: "photo[#{photo.id}]", checked: false)  %1> %> 
- <%# <%= check_box_tag("checked[#{photo.id}]", value: photo.id , checked: true)  %1> %> 
- <%# <%= check_box_tag("checked[photo[item[#{photo.id}]]]", value: photo.id)  %1> %> 
- <%= check_box_tag("checked[#{photo.id}]", value: photo.id)  %> 
-    <%# <%= check_box_tag(name: "checked[#{photo.id}]", value: "1")  %1> %> 
-      <%= image_tag(photo.image, style: "height: 100px; width: 100px;") if photo.image.attached? %>
+    <% @user.photos.each do |photo|   %>
+      <%= hidden_field_tag "hidden_checked[#{photo.id}]", false %>
+      <%= check_box_tag("checked[#{photo.id}]", value: photo.id)  %> 
+      <%= link_to(photo_path(photo) ) do  %>
+        <%= image_tag(photo.image, style: "height: 100px; width: 100px;") if photo.image.attached? %>
+      <% end %>
     <% end %>
 
-
-<% end %>
+  <% end %>
 </div>
-<br>
 
