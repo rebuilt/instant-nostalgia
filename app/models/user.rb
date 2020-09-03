@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :photos
   has_many :albums
+  # user has_may comments through photos
 
   has_secure_password
 
