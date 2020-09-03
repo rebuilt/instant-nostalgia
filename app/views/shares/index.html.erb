@@ -1,12 +1,12 @@
-<h1>Albums I am sharing</h1>
+<h1>My albums</h1>
 <ul>
-  <% @shared_by_me.each do |share|  %>
+  <% @shared_by_me.each do |album|  %>
     <li>
       <p>
-      <%= share.album.title  %> 
-      <%= link_to(new_share_path(album_id: share.album.id)) do  %> 
+      <%= album.title  %> 
+      <%= link_to(new_share_path(album_id: album.id)) do  %> 
         Share with another user
-        <%= hidden_field_tag("album_id", share.album.id)  %> 
+        <%= hidden_field_tag("album_id", album.id)  %> 
       <% end %>
     </p>
     </li>
