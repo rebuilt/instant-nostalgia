@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'shares/index'
-  get 'shares/new'
-  get 'albums/index'
   root to: 'welcome#index'
   get 'login', to: 'session#new'
   get 'signup', to: 'user#new'
@@ -11,5 +8,6 @@ Rails.application.routes.draw do
     resources :sessions, only: %i[new create destroy]
     resources :albums
     resources :photo_albums, only: %i[update destroy]
+    resources :shares, only: %i[index new create]
   end
 end
