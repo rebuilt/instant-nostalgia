@@ -10,7 +10,9 @@ class SharesController < ApplicationController
 
     if params[:search].present?
       @term = params[:search]
-      @users = User.where('email LIKE ?', "%#{@term}%")
+      @users = User.search(@term)
+
+      # don't include self in list of users to share with
       @users = @users.reject { |user| user == current_user }
     end
 
