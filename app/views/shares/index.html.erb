@@ -2,13 +2,22 @@
 <ul>
   <% @shared_by_me.each do |album|  %>
     <li>
-      <p>
-      <%= album.title  %> 
-      <%= link_to(new_share_path(album_id: album.id)) do  %> 
-        Share with additional people
-        <%= hidden_field_tag("album_id", album.id)  %> 
-      <% end %>
-    </p>
+      <div>
+        <p>
+        <%= album.title  %> 
+        <%= form_for(album, url: new_share_path, method: :get) do |form|  %> 
+          Share with additional people
+          <%= hidden_field_tag("album_id", album.id)  %> 
+          <%= form.submit("Share with someone")  %>
+        <% end %>
+        </p>
+      </div>
+      <div>
+        <p> This album is shared with the following users:</p>
+        <% album.shares.each do |share|  %>        
+          <p><%= share.user.email  %> </p>
+        <% end %>
+      </div>
     </li>
   <% end %>
 </ul>
