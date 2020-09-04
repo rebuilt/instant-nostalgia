@@ -14,5 +14,15 @@ class User < ApplicationRecord
   def downcase_email
     self.email = email.downcase if email.present?
   end
-  scope :search, ->(term) { where('email LIKE ?', "%#{term}%") }
+
+  scope :search, lambda { |term|
+                   email_contains(term)
+                     .or(username_contains(term))
+                     .or(first_name_contains(term))
+                     .or(last_name_contains(term))
+                 }
+  scope :email_contains, ->(term) { where('email LIKE ?', "%#{term}%") }
+  scope :username_contains, ->(term) { where('username LIKE ?', "%#{term}%") }
+  scope :first_name_contains, ->(term) { where('first_name LIKE ?', "%#{term}%") }
+  scope :last_name_contains, ->(term) { where('last_name LIKE ?', "%#{term}%") }
 end
