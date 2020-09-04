@@ -6,7 +6,7 @@
 
 <div>
   <div class="find-user">
-    <%= form_with(url: new_share_path , method: :get) do |form| %>
+    <%= form_with(url: new_share_path , method: :get, local: :true) do |form| %>
       <div class="field">
         <%= form.label :search %>
         <%= form.text_field :search %>
