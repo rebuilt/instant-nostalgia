@@ -5,7 +5,7 @@
       <p>
       <%= album.title  %> 
       <%= link_to(new_share_path(album_id: album.id)) do  %> 
-        Share with another user
+        Share with additional people
         <%= hidden_field_tag("album_id", album.id)  %> 
       <% end %>
     </p>
