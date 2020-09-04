@@ -6,7 +6,7 @@
 
 <div>
   <div class="find-user">
-    <%= form_with(url: new_share_path ,method: :get) do |form| %>
+    <%= form_with(url: new_share_path , method: :get) do |form| %>
       <div class="field">
         <%= form.label :search %>
         <%= form.text_field :search %>
@@ -18,16 +18,16 @@
     <% end %>
   </div>
 
-  <div class="results">
-    <p> You searched for: </p>
-    <%= @term  %> 
+  <div id="results" class="results" >
+    <p> You searched for: <%= @term  %></p>
+    <p>canary</p>   
     <% if(@users.present?)%>
       <% @users.each do |user|  %> 
         <%= form_with(url: shares_path(@album.id, user.id)) do |form| %>
           <p> <%= user.username %> </p>
           <p> <%= user.email  %> </p>
           <%= hidden_field_tag "user_id", user.id %>
-          <% byebug  %>        
+          <%# <% byebug  %1> %>        
           <%= form.submit("Add to album") %>
         <% end %>
       <% end %>

@@ -11,6 +11,10 @@ class SharesController < ApplicationController
       @term = params[:search]
       @users = User.where('email LIKE ?', "%#{@term}%")
     end
+    respond_to do |format|
+      format.html {}
+      format.js { render :new }
+    end
   end
 
   def create; end
