@@ -10,10 +10,18 @@ class SharesController < ApplicationController
 
     if params[:search].present?
       @term = params[:search]
+      # TODO: pagify user search
       @users = User.search(@term)
 
       # don't include self in list of users to share with
       @users = @users.reject { |user| user == current_user }
+
+      # don't include users that already have access to the album
+      @album.users.each do |authorized_user|
+        @users = @users.reject do |user|
+          user == authorized_user
+        end
+      end
     end
 
     respond_to do |format|
