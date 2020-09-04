@@ -20,15 +20,14 @@
 
   <div id="results" class="results" >
     <p> You searched for: <%= @term  %></p>
-    <p>canary</p>   
     <% if(@users.present?)%>
       <% @users.each do |user|  %> 
-        <%= form_with(url: shares_path(@album.id, user.id)) do |form| %>
+        <%= form_with(url: shares_path) do |form| %>
           <p> <%= user.username %> </p>
           <p> <%= user.email  %> </p>
           <%= hidden_field_tag "user_id", user.id %>
-          <%# <% byebug  %1> %>        
-          <%= form.submit("Add to album") %>
+          <%= hidden_field_tag "album_id", @album.id %>
+          <%= form.submit("Share #{@album.title} with #{user.username}") %>
         <% end %>
       <% end %>
     <% end %>
