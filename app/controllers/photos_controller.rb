@@ -9,6 +9,8 @@ class PhotosController < ApplicationController
 
   def new
     @photo = Photo.new
+    # TODO: multiple file uploads
+    # TODO: drag and drop for uploads
   end
 
   def create
