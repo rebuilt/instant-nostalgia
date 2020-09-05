@@ -1,7 +1,7 @@
 class SharesController < ApplicationController
   def index
-    @shared_by_me = Album.where(user: current_user)
-    @shared_with_me = User.find(current_user.id).shares
+    @my_albums = Album.where(user: current_user)
+    @shared_with_me = current_user.authorized_albums
   end
 
   def new
@@ -17,9 +17,9 @@ class SharesController < ApplicationController
       @users = @users.reject { |user| user == current_user }
 
       # don't include users that already have access to the album
-      @album.users.each do |authorized_user|
+      @album.users.each do |already_authorized_user|
         @users = @users.reject do |user|
-          user == authorized_user
+          user == already_authorized_user
         end
       end
     end
