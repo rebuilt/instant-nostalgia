@@ -23,7 +23,7 @@
           </div>
           <div class="goal__meta">
             <span>Created on <time datetime="<%= @photo.created_at.strftime("%d %b '%y")  %>"><%= @photo.created_at.strftime("%d %b '%y")  %></time></span>
-            <span><a href="#comments">3 comments</a></span>
+            <span><a href="#comments"><%= @comments.size  %> comments</a></span>
           </div>
           <ul class="tags-list">
             <li><a href="#nature">Nature</a></li>
@@ -42,7 +42,7 @@
   </div>
   <div class="content-wrapper">
     <div class="comments">
-      <h2 class="comments__title">Discussion <span>3 comments</span></h2>
+      <h2 class="comments__title">Discussion <span> <%= @comments.size  %> comments</span></h2>
 
       <% if  logged_in?  %>
         <%= form_for([@photo, @comment], html: {class: 'comments__input'},remote: true) do |f| %>
@@ -56,7 +56,7 @@
       <% end %>
 
       <ul id="commentList" class="comments__listing">
-        <% @photo.comments.each do |comment|  %>
+        <% @comments.each do |comment|  %>
           <li class="comment">
             <img class="avatar" src="<%= asset_path('avatar.png')  %>"  alt="Portrait of commenter">
             <div class="comment__body">
