@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :photos
   has_many :albums
+  has_many :comments
   has_many :shares, dependent: :destroy
   has_many :authorized_albums, through: :shares, source: :album
 
