@@ -5,11 +5,11 @@ class PhotosController < ApplicationController
     # TODO: Add photo modals
     # TODO: Add listener to recenter map on clicked-on photo
     # TODO: The current view should be extracted out into map#index and a new page for photos#index should be created here
-    @photos = Photo.all.with_image.belongs_to_user(current_user)
+    @photos = Photo.all.include_image.belonging_to_user(current_user)
   end
 
   def show
-    @photo = Photo.with_image.belongs_to_user(current_user).find(params[:id])
+    @photo = Photo.include_image.belonging_to_user(current_user).find(params[:id])
     @comment = Comment.new
   end
 
