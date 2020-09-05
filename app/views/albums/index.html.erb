@@ -1,73 +1,77 @@
-<p id="notice"><%= notice %></p>
+<main class="content-wrapper">
+  <p id="notice"><%= notice %></p>
 
-<h1>Albums</h1>
+  <h1>Albums</h1>
 
-<%= form_with(model: @album, local: true) do |form| %>
-  <% if @album.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
+  <%= form_with(model: @album, local: true) do |form| %>
+    <% if @album.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
 
-      <ul>
-        <% @album.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% @album.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>User</th>
-      <th>Photos</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @albums.each do |album| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= album.title %></td>
-        <td><%= album.user_id %></td>
-        <td><%= link_to 'Show', album %></td>
-        <td><%= link_to 'Delete', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Share', album %></td>
+        <th>Title</th>
+        <th>User</th>
+        <th>Photos</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<div class="photos">
-  <h2>Your Photos</h2>
+    <tbody>
+      <% @albums.each do |album| %>
+        <tr>
+          <td><%= album.title %></td>
+          <td><%= album.user_id %></td>
+          <td><%= link_to 'Show', album %></td>
+          <td><%= link_to 'Delete', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td> 
+            <%= form_with(url: new_share_path, method: :get, local: true) do |form|  %> 
+              <%= hidden_field_tag("album_id", album.id)  %> 
+              <%= form.submit("Share album ", class: 'btn btn--primary')  %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-  <%= form_with(url: photo_album_path(1), method: :patch, local: true) do |form| %>
-    <div class="actions">
-      <p>Add to album</p>
-      <%= select_tag("album", options_from_collection_for_select(current_user.albums, "id", "title"))  %> 
-      <%= form.submit("Add to album") %>
-    </div>
+  <div class="photos">
+    <h2>Your Photos</h2>
 
-    <% @albums.each do |album| %>
-      <% album.photos.each do |photo|   %>
+    <%= form_with(url: photo_album_path(1), method: :patch, local: true) do |form| %>
+      <div class="actions">
+        <p>Add to album</p>
+        <%= select_tag("album", options_from_collection_for_select(current_user.albums, "id", "title"))  %> 
+        <%= form.submit("Add to album") %>
+      </div>
+
+      <% @photos.each do |photo|   %>
         <%= hidden_field_tag "hidden_checked[#{photo.id}]", false %>
         <%= check_box_tag("checked[#{photo.id}]", value: photo.id)  %> 
         <%= link_to(photo_path(photo) ) do  %>
           <%= image_tag(photo.image.variant(resize: '200x200'), style: "height: 100px; width: 100px;") if photo.image.attached? %>
         <% end %>
       <% end %>
+
     <% end %>
-
-  <% end %>
-</div>
-
+  </div>
+</main>
