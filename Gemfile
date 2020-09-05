@@ -48,12 +48,18 @@ group :development do
   gem 'binding_of_caller'
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'listen', '~> 3.2'
+  gem 'memory_profiler'
   gem 'rack-livereload'
+  gem 'rack-mini-profiler'
   gem 'solargraph'
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # For call-stack profiling flamegraphs
+  gem 'flamegraph'
+  gem 'stackprof'
 end
 
 group :test do
