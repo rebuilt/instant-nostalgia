@@ -26,31 +26,45 @@ class ShareTest < ActiveSupport::TestCase
 
     # List users who are authorized to see album
     shares = album.shares
-    shares.each do |share|
-      puts share.user.email
+    shares.each do |s|
+      puts s.user.email
     end
     assert_equal user2, shares.first.user
 
     # Alternate way to list users who are authorized to see album
     shares = Share.where(album: album)
-    shares.each do |share|
-      puts share.user.email
+    shares.each do |s|
+      puts s.user.email
     end
     assert_equal user2, shares.first.user
 
+    # Alternate way to list users who are authorized to see album
+    people = album.users
+    people.each do |person|
+      puts person
+    end
+    assert_equal user2, people.first
+
     # Find everything shared with user2
     shares = Share.where(user: user2)
-    shares.each do |share|
-      puts share.album.title
+    shares.each do |s|
+      puts s.album.title
     end
     assert_equal album, shares.first.album
 
     # Alternate method for finding everything shared with user2
     shares = user2.shares
-    shares.each do |share|
-      puts share.album.title
+    shares.each do |s|
+      puts s.album.title
     end
     assert_equal album, shares.first.album
+
+    # Alternate method for finding everything shared with user2
+    albums = user2.authorized_albums
+    albums.each do |a|
+      puts a.title
+    end
+    assert_equal album, albums.first
   end
 
   def create_user(username = 'me', password = '123')
