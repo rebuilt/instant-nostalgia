@@ -1,36 +1,38 @@
-<h1>My albums</h1>
-<ul>
-  <% @my_albums.each do |album|  %>
-    <li>
-      <div>
+<main class="content-wrapper">
+  <h1>My albums</h1>
+  <ul>
+    <% @my_albums.each do |album|  %>
+      <li>
+        <div>
+          <p>
+          <%= album.title  %> 
+          <%= form_with(url: new_share_path, method: :get, local: true) do |form|  %> 
+            Share with additional people
+            <%= hidden_field_tag("album_id", album.id)  %> 
+            <%= form.submit("Share album")  %>
+          <% end %>
+          </p>
+        </div>
+        <div>
+          <p> This album is shared with the following users:</p>
+          <% album.shares.each do |share|  %>        
+            <p><%= share.user.email  %> </p>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+
+  <h1>Albums shared with me</h1>
+
+  <ul>
+    <% @shared_with_me.each do |album|  %>
+      <li>
         <p>
         <%= album.title  %> 
-        <%= form_with(url: new_share_path, method: :get, local: true) do |form|  %> 
-          Share with additional people
-          <%= hidden_field_tag("album_id", album.id)  %> 
-          <%= form.submit("Share with someone")  %>
-        <% end %>
+        <%= link_to("View", album_path(album) )  %>
         </p>
-      </div>
-      <div>
-        <p> This album is shared with the following users:</p>
-        <% album.shares.each do |share|  %>        
-          <p><%= share.user.email  %> </p>
-        <% end %>
-      </div>
-    </li>
-  <% end %>
-</ul>
-
-<h1>Albums shared with me</h1>
-
-<ul>
-  <% @shared_with_me.each do |album|  %>
-    <li>
-      <p>
-      <%= album.title  %> 
-      <%= link_to("View", album_path(album) )  %>
-      </p>
-    </li>
-  <% end %>
-</ul>
+      </li>
+    <% end %>
+  </ul>
+</main>
