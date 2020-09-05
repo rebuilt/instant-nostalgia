@@ -2,7 +2,7 @@
   <div class="content-wrapper hr">
     <div class="media">
       <div class="media__figure">
-        <%= image_tag( @photo.image, style: "width: 50%; height 50%" ) if @photo.image.attached?  %> 
+        <%= image_tag( @photo.image) if @photo.image.attached?  %> 
       </div>
       <div class="media__body">
         <div class="goal">
@@ -47,7 +47,7 @@
       <% if  logged_in?  %>
         <%= form_for([@photo, @comment], html: {class: 'comments__input'},remote: true) do |f| %>
           <img class="avatar" src="<%= asset_path('avatar.png')  %>" alt="Portrait of logged in user">
-          <div class="input-group">
+          <div class="field">
             <%= f.label(:body, 'Add a comment', class: 'input-group__label')  %>
             <%= f.rich_text_area(:body, class: 'input-group__field')  %>
           </div>
@@ -60,7 +60,7 @@
           <li class="comment">
             <img class="avatar" src="<%= asset_path('avatar.png')  %>"  alt="Portrait of commenter">
             <div class="comment__body">
-              <h3 class="comment__title"><%= comment.user.name  %> <time datetime="<%= comment.created_at  %>"><%= time_ago_in_words(comment.created_at)  %></time></h3>
+              <h3 class="comment__title"><%= comment.user.email  %> <time datetime="<%= comment.created_at  %>"><%= time_ago_in_words(comment.created_at)  %></time></h3>
               <p> <%= comment.body  %> </p>
             </div>
           </li>
