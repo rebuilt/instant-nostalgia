@@ -10,6 +10,7 @@ class PhotosController < ApplicationController
 
   def show
     @photo = Photo.with_image.belongs_to_user(current_user).find(params[:id])
+    @comment = Comment.new
   end
 
   def new
