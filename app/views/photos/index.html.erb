@@ -7,7 +7,7 @@
       <% @photos.each do |photo|  %>
         <li>
           <%= link_to photo_path(photo) do  %>
-            <%= image_tag(photo.image, style: "height: 100px; width: 100px;") if photo.image.attached? %>
+            <%= image_tag(photo.image.variant(resize: '200x200'), style: "height: 100px; width: 100px;") if photo.image.attached? %>
             <%# <p>  <%= photo.file_name  %1> </p> %>
             <%# <p>  <%= photo.latitude_in_degrees  %1> </p> %>
             <%# <p>  <%= photo.longitude_in_degrees  %1> </p> %>

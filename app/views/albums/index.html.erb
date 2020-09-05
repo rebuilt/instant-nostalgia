@@ -62,7 +62,7 @@
       <%= hidden_field_tag "hidden_checked[#{photo.id}]", false %>
       <%= check_box_tag("checked[#{photo.id}]", value: photo.id)  %> 
       <%= link_to(photo_path(photo) ) do  %>
-        <%= image_tag(photo.image, style: "height: 100px; width: 100px;") if photo.image.attached? %>
+        <%= image_tag(photo.image.variant(resize: '200x200'), style: "height: 100px; width: 100px;") if photo.image.attached? %>
       <% end %>
     <% end %>
 
