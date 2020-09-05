@@ -1,0 +1,130 @@
+/* ==========================================================================
+   FORMS
+   ========================================================================== */
+
+.form--inpage {
+  margin-bottom: 3.2rem;
+}
+
+/* Pairs of label + input (+ btn) are wrapped in .input-group */
+.input-group__label {
+  display: inline-block;
+  margin: 0 0 0.5em;
+  cursor: pointer;
+}
+
+.input-group__field {
+  padding: 1.6rem;
+  margin: 0 0 1.6rem;
+  font-size: inherit;
+  display: block;
+  width: 100%;
+  /* Don't forget the box-model when combining padding and widths! */
+  box-sizing: border-box;
+}
+
+.input-group__file {
+  padding: 1.6rem;
+  margin: 0 0 1.6rem;
+  font-size: inherit;
+  display: block;
+  width: 100%;
+  /* Don't forget the box-model when combining padding and widths! */
+  box-sizing: border-box;
+}
+.input-group__field:not([type="file"]) {
+  background-color: #fff;
+  border: 1px solid #e3e5e9;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.14);
+  transition: all 0.15s cubic-bezier(0.44, -0.44, 0.44, 1.66);
+}
+
+.input-group__field:focus {
+  border-color: #72797e;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+}
+
+.input-group textarea {
+  height: 100px;
+}
+
+/* Align labels to the left of input field when viewport wider than 600px */
+@media screen and (min-width: 600px) {
+  .input-group--horizontal {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .input-group--horizontal .input-group__label,
+  .input-group--horizontal > .field_with_errors {
+    flex: 0 1 20%;
+    margin-top: 1.25rem; /* Value found by testing in the web inspector. Aligns with placeholder text in input field. */
+  }
+
+  .input-group--horizontal .input-group__field,
+  .input-group--horizontal > .field_with_errors ~ .field_with_errors {
+    flex: 1 0 auto;
+    width: auto;
+
+    .input-group__field {
+      width: 100%;
+    }
+  }
+}
+
+/* Input Row "attaches" the button to the end of the input field */
+.input-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.input-row__field {
+  flex: 1 0 auto;
+  background-color: #fff;
+  border: 1px solid #e3e5e9;
+  box-shadow: none;
+  padding: 1.6rem;
+  font-size: inherit;
+  display: block;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.input-row__field:focus {
+  border-color: #72797e;
+}
+
+/**
+ *  Notes, warnings, alerts
+ */
+
+.alert {
+  color: #e25d43;
+  margin-bottom: 1.6rem;
+}
+
+@media screen and (min-width: 600px) {
+  .alert--wide {
+    margin-left: 20%;
+  }
+}
+
+/**
+ *  Promt for cancel or confirm form
+ */
+.prompt {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 1.6rem;
+}
+
+.prompt__cancel {
+  flex: 0 1 20%;
+}
+
+.prompt__confirm {
+  flex: 1 0 auto;
+  justify-content: center;
+}
