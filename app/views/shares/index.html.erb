@@ -1,6 +1,6 @@
 <h1>My albums</h1>
 <ul>
-  <% @shared_by_me.each do |album|  %>
+  <% @my_albums.each do |album|  %>
     <li>
       <div>
         <p>
@@ -25,11 +25,11 @@
 <h1>Albums shared with me</h1>
 
 <ul>
-  <% @shared_with_me.each do |share|  %>
+  <% @shared_with_me.each do |album|  %>
     <li>
       <p>
-      <%= share.album.title  %> 
-      <%= link_to("View", album_path(share.album) )  %>
+      <%= album.title  %> 
+      <%= link_to("View", album_path(album) )  %>
       </p>
     </li>
   <% end %>
