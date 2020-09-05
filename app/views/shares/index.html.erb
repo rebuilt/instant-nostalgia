@@ -5,7 +5,7 @@
       <div>
         <p>
         <%= album.title  %> 
-        <%= form_for(album, url: new_share_path, method: :get) do |form|  %> 
+        <%= form_with(url: new_share_path, method: :get, local: true) do |form|  %> 
           Share with additional people
           <%= hidden_field_tag("album_id", album.id)  %> 
           <%= form.submit("Share with someone")  %>
