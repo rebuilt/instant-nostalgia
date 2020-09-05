@@ -1,13 +1,18 @@
 class AlbumsController < ApplicationController
   def index
     @album = Album.new
-    @albums = current_user.albums
+    # OPTIMIZE: attach image_attachment: :blob to this @album query
+    # @albums = current_user.albums
+    @albums = Album.includes(photos: [image_attachment: [:blob]]).where(user: current_user.id)
   end
 
   def show
     # TODO: Non-owners should not be able to delete photos
     # TODO: pagify album contents
-    @album = Album.find(params[:id])
+
+    # OPTIMIZE: attach image_attachment: :blob to this @album query
+    # @album = Album.find(params[:id])
+    @album = Album.includes(photos: [image_attachment: [:blob]]).find(params[:id])
   end
 
   def create
