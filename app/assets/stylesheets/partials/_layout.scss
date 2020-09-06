@@ -1,0 +1,111 @@
+/* ==========================================================================
+   LAYOUT
+   ========================================================================== */
+
+/* Center page contents
+    ========================================================================== */
+
+.content-wrapper {
+  margin: 0 auto;
+  max-width: 64em;
+  padding: 0 1em;
+}
+
+.see-more {
+  border-top: 1px solid #e3e5e9;
+  padding: 1.6rem 0;
+  margin: 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+/* "Lighbox" module
+   ========================================================================== */
+
+.envelope {
+  min-width: 10em;
+  max-width: 35em;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.14);
+  margin: 0 auto 6.4rem auto;
+}
+
+.envelope > header {
+  padding: 3.2rem;
+  border-bottom: 1px solid #e3e5e9;
+}
+
+.envelope > header p:last-child {
+  margin-bottom: 0;
+}
+
+.envelope > main {
+  padding: 3.2rem;
+}
+
+/* Filter tags' box
+   ========================================================================== */
+.filter {
+  background-color: #f7f9fc;
+  border-top: 1px solid #e3e5e9;
+  border-bottom: 1px solid #e3e5e9;
+  padding: 0.6rem 0 0;
+  margin: 0 0 3.2rem 0;
+}
+
+/* Media queries
+   ========================================================================== */
+
+/**
+ * These breakpoints are selected by checking resizing the browser
+ * window to see where the layout "breaks", ie. starts lucking
+ * ugly. This will vary from project to project.
+ * There is no need to stick to the rigid 480px - 760px - 1280px
+ * breakpoints like many frameworks encourage if your design doesn't
+ * need it.
+ */
+
+/* If narrow screen then remove padding */
+@media screen and (max-width: 539px) {
+  .masthead {
+    padding: 0;
+  }
+}
+
+/* If screen medium width - over 540px wide */
+@media screen and (min-width: 540px) {
+  .masthead h1 {
+    font-size: 40px;
+    font-size: 4rem;
+    text-align: center;
+  }
+  .masthead .input-inline {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+}
+
+/* If wide screen- over 720px wide */
+@media screen and (min-width: 720px) {
+  .masthead h1 {
+    font-size: 48px;
+    font-size: 4.8rem;
+  }
+  .masthead .input-inline {
+    max-width: 60%;
+  }
+}
+
+/* Full page background image
+   ========================================================================== */
+.full-bleed {
+  background: #72797e url(../images/mountains-forests.jpg) no-repeat center
+    center fixed;
+  background-size: cover;
+}
+
+.full-bleed__header {
+  padding: 3.2rem 0 6.4rem 0;
+}
