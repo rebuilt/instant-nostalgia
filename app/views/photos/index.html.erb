@@ -1,27 +1,23 @@
-<h1>Photos#index</h1>
-<div class="main">
-  <div id="map" >Please <%= link_to('upload', new_photo_path)  %> some photos to get started</div>
 
+<div class="content-wrapper">
+  <h1>Photos#index</h1>
+</div>
+  <div id="map" >Please <%= link_to('upload', new_photo_path)  %> some photos to get started</div>
+<div class="content-wrapper">
   <ul class="photo-container">
     <% if @photos.present?  %>
       <% @photos.each do |photo|  %>
         <li>
           <%= link_to photo_path(photo) do  %>
             <%= image_tag(photo.image.variant(resize: '200x200'), style: "height: 100px; width: 100px;") if photo.image.attached? %>
-            <%# <p>  <%= photo.file_name  %1> </p> %>
-            <%# <p>  <%= photo.latitude_in_degrees  %1> </p> %>
-            <%# <p>  <%= photo.longitude_in_degrees  %1> </p> %>
-            <%# <p>  <%= photo.date_time_digitized  %1> </p> %>
-            <%# <p>  <%= photo.latitude_in_decimal %1> </p> %>
-            <%# <p>  <%= photo.longitude_in_decimal %1> </p> %>
           <% end %>
         </li>
       <% end %>
     <% end %>
 
   </ul>
-
 </div>
+
 <script>
   document.addEventListener("turbolinks:load", function(){
     map = document.getElementById("map");
@@ -31,18 +27,18 @@
   });
 
   function initMap() {
-    <% if @photos.size >0  %>  
+    <% if @photos.size >0  %>
         map = new google.maps.Map(document.getElementById("map"), {
           center: { lat: <%= @photos.first.latitude_in_decimal  %> , lng: <%= @photos.first.longitude_in_decimal  %>  },
           zoom: 12
         });
-    addMarkers(); 
+    addMarkers();
   <% end %>
   }
 
   function addMarkers(latitude, longitude){
-    <% @photos.each do |photo|  %> 
-        <% unless photo.latitude_in_decimal == 0 && photo.longitude_in_decimal == 0  %>    
+    <% @photos.each do |photo|  %>
+        <% unless photo.latitude_in_decimal == 0 && photo.longitude_in_decimal == 0  %>
         var index = 0
     var image = {
       url: '<%= rails_representation_url(photo.image.variant(resize: '200x200'), disposition: "attachment", only_path: true) %>' ,
@@ -70,4 +66,3 @@
   }
 
 </script>
-
