@@ -11,6 +11,50 @@
   padding: 0 1em;
 }
 
+.see-more {
+  border-top: 1px solid #e3e5e9;
+  padding: 1.6rem 0;
+  margin: 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+/* "Lighbox" module
+   ========================================================================== */
+
+.envelope {
+  min-width: 10em;
+  max-width: 35em;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.14);
+  margin: 0 auto 6.4rem auto;
+}
+
+.envelope > header {
+  padding: 3.2rem;
+  border-bottom: 1px solid #e3e5e9;
+}
+
+.envelope > header p:last-child {
+  margin-bottom: 0;
+}
+
+.envelope > main {
+  padding: 3.2rem;
+}
+
+/* Filter tags' box
+   ========================================================================== */
+.filter {
+  background-color: #f7f9fc;
+  border-top: 1px solid #e3e5e9;
+  border-bottom: 1px solid #e3e5e9;
+  padding: 0.6rem 0 0;
+  margin: 0 0 3.2rem 0;
+}
+
 /* Media queries
    ========================================================================== */
 
@@ -52,4 +96,16 @@
   .masthead .input-inline {
     max-width: 60%;
   }
+}
+
+/* Full page background image
+   ========================================================================== */
+.full-bleed {
+  background: #72797e url(../images/mountains-forests.jpg) no-repeat center
+    center fixed;
+  background-size: cover;
+}
+
+.full-bleed__header {
+  padding: 3.2rem 0 6.4rem 0;
 }
