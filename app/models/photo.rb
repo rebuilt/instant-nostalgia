@@ -6,7 +6,7 @@ class Photo < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :albums
   has_many :comments
-  # has many users through comments
+  # has many users/commenters through comments
 
   def init
     metadata = read_image_metadata
