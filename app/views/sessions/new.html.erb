@@ -1,17 +1,21 @@
-<main>
+<main class="content-wrapper">
   <section class="envelope">
     <header class="text--center">
       <h1 class="gamma">Log in</h1>
     </header>
-    <% if(flash.any?)  %>
-      <div class="container message-container">
-        <% flash.each do |name, message|  %>
-          <div class="message <%= name  %> "> <%= message  %> </div>
-        <% end %>
-      </div>
-    <% end %>
+
+    <div class="errors">
+      <% if(flash.any?)  %>
+        <div class="container message-container">
+          <% flash.each do |name, message|  %>
+            <div class="message <%= name  %> "> <%= message  %> </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
     <%= form_tag( sessions_path) do %>
-      <div class="input-group
+      <div class="input-group">
         <%= label(:email,'Email', class: "input-group__label" )  %>
         <%= text_field_tag(:email,nil, class: 'input-group__field', placeholder: "e.g. me@epfl.ch"  )%>
       </div>
