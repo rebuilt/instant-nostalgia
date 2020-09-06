@@ -8,18 +8,21 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <%# <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> %>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOKYnV1ICIa4zYFItn5WS9pXN2I6ECRXw&callback=initMap&libraries=&v=weekly" defer ></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   </head>
 
   <body>
-    <header class="content-wrapper">
-      <% if logged_in?  %>            
-        <%= render(partial: "authenticated_user_header") %> 
+    <header>
+      <% if logged_in?  %>
+        <%= render(partial: "authenticated_user_header") %>
       <% else  %>
-        <%= render(partial: "anonymous_user_header") %> 
+        <%= render(partial: "anonymous_user_header") %>
       <% end %>
+      <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+      </label>
     </header>
 
     <%= yield %>
@@ -27,6 +30,5 @@
     <% I18n.available_locales.each do |locale| %>
       <%= link_to locale, url_for(locale: locale) %>
     <% end %>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
   </body>
 </html>

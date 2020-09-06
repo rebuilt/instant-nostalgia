@@ -41,11 +41,11 @@
         <tr>
           <td><%= album.title %></td>
           <td><%= album.user_id %></td>
-          <td><%= link_to 'Show', album %></td>
-          <td><%= link_to 'Delete', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <td> 
-            <%= form_with(url: new_share_path, method: :get, local: true) do |form|  %> 
-              <%= hidden_field_tag("album_id", album.id)  %> 
+          <td><%= link_to 'Show', album , class: "btn btn--primary"%></td>
+          <td><%= link_to 'Delete', album, method: :delete, class: "btn btn--warning", data: { confirm: 'Are you sure?' } %></td>
+          <td>
+            <%= form_with(url: new_share_path, method: :get, local: true) do |form|  %>
+              <%= hidden_field_tag("album_id", album.id)  %>
               <%= form.submit("Share album ", class: 'btn btn--primary')  %>
             <% end %>
           </td>
@@ -60,13 +60,13 @@
     <%= form_with(url: photo_album_path(1), method: :patch, local: true) do |form| %>
       <div class="actions">
         <p>Add to album</p>
-        <%= select_tag("album", options_from_collection_for_select(current_user.albums, "id", "title"))  %> 
+        <%= select_tag("album", options_from_collection_for_select(current_user.albums, "id", "title"))  %>
         <%= form.submit("Add to album") %>
       </div>
 
       <% @photos.each do |photo|   %>
         <%= hidden_field_tag "hidden_checked[#{photo.id}]", false %>
-        <%= check_box_tag("checked[#{photo.id}]", value: photo.id)  %> 
+        <%= check_box_tag("checked[#{photo.id}]", value: photo.id)  %>
         <%= link_to(photo_path(photo) ) do  %>
           <%= image_tag(photo.image.variant(resize: '200x200'), style: "height: 100px; width: 100px;") if photo.image.attached? %>
         <% end %>

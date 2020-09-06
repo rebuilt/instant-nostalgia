@@ -1,18 +1,17 @@
-<main>
-  <div class="content-wrapper hr">
-    <div class="media">
-      <div class="media__figure">
-        <%= image_tag( @photo.image) if @photo.image.attached?  %> 
-      </div>
-      <div class="media__body">
-        <div class="goal">
-          <div class="goal__owner">
-            <p>Created by <a href="#">Nelson Jovel</a></p>
-          </div>
-          <div class="goal__intro">
-            <p>
-            We can put a description about our photo here!
-            </p>
+<main class="content-wrapper">
+  <div class="media">
+    <div class="media__figure">
+      <%= image_tag( @photo.image) if @photo.image.attached?  %>
+    </div>
+    <div class="media__body">
+      <div class="goal">
+        <div class="goal__owner">
+          <p>Created by <a href="#">Nelson Jovel</a></p>
+        </div>
+        <div class="goal__intro">
+          <p>
+          We can put a description about our photo here!
+          </p>
 
           <p>  <%= @photo.file_name  %> </p>
           <p>  <%= @photo.latitude_in_degrees  %> </p>
@@ -20,25 +19,25 @@
           <p>  <%= @photo.date_time_digitized  %> </p>
           <p>  <%= @photo.latitude_in_decimal %> </p>
           <p>  <%= @photo.longitude_in_decimal %> </p>
-          </div>
-          <div class="goal__meta">
-            <span>Created on <time datetime="<%= @photo.created_at.strftime("%d %b '%y")  %>"><%= @photo.created_at.strftime("%d %b '%y")  %></time></span>
-            <span><a href="#comments"><%= @comments.size  %> comments</a></span>
-          </div>
-          <ul class="tags-list">
-            <li><a href="#nature">Nature</a></li>
-            <li><a href="#swimming">Swimming</a></li>
-            <li>
-              <a href="#travel" class="selected">
-                Travel
-                <i class="remove-tag">&times;</i>
-              </a>
-            </li>
-            <li><a href="#tag4" data-filter="tag-4">Tag 4</a></li>
-          </ul>
         </div>
+        <div class="goal__meta">
+          <span>Created on <time datetime="<%= @photo.created_at.strftime("%d %b '%y")  %>"><%= @photo.created_at.strftime("%d %b '%y")  %></time></span>
+          <span><a href="#comments"><%= @comments.size  %> comments</a></span>
+        </div>
+        <ul class="tags-list">
+          <li><a href="#nature">Nature</a></li>
+          <li><a href="#swimming">Swimming</a></li>
+          <li>
+            <a href="#travel" class="selected">
+              Travel
+              <i class="remove-tag">&times;</i>
+            </a>
+          </li>
+          <li><a href="#tag4" data-filter="tag-4">Tag 4</a></li>
+        </ul>
       </div>
     </div>
+  </div>
   </div>
   <div class="content-wrapper">
     <div class="comments">
@@ -67,5 +66,4 @@
         <% end %>
       </ul>
     </div>
-  </div>
 </main>

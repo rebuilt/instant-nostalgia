@@ -1,48 +1,49 @@
-<h1>Shares#new</h1>
-<h2> 
-  Album title: <%= @album.title  %>
-</h2>
-<p>Who would you like to share <%= @album.title  %> with?</p>
+<div class="content-wrapper">
+  <h1>Shares#new</h1>
+  <h2>
+    Album title: <%= @album.title  %>
+  </h2>
+  <p>Who would you like to share <%= @album.title  %> with?</p>
 
-<% if @share.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@share.errors.count, "error") %> prohibited this album from being saved:</h2>
+  <% if @share.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@share.errors.count, "error") %> prohibited this album from being saved:</h2>
 
-    <ul>
-      <% @share.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <ul>
+        <% @share.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <div class="find-user">
+      <%= form_with(url: new_share_path , method: :get, local: :true) do |form| %>
+        <div class="field">
+          <%= form.label :search %>
+          <%= form.text_field :search %>
+        </div>
+        <%= hidden_field_tag "album_id", @album.id %>
+        <div class="actions">
+          <%= form.submit("Search for User") %>
+        </div>
       <% end %>
-    </ul>
-  </div>
-<% end %>
+    </div>
 
-<div>
-  <div class="find-user">
-    <%= form_with(url: new_share_path , method: :get, local: :true) do |form| %>
-      <div class="field">
-        <%= form.label :search %>
-        <%= form.text_field :search %>
-      </div>
-      <%= hidden_field_tag "album_id", @album.id %>
-      <div class="actions">
-        <%= form.submit("Search for User") %>
-      </div>
-    <% end %>
-  </div>
-
-  <div id="results" class="results" >
-    <p> You searched for: <%= @term  %></p>
-    <% if(@users.present?)%>
-      <% @users.each do |user|  %> 
-        <%= form_with(url: shares_path) do |form| %>
-          <p> <%= user.username %> </p>
-          <p> <%= user.email  %> </p>
-          <%= hidden_field_tag "user_id", user.id %>
-          <%= hidden_field_tag "album_id", @album.id %>
-          <%= form.submit("Share #{@album.title} with #{user.username}") %>
+    <div id="results" class="results" >
+      <p> You searched for: <%= @term  %></p>
+      <% if(@users.present?)%>
+        <% @users.each do |user|  %>
+          <%= form_with(url: shares_path) do |form| %>
+            <p> <%= user.username %> </p>
+            <p> <%= user.email  %> </p>
+            <%= hidden_field_tag "user_id", user.id %>
+            <%= hidden_field_tag "album_id", @album.id %>
+            <%= form.submit("Share #{@album.title} with #{user.username}") %>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
-
