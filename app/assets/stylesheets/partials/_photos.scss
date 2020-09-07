@@ -14,6 +14,31 @@
   width: 100%;
 }
 
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.photo-selector {
+  display: flex;
+  margin: 1.4em;
+}
+
+.photo-selector input {
+  width: 40px;
+  height: 200px;
+  margin: 0 1em 0 0;
+}
+
+.photos {
+  margin-top: 4.5rem;
+}
+
+.photo-deletable {
+  margin: 1.4em;
+  display: flex;
+  flex-direction: column;
+}
 @media screen and (min-width: 720px) {
   .media__figure {
     box-sizing: border-box;

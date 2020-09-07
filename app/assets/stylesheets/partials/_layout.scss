@@ -6,7 +6,7 @@
     ========================================================================== */
 
 .content-wrapper {
-  margin: 0 auto;
+  margin: 50px auto;
   max-width: 64em;
   padding: 0 1em;
 }
@@ -43,6 +43,12 @@
 
 .envelope > main {
   padding: 3.2rem;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 /* Filter tags' box

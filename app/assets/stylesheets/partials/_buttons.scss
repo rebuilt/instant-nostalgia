@@ -38,27 +38,27 @@
 }
 
 .btn--primary {
-  background-color: $primary;
+  background-color: $primary--dark;
   color: #fff;
-  border: 1px solid $primary;
+  border: 1px solid $primary--dark;
 }
 
 .btn--primary:hover,
 .btn--primary:focus {
-  background-color: $primary--dark;
-  border-color: $primary--dark;
+  background-color: $primary--darker;
+  border-color: $primary--darker;
 }
 
 .btn--warning {
-  background-color: #e25d43;
+  background-color: $warning;
   color: #fff;
-  border: 1px solid #e25d43;
+  border: 1px solid $warning;
 }
 
 .btn--warning:hover,
 .btn--warning:focus {
-  background-color: hsl(10, 93%, 37%);
-  border-color: hsl(10, 93%, 37%);
+  background-color: $warning-dark;
+  border-color: $warning-dark;
 }
 
 .btn--inline {

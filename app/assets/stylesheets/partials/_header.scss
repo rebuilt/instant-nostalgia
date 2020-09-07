@@ -1,9 +1,11 @@
+@import "colors";
+
 nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
   min-height: 8vh;
-  background-color: #93c8a2;
+  background-color: $primary;
 }
 
 .logo {
