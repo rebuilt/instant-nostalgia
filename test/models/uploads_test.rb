@@ -4,7 +4,7 @@ include ActionDispatch::TestProcess
 class UploadsTest < ActiveSupport::TestCase
   test 'upload a file without location data' do
     count = ActiveStorage::Attachment.count
-    image = fixture_file_upload(Rails.root.join('public', 'images', '20170827_093118.jpg'), 'image/jpg')
+    image = fixture_file_upload(Rails.root.join('test', 'images', '20170827_093118.jpg'), 'image/jpg')
 
     user = User.new(email: 'me@mail.com', username: 'me', password: '123')
     photo = Photo.create(image: image, user: user)
@@ -19,7 +19,7 @@ class UploadsTest < ActiveSupport::TestCase
 
   test 'upload a file with location data' do
     count = ActiveStorage::Attachment.count
-    image = fixture_file_upload(Rails.root.join('public', 'images', '20190731_125829.jpg'), 'image/jpg')
+    image = fixture_file_upload(Rails.root.join('test', 'images', '20190731_125829.jpg'), 'image/jpg')
 
     user = User.new(email: 'me@mail.com', username: 'me', password: '123')
     photo = Photo.create(image: image, user: user)
