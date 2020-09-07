@@ -1,4 +1,3 @@
-
 <div class="content-wrapper">
   <h1>Photos#index</h1>
 </div>
@@ -7,9 +6,9 @@
   <ul class="photo-container">
     <% if @photos.present?  %>
       <% @photos.each do |photo|  %>
-        <li>
+        <li >
           <%= link_to photo_path(photo) do  %>
-            <%= image_tag(photo.image.variant(resize: '200x200'), style: "height: 100px; width: 100px;") if photo.image.attached? %>
+            <%= image_tag(photo.image.variant(resize: '300x300')) if photo.image.attached? %>
           <% end %>
         </li>
       <% end %>
