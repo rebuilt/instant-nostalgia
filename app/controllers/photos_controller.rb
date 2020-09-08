@@ -1,16 +1,11 @@
 class PhotosController < ApplicationController
   def index
-    # TODO: Add filter bar
-    # TODO: Add scrollbar
-    # TODO: Add photo modals
-    # TODO: Add listener to recenter map on clicked-on photo
-    # TODO: The current view should be extracted out into map#index and a new page for photos#index should be created here
     @photos = Photo.all.with_attached_image.belonging_to_user(current_user)
   end
 
   def show
     @photo = Photo.with_attached_image.belonging_to_user(current_user).find(params[:id])
-    @comments = Comment.with_rich_text_body.order('created_at DESC').where(commentable_id: @photo)
+    @comments = Comment.with_rich_text_body.order_by_old_to_new.where(commentable_id: @photo)
     @comment = Comment.new
   end
 
