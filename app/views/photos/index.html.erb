@@ -1,67 +1,15 @@
 <div class="content-wrapper">
   <h1>Photos#index</h1>
-</div>
-  <div id="map" >Please <%= link_to('upload', new_photo_path)  %> some photos to get started</div>
-<div class="content-wrapper">
-  <ul class="row">
-    <% if @photos.present?  %>
-      <% @photos.each do |photo|  %>
-        <li>
-          <%= link_to photo_path(photo) do  %>
-            <%= image_tag(photo.image.variant(resize: '300x300')) if photo.image.attached? %>
-          <% end %>
-        </li>
-      <% end %>
+
+  <div class="gallery">
+    <% @photos.each do |photo|   %>
+      <div class="photo-deletable">
+        <%= link_to photo_path(photo) do  %>
+          <%= image_tag(photo.image.variant(resize: '300x300')) if photo.image.attached? %>
+        <% end %>
+        <%= link_to "Delete", photos_path, class: "btn btn--warning"  %>
+          <%# <%= link_to "Remove", photo_path([@album, photo.id]), class: "btn btn--warning" , method: :delete, data: {confirm: 'Are you sure you want to remove this photo from the album?'} %1> %>
+      </div>
     <% end %>
-
-  </ul>
+  </div>
 </div>
-
-<script>
-  document.addEventListener("turbolinks:load", function(){
-    map = document.getElementById("map");
-    if(map != null){
-      initMap();
-    }
-  });
-
-  function initMap() {
-    <% if @photos.size >0  %>
-        map = new google.maps.Map(document.getElementById("map"), {
-          center: { lat: <%= @photos.first.latitude_in_decimal  %> , lng: <%= @photos.first.longitude_in_decimal  %>  },
-          zoom: 12
-        });
-    addMarkers();
-  <% end %>
-  }
-
-  function addMarkers(latitude, longitude){
-    <% @photos.each do |photo|  %>
-        <% unless photo.latitude_in_decimal == 0 && photo.longitude_in_decimal == 0  %>
-        var index = 0
-    var image = {
-      url: '<%= rails_representation_url(photo.image.variant(resize: '200x200'), disposition: "attachment", only_path: true) %>' ,
-      origin: new google.maps.Point(0,0),
-      anchor: new google.maps.Point(0,32)
-    };
-
-    var shape = {
-      coords: [1, 1, 1, 20, 18, 20, 18, 1],
-      type: 'poly'
-    };
-
-    var marker = new google.maps.Marker({
-      position: {lat: <%= photo.latitude_in_decimal %> , lng: <%= photo.longitude_in_decimal  %> },
-      map: map,
-      title: 'Hello World!',
-      icon: image,
-      shape: shape,
-      zIndex: index
-    });
-    index = index +1;
-
-  <% end %>
-    <% end %>
-  }
-
-</script>
