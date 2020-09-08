@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
         format.js { render :create }
       end
     else
-      byebug
+      # TODO: make the 'new' view or redirect to somewhere useful
       render :new
     end
   end
