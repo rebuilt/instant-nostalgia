@@ -1,4 +1,3 @@
-console.log("inside the create method in comments")
 var commentList = document.getElementById('commentList');
 
 var comment = document.createElement('li');
@@ -59,7 +58,4 @@ comment__details.appendChild(delete_form);
 comment.appendChild(comment__details);
 comment.appendChild(comment__body);
 
-commentList.insertBefore(comment, commentList.firstChild);
-
-text_area = document.getElementById("commentList");
-text_area.value = '';
+commentList.appendChild(comment);
