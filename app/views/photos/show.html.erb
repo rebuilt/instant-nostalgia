@@ -38,7 +38,7 @@
   </div>
   <div class="content-wrapper">
     <div class="comments">
-      <h2 class="comments__title">Discussion <span> <%= @comments.size  %> comments</span></h2>
+      <h2 class="comments__title">Discussion <span> <%= @comments.count  %> comments</span></h2>
 
       <%= render partial: "comments_panel", locals: {commentable: @photo, comments: @comments}  %>
       <% if  logged_in?  %>
