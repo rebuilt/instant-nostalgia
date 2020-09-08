@@ -5,7 +5,11 @@ class PhotosController < ApplicationController
 
   def show
     @photo = Photo.with_attached_image.belonging_to_user(current_user).find(params[:id])
-    @comments = Comment.with_rich_text_body.order_by_old_to_new.where(commentable_id: @photo)
+    @comments = Comment.with_rich_text_body.order_by_old_to_new.where(commentable_id: @photo).includes(:user)
+    # @comments = Comment.joins(:user).with_rich_text_body.order_by_old_to_new.where(commentable_id: @photo)
+    # @comments = Comment.with_rich_text_body.order_by_old_to_new.where(commentable_id: @photo).includes(:user)
+    # @comments = Comment.with_rich_text_body.order_by_old_to_new.joins(:user).where(commentable_id: @photo)
+    # @comments = Comment.with_rich_text_body.order_by_old_to_new.includes(:user).where(commentable_id: @photo)
     @comment = Comment.new
   end
 
