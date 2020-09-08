@@ -2,12 +2,13 @@ class PhotoAlbumsController < ApplicationController
   def update
     @album = Album.find(params[:album])
 
-    # I'm not using _value variable but if I don't include it, I get both photo_id and value in a single string instead of separate id and value
-    params[:checked].each do |photo_id, _value|
-      @photo = Photo.find(photo_id)
+    if params[:checked].present?
+      params[:checked].each do |photo_id, _value|
+        @photo = Photo.find(photo_id)
 
-      # don't include duplicates
-      @album.photos << @photo unless @album.photos.include?(@photo)
+        # don't include duplicates
+        @album.photos << @photo unless @album.photos.include?(@photo)
+      end
     end
 
     respond_to do |format|
