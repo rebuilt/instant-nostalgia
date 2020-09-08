@@ -9,10 +9,7 @@
           <p>Created by <a href="#">Nelson Jovel</a></p>
         </div>
         <div class="goal__intro">
-          <p>
-          We can put a description about our photo here!
-          </p>
-
+          <p> We can put a description about our photo here!  </p>
           <p>  <%= @photo.file_name  %> </p>
           <p>  <%= @photo.latitude_in_degrees  %> </p>
           <p>  <%= @photo.longitude_in_degrees  %> </p>
@@ -44,26 +41,8 @@
       <h2 class="comments__title">Discussion <span> <%= @comments.size  %> comments</span></h2>
 
       <% if  logged_in?  %>
-        <%= form_for([@photo, @comment], html: {class: 'comments__input'},remote: true) do |f| %>
-          <img class="avatar" src="<%= asset_path('avatar.png')  %>" alt="Portrait of logged in user">
-          <div class="field">
-            <%= f.label(:body, 'Add a comment', class: 'input-group__label')  %>
-            <%= f.rich_text_area(:body, class: 'input-group__field')  %>
-          </div>
-          <%= f.submit('Post', class: "btn btn--primary" )  %>
-        <% end %>
+        <%= render partial: "comment_form", locals: {commentable: @photo, comment: @comment} %>
       <% end %>
-
-      <ul id="commentList" class="comments__listing">
-        <% @comments.each do |comment|  %>
-          <li class="comment">
-            <img class="avatar" src="<%= asset_path('avatar.png')  %>"  alt="Portrait of commenter">
-            <div class="comment__body">
-              <h3 class="comment__title"><%= comment.user.email  %> <time datetime="<%= comment.created_at  %>"><%= time_ago_in_words(comment.created_at)  %></time></h3>
-              <p> <%= comment.body  %> </p>
-            </div>
-          </li>
-        <% end %>
-      </ul>
+      <%= render partial: "comments_panel", locals: {commentable: @photo}  %>
     </div>
 </main>
