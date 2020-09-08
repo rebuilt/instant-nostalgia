@@ -20,20 +20,22 @@
     <div class="find-user">
       <%= form_with(url: new_share_path , method: :get, local: :true) do |form| %>
         <div class="row">
-        <div class="input-group mt-3 mr-3">
-        <%= label_tag :search, "Who would you like to share #{@album.title} with?", class: "input-group__label"%>
-          <%= form.text_field :search, class: "input-group__field mt-3" %>
-        </div>
-        <%= hidden_field_tag "album_id", @album.id %>
-        <div class="actions mt-4">
-          <%= form.submit("Search for User", class: "btn btn--primary") %>
-        </div>
+          <div class="input-group mt-3 mr-3">
+            <%= label_tag :search, "Who would you like to share #{@album.title} with?", class: "input-group__label"%>
+            <%= form.text_field :search, class: "input-group__field mt-3" %>
+          </div>
+          <%= hidden_field_tag "album_id", @album.id %>
+          <div class="actions mt-4">
+            <%= form.submit("Search for User", class: "btn btn--primary") %>
+          </div>
         </div>
       <% end %>
     </div>
 
     <div id="results" class="results mt-5" >
-      <p> You searched for: <%= @term  %></p>
+      <div class="row">
+        <h3 class="mr-3"> You searched for: </h3> <span> <%= @term  %> </span>
+      </div>
       <% if(@users.present?)%>
         <% @users.each do |user|  %>
           <%= form_with(url: shares_path) do |form| %>
