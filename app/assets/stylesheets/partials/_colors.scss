@@ -1,7 +1,12 @@
 // $primary: #639ce8;
 $primary: #66999b;
 // $primary: #93c8a2;
+// $primary: #ffc482;
+// $primary: #b3af8f;
+// $primary: #2b3a67;
 $primary--light: lighten($primary, 15%);
+$primary--lighter: lighten($primary, 30%);
+$primary--lightest: lighten($primary, 40%);
 $primary--dark: darken($primary, 15%);
 $primary--darker: darken($primary, 30%);
 $primary--darkest: darken($primary, 50%);
@@ -10,3 +15,4 @@ $secondary--light: lighten($secondary, 15%);
 $secondary--dark: darken($primary, 50%);
 $warning: hsl(13, 88%, 52%);
 $warning-dark: hsl(10, 93%, 37%);
+$background: rgb(255, 244, 240);

@@ -4,7 +4,7 @@
   <h1>Albums</h1>
 
   <div class="row">
-    <%= form_with(model: @album, local: true) do |form| %>
+    <%= form_with(model: @album, local: true, class: "mr-3") do |form| %>
       <% if @album.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
@@ -29,23 +29,21 @@
       </div>
     <% end %>
 
-    <table class="album-list">
-      <tbody>
-        <% @albums.each do |album| %>
-          <tr>
-            <td><%= link_to album.title, album, class: "btn" %></a></td>
-            <td><%= link_to 'Show', album , class: "btn btn--primary"%></td>
-            <td>
-              <%= form_with(url: new_share_path, method: :get, local: true) do |form|  %>
-                <%= hidden_field_tag("album_id", album.id)  %>
-                <%= form.submit("Share album ", class: 'btn btn--primary')  %>
-              <% end %>
-            </td>
-            <td><%= link_to 'Remove album', album, method: :delete, class: "btn btn--warning", data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+        <ul >
+      <% @albums.each do |album| %>
+            <div class="row end mt-2">
+          <li><%= link_to album.title, album, class: "btn" %></a></li>
+          <li><%= link_to 'Show', album , class: "btn btn--primary no-radius"%></li>
+          <li>
+            <%= form_with(url: new_share_path, method: :get, local: true) do |form|  %>
+              <%= hidden_field_tag("album_id", album.id)  %>
+              <%= form.submit("Share album ", class: 'btn btn--primary no-radius')  %>
+            <% end %>
+          </li>
+          <li><%= link_to 'Remove album', album, method: :delete, class: "btn btn--warning no-radius", data: { confirm: 'Are you sure?' } %></li>
+    </div>
+      <% end %>
+        </ul>
   </div>
 
   <div class="photos mt-5 pt-5">
@@ -62,20 +60,20 @@
         </div>
     </div>
 
-      <div class="gallery mt-5">
-        <% @photos.each do |photo|   %>
+    <div class="gallery mt-5">
+      <% @photos.each do |photo|   %>
 
-          <div class="photo-selector">
-            <%= hidden_field_tag "hidden_checked[#{photo.id}]", false %>
-            <%= check_box_tag("checked[#{photo.id}]", value: photo.id)  %>
-            <%= link_to(photo_path(photo) ) do  %>
-              <%= image_tag(photo.image.variant(resize: '300x300')) if photo.image.attached? %>
-            <% end %>
-          </div>
+        <div class="photo-selector">
+          <%= hidden_field_tag "hidden_checked[#{photo.id}]", false %>
+          <%= check_box_tag("checked[#{photo.id}]", value: photo.id)  %>
+          <%= link_to(photo_path(photo) ) do  %>
+            <%= image_tag(photo.image.variant(resize: '300x300')) if photo.image.attached? %>
+          <% end %>
+        </div>
 
-        <% end %>
-      </div>
+      <% end %>
+    </div>
 
-    <% end %>
+  <% end %>
   </div>
 </main>

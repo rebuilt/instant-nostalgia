@@ -3,10 +3,10 @@
 </div>
   <div id="map" >Please <%= link_to('upload', new_photo_path)  %> some photos to get started</div>
 <div class="content-wrapper">
-  <ul class="photo-container">
+  <ul class="row">
     <% if @photos.present?  %>
       <% @photos.each do |photo|  %>
-        <li >
+        <li>
           <%= link_to photo_path(photo) do  %>
             <%= image_tag(photo.image.variant(resize: '300x300')) if photo.image.attached? %>
           <% end %>

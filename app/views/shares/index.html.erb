@@ -5,9 +5,9 @@
       <% @my_albums.each do |album|  %>
         <li>
           <div>
-            <p>Title: <%= album.title  %> </p>
             <%= form_with(url: new_share_path, method: :get, local: true) do |form|  %>
               <div class="row">
+            <h2 class="mr-5">Title: <%= album.title  %> </h2>
                 <p class="mr-5"> Share with additional people </p>
                 <%= hidden_field_tag("album_id", album.id)  %>
                 <%= form.submit("Share album", class: "btn btn--primary")  %>
@@ -15,7 +15,7 @@
             <% end %>
           </div>
           <div class="mt-5">
-            <p> This album is shared with the following users:</p>
+            <h3> This album is shared with the following users:</h3>
             <% album.shares.each do |share|  %>
               <p class="mt-4"><%= share.user.email  %> </p>
             <% end %>

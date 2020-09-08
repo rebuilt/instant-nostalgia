@@ -17,17 +17,27 @@
 .gallery {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  // display: flex;
+  // flex-direction: row;
+  // flex-wrap: wrap;
 }
 
 .photo-selector {
   display: flex;
-  margin: 1.4em;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0.5em;
+  padding-bottom: 3.5rem;
+  background-color: $primary--lighter;
 }
 
 .photo-selector input {
+  position: relative;
+  left: 13rem;
+  top: 30rem;
   width: 40px;
-  height: 200px;
-  margin: 0 1em 0 0;
+  height: 40px;
 }
 
 .photos {
@@ -35,9 +45,14 @@
 }
 
 .photo-deletable {
-  margin: 1.4em;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0.5em;
+  padding-bottom: 3.5rem;
+  padding-top: 3.5rem;
+  background-color: $primary--lighter;
 }
 @media screen and (min-width: 720px) {
   .media__figure {

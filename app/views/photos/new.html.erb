@@ -1,10 +1,6 @@
 <div class="content-wrapper" >
   <h1>Upload Photos</h1>
 
-  <p>You can upload 100 more photos</p>
-  <p>Drag and drop photos here</p>
-  <p>or</p>
-
   <%  if @photo.errors.any?  %>
     <div class="error_explanations">
       <h2> <%= pluralize(@photo.errors.count, "error")%> prohibited this photo from being saved   </h2>
@@ -16,12 +12,15 @@
     </ul>
   <% end %>
 
-  <%= form_with(model: @photo) do |form|  %>
+  <p>You can upload 100 more photos</p>
+  <p>Drag and drop photos here</p>
+  <p>or</p>
+
+  <%= form_with(model: @photo, class: "mt-3") do |form|  %>
     <div>
-      <%= form.label :image , class: 'input-group__label' %>
       <%= form.file_field :image, class: 'input-group__file' %>
     </div>
-    <div>
+    <div class="mt-3">
       <%= form.submit class: 'btn btn--primary' %>
     </div>
   <% end %>
