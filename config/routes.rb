@@ -11,5 +11,6 @@ Rails.application.routes.draw do
     resources :albums
     resources :photo_albums, only: %i[update destroy]
     resources :shares, only: %i[index new create]
+    resources :maps, only: %i[index]
   end
 end
