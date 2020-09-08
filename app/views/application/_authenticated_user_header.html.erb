@@ -1,8 +1,11 @@
 <nav >
-  <div class="logo">Instant Nostalgia</div>
+    <%= link_to "Instant Nostalgia", maps_path  , class: "logo" %>
   <ul class="nav-items" >
     <li class="nav-item">
-      <%= link_to t('map'), photos_path, class: "nav-link "  %>
+      <%= link_to t('map'), maps_path, class: "nav-link "  %>
+    </li>
+    <li class="nav-item">
+      <%= link_to t('photos'), photos_path, class: "nav-link "  %>
     </li>
     <li class="nav-item">
       <%= link_to t('albums'), albums_path, class: "nav-link "  %>
