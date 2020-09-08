@@ -10,7 +10,7 @@ class PhotosController < ApplicationController
 
   def show
     @photo = Photo.with_attached_image.belonging_to_user(current_user).find(params[:id])
-    @comments = Comment.with_rich_text_body.where(photo: @photo)
+    @comments = Comment.with_rich_text_body.where(commentable_id: @photo)
     @comment = Comment.new
   end
 
