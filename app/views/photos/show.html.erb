@@ -40,9 +40,9 @@
     <div class="comments">
       <h2 class="comments__title">Discussion <span> <%= @comments.size  %> comments</span></h2>
 
+      <%= render partial: "comments_panel", locals: {commentable: @photo}  %>
       <% if  logged_in?  %>
         <%= render partial: "comment_form", locals: {commentable: @photo, comment: @comment} %>
       <% end %>
-      <%= render partial: "comments_panel", locals: {commentable: @photo}  %>
     </div>
 </main>
