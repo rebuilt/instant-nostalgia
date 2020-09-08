@@ -19,7 +19,7 @@
         </div>
         <div class="goal__meta">
           <span>Created on <time datetime="<%= @photo.created_at.strftime("%d %b '%y")  %>"><%= @photo.created_at.strftime("%d %b '%y")  %></time></span>
-          <span><a href="#comments"><%= @comments.size  %> comments</a></span>
+          <span><a href="#comments"><%= @comments.count  %> comments</a></span>
         </div>
         <ul class="tags-list">
           <li><a href="#nature">Nature</a></li>
