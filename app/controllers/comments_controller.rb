@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.new(allowed_params)
     @comment.commentable = @commentable
     @comment.user = current_user
-    @comment.photo = Photo.find(5)
+    @comment.photo = @commentable
     if @comment.save
       respond_to do |format|
         format.html { redirect_to @commentable }
