@@ -1,0 +1,9 @@
+<%= form_for([commentable, comment], html: {class: 'comments__input' }, remote: true) do |form| %>
+
+  <div class="input-group">
+    <%= form.label(:body, 'Add a comment', class: 'input-group__label') %>
+    <%= form.text_area(:body, class: 'input-group__field', rows: 10) %>
+  </div>
+
+  <%= form.submit('Post')%>
+<% end %>
