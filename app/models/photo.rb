@@ -5,7 +5,7 @@ class Photo < ApplicationRecord
   has_one_attached :image, dependent: :purge_later
   belongs_to :user
   has_and_belongs_to_many :albums
-  has_many :comments
+  has_many :comments, as: :commentable
   # has many users/commenters through comments
 
   def init
