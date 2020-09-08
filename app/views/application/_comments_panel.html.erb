@@ -1,0 +1,18 @@
+<ul class="comments__listing" id="commentList">
+  <% commentable.comments.each do |comment| %>
+    <li class="comment" id="id-<%=comment.id %>">
+        <div class="comment__details">
+          <%= image_tag("avatar.png", width: 42) %>
+          <span class="comment__name">
+            <%= comment.user.first_name %>
+          </span>
+          <time class="comment__time" datetime=<%= "#{commentable.created_at}" %>>
+            Posted <%= time_ago_in_words comment.created_at %> ago</time >
+          <% if current_user == comment.user %>
+            <%= button_to  'Delete',  [commentable, comment], method: :delete, remote: true%>
+          <% end %>
+        </div>
+        <p class="comment__body"><%= comment.body %></p>
+    </li>
+  <% end %>
+</ul>
