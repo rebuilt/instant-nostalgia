@@ -5,13 +5,13 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.new(allowed_params)
     @comment.commentable = @commentable
     @comment.user = current_user
-    @comment.photo = @commentable
     if @comment.save
       respond_to do |format|
         format.html { redirect_to @commentable }
         format.js { render :create }
       end
     else
+      byebug
       render :new
     end
   end
