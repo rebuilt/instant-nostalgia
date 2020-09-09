@@ -33,12 +33,9 @@
 
     <ul>
       <% @shared_with_me.each do |album|  %>
-        <li>
-
-          <div class="row">
+        <li class="row mt-6 ">
             <p class="mr-3"> <%= album.title  %> </p>
             <%= link_to("View", album_path(album), class: "btn btn--primary")  %>
-          </div>
         </li>
       <% end %>
     </ul>
