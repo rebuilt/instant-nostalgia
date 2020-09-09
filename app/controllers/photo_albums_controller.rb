@@ -13,7 +13,7 @@ class PhotoAlbumsController < ApplicationController
 
     respond_to do |format|
       if @album.save
-        format.html { redirect_to albums_path, notice: 'Album was successfully updated.' }
+        format.html { redirect_to album_path(@album), notice: 'Album was successfully updated.' }
       else
         format.html { redirect_to albums_path }
       end
