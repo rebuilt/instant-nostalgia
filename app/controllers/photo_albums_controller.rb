@@ -1,16 +1,16 @@
 class PhotoAlbumsController < ApplicationController
+  before_action :ensure_checked_params, only: %i[update]
+
   def update
     @album = Album.find(params[:album])
 
     # TODO: make this a before Action
     # have to do this check in a before_action because a controller will execute the entire update method
-    if params[:checked].present?
-      params[:checked].each do |photo_id, _value|
-        @photo = Photo.find(photo_id)
+    params[:checked].each do |photo_id, _value|
+      @photo = Photo.find(photo_id)
 
-        # don't include duplicates
-        @album.photos << @photo unless @album.photos.include?(@photo)
-      end
+      # don't include duplicates
+      @album.photos << @photo unless @album.photos.include?(@photo)
     end
 
     respond_to do |format|
@@ -29,5 +29,11 @@ class PhotoAlbumsController < ApplicationController
     @album = Album.find(album_id)
     @album.photos.delete(photo_id)
     redirect_to album_path(album_id)
+  end
+
+  private
+
+  def ensure_checked_params
+    redirect_to albums_path unless params[:checked].present?
   end
 end
