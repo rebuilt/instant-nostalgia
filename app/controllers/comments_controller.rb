@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
     @comment.destroy
     respond_to do |format|
       format.html { redirect_to @commentable }
-      format.js { render :destroy }
+      format.js { redirect_to @commentable }
     end
   end
 
