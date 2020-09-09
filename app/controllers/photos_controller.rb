@@ -25,7 +25,7 @@ class PhotosController < ApplicationController
     respond_to do |format|
       if @photo.save
         @photo.init
-        format.html { redirect_to photos_path }
+        format.html { redirect_to maps_path }
       else
         format.html { render :new }
       end
