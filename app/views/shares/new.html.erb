@@ -19,13 +19,15 @@
   <div>
     <div class="find-user">
       <%= form_with(url: new_share_path , method: :get, local: :true) do |form| %>
-        <div class="row">
-          <div class="input-group mt-3 mr-3">
+        <div class="row mt-3">
+          <h4 class="input-group mr-3">
             <%= label_tag :search, "Who would you like to share #{@album.title} with?", class: "input-group__label"%>
-            <%= form.text_field :search, class: "input-group__field mt-3" %>
+          </h4>
+          <div class="input-group mr-3">
+            <%= form.text_field :search, class: "input-group__field m-0 " %>
           </div>
           <%= hidden_field_tag "album_id", @album.id %>
-          <div class="actions mt-4">
+          <div class="actions">
             <%= form.submit("Search for User", class: "btn btn--primary") %>
           </div>
         </div>
