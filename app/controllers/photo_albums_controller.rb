@@ -4,8 +4,6 @@ class PhotoAlbumsController < ApplicationController
   def update
     @album = Album.find(params[:album])
 
-    # TODO: make this a before Action
-    # have to do this check in a before_action because a controller will execute the entire update method
     params[:checked].each do |photo_id, _value|
       @photo = Photo.find(photo_id)
 
