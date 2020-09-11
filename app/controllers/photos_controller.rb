@@ -1,6 +1,8 @@
 class PhotosController < ApplicationController
   def index
+    # OPTIMIZE: Do these two lines do the same thing?  Am I correctly handling the n+1 problem?
     @photos = Photo.all.with_attached_image.belonging_to_user(current_user)
+    # @photos = Photo.all.includes(image_attachment: :blob).belonging_to_user(current_user)
   end
 
   def show
