@@ -2,6 +2,7 @@ require_relative 'gps'
 require_relative 'metadata'
 
 class Photo < ApplicationRecord
+  # OPTIMIZE: Architectural question.  Photo now has many location based fields which probably belong in a location model.  But I'm not sure if that is just premature complexity for no benefit or if it is logically better to keep the roles of objects clean.
   has_one_attached :image, dependent: :purge_later
   belongs_to :user
   has_and_belongs_to_many :albums
