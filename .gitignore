@@ -39,3 +39,6 @@ yarn-debug.log*
 *~
 *.swp
 *.swo
+
+# ignore profiler output
+profile.log
