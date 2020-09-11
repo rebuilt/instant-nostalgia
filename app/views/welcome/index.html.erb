@@ -1,16 +1,18 @@
 <main class="content-wrapper">
-  <h1>Welcome#index</h1>
-  <p>This is the initial landing page for users who are not signed in</p>
-  <p>To use this website please: </p>
-  <div class="row mt-3">
+  <div class="envelope">
+    <h1>Welcome#index</h1>
+    <p>This is the initial landing page for users who are not signed in</p>
+    <p>To use this website please: </p>
+    <div class="row mt-3">
 
-    <div>
-      <%= link_to t('sign_up'), new_user_path, class: "btn btn--primary mr-3 welcome"  %>
+      <div>
+        <%= link_to t('sign_up'), new_user_path, class: "btn btn--primary mr-3 welcome"  %>
+      </div>
+
+      <div class="ml-3 mr-3">or</div>
+      <div>
+        <%= link_to t('login'), new_session_path , class: "btn btn--primary welcome " %>
+      </div>
     </div>
-
-  <div class="ml-3 mr-3">or</div>
-  <div>
-    <%= link_to t('login'), new_session_path , class: "btn btn--primary welcome " %>
-  </div>
   </div>
 </main>

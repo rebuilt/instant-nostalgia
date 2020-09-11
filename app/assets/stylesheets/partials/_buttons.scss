@@ -19,6 +19,10 @@
   align-items: center;
 }
 
+.btn__inline {
+  display: inline;
+}
+
 .no-radius {
   border-radius: 0px;
 }
@@ -72,36 +76,4 @@
 
 .btn-group li {
   margin-bottom: 1em;
-}
-
-/* Show/Hide
-   ========================================================================== */
-/**
- *  The toggle is used to activate a javascript
- */
-
-.toggle {
-  background-color: transparent;
-  border: none;
-  color: #2c9cf2;
-  cursor: pointer;
-  margin: 0 0 1em;
-  padding: 0 0 0 1em;
-  position: relative;
-}
-
-/**
- *  Using pseudo-element to attach additional styling without cluttering the HTML.
- *  The borders creates the an arrow.
- */
-.toggle::before {
-  content: "";
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid #2c9cf2;
-  position: absolute;
-  left: 0;
-  top: 0.5em;
 }
