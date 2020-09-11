@@ -6,12 +6,27 @@ class Photo < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :albums
   has_many :comments, as: :commentable
-  # has many users/commenters through comments
+  geocoded_by :address
+  reverse_geocoded_by :latitude_in_decimal, :longitude_in_decimal do |obj, results|
+    if geo = results.first
+      obj.suburb = geo.suburb
+      obj.village = geo.village
+      obj.city = geo.city
+      obj.state = geo.state
+      obj.state_code = geo.state_code
+      obj.postal_code = geo.postal_code
+      obj.country = geo.country
+      obj.country_code = geo.country_code
+      obj.raw_address = geo.display_name
+    end
+  end
 
   def init
     metadata = read_image_metadata
     populate_with(metadata)
     initialize_latlong_decimals
+    reverse_geocode
+    save
   end
 
   scope :include_image, -> { includes(image_attachment: :blob) }
