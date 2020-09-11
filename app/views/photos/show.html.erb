@@ -16,6 +16,15 @@
           <p>  <%= @photo.date_time_digitized  %> </p>
           <p>  <%= @photo.latitude_in_decimal %> </p>
           <p>  <%= @photo.longitude_in_decimal %> </p>
+          <p>  <%= @photo.raw_address %> </p>
+          <p>  <%= @photo.suburb %> </p>
+          <p>  <%= @photo.village %> </p>
+          <p>  <%= @photo.city %> </p>
+          <p>  <%= @photo.state %> </p>
+          <p>  <%= @photo.state_code %> </p>
+          <p>  <%= @photo.postal_code %> </p>
+          <p>  <%= @photo.country %> </p>
+          <p>  <%= @photo.country_code %> </p>
         </div>
         <div class="goal__meta">
           <span>Created on <time datetime="<%= @photo.created_at.strftime("%d %b '%y")  %>"><%= @photo.created_at.strftime("%d %b '%y")  %></time></span>
