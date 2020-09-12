@@ -33,6 +33,17 @@ class PhotoTest < ActiveSupport::TestCase
     end
   end
 
+  test 'cannot access private methods' do
+    gps = Gps.new
+    assert_raises NoMethodError do
+      gps.convertDMSToDD
+      gps.add_sign
+      gps.calculate
+      gps.parse
+      gps.divide
+    end
+  end
+
   def conversion(latitude, longitude, expected_latitude, expected_longitude)
     coordinates = Coordinates.new(latitude, longitude)
     coordinates = Gps.to_decimal(coordinates)

@@ -11,4 +11,9 @@ class PhotoTest < ActiveSupport::TestCase
     second_album.photos << photo
     assert second_album.save
   end
+
+  test 'photo must have user assigned' do
+    photo = Photo.new
+    assert_not photo.save
+  end
 end

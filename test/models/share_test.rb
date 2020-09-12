@@ -9,6 +9,19 @@ class ShareTest < ActiveSupport::TestCase
     assert share.save
   end
 
+  test 'Share must have user' do
+    user = User.create(email: 'me@mail.com', password: '123', username: 'me')
+    album = Album.new(title: 'first', user: user)
+    share = Share.new(album: album)
+    assert_not share.save
+  end
+
+  test 'Share must have album' do
+    user = User.create(email: 'me@mail.com', password: '123', username: 'me')
+    share = Share.new(user: user)
+    assert_not share.save
+  end
+
   test 'Access shares' do
     user = User.create(email: 'me@mail.com', password: '123', username: 'me')
     user2 = create_user('you')
@@ -65,10 +78,5 @@ class ShareTest < ActiveSupport::TestCase
       puts a.title
     end
     assert_equal album, albums.first
-  end
-
-  def create_user(username = 'me', password = '123')
-    email ||= "#{username}@mail.com"
-    User.create(email: email, password: password, username: username)
   end
 end
