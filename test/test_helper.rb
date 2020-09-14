@@ -10,8 +10,16 @@ class ActiveSupport::TestCase
   fixtures :all
 
   def create_user(username = 'me', password = '123')
-    email ||= "#{username}@mail.com"
-    User.create(email: email, password: password, username: username)
+    email = "#{username}@mail.com"
+    user = User.new(email: email, password: password, username: username)
+    user.save
+    user
+  end
+
+  def create_album(user, title = 'first album')
+    album = Album.new(user: user, title: title)
+    album.save
+    album
   end
 
   def create_photo_with_attachment(user)
@@ -21,10 +29,10 @@ class ActiveSupport::TestCase
     photo
   end
 
-  def sign_in
+  def sign_in(user)
     visit new_session_path
-    fill_in :email, with: 'me@mail.com'
-    fill_in :password, with: '123'
+    fill_in :email, with: user.email
+    fill_in :password, with: user.password
     click_on 'Log in'
   end
 end
