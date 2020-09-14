@@ -1,47 +1,47 @@
-var commentList = document.getElementById('commentList');
+const commentList = document.getElementById('commentList');
 
-var comment = document.createElement('li');
+const comment = document.createElement('li');
 comment.setAttribute('class', 'comment');
 comment.setAttribute('id', "id-<%= @comment.id %>");
 
-var comment__details = document.createElement('div');
+const comment__details = document.createElement('div');
 comment__details.setAttribute('class', 'comment__details');
 
-var avatar = document.createElement('img');
+const avatar = document.createElement('img');
 avatar.setAttribute('alt', 'Avatar');
 avatar.setAttribute('width', '42');
 avatar.setAttribute('src', "<%= asset_path('avatar.png') %>");
 
-var time = document.createElement('time');
+const time = document.createElement('time');
 time.setAttribute('datetime', "<%= @comment.created_at %>");
 time.setAttribute('class', 'comment__time');
 time.innerHTML = "Posted <%= time_ago_in_words @comment.created_at %> ago";
 
-var comment__body = document.createElement('p');
+const comment__body = document.createElement('p');
 comment__body.setAttribute('class', 'comment__body');
 comment__body.innerHTML = "<%= @comment.body.to_plain_text %>";
 
-var comment__name = document.createElement('span');
+const comment__name = document.createElement('span');
 comment__name.setAttribute('class', 'comment__name');
 comment__name.innerHTML =  "<%= @comment.user.first_name %>";
 
-var delete_form = document.createElement('form');
+const delete_form = document.createElement('form');
 delete_form.setAttribute('class', 'button_to comment__delete' );
 delete_form.setAttribute('method', 'post');
 delete_form.setAttribute('action', "<%= "/#{I18n.locale}/#{@commentable.class.to_s.downcase}s/#{@commentable.id}/comments/#{@comment.id}" %>");
 delete_form.setAttribute('data-remote', 'true');
 
-var hidden1 = document.createElement('input');
+const hidden1 = document.createElement('input');
 hidden1.setAttribute('type', 'hidden');
 hidden1.setAttribute('name', '_method');
 hidden1.setAttribute('value', 'delete');
 
-var delete_button = document.createElement('input');
+const delete_button = document.createElement('input');
 delete_button.setAttribute('class', 'comment__delete');
 delete_button.setAttribute('type', 'submit');
 delete_button.setAttribute('value', 'Delete');
 
-var hidden2 = document.createElement('input');
+const hidden2 = document.createElement('input');
 hidden2.setAttribute('type', 'hidden');
 hidden2.setAttribute('name','authenticity_token');
 hidden2.setAttribute('value', '<%= form_authenticity_token %>');
