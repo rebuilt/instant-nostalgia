@@ -3,15 +3,14 @@ include ActionDispatch::TestProcess
 
 class PhotosTest < ApplicationSystemTestCase
   test 'visiting the index' do
-    create_user
-    sign_in
+    sign_in(create_user)
     visit photos_path
     assert_selector 'h1', text: 'Photos'
   end
 
   test 'visiting the index with a photo or more' do
     user = create_user
-    sign_in
+    sign_in(user)
     create_photo_with_attachment(user)
     visit photos_path
     assert_selector 'h1', text: 'Photos'
@@ -29,7 +28,7 @@ class PhotosTest < ApplicationSystemTestCase
 
   test 'can delete a photo' do
     user = create_user
-    sign_in
+    sign_in(user)
     create_photo_with_attachment(user)
     visit photos_path
     assert_selector 'h1', text: 'Photos'
