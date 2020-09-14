@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @commentable }
       # TODO: render :destroy
-      format.js { redirect_to @commentable }
+      format.js { render :destroy }
     end
   end
 
