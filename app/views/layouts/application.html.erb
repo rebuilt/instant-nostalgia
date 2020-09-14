@@ -9,7 +9,9 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <%# <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> %>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOKYnV1ICIa4zYFItn5WS9pXN2I6ECRXw&callback=initMap&libraries=&v=weekly" defer ></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=
+      <%= Rails.application.credentials.maps_api_key  %>
+      &callback=initMap&libraries=&v=weekly" defer ></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   </head>
 
