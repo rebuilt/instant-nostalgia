@@ -7,6 +7,22 @@ class SharesTest < ApplicationSystemTestCase
     assert_selector 'h1', text: 'My albums'
   end
 
+  test 'To Shares button redirects to share#index' do
+    user = create_user
+    sign_in(user)
+    album = create_album(user)
+    visit shares_path
+
+    assert_selector 'h1', text: 'My albums'
+
+    visit new_share_path(album_id: album.id)
+
+    assert current_url.include? new_share_path
+
+    click_on 'To Shares'
+    assert_current_path shares_path
+  end
+
   test 'Share button redirects to share#new' do
     user = create_user
     sign_in(user)
