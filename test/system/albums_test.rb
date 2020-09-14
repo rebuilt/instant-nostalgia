@@ -20,8 +20,7 @@ class AlbumsTest < ApplicationSystemTestCase
   end
 
   test 'album controls - album button redirects to album#show' do
-    create_user
-    sign_in
+    sign_in(create_user)
     visit albums_path
     title = 'My first album'
     fill_in :album_title, with: title
@@ -36,8 +35,7 @@ class AlbumsTest < ApplicationSystemTestCase
   end
 
   test 'album controls - view button redirects to album#show' do
-    create_user
-    sign_in
+    sign_in(create_user)
     visit albums_path
     title = 'My first album'
     fill_in :album_title, with: title
@@ -52,8 +50,7 @@ class AlbumsTest < ApplicationSystemTestCase
   end
 
   test 'album controls - Share album redirects to share#new' do
-    create_user
-    sign_in
+    sign_in(create_user)
     visit albums_path
     title = 'My first album'
     fill_in :album_title, with: title
@@ -68,8 +65,7 @@ class AlbumsTest < ApplicationSystemTestCase
   end
 
   test 'album controls - delete album removes album from page' do
-    create_user
-    sign_in
+    sign_in(create_user)
     visit albums_path
     title = 'My first album'
     fill_in :album_title, with: title
@@ -86,7 +82,7 @@ class AlbumsTest < ApplicationSystemTestCase
 
   test 'add photo to album' do
     user = create_user
-    sign_in
+    sign_in(user)
     photo = create_photo_with_attachment(user)
     visit albums_path
     title = 'My first album'
