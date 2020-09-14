@@ -3,16 +3,14 @@ include ActionDispatch::TestProcess
 
 class AlbumsTest < ApplicationSystemTestCase
   test 'visiting the index' do
-    create_user
-    sign_in
+    sign_in(create_user)
     visit albums_path
 
     assert_selector 'h1', text: 'Albums'
   end
 
   test 'create album' do
-    create_user
-    sign_in
+    sign_in(create_user)
     visit albums_path
     title = 'My first album'
     fill_in :album_title, with: title
