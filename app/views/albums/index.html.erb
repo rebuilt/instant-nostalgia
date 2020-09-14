@@ -33,9 +33,9 @@
 
     <ul >
       <% @albums.each do |album| %>
-        <div class="row end mt-2">
+        <div id="album-<%= album.id  %>" class="row end mt-2">
           <li><h3><%= link_to album.title, album, class: "btn" %></h3></a></li>
-          <li><%= link_to 'Show', album , class: "btn btn--primary no-radius"%></li>
+          <li><%= link_to 'View', album , class: "btn btn--primary no-radius"%></li>
           <li>
             <%= form_with(url: new_share_path, method: :get, local: true) do |form|  %>
               <%= hidden_field_tag("album_id", album.id)  %>
