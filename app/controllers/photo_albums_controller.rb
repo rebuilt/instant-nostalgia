@@ -2,7 +2,7 @@ class PhotoAlbumsController < ApplicationController
   before_action :ensure_checked_params, only: %i[update]
 
   def update
-    @album = Album.find(params[:album])
+    @album = Album.find(params['album-selector'])
 
     params[:checked].each do |photo_id, _value|
       @photo = Photo.find(photo_id)
