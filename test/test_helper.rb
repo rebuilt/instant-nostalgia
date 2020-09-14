@@ -20,4 +20,11 @@ class ActiveSupport::TestCase
     photo.init
     photo
   end
+
+  def sign_in
+    visit new_session_path
+    fill_in :email, with: 'me@mail.com'
+    fill_in :password, with: '123'
+    click_on 'Log in'
+  end
 end
