@@ -19,6 +19,7 @@ class AlbumsController < ApplicationController
     respond_to do |format|
       if @album.save
         format.html { redirect_to albums_path, notice: 'Album was successfully created.' }
+        format.js { render :create }
       else
         format.html { render :new }
       end
@@ -32,6 +33,7 @@ class AlbumsController < ApplicationController
     @album.destroy
     respond_to do |format|
       format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
+      format.js { render :destroy }
     end
   end
 
