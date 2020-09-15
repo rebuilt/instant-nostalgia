@@ -3,12 +3,11 @@
 
   <div class="gallery">
     <% @photos.each do |photo|   %>
-      <div class="photo-deletable">
+      <div id="id-<%= photo.id  %>" class="photo-deletable">
         <%= link_to photo_path(photo) do  %>
           <%= image_tag(photo.image.variant(resize: '300x300')) if photo.image.attached? %>
         <% end %>
-        <%= link_to "Delete", photo_path(photo), method: :delete, class: "btn btn--warning mt-3" , data: {confirm: 'Are you sure you want to delete this photo?'} %>
-          <%# <%= link_to "Remove", photo_path([@album, photo.id]), class: "btn btn--warning" , method: :delete, data: {confirm: 'Are you sure you want to remove this photo from the album?'} %1> %>
+        <%= link_to "Delete", photo_path(photo), method: :delete, class: "btn btn--warning mt-3" , data: {confirm: 'Are you sure you want to delete this photo?'}, remote: true %>
       </div>
     <% end %>
   </div>

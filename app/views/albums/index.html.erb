@@ -4,7 +4,8 @@
   <h1>Albums</h1>
 
   <div class="row">
-    <%= form_with(model: @album, local: true, class: "mr-3") do |form| %>
+
+    <%= form_with(model: @album, class: "mr-3") do |form| %>
       <% if @album.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
