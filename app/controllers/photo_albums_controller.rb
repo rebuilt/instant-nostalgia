@@ -22,11 +22,14 @@ class PhotoAlbumsController < ApplicationController
 
   def destroy
     album_id = params[:id].split('/')[0]
-    photo_id = params[:id].split('/')[1]
+    @photo_id = params[:id].split('/')[1]
 
     @album = Album.find(album_id)
-    @album.photos.delete(photo_id)
-    redirect_to album_path(album_id)
+    @album.photos.delete(@photo_id)
+    respond_to do |format|
+      format.html { redirect_to album_path(album_id) }
+      format.js { render :destroy }
+    end
   end
 
   private
