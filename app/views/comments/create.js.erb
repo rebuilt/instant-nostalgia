@@ -1,61 +1,97 @@
-var commentList = document.getElementById('commentList');
+var comment = {
+  'id': "id-<%= @comment.id %>",
+  'avatar_url': "<%= asset_path('avatar.png') %>",
+  'created_at': "<%= @comment.created_at %>",
+  'time_ago': "Posted <%= time_ago_in_words @comment.created_at %> ago",
+  'body': "<%= @comment.body.to_plain_text %>",
+  'first_name': "<%= @comment.user.first_name %>",
+  'comment_url': "<%= "/#{I18n.locale}/#{@commentable.class.to_s.downcase}s/#{@commentable.id}/comments/#{@comment.id}" %>",
+  'authenticity_token': '<%= form_authenticity_token %>',
+  'count': "<%= @count  %>"
+};
 
-var comment = document.createElement('li');
-comment.setAttribute('class', 'comment');
-comment.setAttribute('id', "id-<%= @comment.id %>");
+var Comments = {};
 
-var comment__details = document.createElement('div');
-comment__details.setAttribute('class', 'comment__details');
+Comments.buildComment = function(comment){
 
-var avatar = document.createElement('img');
-avatar.setAttribute('alt', 'Avatar');
-avatar.setAttribute('width', '42');
-avatar.setAttribute('src', "<%= asset_path('avatar.png') %>");
+  const commentElement = document.createElement('li');
+  commentElement.setAttribute('class', 'comment');
+  commentElement.setAttribute('id', comment.id);
 
-var time = document.createElement('time');
-time.setAttribute('datetime', "<%= @comment.created_at %>");
-time.setAttribute('class', 'comment__time');
-time.innerHTML = "Posted <%= time_ago_in_words @comment.created_at %> ago";
+  const comment__details = document.createElement('div');
+  comment__details.setAttribute('class', 'comment__details');
 
-var comment__body = document.createElement('p');
-comment__body.setAttribute('class', 'comment__body');
-comment__body.innerHTML = "<%= @comment.body.to_plain_text %>";
+  const avatar = document.createElement('img');
+  avatar.setAttribute('alt', 'Avatar');
+  avatar.setAttribute('width', '42');
+  avatar.setAttribute('src', comment.avatar_url);
 
-var comment__name = document.createElement('span');
-comment__name.setAttribute('class', 'comment__name');
-comment__name.innerHTML =  "<%= @comment.user.first_name %>";
+  const time = document.createElement('time');
+  time.setAttribute('datetime', comment.created_at);
+  time.setAttribute('class', 'comment__time');
+  time.textContent = comment.time_ago;
 
-var delete_form = document.createElement('form');
-delete_form.setAttribute('class', 'button_to comment__delete' );
-delete_form.setAttribute('method', 'post');
-delete_form.setAttribute('action', "<%= "/#{I18n.locale}/#{@commentable.class.to_s.downcase}s/#{@commentable.id}/comments/#{@comment.id}" %>");
-delete_form.setAttribute('data-remote', 'true');
+  const comment__body = document.createElement('p');
+  comment__body.setAttribute('class', 'comment__body');
+  comment__body.textContent = comment.body;
 
-var hidden1 = document.createElement('input');
-hidden1.setAttribute('type', 'hidden');
-hidden1.setAttribute('name', '_method');
-hidden1.setAttribute('value', 'delete');
+  const comment__name = document.createElement('span');
+  comment__name.setAttribute('class', 'comment__name');
+  comment__name.textContent = comment.first_name;
 
-var delete_button = document.createElement('input');
-delete_button.setAttribute('class', 'comment__delete');
-delete_button.setAttribute('type', 'submit');
-delete_button.setAttribute('value', 'Delete');
+  const delete_form = document.createElement('form');
+  delete_form.setAttribute('class', 'button_to comment__delete' );
+  delete_form.setAttribute('method', 'post');
+  delete_form.setAttribute('action', comment.comment_url);
+  delete_form.setAttribute('data-remote', 'true');
 
-var hidden2 = document.createElement('input');
-hidden2.setAttribute('type', 'hidden');
-hidden2.setAttribute('name','authenticity_token');
-hidden2.setAttribute('value', '<%= form_authenticity_token %>');
+  const hidden1 = document.createElement('input');
+  hidden1.setAttribute('type', 'hidden');
+  hidden1.setAttribute('name', '_method');
+  hidden1.setAttribute('value', 'delete');
 
-delete_form.appendChild(hidden1);
-delete_form.appendChild(delete_button);
-delete_form.appendChild(hidden2);
+  const delete_button = document.createElement('input');
+  delete_button.setAttribute('value', 'Delete');
+  delete_button.setAttribute('type', 'Submit');
 
-comment__details.appendChild(avatar);
-comment__details.appendChild(comment__name);
-comment__details.appendChild(time);
-comment__details.appendChild(delete_form);
+  const hidden2 = document.createElement('input');
+  hidden2.setAttribute('type', 'hidden');
+  hidden2.setAttribute('name','authenticity_token');
+  hidden2.setAttribute('value', comment.authenticity_token);
 
-comment.appendChild(comment__details);
-comment.appendChild(comment__body);
+  delete_form.appendChild(hidden1);
+  delete_form.appendChild(delete_button);
+  delete_form.appendChild(hidden2);
 
-commentList.appendChild(comment);
+  comment__details.appendChild(avatar);
+  comment__details.appendChild(comment__name);
+  comment__details.appendChild(time);
+  comment__details.appendChild(delete_form);
+
+  commentElement.appendChild(comment__details);
+  commentElement.appendChild(comment__body);
+  return commentElement;
+}
+
+Comments.addComment = function(comment){
+  let newComment = Comments.buildComment(comment);
+
+  let commentList = document.getElementById('commentList');
+  commentList.appendChild(newComment);
+}
+
+Comments.clearInput = function(){
+  input = document.getElementById('comment_body');
+  input.value = "";
+}
+
+Comments.updateCommentCount = function(comment){
+  let countElement1 = document.getElementById("comment-count-1");
+    countElement1.textContent = comment.count;
+  let countElement2 = document.getElementById("comment-count-2");
+    countElement2.textContent = comment.count;
+}
+
+Comments.addComment(comment);
+Comments.clearInput();
+Comments.updateCommentCount(comment);
