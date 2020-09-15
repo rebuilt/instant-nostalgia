@@ -28,7 +28,7 @@
         </div>
         <div class="goal__meta">
           <span>Created on <time datetime="<%= @photo.created_at.strftime("%d %b '%y")  %>"><%= @photo.created_at.strftime("%d %b '%y")  %></time></span>
-          <span><a href="#comments"><%= @comments.count  %> comments</a></span>
+          <span id="comment-count-1"><%= @comments.count  %> <%= "comment".pluralize(@comments.count) %></span>
         </div>
         <ul class="tags-list">
           <li><a href="#nature">Nature</a></li>
@@ -47,7 +47,11 @@
   </div>
   <div class="content-wrapper">
     <div class="comments">
-      <h2 class="comments__title">Discussion <span> <%= @comments.count  %> comments</span></h2>
+      <h2 class="comments__title">Discussion
+          <span id="comment-count-2">
+<%= @comments.count  %> <%= "comment".pluralize(@comments.count) %>
+          </span>
+      </h2>
 
       <%= render partial: "comments_panel", locals: {commentable: @photo, comments: @comments}  %>
       <% if  logged_in?  %>
