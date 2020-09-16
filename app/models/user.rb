@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   validates :email, :username, uniqueness: true
   validates :email, :password, :username, presence: true
+  validates :password, length: { minimum: 8 }
 
   before_validation :downcase_email
 

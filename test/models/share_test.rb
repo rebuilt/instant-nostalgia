@@ -2,28 +2,28 @@ require 'test_helper'
 
 class ShareTest < ActiveSupport::TestCase
   test 'Create a new share' do
-    user = User.create(email: 'me@mail.com', password: '123', username: 'me')
-    user2 = User.create(email: 'you@mail.com', password: '123', username: 'you')
+    user = User.create(email: 'me@mail.com', password: '12345678', username: 'me')
+    user2 = User.create(email: 'you@mail.com', password: '12345678', username: 'you')
     album = Album.new(title: 'first', user: user)
     share = Share.new(user: user2, album: album)
     assert share.save
   end
 
   test 'Share must have user' do
-    user = User.create(email: 'me@mail.com', password: '123', username: 'me')
+    user = User.create(email: 'me@mail.com', password: '12345678', username: 'me')
     album = Album.new(title: 'first', user: user)
     share = Share.new(album: album)
     assert_not share.save
   end
 
   test 'Share must have album' do
-    user = User.create(email: 'me@mail.com', password: '123', username: 'me')
+    user = User.create(email: 'me@mail.com', password: '12345678', username: 'me')
     share = Share.new(user: user)
     assert_not share.save
   end
 
   test 'Access shares' do
-    user = User.create(email: 'me@mail.com', password: '123', username: 'me')
+    user = User.create(email: 'me@mail.com', password: '12345678', username: 'me')
     user2 = create_user('you')
     user3 = create_user('him')
     user4 = create_user('her')

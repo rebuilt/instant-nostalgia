@@ -9,7 +9,7 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
-  def create_user(username = 'me', password = '123')
+  def create_user(username = 'me', password = '12345678')
     email = "#{username}@mail.com"
     user = User.new(email: email, password: password, username: username)
     user.save

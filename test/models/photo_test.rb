@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PhotoTest < ActiveSupport::TestCase
   test 'can add photo to multiple albums' do
-    user = User.new(email: 'me@mail.com', password: '123', username: 'me')
+    user = User.new(email: 'me@mail.com', password: '12345678', username: 'me')
     photo = Photo.new(user: user)
     album = Album.new(title: 'first', user: user)
     album.photos << photo

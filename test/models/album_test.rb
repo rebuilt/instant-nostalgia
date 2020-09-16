@@ -2,14 +2,14 @@ require 'test_helper'
 
 class AlbumTest < ActiveSupport::TestCase
   test 'user can save album' do
-    user = User.new(email: 'me@mail.com', username: 'me', password: '123')
+    user = User.new(email: 'me@mail.com', username: 'me', password: '12345678')
     album = Album.new(title: 'first')
     user.albums << album
     assert user.save
   end
 
   test 'can save a photo to an album' do
-    user = User.new(email: 'me@mail.com', username: 'me', password: '123')
+    user = User.new(email: 'me@mail.com', username: 'me', password: '12345678')
     album = Album.new(title: 'first', user: user)
     photo = Photo.new(user: user)
     album.photos << photo
@@ -17,8 +17,8 @@ class AlbumTest < ActiveSupport::TestCase
   end
 
   test 'can many photos to an album' do
-    user = User.new(email: 'me@mail.com', username: 'me', password: '123')
-    user2 = User.new(email: 'me2@mail.com', username: 'me2', password: '123')
+    user = User.new(email: 'me@mail.com', username: 'me', password: '12345678')
+    user2 = User.new(email: 'me2@mail.com', username: 'me2', password: '12345678')
     album = Album.new(title: 'first', user: user)
     photo = Photo.new(user: user)
     photo2 = Photo.new(user: user2)
@@ -28,7 +28,7 @@ class AlbumTest < ActiveSupport::TestCase
   end
 
   test 'album must have a title' do
-    user = User.new(email: 'me@mail.com', username: 'me', password: '123')
+    user = User.new(email: 'me@mail.com', username: 'me', password: '12345678')
     album = Album.new(user: user)
     user.albums << album
     photo = Photo.new(user: user)
