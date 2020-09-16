@@ -3,6 +3,6 @@ var comment = {
   "count": " <%= @count  %> "
 }
 
-Comments.removeComment(comment);
-Comments.updateCommentCount(comment, 'comment-count-1');
-Comments.updateCommentCount(comment, 'comment-count-2');
+Helpers.removeElement(comment.id);
+Comments.updateCommentCount(comment.count, 'comment-count-1');
+Comments.updateCommentCount(comment.count, 'comment-count-2');

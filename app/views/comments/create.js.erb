@@ -11,6 +11,6 @@ var comment = {
 };
 
 Comments.addComment(comment);
-Comments.clearInput('comment_body');
-Comments.updateCommentCount(comment, 'comment-count-1');
-Comments.updateCommentCount(comment, 'comment-count-2');
+Helpers.clearInput('comment_body');
+Comments.updateCommentCount(comment.count, 'comment-count-1');
+Comments.updateCommentCount(comment.count, 'comment-count-2');
