@@ -1,6 +1,7 @@
 <div class="content-wrapper">
   <%= link_to "To Shares", shares_path, class: "btn btn--primary btn__inline"  %>
-  <h1 class="mt-3">Share your album</h1>
+  <%= link_to "To Albums", albums_path, class: "btn btn--primary btn__inline"  %>
+  <h1 class="mt-5">Share your album</h1>
   <h2>
     Album title: <%= @album.title  %>
   </h2>
@@ -40,9 +41,14 @@
         <h3 class="mr-3"> You searched for: </h3> <span> <%= @term  %> </span>
       </div>
       <% if(@users.present?)%>
+        <div class="three-column-grid mt-4">
+          <h3>Username</h3>
+          <h3>Email</h3>
+          <h3>Action</h3>
+        </div>
         <% @users.each do |user|  %>
           <%= form_with(url: shares_path) do |form| %>
-            <div class="row mt-3">
+            <div class="three-column-grid mt-3">
               <p class="mr-5"> <%= user.username %> </p>
               <p class="mr-5"> <%= user.email  %> </p>
               <%= hidden_field_tag "user_id", user.id %>
