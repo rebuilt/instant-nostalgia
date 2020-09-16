@@ -1,5 +1,14 @@
 const Shares = {}
 
+let resultsElement
+
+function getResultsElement(){
+    if(resultsElement == null){
+        resultsElement = document.getElementById('results')
+    }
+    return resultsElement
+}
+
 Shares.addTermDiv = function(term){
     const h3 = document.createElement('h3')
     h3.setAttribute('class', 'mr-3')
@@ -9,7 +18,7 @@ Shares.addTermDiv = function(term){
     span.setAttribute('id', 'term')
     span.textContent = term
 
-    const results = document.getElementById('results')
+    const results = getResultsElement()
     results.appendChild(h3)
     results.appendChild(span)
 }
@@ -34,25 +43,20 @@ Shares.addHeaderDiv = function(){
         headerDiv.appendChild(email)
         headerDiv.appendChild(action)
 
-        const results = document.getElementById('results')
+        const results = getResultsElement()
         results.appendChild(headerDiv)
     }
 }
 
-Shares.clearInput = function(id){
-    const input = document.getElementById(id)
-    input.value = ''
-}
-
 Shares.clearResultsDiv = function() {
-    const results = document.getElementById('results')
+    const results = getResultsElement()
     while(results.hasChildNodes()){
         results.removeChild(results.lastChild)
     }
 }
 
 Shares.addResults = function(users, album, locale){
-    const results = document.getElementById('results')
+    const results = getResultsElement()
     users.forEach((user) => {
         const row = document.createElement('div')
         row.setAttribute('class', 'three-column-grid mt-3')

@@ -67,22 +67,9 @@ Comments.addComment = function(comment){
     commentList.appendChild(newComment)
 }
 
-Comments.clearInput = function(id){
-    const input = document.getElementById(id)
-    input.value = ''
-}
-
-Comments.updateCommentCount = function(comment, id){
+Comments.updateCommentCount = function(count, id){
     const countElement1 = document.getElementById(id)
-    countElement1.textContent = comment.count
-}
-
-Comments.sayHello = function(){
-    console.log('Hello from comments js file')
-}
-
-Comments.removeComment = function(comment){
-    document.getElementById(comment.id).remove()
+    countElement1.textContent = count
 }
 
 window.Comments = Comments
