@@ -6,6 +6,11 @@ class UserTest < ActiveSupport::TestCase
     assert user.save
   end
 
+  test 'save fails if password is too short' do
+    user = User.new(username: 'me', password: '1234567', email: 'me@mail.com')
+    assert_not user.save
+  end
+
   test 'user without email cannot save' do
     user = User.new
     user.password = '12345678'
