@@ -38,24 +38,20 @@
 
     <div id="results" class="results mt-5" >
       <div class="row">
-        <h3 class="mr-3"> You searched for: </h3> <span> <%= @term  %> </span>
+        <h3 class="mr-3"> You searched for: </h3> <span id="term"> <%= @term  %> </span>
       </div>
       <% if(@users.present?)%>
-        <div class="three-column-grid mt-4">
+        <div id="shares-header" class="three-column-grid mt-4">
           <h3>Username</h3>
           <h3>Email</h3>
           <h3>Action</h3>
         </div>
         <% @users.each do |user|  %>
-          <%= form_with(url: shares_path) do |form| %>
             <div class="three-column-grid mt-3">
               <p class="mr-5"> <%= user.username %> </p>
               <p class="mr-5"> <%= user.email  %> </p>
-              <%= hidden_field_tag "user_id", user.id %>
-              <%= hidden_field_tag "album_id", @album.id %>
-              <%= form.submit("Share #{@album.title} with #{user.username}", class: "btn btn--primary") %>
+              <%= link_to("Share #{@album.title} with #{user.username}", shares_path(user_id: user.id, album_id: @album.id) , method: :post, class: "btn btn--primary" )  %>
             </div>
-          <% end %>
         <% end %>
       <% end %>
     </div>
