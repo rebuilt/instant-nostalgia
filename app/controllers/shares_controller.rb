@@ -29,7 +29,6 @@ class SharesController < ApplicationController
     if @share.save
       respond_to do |format|
         format.html { redirect_to shares_path }
-        format.js { render :create }
       end
     else
       render :new
