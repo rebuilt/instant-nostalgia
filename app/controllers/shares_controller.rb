@@ -25,9 +25,12 @@ class SharesController < ApplicationController
   def create
     user_id = params[:user_id]
     album_id = params[:album_id]
-    @share = Share.new(user_id: user_id.to_i, album_id: album_id.to_i)
+    @share = Share.new(user_id: user_id, album_id: album_id)
     if @share.save
-      redirect_to shares_path
+      respond_to do |format|
+        format.html { redirect_to shares_path }
+        format.js { render :create }
+      end
     else
       render :new
     end
