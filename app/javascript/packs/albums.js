@@ -52,13 +52,4 @@ Albums.addToDropdown = function(album){
     selector.appendChild(option)
 }
 
-Albums.clearInput = function(id){
-    const input = document.getElementById(id)
-    input.value = ''
-}
-
-Albums.removeElement = function(id){
-    document.getElementById(id).remove()
-}
-
 window.Albums = Albums
