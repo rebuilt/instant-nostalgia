@@ -3,18 +3,6 @@ var comment = {
   "count": " <%= @count  %> "
 }
 
-var Comments = {};
-
-Comments.removeComment = function(comment){
-document.getElementById(comment.id).remove();
-};
-
-Comments.updateCommentCount = function(comment){
-  let countElement1 = document.getElementById("comment-count-1");
-    countElement1.textContent = comment.count;
-  let countElement2 = document.getElementById("comment-count-2");
-    countElement2.textContent = comment.count;
-}
-
 Comments.removeComment(comment);
-Comments.updateCommentCount(comment);
+Comments.updateCommentCount(comment, 'comment-count-1');
+Comments.updateCommentCount(comment, 'comment-count-2');
