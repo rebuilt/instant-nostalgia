@@ -40,14 +40,14 @@ class SharesTest < ApplicationSystemTestCase
 
   test 'share album with another user' do
     user = create_user
-    user2 = create_user(userName: 'second_user')
+    user2 = create_user('second_user')
     sign_in(user)
     album = create_album(user)
     visit new_share_path(album_id: album.id)
 
     assert current_url.include? new_share_path
 
-    fill_in :search, with: user2.username.to_s
+    fill_in :search, with: user2.username
     click_on 'Search for User'
     assert page.has_content? user2.email
 
@@ -58,14 +58,14 @@ class SharesTest < ApplicationSystemTestCase
 
   test 'view button redirects to albums#show' do
     user = create_user
-    user2 = create_user(userName: 'second_user')
+    user2 = create_user('second_user')
     sign_in(user)
     album = create_album(user)
     visit new_share_path(album_id: album.id)
 
     assert current_url.include? new_share_path
 
-    fill_in :search, with: user2.username.to_s
+    fill_in :search, with: user2.username
     click_on 'Search for User'
     assert page.has_content? user2.email
 
