@@ -53,6 +53,11 @@
   align-items: center;
 }
 
+.three-column-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .end {
   justify-content: flex-end;
 }
