@@ -7,11 +7,10 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'commentable', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'hello', 'data-turbolinks-track': 'reload' %>
-
+    <%= javascript_pack_tag 'albums'  %>
+    <%= javascript_pack_tag 'comments'  %>
+    <%= javascript_pack_tag 'shares'  %>
     <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.maps_api_key  %>&callback=initMap&libraries=&v=weekly" defer ></script>
-    <%# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"> %>
   </head>
 
   <body>
