@@ -2,7 +2,6 @@ class MapsController < ApplicationController
   def index
     if params[:checked]
       params[:checked].each do |key, value|
-        puts "key is: #{key} and value is: #{value}"
         next unless value == '1'
 
         tmp = Photo.where(city: key)
