@@ -1,10 +1,17 @@
 class MapsController < ApplicationController
   def index
-    # TODO: Add filter bar
-    # TODO: Add scrollbar
-    # TODO: Add photo modals
-    # TODO: Add listener to recenter map on clicked-on photo
-    # TODO: The current view should be extracted out into map#index and a new page for photos#index should be created here
-    @photos = Photo.all.with_attached_image.belonging_to_user(current_user)
+    if params[:checked]
+      params[:checked].each do |key, value|
+        puts "key is: #{key} and value is: #{value}"
+        next unless value == '1'
+
+        tmp = Photo.where(city: key)
+        @photos = @photos.present? ? @photos.or(tmp) : tmp
+      end
+    else
+      @photos = Photo.all.with_attached_image.belonging_to_user(current_user)
+    end
+
+    @cities = Photo.distinct.pluck(:city)
   end
 end
