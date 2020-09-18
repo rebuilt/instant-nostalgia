@@ -1,10 +1,8 @@
-<div class="content-wrapper">
-  <h1>Map</h1>
-</div>
-
-<div class="row">
-  <div class="filter-panel ml-4">
-    <%= form_with(url: maps_path, method: :get, local: true) do |form|  %>
+<div class="row mt-3">
+  <div class="column">
+    <button type="button" class="collapsible">Open Cities</button>
+    <div id="cities" class="filter-panel ml-4">
+      <%= form_with(url: maps_path, method: :get, local: true) do |form|  %>
 
         <% @cities.each do |city|   %>
 
@@ -19,7 +17,8 @@
 
         <% end %>
         <%= form.submit("Filter", class: "btn btn--primary mt-3")  %>
-  <% end %>
+      <% end %>
+    </div>
   </div>
 
   <div id="map" >Please <%= link_to('upload', new_photo_path)  %> some photos to get started</div>
@@ -45,6 +44,28 @@
     map = document.getElementById("map");
     if(map != null){
       initMap();
+    }
+
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+          let title = this.textContent.split(" ")
+          this.textContent= `Open ${title[1]}`
+          console.log(this.textContent)
+        } else {
+          content.style.display = "block";
+          let title = this.textContent.split(" ")
+          this.textContent= `Close ${title[1]}`
+          console.log(this)
+          console.log(this.textContent)
+        }
+      });
     }
   });
 
