@@ -14,6 +14,7 @@
   display: none;
   overflow: hidden;
   background-color: #f1f1f1;
+  width: 300px;
 }
 
 .collapsible {
@@ -21,12 +22,11 @@
   color: #444;
   cursor: pointer;
   padding: 18px;
-  width: 100%;
   border: none;
   text-align: left;
   outline: none;
   font-size: 15px;
-  min-width: 22ch;
+  width: 300px;
 }
 
 .active,
@@ -44,4 +44,9 @@
 
 .active:after {
   content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+.filter-form {
+  width: 300px;
+  margin: 0 1.5rem;
 }
