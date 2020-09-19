@@ -33,6 +33,12 @@ class Photo < ApplicationRecord
   scope :include_image, -> { includes(image_attachment: :blob) }
   scope :belonging_to_user, ->(user) { where(user: user) }
 
+  def location?
+    return false if latitude_in_decimal == 0.0 && longitude_in_decimal == 0.0
+
+    true
+  end
+
   private
 
   def read_image_metadata
@@ -63,11 +69,5 @@ class Photo < ApplicationRecord
     coordinates = Gps.to_decimal(coordinates)
     update(latitude_in_decimal: coordinates.latitude,
            longitude_in_decimal: coordinates.longitude)
-  end
-
-  def location?
-    return false if latitude_in_degrees == '0' && longitude_in_degrees == '0'
-
-    true
   end
 end
