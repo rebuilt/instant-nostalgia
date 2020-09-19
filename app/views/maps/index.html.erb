@@ -1,24 +1,21 @@
+<%# <%= debug(params)  %1> %>
 <div class="row mt-3">
   <div class="column">
-    <button type="button" class="collapsible">Open Cities</button>
-    <div id="cities" class="filter-panel ml-4">
-      <%= form_with(url: maps_path, method: :get, local: true) do |form|  %>
-
+    <%= form_with(url: maps_path, method: :get, local: true) do |form|  %>
+      <button type="button" class="collapsible">Open Cities</button>
+      <div id="cities" class="filter-panel ml-4">
         <% @cities.each do |city|   %>
-
           <div >
             <div class="row mt-3 end">
-              <%# <%= hidden_field_tag "hidden_checked[#{city}]", false %1> %>
               <%= form.label(city, city)  %>
-              <%= form.check_box("checked[#{city}]", value: city)  %>
+            <%= form.check_box("city[#{city}]", value: city)  %>
             </div>
 
           </div>
-
         <% end %>
-        <%= form.submit("Filter", class: "btn btn--primary mt-3")  %>
-      <% end %>
-    </div>
+      </div>
+      <%= form.submit("Filter", class: "btn btn--primary mt-3")  %>
+    <% end %>
   </div>
 
   <div id="map" >Please <%= link_to('upload', new_photo_path)  %> some photos to get started</div>
