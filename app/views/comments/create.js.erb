@@ -1,13 +1,13 @@
 var comment = {
-  'id': "id-<%= @comment.id %>",
-  'avatar_url': "<%= asset_path('avatar.png') %>",
-  'created_at': "<%= @comment.created_at %>",
-  'time_ago': "Posted <%= time_ago_in_words @comment.created_at %> ago",
-  'body': "<%= @comment.body.to_plain_text %>",
-  'first_name': "<%= @comment.user.first_name %>",
-  'comment_url': "<%= "/#{I18n.locale}/#{@commentable.class.to_s.downcase}s/#{@commentable.id}/comments/#{@comment.id}" %>",
-  'authenticity_token': '<%= form_authenticity_token %>',
-  'count': "<%= @count  %>"
+  id: "id-<%= @comment.id %>",
+  avatar_url: "<%= asset_path('avatar.png') %>",
+  created_at: "<%= @comment.created_at %>",
+  time_ago: "Posted <%= time_ago_in_words @comment.created_at %> ago",
+  body: "<%= @comment.body.to_plain_text %>",
+  first_name: "<%= @comment.user.first_name %>",
+  comment_url: "<%= "/#{I18n.locale}/#{@commentable.class.to_s.downcase}s/#{@commentable.id}/comments/#{@comment.id}" %>",
+  authenticity_token: '<%= form_authenticity_token %>',
+  count: "<%= @count  %>"
 };
 
 Comments.addComment(comment);

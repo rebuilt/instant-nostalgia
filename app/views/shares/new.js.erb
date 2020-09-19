@@ -1,16 +1,16 @@
 var term = "<%= @term  %>" ;
 var locale = "<%= I18n.locale  %>"
 var album = {
-  'id':  "<%= @album.id  %>",
-  'title': "<%= @album.title  %>"
+  id:  "<%= @album.id  %>",
+  title: "<%= @album.title  %>"
 }
 
 var users = [];
 <% @users.each do |user|   %>
     var user = {
-      'username': "<%= user.username  %>",
-      'email': "<%= user.email  %>",
-      'id': "<%= user.id  %>"
+      username: "<%= user.username  %>",
+      email: "<%= user.email  %>",
+      id: "<%= user.id  %>"
     };
 users.push(user);
 <% end %>
