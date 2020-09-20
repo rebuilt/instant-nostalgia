@@ -2,16 +2,7 @@
 <div class="row mt-3">
   <%= form_with(url: maps_path, method: :get, local: true, class: "column filter-form") do |form|  %>
 
-
-    <button type="button" class="collapsible">Open Suburbs</button>
-    <div id="suburbs" class="filter-panel ml-4">
-      <% @suburbs.each do |suburb|   %>
-        <div class="row mt-3 end">
-          <%= form.label(suburb, suburb)  %>
-          <%= form.check_box("suburb[#{suburb}]", value: suburb)  %>
-        </div>
-      <% end %>
-    </div>
+    <%= render partial: "area_checkboxes", locals: {area: @suburbs, name: "suburb", form: form}  %>
 
     <button type="button" class="collapsible">Open Villages</button>
     <div id="village" class="filter-panel ml-4">
