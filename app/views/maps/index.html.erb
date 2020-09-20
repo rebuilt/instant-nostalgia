@@ -1,4 +1,3 @@
-<%# <%= debug(params)  %1> %>
 <div class="row mt-3">
   <%= form_with(url: maps_path, method: :get, local: true, class: "column filter-form") do |form|  %>
 
@@ -8,6 +7,29 @@
     <%= render partial: "area_checkboxes", locals: {area: @states, name: "state", form: form}  %>
     <%= render partial: "area_checkboxes", locals: {area: @countries, name: "country", form: form}  %>
 
+    <button type="button" class="collapsible">Open my albums</button>
+    <div id="albums" class="filter-panel ml-4">
+      <% if(@albums.present?)  %>
+        <% @albums.each do |a|   %>
+          <div class="row mt-3 end">
+            <%= form.label(a.title, a.title)  %>
+            <%= form.check_box("album[#{a.id}]", value: a)  %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <button type="button" class="collapsible">Open albums shared with me</button>
+    <div id="albums" class="filter-panel ml-4">
+      <% if(@shared_albums.present?)  %>
+        <% @shared_albums.each do |a|   %>
+          <div class="row mt-3 end">
+            <%= form.label(a.title, a.title)  %>
+            <%= form.check_box("album[#{a.id}]", value: a)  %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
     <%= form.submit("Filter", class: "btn btn--primary mt-3")  %>
   <% end %>
 
