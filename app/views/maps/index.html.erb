@@ -3,48 +3,10 @@
   <%= form_with(url: maps_path, method: :get, local: true, class: "column filter-form") do |form|  %>
 
     <%= render partial: "area_checkboxes", locals: {area: @suburbs, name: "suburb", form: form}  %>
-
-    <button type="button" class="collapsible">Open Villages</button>
-    <div id="village" class="filter-panel ml-4">
-      <% @villages.each do |village|   %>
-        <div class="row mt-3 end">
-          <%= form.label(village, village)  %>
-          <%= form.check_box("village[#{village}]", value: village)  %>
-        </div>
-      <% end %>
-    </div>
-
-    <button type="button" class="collapsible">Open Cities</button>
-    <div id="cities" class="filter-panel ml-4">
-      <% @cities.each do |city|   %>
-        <div class="row mt-3 end">
-          <%= form.label(city, city)  %>
-          <%= form.check_box("city[#{city}]", value: city)  %>
-        </div>
-      <% end %>
-    </div>
-
-
-    <button type="button" class="collapsible">Open State</button>
-    <div id="states" class="filter-panel ml-4">
-      <% @states.each do |state|   %>
-        <div class="row mt-3 end">
-          <%= form.label(state, state)  %>
-          <%= form.check_box("state[#{state}]", value: state)  %>
-        </div>
-      <% end %>
-    </div>
-
-
-    <button type="button" class="collapsible">Open Country</button>
-    <div id="countries" class="filter-panel ml-4">
-      <% @countries.each do |country|   %>
-        <div class="row mt-3 end">
-          <%= form.label(country, country)  %>
-          <%= form.check_box("country[#{country}]", value: country)  %>
-        </div>
-      <% end %>
-    </div>
+    <%= render partial: "area_checkboxes", locals: {area: @villages, name: "village", form: form}  %>
+    <%= render partial: "area_checkboxes", locals: {area: @cities, name: "city", form: form}  %>
+    <%= render partial: "area_checkboxes", locals: {area: @states, name: "state", form: form}  %>
+    <%= render partial: "area_checkboxes", locals: {area: @countries, name: "country", form: form}  %>
 
     <%= form.submit("Filter", class: "btn btn--primary mt-3")  %>
   <% end %>
