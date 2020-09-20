@@ -21,7 +21,7 @@ class MapsController < ApplicationController
     params[area]&.each do |key, value|
       next unless value == '1'
 
-      tmp = Photo.where(area => key)
+      tmp = Photo.with_attached_image.belonging_to_user(current_user).where(area => key)
       @photos = @photos.present? ? @photos.or(tmp) : tmp
     end
 
