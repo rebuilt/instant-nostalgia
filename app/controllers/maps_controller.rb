@@ -1,10 +1,9 @@
 class MapsController < ApplicationController
   def index
-    @photos = load_photos_by_area(:suburb)
-    @photos = load_photos_by_area(:village)
-    @photos = load_photos_by_area(:city)
-    @photos = load_photos_by_area(:state)
-    @photos = load_photos_by_area(:country)
+    places = %i[suburb village city state country]
+    places.each do |place|
+      @photos = load_photos_by_area(place) if params[place]
+    end
     # TODO: this should return most recent photos, not all photos
     @photos = Photo.all.with_attached_image.belonging_to_user(current_user) if @photos.nil?
     @photos = @photos.reject { |photo| photo.location? == false }
