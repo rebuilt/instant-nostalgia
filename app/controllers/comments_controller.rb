@@ -13,8 +13,7 @@ class CommentsController < ApplicationController
         format.js { render :create }
       end
     else
-      # TODO: make the 'new' view or redirect to somewhere useful
-      render :new
+      redirect_to @commentable, notice: 'could not save comment'
     end
   end
 
