@@ -4,7 +4,8 @@ class PhotosController < ApplicationController
   end
 
   def show
-    @photo = Photo.with_attached_image.belonging_to_user(current_user).find(params[:id])
+    # TODO: change this from belonging_to_user to belonging_or_shared_with(current_user)
+    @photo = Photo.with_attached_image.find(params[:id])
     @comments = Comment.with_rich_text_body.order_by_old_to_new.where(commentable_id: @photo).includes(:user)
     @comment = Comment.new
   end
