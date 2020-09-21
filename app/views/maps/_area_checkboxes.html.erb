@@ -1,5 +1,5 @@
-<button type="button" class="collapsible">Open <%= name.pluralize.capitalize %> </button>
-<div id="#{name}" class="filter-panel ml-4">
+<button type="button" class="collapsible" data-target="collapsible.button" data-action="click->collapsible#toggle">Open <%= name.pluralize.capitalize %> </button>
+<div id="<%= name.tr(" ", "-")  %>" class="filter-panel ml-4" >
   <% area.each do |a|   %>
     <div class="row mt-3 end">
       <%= form.label(a, a)  %>
