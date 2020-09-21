@@ -2,80 +2,51 @@
   <%= form_with(url: maps_path, method: :get, local: true, class: "column filter-form") do |form|  %>
 
     <div data-controller="collapsible">
-    <%= render partial: "area_checkboxes", locals: {area: @suburbs, name: "suburb", form: form}  %>
-    <%= render partial: "area_checkboxes", locals: {area: @villages, name: "village", form: form}  %>
-    <%= render partial: "area_checkboxes", locals: {area: @cities, name: "city", form: form}  %>
-    <%= render partial: "area_checkboxes", locals: {area: @states, name: "state", form: form}  %>
-    <%= render partial: "area_checkboxes", locals: {area: @countries, name: "country", form: form}  %>
-    <%= render partial: "albums_checkboxes", locals: {albums: @albums, name: "my albums", form: form}  %>
-    <%= render partial: "albums_checkboxes", locals: {albums: @shared_albums, name: "albums shared with me", form: form}  %>
+      <%= render partial: "area_checkboxes", locals: {area: @suburbs, name: "suburb", form: form}  %>
+      <%= render partial: "area_checkboxes", locals: {area: @villages, name: "village", form: form}  %>
+      <%= render partial: "area_checkboxes", locals: {area: @cities, name: "city", form: form}  %>
+      <%= render partial: "area_checkboxes", locals: {area: @states, name: "state", form: form}  %>
+      <%= render partial: "area_checkboxes", locals: {area: @countries, name: "country", form: form}  %>
+      <%= render partial: "albums_checkboxes", locals: {albums: @albums, name: "my albums", form: form}  %>
+      <%= render partial: "albums_checkboxes", locals: {albums: @shared_albums, name: "albums shared with me", form: form}  %>
 
-    <%= form.submit("Filter", class: "btn btn--primary mt-3")  %>
+      <%= form.submit("Filter", class: "btn btn--primary mt-3")  %>
     </div>
   <% end %>
 
-  <div id="map" >Please <%= link_to('upload', new_photo_path)  %> some photos to get started</div>
+  <div id="map" data-controller="map">refresh page to view map</div>
 </div>
 
-<div class="content-wrapper">
-  <ul class="row">
-    <% if @photos.present?  %>
-      <% @photos.each do |photo|  %>
-        <li>
-          <%= link_to photo_path(photo) do  %>
-            <%= image_tag(photo.image.variant(resize: '300x300')) if photo.image.attached? %>
-          <% end %>
-        </li>
-      <% end %>
+<ul class="row">
+  <% if @photos.present?  %>
+    <% @photos.each do |photo|  %>
+      <li data-controller="map" data-map-latitude="<%= photo.latitude_in_decimal  %>" data-map-longitude="<%= photo.longitude_in_decimal  %>" data-action="click->map#center">
+        <%= image_tag(photo.image.variant(resize: '300x300')) if photo.image.attached? %>
+        <%= link_to "View", photo_path(photo)  %>
+      </li>
     <% end %>
+  <% end %>
 
-  </ul>
-</div>
+</ul>
 
 <script>
-  document.addEventListener("turbolinks:load", function(){
-    map = document.getElementById("map");
-    if(map != null){
-      initMap();
-    }
-  });
+  <%# "DOMContentLoaded" %>
+    <%# OPTIMIZE: Is there a different turbolinks lifecycle callback I can use here? %>
+    document.addEventListener("turbolinks:load", function(){
+      let gMap = document.getElementById("map");
 
-  function initMap() {
-    <% if @photos.size >0  %>
-        map = new google.maps.Map(document.getElementById("map"), {
-          center: { lat: <%= @photos.first.latitude_in_decimal  %> , lng: <%= @photos.first.longitude_in_decimal  %>  },
-          zoom: 12
-        });
-    addMarkers();
-  <% end %>
-  }
+      if(gMap != null){
+        let mapController = document.getElementById('map').map
+        mapController.initMap( <%= @photos.first.latitude_in_decimal  %> , <%= @photos.first.longitude_in_decimal  %>)
 
-  function addMarkers(latitude, longitude){
-    <% @photos.each do |photo|  %>
-        <% unless photo.latitude_in_decimal == 0 && photo.longitude_in_decimal == 0  %>
-        var index = 0
-    var image = {
-      url: '<%= rails_representation_url(photo.image.variant(resize: '200x200'), disposition: "attachment", only_path: true) %>' ,
-      origin: new google.maps.Point(0,0),
-      anchor: new google.maps.Point(0,32)
-    };
-
-    var shape = {
-      coords: [1, 1, 1, 20, 18, 20, 18, 1],
-      type: 'poly'
-    };
-
-    var marker = new google.maps.Marker({
-      position: {lat: <%= photo.latitude_in_decimal %> , lng: <%= photo.longitude_in_decimal  %> },
-      map: map,
-      icon: image,
-      shape: shape,
-      zIndex: index
+          <% @photos.each_with_index do |photo, index|  %>
+            mapController.addMarker(
+              <%= photo.latitude_in_decimal  %>,
+              <%= photo.longitude_in_decimal  %>,
+              '<%= rails_representation_url(photo.image.variant(resize: '200x200'), disposition: "attachment", only_path: true)   %>',
+              <%= index  %>
+            )
+        <% end %>
+      }
     });
-    index = index +1;
-
-  <% end %>
-    <% end %>
-  }
-
 </script>
