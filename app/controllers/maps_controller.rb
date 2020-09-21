@@ -37,9 +37,16 @@ class MapsController < ApplicationController
     params[:album]&.each do |key, value|
       next unless value == '1'
 
-      # OPTIMIZE : how do I do perform this search using the Photo model?
+      # OPTIMIZE : how do I do perform this search using the Photo model? Can I cast the result of an activerecord to a different model type?
       tmp = Album.find(key).photos
-      # tmp = Photo.with_attached_image.belonging_to_user(current_user).where(albums_photos: [albums_id: key])
+      # Relation passed to #or must be structurally compatible. Incompatible values: [:joins]
+      # tmp = Photo.with_attached_image.joins(:albums).where(albums: { id: key })
+      #
+      # Relation passed to #or must be structurally compatible. Incompatible values: [:joins]
+      # tmp = Photo.with_attached_image.joins(:albums_photos).where(albums_photos: { album_id: key })
+      #
+      # Doesn't work at all
+      # tmp = Photo.with_attached_image.where(albums_photos: { albums_id: key })
       @photos = @photos.present? ? @photos.or(tmp) : tmp
     end
     @photos
