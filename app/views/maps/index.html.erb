@@ -1,36 +1,17 @@
 <div class="row mt-3">
   <%= form_with(url: maps_path, method: :get, local: true, class: "column filter-form") do |form|  %>
 
+    <div data-controller="collapsible">
     <%= render partial: "area_checkboxes", locals: {area: @suburbs, name: "suburb", form: form}  %>
     <%= render partial: "area_checkboxes", locals: {area: @villages, name: "village", form: form}  %>
     <%= render partial: "area_checkboxes", locals: {area: @cities, name: "city", form: form}  %>
     <%= render partial: "area_checkboxes", locals: {area: @states, name: "state", form: form}  %>
     <%= render partial: "area_checkboxes", locals: {area: @countries, name: "country", form: form}  %>
+    <%= render partial: "albums_checkboxes", locals: {albums: @albums, name: "my albums", form: form}  %>
+    <%= render partial: "albums_checkboxes", locals: {albums: @shared_albums, name: "albums shared with me", form: form}  %>
 
-    <button type="button" class="collapsible">Open my albums</button>
-    <div id="albums" class="filter-panel ml-4">
-      <% if(@albums.present?)  %>
-        <% @albums.each do |a|   %>
-          <div class="row mt-3 end">
-            <%= form.label(a.title, a.title)  %>
-            <%= form.check_box("album[#{a.id}]", value: a)  %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-
-    <button type="button" class="collapsible">Open albums shared with me</button>
-    <div id="albums" class="filter-panel ml-4">
-      <% if(@shared_albums.present?)  %>
-        <% @shared_albums.each do |a|   %>
-          <div class="row mt-3 end">
-            <%= form.label(a.title, a.title)  %>
-            <%= form.check_box("album[#{a.id}]", value: a)  %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
     <%= form.submit("Filter", class: "btn btn--primary mt-3")  %>
+    </div>
   <% end %>
 
   <div id="map" >Please <%= link_to('upload', new_photo_path)  %> some photos to get started</div>
@@ -56,28 +37,6 @@
     map = document.getElementById("map");
     if(map != null){
       initMap();
-    }
-
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
-
-    for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-          content.style.display = "none";
-          let title = this.textContent.split(" ")
-          this.textContent= `Open ${title[1]}`
-          console.log(this.textContent)
-        } else {
-          content.style.display = "block";
-          let title = this.textContent.split(" ")
-          this.textContent= `Close ${title[1]}`
-          console.log(this)
-          console.log(this.textContent)
-        }
-      });
     }
   });
 
