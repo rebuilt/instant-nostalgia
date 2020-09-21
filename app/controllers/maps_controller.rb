@@ -4,10 +4,13 @@ class MapsController < ApplicationController
     places.each do |place|
       @photos = load_photos_by_area(place) if params[place]
     end
-    @photos = load_albums
+
+    @photos = load_albums if params[:album]
+
     # TODO: this should return most recent photos, not all photos
     @photos = Photo.all.with_attached_image.belonging_to_user(current_user) if @photos.nil?
-    @photos = @photos.reject { |photo| photo.location? == false }
+    @photos = remove_non_geocoded(@photos)
+
     @suburbs = load_area_names(:suburb)
     @villages = load_area_names(:village)
     @cities = load_area_names(:city)
@@ -43,5 +46,9 @@ class MapsController < ApplicationController
       @photos = @photos.present? ? @photos.or(tmp) : tmp
     end
     @photos
+  end
+
+  def remove_non_geocoded(photos)
+    photos.reject { |photo| photo.location? == false }
   end
 end
