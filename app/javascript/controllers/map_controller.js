@@ -11,6 +11,7 @@ import { Controller } from 'stimulus'
 
 let map
 let markers = []
+let idx = 0
 export default class extends Controller {
     connect() {
         this.element[this.identifier] = this
@@ -42,6 +43,7 @@ export default class extends Controller {
             shape: shape,
             zIndex: index,
         })
+        idx = index
         markers.push(marker)
     }
 
@@ -55,6 +57,8 @@ export default class extends Controller {
                 tmp = item
             }
         })
+        idx = idx + 1
+        tmp.zIndex = idx
         map.panTo(tmp.position)
     }
     // TODO: why can't I call this method here?
