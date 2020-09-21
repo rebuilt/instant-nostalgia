@@ -33,19 +33,21 @@ class MapsController < ApplicationController
     @photos
   end
 
-  def load_area_names(area)
-    locations = Photo.distinct.pluck(area)
-    locations.reject(&:nil?)
-  end
-
   def load_albums
     params[:album]&.each do |key, value|
       next unless value == '1'
 
+      # OPTIMIZE : how do I do perform this search using the Photo model?
       tmp = Album.find(key).photos
+      # tmp = Photo.with_attached_image.belonging_to_user(current_user).where(albums_photos: [albums_id: key])
       @photos = @photos.present? ? @photos.or(tmp) : tmp
     end
     @photos
+  end
+
+  def load_area_names(area)
+    locations = Photo.distinct.pluck(area)
+    locations.reject(&:nil?)
   end
 
   def remove_non_geocoded(photos)
