@@ -7,6 +7,9 @@ class Photo < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :albums
   has_many :comments, as: :commentable
+  # OPTIMIZE: I want to reference a list of authorized users
+  # has_many :authorized_users, through: { albums: { id: { shares: :user_id } } }, class_name: 'User'
+  # has_many :authorized_users, -> { joins(:albums, :shares) }, source: :user
   geocoded_by :address
   reverse_geocoded_by :latitude_in_decimal, :longitude_in_decimal do |obj, results|
     if geo = results.first
