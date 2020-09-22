@@ -29,24 +29,34 @@
 
 </ul>
 
+<%# <head> %>
+  <%#   <meta name="turbolinks-cache-control" content="no-cache"> %>
+  <%# </head> %>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.maps_api_key  %>&callback=initMap&libraries=&v=weekly" defer ></script>
+
 <script>
-  <%# "DOMContentLoaded" %>
+  <%# https://github.com/turbolinks/turbolinks#full-list-of-events %>
+    <%# "DOMContentLoaded" %>
     <%# OPTIMIZE: Is there a different turbolinks lifecycle callback I can use here? %>
     document.addEventListener("turbolinks:load", function(){
-      let gMap = document.getElementById("map");
+      <%# var map = new google.maps.Map(document.getElementById('map'), { %>
+      <%#   center: { lat: <%= @photos.first.latitude_in_decimal  %1> , lng: <%= @photos.first.longitude_in_decimal  %1>  }, %>
+      <%#   zoom: 12, %>
+      <%# }) %>
 
-      if(gMap != null){
-        let mapController = document.getElementById('map').map
-        mapController.initMap( <%= @photos.first.latitude_in_decimal  %> , <%= @photos.first.longitude_in_decimal  %>)
+      let mapController = document.getElementById('map').map
+      console.log(mapController)
 
-          <% @photos.each_with_index do |photo, index|  %>
-            mapController.addMarker(
-              <%= photo.latitude_in_decimal  %>,
-              <%= photo.longitude_in_decimal  %>,
-              '<%= rails_representation_url(photo.image.variant(resize: '200x200'), disposition: "attachment", only_path: true)   %>',
-              <%= index  %>
-            )
-        <% end %>
-      }
+      mapController.initMap( <%= @photos.first.latitude_in_decimal  %> , <%= @photos.first.longitude_in_decimal  %>)
+
+        <% @photos.each_with_index do |photo, index|  %>
+          mapController.addMarker(
+            <%= photo.latitude_in_decimal  %>,
+            <%= photo.longitude_in_decimal  %>,
+            '<%= rails_representation_url(photo.image.variant(resize: '200x200'), disposition: "attachment", only_path: true)   %>',
+            <%= index  %>
+          )
+      <% end %>
     });
 </script>
