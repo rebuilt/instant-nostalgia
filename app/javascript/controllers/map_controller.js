@@ -50,6 +50,10 @@ export default class extends Controller {
     center() {
         const latitude = this.data.get('latitude')
         const longitude = this.data.get('longitude')
+        map.panTo(this.getMarker(latitude, longitude).position)
+    }
+
+    getMarker(latitude, longitude) {
         let tmp
 
         markers.forEach((item) => {
@@ -57,25 +61,6 @@ export default class extends Controller {
                 tmp = item
             }
         })
-        idx = idx + 1
-        tmp.zIndex = idx
-        map.panTo(tmp.position)
+        return tmp
     }
-    // TODO: why can't I call this method here?
-    // center() {
-    //     const latitude = this.data.get('latitude')
-    //     const longitude = this.data.get('longitude')
-    //     map.panTo(this.getMarker().position)
-    // }
-
-    // getMarker(latitude, longitude) {
-    //     let tmp
-
-    //     markers.forEach((item) => {
-    //         if (item.position.lat() == latitude && item.position.lng() == longitude) {
-    //             tmp = item
-    //         }
-    //     })
-    //     return tmp
-    // }
 }
