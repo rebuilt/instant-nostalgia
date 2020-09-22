@@ -35,6 +35,8 @@ class Photo < ApplicationRecord
 
   scope :include_image, -> { includes(image_attachment: :blob) }
   scope :belonging_to_user, ->(user) { where(user: user) }
+  scope :most_recent, -> { order(created_at: :desc).limit(5) }
+  scope :order_by_new_to_old, -> { order(created_at: :desc) }
 
   def location?
     return false if latitude_in_decimal == 0.0 && longitude_in_decimal == 0.0
