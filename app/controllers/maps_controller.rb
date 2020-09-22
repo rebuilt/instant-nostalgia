@@ -8,7 +8,7 @@ class MapsController < ApplicationController
     @photos = load_albums if params[:album]
 
     # TODO: this should return most recent photos, not all photos
-    @photos = Photo.all.with_attached_image.belonging_to_user(current_user).limit(3) if @photos.nil?
+    @photos = Photo.all.with_attached_image.belonging_to_user(current_user).most_recent if @photos.nil?
     @photos = remove_non_geocoded(@photos)
 
     @suburbs = load_area_names(:suburb)
