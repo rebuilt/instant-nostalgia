@@ -50,7 +50,15 @@ export default class extends Controller {
     center() {
         const latitude = this.data.get('latitude')
         const longitude = this.data.get('longitude')
-        map.panTo(this.getMarker(latitude, longitude).position)
+        let marker = this.getMarker(latitude, longitude)
+        marker = this.stackToTop(marker)
+        map.panTo(marker.position)
+    }
+
+    stackToTop(marker) {
+        idx = idx + 1
+        marker.zIndex = idx
+        return marker
     }
 
     getMarker(latitude, longitude) {
