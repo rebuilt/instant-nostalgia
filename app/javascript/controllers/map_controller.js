@@ -1,29 +1,25 @@
-// Visit The Stimulus Handbook for more details
-// https://stimulusjs.org/handbook/introduction
-//
-// This example controller works with specially annotated HTML like:
-//
-// <div data-controller="hello">
-//   <h1 data-target="hello.output"></h1>
-// </div>
-
 import { Controller } from 'stimulus'
 
 let map
 let markers = []
 let idx = 0
+let data
 export default class extends Controller {
-    connect() {
+    initialize() {
         this.element[this.identifier] = this
-    }
+        data = window.MapData.getData()
+        map = window.MapData.getMap()
+        console.log('%c This is now in stimulus controller', 'color: blue;')
+        console.log(map)
+        console.log(data)
 
-    initMap(latitude, longitude) {
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: latitude, lng: longitude },
-            zoom: 12,
+        this.addMarkers(data)
+    }
+    addMarkers(data) {
+        data.forEach((item) => {
+            this.addMarker(item.lat, item.long, item.url, item.index)
         })
     }
-
     addMarker(latitude, longitude, url, index) {
         const image = {
             url: url,
@@ -51,13 +47,15 @@ export default class extends Controller {
         const latitude = this.data.get('latitude')
         const longitude = this.data.get('longitude')
         let marker = this.getMarker(latitude, longitude)
-        marker = this.stackToTop(marker)
+        marker = this.stackOnTop(marker)
         map.panTo(marker.position)
     }
 
-    stackToTop(marker) {
+    stackOnTop(marker) {
         idx = idx + 1
         marker.zIndex = idx
+        console.log('%c The following is the zIndex', 'color: red')
+        console.log(idx)
         return marker
     }
 
