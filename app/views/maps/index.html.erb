@@ -29,34 +29,39 @@
 
 </ul>
 
-<%# <head> %>
-  <%#   <meta name="turbolinks-cache-control" content="no-cache"> %>
-  <%# </head> %>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.maps_api_key  %>&callback=initMap&libraries=&v=weekly" defer ></script>
 
 <script>
-  <%# https://github.com/turbolinks/turbolinks#full-list-of-events %>
-    <%# "DOMContentLoaded" %>
-    <%# OPTIMIZE: Is there a different turbolinks lifecycle callback I can use here? %>
-    document.addEventListener("turbolinks:load", function(){
-      <%# var map = new google.maps.Map(document.getElementById('map'), { %>
-      <%#   center: { lat: <%= @photos.first.latitude_in_decimal  %1> , lng: <%= @photos.first.longitude_in_decimal  %1>  }, %>
-      <%#   zoom: 12, %>
-      <%# }) %>
+  var map;
+  function initMap(){
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: { lat: <%= @photos.first.latitude_in_decimal  %> , lng: <%= @photos.first.longitude_in_decimal  %>  },
+      zoom: 12,
+    })
+  }
 
-      let mapController = document.getElementById('map').map
-      console.log(mapController)
+  var MapData = { }
 
-      mapController.initMap( <%= @photos.first.latitude_in_decimal  %> , <%= @photos.first.longitude_in_decimal  %>)
+  MapData.getData = function(){
+    let output = []
+      <% @photos.each_with_index do |photo, index|  %>
 
-        <% @photos.each_with_index do |photo, index|  %>
-          mapController.addMarker(
-            <%= photo.latitude_in_decimal  %>,
-            <%= photo.longitude_in_decimal  %>,
-            '<%= rails_representation_url(photo.image.variant(resize: '200x200'), disposition: "attachment", only_path: true)   %>',
-            <%= index  %>
-          )
-      <% end %>
-    });
+        var item = {
+          lat: <%= photo.latitude_in_decimal  %>,
+          long: <%= photo.longitude_in_decimal  %>,
+          url: '<%= rails_representation_url(photo.image.variant(resize: '200x200'), disposition: "attachment", only_path: true)   %>',
+          index: <%= index  %>
+        }
+    output.push(item)
+
+    <% end %>
+      return output
+  }
+  MapData.getMap = function(){
+    return map}
+
+  console.log("%c The following is the map", 'color: orange')
+  console.log(MapData.getMap())
+  window.MapData = MapData
 </script>
