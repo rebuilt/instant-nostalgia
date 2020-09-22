@@ -9,9 +9,6 @@ export default class extends Controller {
         this.element[this.identifier] = this
         data = window.MapData.getData()
         map = window.MapData.getMap()
-        console.log('%c This is now in stimulus controller', 'color: blue;')
-        console.log(map)
-        console.log(data)
 
         this.addMarkers(data)
     }
@@ -54,8 +51,6 @@ export default class extends Controller {
     stackOnTop(marker) {
         idx = idx + 1
         marker.zIndex = idx
-        console.log('%c The following is the zIndex', 'color: red')
-        console.log(idx)
         return marker
     }
 
