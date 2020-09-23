@@ -1,6 +1,6 @@
 class MapsController < ApplicationController
   def index
-    places = %i[suburb village city state country]
+    places = %i[city state country]
     places.each do |place|
       @photos = load_photos_by_area(place) if params[place]
     end
@@ -11,8 +11,6 @@ class MapsController < ApplicationController
     @photos = Photo.all.with_attached_image.belonging_to_user(current_user).most_recent if @photos.nil?
     @photos = remove_non_geocoded(@photos)
 
-    @suburbs = load_area_names(:suburb)
-    @villages = load_area_names(:village)
     @cities = load_area_names(:city)
     @states = load_area_names(:state)
     @countries = load_area_names(:country)
@@ -37,27 +35,14 @@ class MapsController < ApplicationController
     params[:album]&.each do |key, value|
       next unless value == '1'
 
-      # OPTIMIZE : how do I do perform this search using the Photo model? Can I cast the result of an activerecord to a different model type?
-      # Constraints for using OR method
-
-      # The two relations must be structurally compatible, they must be scoping the same model, and they must differ only by WHERE or HAVING. In order to use OR operator, neither relation should have a limit, offset, or distinct.
-      #
-      # tmp = Album.find(key).photos
-      # Relation passed to #or must be structurally compatible. Incompatible values: [:joins]
       tmp = Photo.with_attached_image.joins(:albums).where(albums: { id: key })
-      #
-      # Relation passed to #or must be structurally compatible. Incompatible values: [:joins]
-      # tmp = Photo.with_attached_image.joins(:albums_photos).where(albums_photos: { album_id: key })
-      #
-      # Doesn't work at all
-      # tmp = Photo.with_attached_image.where(albums_photos: { albums_id: key })
       @photos = @photos.present? ? @photos + tmp : tmp
     end
     @photos
   end
 
   def load_area_names(area)
-    locations = Photo.distinct.pluck(area)
+    locations = Photo.belonging_to_user(current_user).distinct.pluck(area)
     locations.reject(&:nil?)
   end
 
