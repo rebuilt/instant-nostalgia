@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
-<%= form_for([commentable, comment], html: {class: 'comments__input' }, remote: true) do |form| %>
+<%= form_for([commentable, comment], remote: true) do |form| %>
 
-  <div class="input-group">
+  <div class="field">
     <%= form.label(:body, 'Add a comment', class: 'input-group__label') %>
     <%= form.text_area(:body, class: 'input-group__field', rows: 10) %>
   </div>
