@@ -1,6 +1,6 @@
 const Comments = {}
 
-Comments.buildComment = function(comment){
+Comments.buildComment = function (comment) {
     const commentElement = document.createElement('li')
     commentElement.setAttribute('class', 'comment')
     commentElement.setAttribute('id', comment.id)
@@ -27,7 +27,7 @@ Comments.buildComment = function(comment){
     comment__name.textContent = comment.first_name
 
     const delete_form = document.createElement('form')
-    delete_form.setAttribute('class', 'button_to comment__delete' )
+    delete_form.setAttribute('class', 'button_to comment__delete')
     delete_form.setAttribute('method', 'post')
     delete_form.setAttribute('action', comment.comment_url)
     delete_form.setAttribute('data-remote', 'true')
@@ -43,7 +43,7 @@ Comments.buildComment = function(comment){
 
     const hidden2 = document.createElement('input')
     hidden2.setAttribute('type', 'hidden')
-    hidden2.setAttribute('name','authenticity_token')
+    hidden2.setAttribute('name', 'authenticity_token')
     hidden2.setAttribute('value', comment.authenticity_token)
 
     delete_form.appendChild(hidden1)
