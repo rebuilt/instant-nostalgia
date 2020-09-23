@@ -4,13 +4,16 @@ let map
 let markers = []
 let idx = 0
 let data
+let hasInitialized = false
 export default class extends Controller {
     initialize() {
         this.element[this.identifier] = this
-        data = window.MapData.getData()
-        map = window.MapData.getMap()
-
-        this.addMarkers(data)
+        if (hasInitialized === false) {
+            map = window.MapData.getMap()
+            data = window.MapData.getData()
+            this.addMarkers(data)
+            hasInitialized = true
+        }
     }
     addMarkers(data) {
         data.forEach((item) => {
@@ -18,6 +21,9 @@ export default class extends Controller {
         })
     }
     addMarker(latitude, longitude, url, index) {
+        console.log(index)
+        console.log(typeof index)
+        idx = idx + index
         const image = {
             url: url,
             origin: new google.maps.Point(0, 0),
@@ -34,9 +40,8 @@ export default class extends Controller {
             map: map,
             icon: image,
             shape: shape,
-            zIndex: index,
+            zIndex: idx,
         })
-        idx = index
         markers.push(marker)
     }
 
@@ -46,6 +51,7 @@ export default class extends Controller {
         let marker = this.getMarker(latitude, longitude)
         marker = this.stackOnTop(marker)
         map.panTo(marker.position)
+        console.log(idx)
     }
 
     stackOnTop(marker) {
