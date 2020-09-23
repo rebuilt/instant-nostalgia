@@ -2,6 +2,7 @@
   <%= form_with(url: maps_path, method: :get, local: true, class: "column filter-form") do |form|  %>
 
     <div data-controller="collapsible">
+      <%= render partial: "date_controls", locals: {name: "Day of year", form: form}  %>
       <%= render partial: "area_checkboxes", locals: {area: @cities, name: "city", form: form}  %>
       <%= render partial: "area_checkboxes", locals: {area: @states, name: "state", form: form}  %>
       <%= render partial: "area_checkboxes", locals: {area: @countries, name: "country", form: form}  %>
@@ -31,6 +32,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.maps_api_key  %>&callback=initMap&libraries=&v=weekly" defer ></script>
 
 <script>
+  <%# TODO: check for nil state on @photos because an empty album can still return a nil result %>
   var map;
   function initMap(){
     map = new google.maps.Map(document.getElementById('map'), {
