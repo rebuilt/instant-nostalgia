@@ -60,14 +60,14 @@ Comments.buildComment = function(comment){
     return commentElement
 }
 
-Comments.addComment = function(comment){
+Comments.addComment = function (comment) {
     const newComment = Comments.buildComment(comment)
 
     const commentList = document.getElementById('commentList')
     commentList.appendChild(newComment)
 }
 
-Comments.updateCommentCount = function(count, id){
+Comments.updateCommentCount = function (count, id) {
     const countElement1 = document.getElementById(id)
     countElement1.textContent = count
 }
