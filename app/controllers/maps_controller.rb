@@ -5,6 +5,8 @@ class MapsController < ApplicationController
       @photos = load_photos_by_area(place) if params[place]
     end
 
+    # @photos = load_date
+
     @photos = load_albums if params[:album]
 
     # TODO: this should return most recent photos, not all photos
@@ -38,6 +40,13 @@ class MapsController < ApplicationController
       tmp = Photo.with_attached_image.joins(:albums).where(albums: { id: key })
       @photos = @photos.present? ? @photos + tmp : tmp
     end
+    @photos
+  end
+
+  def load_date
+    tmp = Photo.with_attached_image.belonging_to_user(current_user).where(date_time_digitized: '2019-06-21 13:54:44 UTC')
+    @photos = @photos.present? ? @photos.or(tmp) : tmp
+
     @photos
   end
 
