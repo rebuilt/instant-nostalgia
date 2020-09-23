@@ -2,8 +2,6 @@
   <%= form_with(url: maps_path, method: :get, local: true, class: "column filter-form") do |form|  %>
 
     <div data-controller="collapsible">
-      <%= render partial: "area_checkboxes", locals: {area: @suburbs, name: "suburb", form: form}  %>
-      <%= render partial: "area_checkboxes", locals: {area: @villages, name: "village", form: form}  %>
       <%= render partial: "area_checkboxes", locals: {area: @cities, name: "city", form: form}  %>
       <%= render partial: "area_checkboxes", locals: {area: @states, name: "state", form: form}  %>
       <%= render partial: "area_checkboxes", locals: {area: @countries, name: "country", form: form}  %>
