@@ -24,6 +24,8 @@
         <%= link_to "View", photo_path(photo)  %>
       </li>
     <% end %>
+    <% else  %>
+      <p class="warning"> No results</p>
   <% end %>
 
 </ul>
@@ -35,8 +37,14 @@
   <%# TODO: check for nil state on @photos because an empty album can still return a nil result %>
   var map;
   function initMap(){
+      let latitude = 0
+      let longitude = 0
+      <% if @photos.present?  %>
+      latitude =  <%= @photos.first.latitude_in_decimal %>
+      longitude  =  <%= @photos.first.longitude_in_decimal %>
+    <% end %>
     map = new google.maps.Map(document.getElementById('map'), {
-      center: { lat: <%= @photos.first.latitude_in_decimal  %> , lng: <%= @photos.first.longitude_in_decimal  %>  },
+      center: { lat: latitude , lng: longitude  },
       zoom: 12,
     })
   }
