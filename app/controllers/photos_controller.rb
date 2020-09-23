@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   def index
-    @photos = Photo.all.with_attached_image.belonging_to_user(current_user).order_by_new_to_old
+    @photos = Photo.with_attached_image.belonging_to_user(current_user).order_by_new_to_old
   end
 
   def show
