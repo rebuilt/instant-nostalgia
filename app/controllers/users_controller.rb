@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to photos_path
+      redirect_to new_photo_path
     else
       flash[:alert] = @user.errors.full_messages
       render 'new'
