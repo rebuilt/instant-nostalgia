@@ -15,11 +15,13 @@ export default class extends Controller {
             hasInitialized = true
         }
     }
+
     addMarkers(data) {
         data.forEach((item) => {
             this.addMarker(item.lat, item.long, item.url, item.id)
         })
     }
+
     addMarker(latitude, longitude, url, id) {
         topIndex = topIndex + 1
         const image = {
