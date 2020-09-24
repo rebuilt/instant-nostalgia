@@ -2,7 +2,7 @@ import { Controller } from 'stimulus'
 
 let map
 let markers = []
-let idx = 0
+let topIndex = 0
 let data
 let hasInitialized = false
 export default class extends Controller {
@@ -17,30 +17,33 @@ export default class extends Controller {
     }
     addMarkers(data) {
         data.forEach((item) => {
-            this.addMarker(item.lat, item.long, item.url, item.index)
+            this.addMarker(item.lat, item.long, item.url, item.id)
         })
     }
-    addMarker(latitude, longitude, url, index) {
-        console.log(index)
-        console.log(typeof index)
-        idx = idx + index
+    addMarker(latitude, longitude, url, id) {
+        topIndex = topIndex + 1
         const image = {
             url: url,
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(0, 32),
         }
 
-        const shape = {
-            coords: [1, 1, 1, 20, 18, 20, 18, 1],
-            type: 'poly',
-        }
-
         const marker = new google.maps.Marker({
             position: { lat: latitude, lng: longitude },
             map: map,
             icon: image,
-            shape: shape,
-            zIndex: idx,
+            zIndex: topIndex,
+            id: id,
+        })
+
+        const title = document.createElement('p')
+        title.textContent = 'image clicked'
+        const infowindow = new google.maps.InfoWindow({
+            content: title,
+        })
+        google.maps.event.addListener(marker, 'click', function () {
+            console.log('image clicked')
+            infowindow.open(map, marker)
         })
         markers.push(marker)
     }

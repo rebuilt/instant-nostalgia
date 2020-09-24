@@ -19,8 +19,8 @@
 <ul class="row">
   <% if @photos.present?  %>
     <% @photos.each do |photo|  %>
-      <li data-controller="map" data-map-latitude="<%= photo.latitude_in_decimal  %>" data-map-longitude="<%= photo.longitude_in_decimal  %>" data-action="click->map#center">
-        <%= image_tag(photo.image.variant(resize: '300x300')) if photo.image.attached? %>
+      <li data-controller="map" data-map-latitude="<%= photo.latitude_in_decimal  %>" data-map-longitude="<%= photo.longitude_in_decimal  %>" data-map-id="<%=  photo.id  %>" data-action="click->map#center">
+        <%= image_tag(photo.image.variant(resize: '200x200')) if photo.image.attached? %>
         <%= link_to "View", photo_path(photo)  %>
       </li>
     <% end %>
@@ -59,7 +59,7 @@
           lat: <%= photo.latitude_in_decimal  %>,
           long: <%= photo.longitude_in_decimal  %>,
           url: '<%= rails_representation_url(photo.image.variant(resize: '200x200'), disposition: "attachment", only_path: true)   %>',
-          index: <%= index  %>
+          id: <%= photo.id  %>
         }
     output.push(item)
 
