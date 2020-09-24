@@ -37,6 +37,15 @@ class Photo < ApplicationRecord
   scope :belonging_to_user, ->(user) { where(user: user) }
   scope :most_recent, -> { order(created_at: :desc).limit(5) }
   scope :order_by_new_to_old, -> { order(created_at: :desc) }
+  scope :day_is, lambda { |day|
+                   where('EXTRACT(DAY FROM date_time_digitized) = ?', day)
+                 }
+  scope :month_is, lambda { |month|
+                     where('EXTRACT(MONTH FROM date_time_digitized) = ?', month)
+                   }
+  scope :date_between, lambda { |start_date, end_date|
+    where(date_time_digitized: start_date..end_date)
+  }
 
   def location?
     return false if latitude_in_decimal == 0.0 && longitude_in_decimal == 0.0
