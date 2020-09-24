@@ -7,9 +7,7 @@ class MapsController < ApplicationController
 
     @photos = load_by_date if params['day-selector'].present? && params['month-selector'].present?
 
-    if params['start-date']['start-date(1i)'].present? && params['end-date']['end-date(1i)'].present?
-      @photos = load_by_date_range
-    end
+    @photos = load_by_date_range if params['start-date'].present? && params['end-date'].present?
 
     @photos = load_albums if params[:album].present?
 
@@ -74,7 +72,21 @@ class MapsController < ApplicationController
     year = info["#{prefix}-date(1i)"].to_i
     month = info["#{prefix}-date(2i)"].to_i
     day = info["#{prefix}-date(3i)"].to_i
+    month = valid_month(month, prefix) if month == 0
+    day = valid_day(day, prefix) if day == 0
     Date.new year, month, day
+  end
+
+  def valid_month(month, prefix)
+    return month unless month == 0
+
+    'start' == prefix ? 1 : 12
+  end
+
+  def valid_day(day, prefix)
+    return day unless day == 0
+
+    'start' == prefix ? 1 : 28
   end
 
   def load_area_names(area)
