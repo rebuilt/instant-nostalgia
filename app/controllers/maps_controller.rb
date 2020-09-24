@@ -4,10 +4,14 @@ class MapsController < ApplicationController
     places.each do |place|
       @photos = load_photos_by_area(place) if params[place].present?
     end
-
     @photos = load_by_date if params['day-selector'].present? && params['month-selector'].present?
 
-    @photos = load_by_date_range if params['start-date'].present? && params['end-date'].present?
+    if params['start-date'].present? &&
+       params['start-date']['start-date(1i)'].present? &&
+       params['end-date'].present? &&
+       params['end-date']['end-date(1i)'].present?
+      @photos = load_by_date_range
+    end
 
     @photos = load_albums if params[:album].present?
 
@@ -45,26 +49,20 @@ class MapsController < ApplicationController
   end
 
   def load_by_date
-    return unless params['day-selector'].present? && params['month-selector'].present?
-
     day = params['day-selector']
     month = params['month-selector']
     tmp = Photo.with_attached_image.belonging_to_user(current_user).day_is(day.to_i).month_is(month)
     @photos = @photos.present? ? @photos.or(tmp) : tmp
-
     @photos
   end
 
   def load_by_date_range
-    return unless params['start-date']['start-date(1i)'].present? && params['end-date']['end-date(1i)'].present?
-
     start_date = parse_date(params['start-date'], 'start')
 
     end_date = parse_date(params['end-date'], 'end')
 
     tmp = Photo.with_attached_image.belonging_to_user(current_user).date_between(start_date, end_date)
     @photos = @photos.present? ? @photos.or(tmp) : tmp
-
     @photos
   end
 
@@ -72,21 +70,20 @@ class MapsController < ApplicationController
     year = info["#{prefix}-date(1i)"].to_i
     month = info["#{prefix}-date(2i)"].to_i
     day = info["#{prefix}-date(3i)"].to_i
-    month = valid_month(month, prefix) if month == 0
-    day = valid_day(day, prefix) if day == 0
+    month = valid_month(prefix) if month == 0
+    day, month = valid_day(day, month, prefix) if day == 0
     Date.new year, month, day
   end
 
-  def valid_month(month, prefix)
-    return month unless month == 0
-
+  def valid_month(prefix)
     'start' == prefix ? 1 : 12
   end
 
-  def valid_day(day, prefix)
-    return day unless day == 0
+  def valid_day(day, month, prefix)
+    day = 1
+    month += 1 if prefix == 'end'
 
-    'start' == prefix ? 1 : 28
+    [day, month]
   end
 
   def load_area_names(area)
