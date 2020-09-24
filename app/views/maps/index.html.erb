@@ -20,9 +20,9 @@
 <ul class="row">
   <% if @photos.present?  %>
     <% @photos.each do |photo|  %>
-      <li data-controller="map" data-map-latitude="<%= photo.latitude_in_decimal  %>" data-map-longitude="<%= photo.longitude_in_decimal  %>" data-map-id="<%=  photo.id  %>" data-action="click->map#center">
+      <li class="column" data-controller="map" data-map-latitude="<%= photo.latitude_in_decimal  %>" data-map-longitude="<%= photo.longitude_in_decimal  %>" data-map-id="<%=  photo.id  %>" data-action="click->map#center">
         <%= image_tag(photo.image.variant(resize: '200x200')) if photo.image.attached? %>
-        <%= link_to "View", photo_path(photo)  %>
+        <%= link_to "View", photo_path(photo), class: "btn btn--secondary btn__inline"  %>
       </li>
     <% end %>
     <% else  %>
