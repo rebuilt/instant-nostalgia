@@ -3,6 +3,7 @@
 
     <div data-controller="collapsible">
       <%= render partial: "date_controls", locals: {name: "Day of year", form: form}  %>
+      <%= render partial: "date_range_controls", locals: {name: "Date range", form: form}  %>
       <%= render partial: "area_checkboxes", locals: {area: @cities, name: "city", form: form}  %>
       <%= render partial: "area_checkboxes", locals: {area: @states, name: "state", form: form}  %>
       <%= render partial: "area_checkboxes", locals: {area: @countries, name: "country", form: form}  %>
