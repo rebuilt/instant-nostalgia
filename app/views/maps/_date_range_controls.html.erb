@@ -1,0 +1,13 @@
+<button type="button" class="collapsible" data-target="collapsible.button" data-action="click->collapsible#toggle">Open <%= name %> </button>
+<div id="<%= name.tr(" ", "-")  %>" class="filter-panel ml-4" >
+    <div class="row mt-3 ">
+
+      <%= form.label("Start Date", "Start Date")  %>
+      <%= date_select("start-date", "start-date", start_year: 2010, include_blank: true)  %>
+    </div>
+
+    <div class="row mt-3 ">
+      <%= form.label("End Date", "End Date")  %>
+      <%= date_select("end-date", "end-date", start_year: 2010, include_blank: true)  %>
+    </div>
+</div>
