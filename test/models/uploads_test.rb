@@ -19,6 +19,7 @@ class UploadsTest < ActiveSupport::TestCase
 
   test 'upload a file with location data' do
     count = ActiveStorage::Attachment.count
+    sleep(1.second)
     image = fixture_file_upload(Rails.root.join('test', 'images', '20190731_125829.jpg'), 'image/jpg')
 
     user = User.new(email: 'me@mail.com', username: 'me', password: '12345678')
