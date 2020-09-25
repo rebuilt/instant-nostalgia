@@ -38,20 +38,17 @@ export default class extends Controller {
             id: id,
         })
 
-        const title = document.createElement('p')
-        title.textContent = 'image clicked'
-        const infowindow = new google.maps.InfoWindow({
-            content: title,
-        })
+        this.addBehavior(marker)
+        markers.push(marker)
+    }
+    addBehavior(marker) {
         google.maps.event.addListener(marker, 'click', function () {
             let mapController = document.getElementById('map').map
             console.log(mapController)
             mapController.stackOnTop(marker)
             map.panTo(marker.position)
         })
-        markers.push(marker)
     }
-
     center() {
         const latitude = this.data.get('latitude')
         const longitude = this.data.get('longitude')
