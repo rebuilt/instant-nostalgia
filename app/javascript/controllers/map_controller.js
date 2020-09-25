@@ -44,8 +44,10 @@ export default class extends Controller {
             content: title,
         })
         google.maps.event.addListener(marker, 'click', function () {
-            console.log('image clicked')
-            infowindow.open(map, marker)
+            let mapController = document.getElementById('map').map
+            console.log(mapController)
+            mapController.stackOnTop(marker)
+            map.panTo(marker.position)
         })
         markers.push(marker)
     }
