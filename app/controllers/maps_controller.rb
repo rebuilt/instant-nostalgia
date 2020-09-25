@@ -1,9 +1,8 @@
 class MapsController < ApplicationController
   def index
-    places = %i[city state country]
-    places.each do |place|
-      @photos = load_photos_by_area(place) if params[place].present?
-    end
+    @photos = load_photos_by_area(:city) if params[:city].present?
+    @photos = load_photos_by_area(:state) if params[:state].present?
+    @photos = load_photos_by_area(:country) if params[:country].present?
     @photos = load_by_date if params['day-selector'].present? && params['month-selector'].present?
 
     if params['start-date'].present? &&
@@ -51,7 +50,7 @@ class MapsController < ApplicationController
   def load_by_date
     day = params['day-selector']
     month = params['month-selector']
-    tmp = Photo.with_attached_image.belonging_to_user(current_user).day_is(day.to_i).month_is(month)
+    tmp = Photo.with_attached_image.belonging_to_user(current_user).day_is(day).month_is(month)
     @photos = @photos.present? ? @photos.or(tmp) : tmp
     @photos
   end
