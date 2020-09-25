@@ -20,9 +20,9 @@
     <div class="tartist-tiny-slider" data-chunksize="6">
   <% if @photos.present?  %>
     <% @photos.each do |photo|  %>
-      <div class="tartist-tiny-slider__item" data-controller="map" data-map-latitude="<%= photo.latitude_in_decimal  %>" data-map-longitude="<%= photo.longitude_in_decimal  %>" data-map-id="<%=  photo.id  %>" data-action="click->map#center">
+      <div class="tartist-tiny-slider__item column" data-controller="map" data-map-latitude="<%= photo.latitude_in_decimal  %>" data-map-longitude="<%= photo.longitude_in_decimal  %>" data-map-id="<%=  photo.id  %>" data-action="click->map#center">
         <%= image_tag(photo.image.variant(resize: '200x200'), class: "tns-lazy-img", data: { src: rails_representation_url(photo.image.variant(resize: '200x200')) }) if photo.image.attached? %>
-        <%= link_to "View", photo_path(photo), class: "btn btn--secondary btn__inline"  %>
+        <%= link_to "View", photo_path(photo), class: "btn btn--secondary "  %>
       </div>
     <% end %>
     <% else  %>
@@ -35,9 +35,11 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
 <script>
+  let numItems = Math.floor( window.innerWidth/ 200)
+  console.log(numItems)
     let slider = tns({
         container: ".tartist-tiny-slider",
-        items: 5,
+        items: numItems,
         slideBy: "page",
         autoplayButtonOutput: false,
         loop: true,
