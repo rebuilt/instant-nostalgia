@@ -18,7 +18,9 @@ export default class extends Controller {
 
     addMarkers(data) {
         data.forEach((item) => {
-            this.addMarker(item.lat, item.long, item.url, item.id)
+            let marker = this.addMarker(item.lat, item.long, item.url, item.id)
+            this.addBehavior(marker)
+            markers.push(marker)
         })
     }
 
@@ -37,10 +39,9 @@ export default class extends Controller {
             zIndex: topIndex,
             id: id,
         })
-
-        this.addBehavior(marker)
-        markers.push(marker)
+        return marker
     }
+
     addBehavior(marker) {
         google.maps.event.addListener(marker, 'click', function () {
             let mapController = document.getElementById('map').map
@@ -49,6 +50,7 @@ export default class extends Controller {
             map.panTo(marker.position)
         })
     }
+
     center() {
         const latitude = this.data.get('latitude')
         const longitude = this.data.get('longitude')
