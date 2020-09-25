@@ -18,36 +18,58 @@ export default class extends Controller {
 
     addMarkers(data) {
         data.forEach((item) => {
-            let marker = this.addMarker(item.lat, item.long, item.url, item.id)
-            this.addBehavior(marker)
+            let marker = this.addMarker(item)
+            this.addBehavior(marker, item)
             markers.push(marker)
         })
     }
 
-    addMarker(latitude, longitude, url, id) {
+    addMarker(data) {
         topIndex = topIndex + 1
         const image = {
-            url: url,
+            url: data.img_sm,
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(0, 32),
         }
 
         const marker = new google.maps.Marker({
-            position: { lat: latitude, lng: longitude },
+            position: { lat: data.lat, lng: data.long },
             map: map,
             icon: image,
             zIndex: topIndex,
-            id: id,
+            id: data.id,
         })
         return marker
     }
 
-    addBehavior(marker) {
+    createModal(data) {
+        const modalContent = document.createElement('div')
+        modalContent.setAttribute('class', 'modal-content')
+        const span = document.createElement('span')
+        span.setAttribute('class', 'close')
+        span.textContent = 'CLOSE X'
+
+        const image = document.createElement('img')
+        image.setAttribute('alt', `${data.latitude}, ${data.longitude}`)
+        image.setAttribute('width', '100%')
+        image.setAttribute('src', data.img_lg)
+
+        modalContent.appendChild(span)
+        modalContent.appendChild(image)
+        return modalContent
+    }
+
+    addBehavior(marker, data) {
         google.maps.event.addListener(marker, 'click', function () {
             let mapController = document.getElementById('map').map
             console.log(mapController)
             mapController.stackOnTop(marker)
             map.panTo(marker.position)
+            const modal = document.getElementById('modal')
+            const content = mapController.createModal(data)
+            modal.appendChild(content)
+            modal.style.display = 'block'
+            console.log('clicked in marker')
         })
     }
 
