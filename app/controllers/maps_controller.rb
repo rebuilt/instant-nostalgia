@@ -71,7 +71,7 @@ class MapsController < ApplicationController
     month = info["#{prefix}-date(2i)"].to_i
     day = info["#{prefix}-date(3i)"].to_i
     month = valid_month(prefix) if month == 0
-    day, month = valid_day(day, month, prefix) if day == 0
+    day, month, year = valid_day(day, month, year, prefix) if day == 0
     Date.new year, month, day
   end
 
@@ -79,11 +79,21 @@ class MapsController < ApplicationController
     'start' == prefix ? 1 : 12
   end
 
-  def valid_day(day, month, prefix)
+  def valid_day(day, month, year, prefix)
     day = 1
-    month += 1 if prefix == 'end'
+    month, year = add_one_to_month(month, year) if prefix == 'end'
 
-    [day, month]
+    [day, month, year]
+  end
+
+  def add_one_to_month(month, year)
+    if month < 12
+      month += 1
+    else
+      year += 1
+      month = 1
+    end
+    [month, year]
   end
 
   def load_area_names(area)
