@@ -44,7 +44,9 @@ export default class extends Controller {
 
     createModal(data) {
         const modalContent = document.createElement('div')
+        modalContent.setAttribute('id', 'modal-content')
         modalContent.setAttribute('class', 'modal-content')
+
         const span = document.createElement('span')
         span.setAttribute('class', 'close')
         span.textContent = 'CLOSE X'
@@ -56,6 +58,12 @@ export default class extends Controller {
 
         modalContent.appendChild(span)
         modalContent.appendChild(image)
+
+        span.addEventListener('click', () => {
+            document.getElementById('modal-content').remove()
+            const modal = document.getElementById('modal')
+            modal.style.display = 'none'
+        })
         return modalContent
     }
 
