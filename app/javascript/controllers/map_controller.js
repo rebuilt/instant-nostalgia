@@ -42,31 +42,6 @@ export default class extends Controller {
         return marker
     }
 
-    createModal(data) {
-        const modalContent = document.createElement('div')
-        modalContent.setAttribute('id', 'modal-content')
-        modalContent.setAttribute('class', 'modal-content')
-
-        const span = document.createElement('span')
-        span.setAttribute('class', 'close')
-        span.textContent = 'CLOSE X'
-
-        const image = document.createElement('img')
-        image.setAttribute('alt', `${data.latitude}, ${data.longitude}`)
-        image.setAttribute('width', '100%')
-        image.setAttribute('src', data.img_lg)
-
-        modalContent.appendChild(span)
-        modalContent.appendChild(image)
-
-        span.addEventListener('click', () => {
-            document.getElementById('modal-content').remove()
-            const modal = document.getElementById('modal')
-            modal.style.display = 'none'
-        })
-        return modalContent
-    }
-
     addBehavior(marker, data) {
         google.maps.event.addListener(marker, 'click', function () {
             let mapController = document.getElementById('map').map
@@ -74,10 +49,9 @@ export default class extends Controller {
             mapController.stackOnTop(marker)
             map.panTo(marker.position)
             const modal = document.getElementById('modal')
-            const content = mapController.createModal(data)
+            const content = modal.modal.createModal(data)
             modal.appendChild(content)
-            modal.style.display = 'block'
-            console.log('clicked in marker')
+            modal.modal.show()
         })
     }
 
