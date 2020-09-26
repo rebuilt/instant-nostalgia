@@ -3,28 +3,28 @@ import { Controller } from 'stimulus'
 let map
 let markers = []
 let topIndex = 0
-let data
 let hasInitialized = false
 export default class extends Controller {
     initialize() {
         this.element[this.identifier] = this
         if (hasInitialized === false) {
             map = window.MapData.getMap()
-            data = window.MapData.getData()
+            let data = window.MapData.getData()
             this.addMarkers(data)
             hasInitialized = true
         }
     }
 
     addMarkers(data) {
-        data.forEach((item) => {
-            let marker = this.addMarker(item)
-            this.addBehavior(marker, item)
+        data.forEach((dataItem) => {
+            let marker = this.addMarkerToMap(dataItem)
+            let behavior = this.createBehavior(marker, dataItem)
+            this.addBehavior(marker, behavior)
             markers.push(marker)
         })
     }
 
-    addMarker(data) {
+    addMarkerToMap(data) {
         topIndex = topIndex + 1
         const image = {
             url: data.img_sm,
@@ -42,22 +42,24 @@ export default class extends Controller {
         return marker
     }
 
-    addBehavior(marker, data) {
-        google.maps.event.addListener(marker, 'click', function () {
-            let mapController = document.getElementById('map').map
-            console.log(mapController)
+    createBehavior(marker, data) {
+        let behavior = function () {
+            const mapController = document.getElementById('map').map
             mapController.stackOnTop(marker)
             map.panTo(marker.position)
-            const modal = document.getElementById('modal')
-            const content = modal.modal.createModal(data)
-            modal.appendChild(content)
-            modal.modal.show()
-        })
+
+            const modalController = document.getElementById('modal').modal
+            const content = modalController.createModal(data)
+            modalController.show(content)
+        }
+        return behavior
+    }
+
+    addBehavior(marker, behavior) {
+        google.maps.event.addListener(marker, 'click', behavior)
     }
 
     center() {
-        const latitude = this.data.get('latitude')
-        const longitude = this.data.get('longitude')
         const id = this.data.get('id')
         let marker = this.getMarker(id)
         marker = this.stackOnTop(marker)
