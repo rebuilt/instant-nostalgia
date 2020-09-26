@@ -16,10 +16,23 @@
 
 .gallery {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  // display: flex;
-  // flex-direction: row;
-  // flex-wrap: wrap;
+  grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 630px) {
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (min-width: 960px) {
+  .gallery {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media screen and (min-width: 1290px) {
+  .gallery {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }
 
 .photo-selector {

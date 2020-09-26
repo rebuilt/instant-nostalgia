@@ -6,6 +6,7 @@ nav {
   align-items: center;
   min-height: 8vh;
   background-color: $primary;
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -17,13 +18,6 @@ nav {
   white-space: nowrap;
 }
 
-.nav-items {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: nowrap;
-  width: 30%;
-}
-
 .nav-items a {
   color: rgb(246, 246, 226);
   text-decoration: none;
@@ -31,6 +25,10 @@ nav {
   font-weight: bold;
   padding-left: 1.2em;
   white-space: nowrap;
+}
+
+.nav-item {
+  float: left;
 }
 
 .burger {
@@ -44,4 +42,6 @@ nav {
 }
 
 @media screen and (max-width: 768px) {
+  .burger {
+  }
 }

@@ -1,11 +1,3 @@
-.filter-panel {
-  padding: 1.4rem;
-  display: none;
-  overflow: hidden;
-  background-color: #f1f1f1;
-  width: 300px;
-}
-
 .collapsible {
   background-color: #eee;
   color: #444;
@@ -15,7 +7,7 @@
   text-align: left;
   outline: none;
   font-size: 15px;
-  width: 300px;
+  width: 100%;
 }
 
 .active,
@@ -36,6 +28,18 @@
 }
 
 .filter-form {
-  width: 300px;
+  width: 30ch;
   margin: 0 1.5rem;
+}
+
+.filter-panel {
+  padding: 1.4rem;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+.filters {
+  width: 30ch;
 }
