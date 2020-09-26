@@ -15,27 +15,29 @@ export default class extends Controller {
         span.textContent = 'CLOSE X'
 
         const image = document.createElement('img')
-        image.setAttribute('alt', `${data.latitude}, ${data.longitude}`)
+        image.setAttribute('alt', `${data.id}`)
         image.setAttribute('width', '100%')
         image.setAttribute('src', data.img_lg)
 
         modalContent.appendChild(span)
         modalContent.appendChild(image)
 
-        span.addEventListener('click', () => {
-            document.getElementById('modal-content').remove()
-            const modal = document.getElementById('modal')
-            modal.style.display = 'none'
-        })
+        span.addEventListener('click', this.hide())
         return modalContent
     }
 
-    show() {
-        const modal = document.getElementById('modal')
-        modal.style.display = 'block'
+    show(content) {
+        const modalDiv = document.getElementById('modal')
+        modalDiv.appendChild(content)
+        modalDiv.style.display = 'block'
     }
+
     hide() {
-        const modal = document.getElementById('modal')
-        modal.style.display = 'none'
+        let behavior = function () {
+            document.getElementById('modal-content').remove()
+            const modalDiv = document.getElementById('modal')
+            modalDiv.style.display = 'none'
+        }
+        return behavior
     }
 }
