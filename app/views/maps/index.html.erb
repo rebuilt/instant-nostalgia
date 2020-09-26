@@ -18,6 +18,7 @@
 
   <div id="map" data-controller="map">refresh page to view map</div>
 </div>
+
 <div id="#my-slider" class="tartist-tiny-slider-wrap" >
   <div class="tartist-tiny-slider" data-chunksize="6">
     <% if @photos.present?  %>
@@ -32,62 +33,62 @@
   <% end %>
   </div>
 </div>
-<div id="ro" >
 
-</div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
-  <script>
-    let numItems = Math.floor( window.innerWidth/ 200)
-    console.log(numItems)
-    let slider = tns({
-      container: ".tartist-tiny-slider",
-      items: numItems,
-      slideBy: "page",
-      autoplayButtonOutput: false,
-      loop: true,
-      controls: true,
-      navPosition: "bottom",
-      lazyload: true,
-      nav: true,
-    });
-  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.maps_api_key  %>&callback=initMap&libraries=&v=weekly" defer ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
 
-  <script>
-    var map;
-    function initMap(){
-      let latitude = 0
-      let longitude = 0
-        <% if @photos.present?  %>
-          latitude =  <%= @photos.first.latitude_in_decimal %>
-      longitude  =  <%= @photos.first.longitude_in_decimal %>
+<script>
+  let numItems = Math.floor( window.innerWidth/ 200)
+  console.log(numItems)
+  let slider = tns({
+    container: ".tartist-tiny-slider",
+    items: numItems,
+    slideBy: "page",
+    autoplayButtonOutput: false,
+    loop: true,
+    controls: true,
+    navPosition: "bottom",
+    lazyload: true,
+    nav: true,
+  });
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.maps_api_key  %>&callback=initMap&libraries=&v=weekly" defer ></script>
+
+<script>
+  var map;
+  function initMap(){
+    let latitude = 0
+    let longitude = 0
+      <% if @photos.present?  %>
+        latitude =  <%= @photos.first.latitude_in_decimal %>
+    longitude  =  <%= @photos.first.longitude_in_decimal %>
+  <% end %>
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: latitude , lng: longitude  },
+        zoom: 12,
+      })
+  }
+
+  var MapData = { }
+
+  MapData.getData = function(){
+    let output = []
+      <% @photos.each_with_index do |photo, index|  %>
+
+        var item = {
+          lat: <%= photo.latitude_in_decimal  %>,
+          long: <%= photo.longitude_in_decimal  %>,
+          img_sm: '<%= rails_representation_url(photo.image.variant(resize: '200x200'), disposition: "attachment", only_path: true)   %>',
+          img_lg: '<%= url_for(photo.image) %>',
+          id: <%= photo.id  %>
+      }
+    output.push(item)
+
     <% end %>
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: { lat: latitude , lng: longitude  },
-          zoom: 12,
-        })
-    }
+      return output
+  }
+  MapData.getMap = function(){
+    return map}
 
-    var MapData = { }
-
-    MapData.getData = function(){
-      let output = []
-        <% @photos.each_with_index do |photo, index|  %>
-
-          var item = {
-            lat: <%= photo.latitude_in_decimal  %>,
-            long: <%= photo.longitude_in_decimal  %>,
-            img_sm: '<%= rails_representation_url(photo.image.variant(resize: '200x200'), disposition: "attachment", only_path: true)   %>',
-            img_lg: '<%= url_for(photo.image) %>',
-            id: <%= photo.id  %>
-        }
-      output.push(item)
-
-      <% end %>
-        return output
-    }
-    MapData.getMap = function(){
-      return map}
-
-    window.MapData = MapData
-  </script>
+  window.MapData = MapData
+</script>
