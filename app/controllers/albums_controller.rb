@@ -32,7 +32,7 @@ class AlbumsController < ApplicationController
   def destroy
     @album = Album.find(params[:id])
 
-    @album.destroy if can_delete?(current_user, album)
+    @album.destroy if can_delete_album?(current_user, album)
     respond_to do |format|
       format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
       format.js { render :destroy }
@@ -45,7 +45,7 @@ class AlbumsController < ApplicationController
     params.require(:album).permit(:title, :user_id, :photos_id)
   end
 
-  def can_delete?(user, album)
+  def can_delete_album?(user, album)
     user == album.user
   end
 end
