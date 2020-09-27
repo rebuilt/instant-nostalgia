@@ -1,0 +1,10 @@
+<div class="photo-selector ">
+  <div data-controller="modal" data-modal-id="<%= photo.id  %>" data-modal-url="<%= url_for(photo.image)  %>" data-action="click->modal#showModal">
+    <%= image_tag(photo.image.variant(resize: '300x300')) if photo.image.attached? %>
+  </div>
+  <div class="mt-3">
+    <%= hidden_field_tag "hidden_checked[#{photo.id}]", false %>
+    <%= check_box_tag("checked[#{photo.id}]", value: photo.id)  %>
+  </div>
+
+</div>
