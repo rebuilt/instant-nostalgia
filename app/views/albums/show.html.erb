@@ -9,15 +9,18 @@
     <div class="gallery">
       <% @album.photos.each do |photo|   %>
         <div id="id-<%= photo.id  %>" class="photo-deletable">
-  <div data-controller="modal" data-modal-id="<%= photo.id  %>" data-modal-url="<%= url_for(photo.image)  %>" data-action="click->modal#showModal">
+          <div data-controller="modal"
+               data-modal-id="<%= photo.id  %>"
+               data-modal-url="<%= url_for(photo.image)  %>"
+               data-action="click->modal#showModal">
             <%= image_tag(photo.image.variant(resize: '300x300')) if photo.image.attached? %>
-  </div>
-  <div class="row">
-    <%= link_to "Show details", photo_path(photo), class: "btn btn--primary " %>
-    <% if current_user == @album.user  %>
-    <%= link_to "Remove", photo_album_path([@album, photo]), class: "btn btn--warning" , method: :delete, data: {confirm: 'Are you sure you want to remove this photo from the album?'}, remote: true %>
-  <% end %>
-  </div>
+          </div>
+          <div class="row">
+            <%= link_to "Show details", photo_path(photo), class: "btn btn--primary " %>
+            <% if current_user == @album.user  %>
+              <%= link_to "Remove", photo_album_path([@album, photo]), class: "btn btn--warning" , method: :delete, data: {confirm: 'Are you sure you want to remove this photo from the album?'}, remote: true %>
+            <% end %>
+          </div>
         </div>
       <% end %>
     </div>
