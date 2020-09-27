@@ -87,7 +87,7 @@
 }
 
 /* ==========================================================================
-   GOAL
+  Details 
    ========================================================================== */
 
 .avatar {
@@ -96,25 +96,29 @@
   height: 50px;
 }
 
-.goal__owner p {
+.details {
+  line-height: 3.5rem;
+}
+
+.details__owner p {
   margin: 0;
 }
 
-.goal__owner .avatar {
+.details__owner .avatar {
   float: left;
   width: 20px;
   height: 20px;
   margin-right: 0.5em;
 }
 
-.goal__meta {
+.details__meta {
   font-size: 12px;
   font-size: 1.2rem;
   color: #bbc1c6;
   margin-bottom: 1.6rem;
 }
 
-.goal__meta span:not(:last-child)::after {
+.details__meta span:not(:last-child)::after {
   content: "|";
   padding: 0 0.5em;
 }

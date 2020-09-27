@@ -6,43 +6,25 @@
       <%= image_tag( @photo.image) if @photo.image.attached?  %>
     </div>
     <div class="media__body">
-      <div class="goal">
-        <div class="goal__owner">
-          <p>Created by <a href="#">Nelson Jovel</a></p>
+      <div class="details">
+        <div class="details__owner">
+          <p><span class="beta">Photo taken by: </span> <span class="alpha"><%= @photo.user.username  %></span> </p>
         </div>
-        <div class="goal__intro">
-          <p> We can put a description about our photo here!  </p>
-          <p>  <%= @photo.file_name  %> </p>
-          <p>  <%= @photo.latitude_in_degrees  %> </p>
-          <p>  <%= @photo.longitude_in_degrees  %> </p>
-          <p>  <%= @photo.date_time_digitized  %> </p>
-          <p>  <%= @photo.latitude_in_decimal %> </p>
-          <p>  <%= @photo.longitude_in_decimal %> </p>
-          <p>  <%= @photo.raw_address %> </p>
-          <p>  <%= @photo.suburb %> </p>
-          <p>  <%= @photo.village %> </p>
-          <p>  <%= @photo.city %> </p>
-          <p>  <%= @photo.state %> </p>
-          <p>  <%= @photo.state_code %> </p>
-          <p>  <%= @photo.postal_code %> </p>
-          <p>  <%= @photo.country %> </p>
-          <p>  <%= @photo.country_code %> </p>
+        <div class="details__intro">
+          <p ><span class="beta">File name: </span>  <%= @photo.file_name  %> </p>
+          <p> <span class="beta">Date taken: </span> <%= @photo.date_time_digitized  %> </p>
+          <p><span class="beta">Latitude in degrees: </span>  <%= @photo.latitude_in_degrees  %> </p>
+          <p> <span class="beta">Longitude in degrees: </span> <%= @photo.longitude_in_degrees  %> </p>
+          <p> <span class="beta">Latitude in decimal: </span> <%= @photo.latitude_in_decimal %> </p>
+          <p> <span class="beta">Longitude in decimal: </span> <%= @photo.longitude_in_decimal %> </p>
+          <p> <span class="beta">City: </span> <%= @photo.city %> </p>
+          <p> <span class="beta">State: </span> <%= @photo.state %> </p>
+          <p><span class="beta">Country: </span>  <%= @photo.country %> </p>
         </div>
-        <div class="goal__meta">
-          <span>Created on <time datetime="<%= @photo.created_at.strftime("%d %b '%y")  %>"><%= @photo.created_at.strftime("%d %b '%y")  %></time></span>
+        <div class="details__meta">
+          <span>Uploaded on <time datetime="<%= @photo.created_at.strftime("%d %b '%y")  %>"><%= @photo.created_at.strftime("%d %b '%y")  %></time></span>
           <span id="comment-count-1"><%= @comments.count  %> <%= "comment".pluralize(@comments.count) %></span>
         </div>
-        <ul class="tags-list">
-          <li><a href="#nature">Nature</a></li>
-          <li><a href="#swimming">Swimming</a></li>
-          <li>
-            <a href="#travel" class="selected">
-              Travel
-              <i class="remove-tag">&times;</i>
-            </a>
-          </li>
-          <li><a href="#tag4" data-filter="tag-4">Tag 4</a></li>
-        </ul>
       </div>
     </div>
   </div>
