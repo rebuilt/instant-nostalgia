@@ -43,9 +43,6 @@ section {
  */
 
 h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-  color: $primary--darkest;
 }
 
 h2,
@@ -55,6 +52,56 @@ h5 {
   color: $primary--darkest;
 }
 
+h1,
+.alpha {
+  line-height: 1.2;
+  text-transform: none;
+  font-size: 2em;
+  margin: 0.67em 0;
+  color: $primary--darkest;
+}
+
+h2,
+.beta {
+  font-size: 1.8rem;
+  line-height: 1.2;
+  color: #192127;
+  text-transform: none;
+}
+
+h3,
+.gamma {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  color: #192127;
+  text-transform: none;
+}
+
+h4,
+.delta,
+th {
+  font-size: 13px;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: #72797e;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+h5,
+.epsilon {
+  font-size: 1.4rem;
+  line-height: 1.4;
+  text-transform: none;
+}
+
+h6,
+.zeta {
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  text-transform: none;
+}
 /* Grouping content
    ========================================================================== */
 
