@@ -25,10 +25,6 @@ class AlbumsController < ApplicationController
     end
   end
 
-  def update
-    # empty method
-  end
-
   def destroy
     @album = Album.find(params[:id])
 
