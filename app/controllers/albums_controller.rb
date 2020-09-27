@@ -6,7 +6,6 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    # TODO: Non-owners should not be able to delete photos
     # TODO: pagify album contents
 
     @album = Album.include_images.find(params[:id])
@@ -32,7 +31,8 @@ class AlbumsController < ApplicationController
 
   def destroy
     @album = Album.find(params[:id])
-    @album.destroy
+
+    @album.destroy if can_delete?(current_user, album)
     respond_to do |format|
       format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
       format.js { render :destroy }
@@ -43,5 +43,9 @@ class AlbumsController < ApplicationController
 
   def album_params
     params.require(:album).permit(:title, :user_id, :photos_id)
+  end
+
+  def can_delete?(user, album)
+    user == album.user
   end
 end
