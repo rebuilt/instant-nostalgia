@@ -31,7 +31,7 @@ class PhotosController < ApplicationController
 
   def destroy
     @photo = Photo.find(params[:id])
-    @photo.destroy
+    @photo.destroy if can_delete_photo?(current_user, @photo)
     respond_to do |format|
       format.html { redirect_to photos_path }
       format.js { render :destroy }
@@ -42,5 +42,9 @@ class PhotosController < ApplicationController
 
   def photo_params
     params.require(:photo).permit(:image)
+  end
+
+  def can_delete_photo?(user, photo)
+    user == photo.user
   end
 end
