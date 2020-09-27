@@ -23,13 +23,11 @@ export default class extends Controller {
         modalContent.appendChild(image)
 
         span.addEventListener('click', this.hide())
-        console.log('in creation method')
         return modalContent
     }
 
     show(content) {
         const modalDiv = document.getElementById('modal')
-        console.log(modalDiv)
         modalDiv.appendChild(content)
         modalDiv.style.display = 'block'
     }
@@ -42,7 +40,6 @@ export default class extends Controller {
             img_lg: url,
         }
         const content = this.createModal(data)
-        console.log(content)
         this.show(content)
     }
 
