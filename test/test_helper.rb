@@ -11,15 +11,11 @@ class ActiveSupport::TestCase
 
   def create_user(username = 'me', password = '12345678')
     email = "#{username}@mail.com"
-    user = User.new(email: email, password: password, username: username)
-    user.save
-    user
+    User.create(email: email, password: password, username: username)
   end
 
   def create_album(user, title = 'first album')
-    album = Album.new(user: user, title: title)
-    album.save
-    album
+    Album.create(user: user, title: title)
   end
 
   def create_photo_with_attachment(user)
