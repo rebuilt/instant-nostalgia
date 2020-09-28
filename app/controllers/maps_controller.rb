@@ -23,11 +23,11 @@ class MapsController < ApplicationController
       @countries = load_area_names(:country)
       @albums = current_user.albums
       @shared_albums = current_user.authorized_albums
-      @public_albums = Album.all
     else
       @photos = load_albums if params[:album].present?
-      @public_albums = Album.all
+      @photos = Album.find(63).photos if params[:album].nil?
     end
+    @public_albums = Album.all
   end
 
   private
