@@ -4,17 +4,9 @@ class MapsController < ApplicationController
       @photos = load_photos_by_area(:city) if params[:city].present?
       @photos = load_photos_by_area(:state) if params[:state].present?
       @photos = load_photos_by_area(:country) if params[:country].present?
-      @photos = load_by_date if params['day-selector'].present? && params['month-selector'].present?
-
-      if params['start-date'].present? &&
-         params['start-date']['start-date(1i)'].present? &&
-         params['end-date'].present? &&
-         params['end-date']['end-date(1i)'].present?
-        @photos = load_by_date_range
-      end
-
+      @photos = load_by_date if date_populated?
+      @photos = load_by_date_range if date_range_populated?
       @photos = load_albums if params[:album].present?
-
       @photos = Photo.all.with_attached_image.belonging_to_user(current_user).most_recent if @photos.nil?
       @photos = remove_non_geocoded(@photos)
 
@@ -24,10 +16,12 @@ class MapsController < ApplicationController
       @albums = current_user.albums
       @shared_albums = current_user.authorized_albums
     else
+      # If the user is not signed in
       @photos = load_albums if params[:album].present?
       @photos = Album.find(63).photos if params[:album].nil?
     end
-    @public_albums = Album.all
+
+    @public_albums = Album.where(public: true)
   end
 
   private
@@ -46,11 +40,19 @@ class MapsController < ApplicationController
   def load_albums
     params[:album]&.each do |key, value|
       next unless value == '1'
+      next unless can_view_album?(Album.find(key))
 
       tmp = Photo.with_attached_image.joins(:albums).where(albums: { id: key })
+
       @photos = @photos.present? ? @photos + tmp : tmp
     end
     @photos
+  end
+
+  def can_view_album?(album)
+    return true if album.public
+
+    logged_in? && (current_user == album.user || current_user.authorized_albums.include?(album))
   end
 
   def load_by_date
@@ -108,5 +110,16 @@ class MapsController < ApplicationController
 
   def remove_non_geocoded(photos)
     photos.reject { |photo| photo.location? == false }
+  end
+
+  def date_range_populated?
+    params['start-date'].present? &&
+      params['start-date']['start-date(1i)'].present? &&
+      params['end-date'].present? &&
+      params['end-date']['end-date(1i)'].present?
+  end
+
+  def date_populated?
+    params['day-selector'].present? && params['month-selector'].present?
   end
 end
