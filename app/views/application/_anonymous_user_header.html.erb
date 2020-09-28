@@ -1,6 +1,9 @@
 <nav >
-  <div class="logo">Instant Nostalgia</div>
+  <%= link_to "Instant Nostalgia", maps_path  , class: "logo" , data: {turbolinks: false}%>
   <ul class="nav-items" >
+    <li class="nav-item">
+      <%= link_to t('map'), maps_path, class: "nav-link ", data: {turbolinks: 'false'}  %>
+    </li>
     <li class="nav-item">
       <%= link_to t('welcome'), root_path, class: "nav-link"  %>
     </li>
