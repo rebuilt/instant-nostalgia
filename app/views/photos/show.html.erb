@@ -8,18 +8,18 @@
     <div class="media__body">
       <div class="details">
         <div class="details__owner">
-          <p><span class="beta">Photo taken by: </span> <span class="alpha"><%= @photo.user.username  %></span> </p>
+          <p> <span class="beta">Photo uploaded by: </span> <span class="alpha"><%= @photo.user.username  %></span> </p>
         </div>
         <div class="details__intro">
-          <p ><span class="beta">File name: </span>  <%= @photo.file_name  %> </p>
+          <p> <span class="beta">File name: </span>  <%= @photo.file_name  %> </p>
           <p> <span class="beta">Date taken: </span> <%= @photo.date_time_digitized  %> </p>
-          <p><span class="beta">Latitude in degrees: </span>  <%= @photo.latitude_in_degrees  %> </p>
+          <p> <span class="beta">Latitude in degrees: </span>  <%= @photo.latitude_in_degrees  %> </p>
           <p> <span class="beta">Longitude in degrees: </span> <%= @photo.longitude_in_degrees  %> </p>
           <p> <span class="beta">Latitude in decimal: </span> <%= @photo.latitude_in_decimal %> </p>
           <p> <span class="beta">Longitude in decimal: </span> <%= @photo.longitude_in_decimal %> </p>
           <p> <span class="beta">City: </span> <%= @photo.city %> </p>
           <p> <span class="beta">State: </span> <%= @photo.state %> </p>
-          <p><span class="beta">Country: </span>  <%= @photo.country %> </p>
+          <p> <span class="beta">Country: </span>  <%= @photo.country %> </p>
         </div>
         <div class="details__meta">
           <span>Uploaded on <time datetime="<%= @photo.created_at.strftime("%d %b '%y")  %>"><%= @photo.created_at.strftime("%d %b '%y")  %></time></span>
