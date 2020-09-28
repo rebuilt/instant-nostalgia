@@ -1,0 +1,16 @@
+var button = document.getElementById('public-status-button')
+var status = document.getElementById('123')
+var output = document.getElementById('output')
+console.log({status})
+console.log(status.textContent)
+if(button.textContent == "Make this album public"){
+  button.textContent = "Make this album private"
+  output.textContent = "Public Album"
+  <%# var node = document.createTextNode("Public Album") %>
+  <%# output.appendChild(node) %>
+} else {
+  button.textContent = "Make this album public"
+  output.textContent = "Private Album"
+  <%# var node = document.createTextNode("Private Album") %>
+  <%# output.appendChild(node) %>
+}
