@@ -74,7 +74,7 @@
 
   MapData.getData = function(){
     let output = []
-      <% if(@photos.present?)  %>
+      <% if(@photos.present?) %>
       <% @photos.each_with_index do |photo, index|  %>
 
         var item = {
@@ -84,10 +84,9 @@
           img_lg: '<%= url_for(photo.image) %>',
           id: <%= photo.id  %>
       }
-    <% end %>
-    <% end %>
     output.push(item)
-
+    <% end %>
+    <% end %>
       return output
   }
 
