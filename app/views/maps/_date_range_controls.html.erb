@@ -3,11 +3,11 @@
     <div class="column mt-3 ">
 
       <%= form.label("Start Date", "Start Date")  %>
-      <%= date_select("start-date", "start-date", start_year: 2010, include_blank: true)  %>
+      <%= date_select("start-date", "start-date", start_year: 2010, prompt: true)  %>
     </div>
 
     <div class="column mt-3 ">
       <%= form.label("End Date", "End Date")  %>
-      <%= date_select("end-date", "end-date", start_year: 2010, include_blank: true)  %>
+      <%= date_select("end-date", "end-date", start_year: 2010, prompt: true)  %>
     </div>
 </div>
