@@ -20,6 +20,7 @@
           <p> <span class="beta">City: </span> <%= @photo.city %> </p>
           <p> <span class="beta">State: </span> <%= @photo.state %> </p>
           <p> <span class="beta">Country: </span>  <%= @photo.country %> </p>
+          <p> <a href="https://www.google.com/maps/search/?api=1&query=<%= @photo.latitude_in_decimal  %>,<%= @photo.longitude_in_decimal  %>">Get directions</a></p>
         </div>
         <div class="details__meta">
           <span>Uploaded on <time datetime="<%= @photo.created_at.strftime("%d %b '%y")  %>"><%= @photo.created_at.strftime("%d %b '%y")  %></time></span>
