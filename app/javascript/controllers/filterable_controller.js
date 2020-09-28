@@ -5,16 +5,13 @@ export default class extends Controller {
 
   filter(event) {
       let lowerCaseFilterTerm = this.sourceTarget.value.toLowerCase()
-      console.log(lowerCaseFilterTerm)
 
-      this.filterableTargets.forEach((el) => {
-          let filterableKey = el.getAttribute('data-filter-key')
-          console.log(el)
-          console.log(!filterableKey.includes(lowerCaseFilterTerm))
+      this.filterableTargets.forEach((item) => {
+          let filterableKey = item.getAttribute('data-filter-key')
           if (!filterableKey.includes(lowerCaseFilterTerm)) {
-              el.style.display = 'none'
+              item.style.display = 'none'
           } else {
-              el.style.display = 'flex'
+              item.style.display = 'flex'
           }
       })
   }
