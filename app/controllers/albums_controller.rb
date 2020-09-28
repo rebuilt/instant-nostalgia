@@ -9,6 +9,8 @@ class AlbumsController < ApplicationController
     # TODO: pagify album contents
 
     @album = Album.include_images.find(params[:id])
+    @public_status = 'Make this album private' if @album.public
+    @public_status = 'Make this album public' unless @album.public
   end
 
   def create
@@ -33,6 +35,11 @@ class AlbumsController < ApplicationController
       format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
       format.js { render :destroy }
     end
+  end
+
+  def toggle_public
+    @album = Album.find(params[:album_id])
+    @album.toggle! :public
   end
 
   private
