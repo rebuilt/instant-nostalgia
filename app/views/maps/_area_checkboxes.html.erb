@@ -1,6 +1,6 @@
 <button type="button" class="collapsible" data-target="collapsible.button" data-action="click->collapsible#toggle">Open <%= name.pluralize.capitalize %> </button>
 <div id="<%= name.tr(" ", "-")  %>" class="filter-panel ml-4" data-controller="filterable" >
-  <input id="123" data-target="filterable.source"
+  <input id="input-<%= name  %>" data-target="filterable.source"
               data-action="input->filterable#filter"
               type="text"
               class="filter"
