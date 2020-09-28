@@ -1,11 +1,22 @@
 <button type="button" class="collapsible" data-target="collapsible.button" data-action="click->collapsible#toggle">Open <%= name %></button>
-<div id="<%= name.tr(" ", "-")  %>" class="filter-panel ml-4">
-      <% if(albums.present?)  %>
-        <% albums.each do |a|   %>
-          <div class="row mt-3 end">
-            <%= form.label(a.title, a.title)  %>
-            <%= form.check_box("album[#{a.id}]", value: a)  %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
+<div id="<%= name.tr(" ", "-")  %>" class="filter-panel ml-4" data-controller="filterable">
+
+  <input id="input-<%= name  %>"
+         data-target="filterable.source"
+         data-action="input->filterable#filter"
+         type="text"
+         class="filter"
+         placeholder="Filter checkboxes" />
+
+         <% if(albums.present?)  %>
+           <% albums.each do |a|   %>
+             <div class="row mt-3 end"
+                  data-target="filterable.filterable"
+                  data-filter-key="<%= a.title.downcase  %>" >
+
+                  <%= form.label(a.title, a.title)  %>
+                  <%= form.check_box("album[#{a.id}]", value: a)  %>
+             </div>
+           <% end %>
+         <% end %>
+</div>
