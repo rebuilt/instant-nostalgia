@@ -37,6 +37,12 @@
         <li id="share-<%= album.id  %>"class="row mt-6 ">
           <p class="mr-3"> <%= album.title  %> </p>
           <%= link_to("View", album_path(album), class: "btn btn--primary")  %>
+
+          <%= link_to "See on map", maps_path(
+          locale: I18n.locale,
+          params: { "album[#{album.id}]" => "1" }) ,
+          class: "btn btn--primary btn__inline " ,
+          data: {turbolinks: 'false'} %>
         </li>
       <% end %>
     </ul>
