@@ -1,27 +1,33 @@
 class MapsController < ApplicationController
   def index
-    @photos = load_photos_by_area(:city) if params[:city].present?
-    @photos = load_photos_by_area(:state) if params[:state].present?
-    @photos = load_photos_by_area(:country) if params[:country].present?
-    @photos = load_by_date if params['day-selector'].present? && params['month-selector'].present?
+    if logged_in?
+      @photos = load_photos_by_area(:city) if params[:city].present?
+      @photos = load_photos_by_area(:state) if params[:state].present?
+      @photos = load_photos_by_area(:country) if params[:country].present?
+      @photos = load_by_date if params['day-selector'].present? && params['month-selector'].present?
 
-    if params['start-date'].present? &&
-       params['start-date']['start-date(1i)'].present? &&
-       params['end-date'].present? &&
-       params['end-date']['end-date(1i)'].present?
-      @photos = load_by_date_range
+      if params['start-date'].present? &&
+         params['start-date']['start-date(1i)'].present? &&
+         params['end-date'].present? &&
+         params['end-date']['end-date(1i)'].present?
+        @photos = load_by_date_range
+      end
+
+      @photos = load_albums if params[:album].present?
+
+      @photos = Photo.all.with_attached_image.belonging_to_user(current_user).most_recent if @photos.nil?
+      @photos = remove_non_geocoded(@photos)
+
+      @cities = load_area_names(:city)
+      @states = load_area_names(:state)
+      @countries = load_area_names(:country)
+      @albums = current_user.albums
+      @shared_albums = current_user.authorized_albums
+      @public_albums = Album.all
+    else
+      @photos = load_albums if params[:album].present?
+      @public_albums = Album.all
     end
-
-    @photos = load_albums if params[:album].present?
-
-    @photos = Photo.all.with_attached_image.belonging_to_user(current_user).most_recent if @photos.nil?
-    @photos = remove_non_geocoded(@photos)
-
-    @cities = load_area_names(:city)
-    @states = load_area_names(:state)
-    @countries = load_area_names(:country)
-    @albums = current_user.albums
-    @shared_albums = current_user.authorized_albums
   end
 
   private
