@@ -4,7 +4,7 @@
     <title>CapstoneProjectWadC5S4750</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'albums'  %>
@@ -12,7 +12,8 @@
     <%= javascript_pack_tag 'shares'  %>
     <%= javascript_pack_tag 'helpers'  %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css">
-<!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.helper.ie8.js"></script><![endif]-->
+    <!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.helper.ie8.js"></script><![endif]-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.maps_api_key  %>&callback=initMap&libraries=&v=weekly" defer ></script>
   </head>
 
   <body>
