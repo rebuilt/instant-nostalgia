@@ -15,6 +15,11 @@ export default class extends Controller {
             let title = button.textContent.split(' ')
             title[0] = 'Close'
             button.textContent = `${title.join(' ')}`
+            let input = panel.firstElementChild
+            if (input.nodeName === 'INPUT') {
+                input.focus()
+                input.select()
+            }
         }
     }
 }
