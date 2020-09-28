@@ -50,7 +50,8 @@ class AlbumsTest < ApplicationSystemTestCase
   end
 
   test 'album controls - Share album redirects to share#new' do
-    sign_in(create_user)
+    user = create_user
+    sign_in(user)
     visit albums_path
     title = 'My first album'
     fill_in :album_title, with: title
@@ -65,7 +66,8 @@ class AlbumsTest < ApplicationSystemTestCase
   end
 
   test 'album controls - delete album removes album from page' do
-    sign_in(create_user)
+    user = create_user
+    sign_in(user)
     visit albums_path
     title = 'My first album'
     fill_in :album_title, with: title
