@@ -1,6 +1,7 @@
 <button type="button" class="collapsible" data-target="collapsible.button" data-action="click->collapsible#toggle">Open <%= name %> </button>
 <div id="<%= name.tr(" ", "-")  %>" class="filter-panel ml-4" >
     <div class="column mt-3 end">
+      <p class="mb-3">This matches a day of any year.  Use it for things like birthdays, anniversaries, etc.</p>
       <%= form.label("Day", "Day")  %>
       <%= form.select("day-selector", options_for_select(1..31), include_blank: true )%>
 
