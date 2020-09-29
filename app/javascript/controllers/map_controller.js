@@ -73,13 +73,6 @@ export default class extends Controller {
     }
 
     getMarker(id) {
-        let tmp
-
-        markers.forEach((item) => {
-            if (item.id == id) {
-                tmp = item
-            }
-        })
-        return tmp
+        return markers.find((item) => item.id == id)
     }
 }
