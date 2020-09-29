@@ -19,13 +19,19 @@ class MapsController < ApplicationController
     else
       # If the user is not signed in
       @photos = load_albums if params[:album].present?
-      @photos = Album.find(63).photos if params[:album].nil?
+      @photos = load_default_album if params[:album].nil?
     end
 
     @public_albums = Album.where(public: true)
   end
 
   private
+
+  def load_default_album
+    album = Album.find(63)
+    add_message('Default public album', album.title)
+    album.photos
+  end
 
   def load_most_recent
     add_message('Most recent', '5')
