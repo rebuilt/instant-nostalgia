@@ -29,7 +29,7 @@ class Photo < ApplicationRecord
     populate_with(metadata)
     initialize_latlong_decimals
     reverse_geocode
-    save
+    save && location?
   end
 
   scope :include_image, -> { includes(image_attachment: :blob) }
