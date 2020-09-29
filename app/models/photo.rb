@@ -34,7 +34,8 @@ class Photo < ApplicationRecord
 
   scope :include_image, -> { includes(image_attachment: :blob) }
   scope :belonging_to_user, ->(user) { where(user: user) }
-  scope :most_recent, -> { order(created_at: :desc).limit(5) }
+  scope :most_recent, ->(count) { order(created_at: :desc).limit(count) }
+  scope :most_recent_mappable, ->(count) { all.order(created_at: :desc).reject { |photo| photo.location? == false }.first(count) }
   scope :order_by_new_to_old, -> { order(created_at: :desc) }
   scope :day_is, lambda { |day|
                    where('EXTRACT(DAY FROM date_time_digitized) = ?', day)
