@@ -3,12 +3,13 @@
 
 <div class="content-wrapper">
   <div class="album-nav row">
-    <%= link_to "To Albums", albums_path , class: "btn btn--primary  "  %>
-    <%= link_to "To Shares", shares_path , class: "btn btn--primary  "  %>
+    <%= link_to "To Albums", albums_path , class: "btn btn--primary mr-1 "  %>
+    <%= link_to "To Shares", shares_path , class: "btn btn--primary mr-1 "  %>
     <%= link_to "See on map", maps_path(locale: I18n.locale,
                                         params: { "album[#{@album.id}]" => "1" }) ,
-    class: "btn btn--primary  " ,
+    class: "btn btn--primary mr-1  " ,
     data: {turbolinks: 'false'} %>
+  <% if(@album.user == current_user)  %>
   <%= link_to(@public_status, album_toggle_public_path(@album), id: "public-status-button", remote: true, method: :post,  class: "btn btn--secondary mr-6 ") %>
   <div id="output" class="delta">
     <% if(@album.public)  %>
@@ -17,6 +18,7 @@
       Private Album
     <% end %>
   </div>
+    <% end %>
   </div>
 
 
@@ -33,7 +35,7 @@
                <%= image_tag(photo.image.variant(resize: '300x300')) if photo.image.attached? %>
           </div>
           <div class="row">
-            <%= link_to "Show details", photo_path(photo), class: "btn btn--primary " %>
+            <%= link_to "Show details", photo_path(photo), class: "btn btn--primary mr-1" %>
             <% if current_user == @album.user  %>
               <%= link_to "Remove", photo_album_path([@album, photo]), class: "btn btn--warning" , method: :delete, data: {confirm: 'Are you sure you want to remove this photo from the album?'}, remote: true %>
             <% end %>
