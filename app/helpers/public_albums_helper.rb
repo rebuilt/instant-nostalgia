@@ -1,0 +1,2 @@
+module PublicAlbumsHelper
+end
