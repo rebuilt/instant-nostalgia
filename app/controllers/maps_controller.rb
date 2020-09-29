@@ -34,8 +34,9 @@ class MapsController < ApplicationController
   end
 
   def load_most_recent
-    add_message('Most recent', '5')
-    Photo.all.with_attached_image.belonging_to_user(current_user).most_recent
+    count = 5
+    add_message('Most recent', count.to_s)
+    Photo.all.with_attached_image.belonging_to_user(current_user).most_recent_mappable(count)
   end
 
   def add_message(filtered_by, value)
