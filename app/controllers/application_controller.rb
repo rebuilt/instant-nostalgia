@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
   helper_method :logged_in?, :current_user
+  add_flash_types :success
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale

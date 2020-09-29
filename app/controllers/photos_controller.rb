@@ -50,7 +50,7 @@ class PhotosController < ApplicationController
 
   def successful_upload(format)
     notice = 'Photo uploaded and location data found'
-    format.html { redirect_to maps_path, notice: notice }
+    format.html { redirect_to maps_path, success: notice }
   end
 
   def failure_upload(format)
