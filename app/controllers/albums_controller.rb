@@ -1,4 +1,6 @@
 class AlbumsController < ApplicationController
+  before_action :ensure_owner, only: %i[toggle_public]
+
   def index
     @album = Album.new
     @albums = Album.where(user: current_user.id)
@@ -50,5 +52,10 @@ class AlbumsController < ApplicationController
 
   def can_delete_album?(user, album)
     user == album.user
+  end
+
+  def ensure_owner
+    album = Album.find(params[:album_id])
+    redirect_to album_path(album) unless current_user == album.user
   end
 end
