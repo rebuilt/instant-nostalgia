@@ -20,6 +20,9 @@
       <%= link_to t('upload'), new_photo_path, class: "nav-link"  %>
     </li>
     <li class="nav-item">
+      <%= link_to t('profile'), user_path(current_user), class: "nav-link"  %>
+    </li>
+    <li class="nav-item">
       <%= link_to t('logout'), session_path(0), method: :delete , class: "nav-link" %>
     </li>
   </ul>
