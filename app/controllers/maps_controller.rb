@@ -28,7 +28,7 @@ class MapsController < ApplicationController
   private
 
   def load_default_album
-    album = Album.find(63)
+    album = User.first.albums.first
     add_message('Default public album', album.title)
     album.photos
   end
