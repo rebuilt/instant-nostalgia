@@ -1,0 +1,10 @@
+  <%  if model.errors.any?  %>
+    <div class="error_explanations">
+      <h2> <%= pluralize(model.errors.count, "error")%> prohibited this photo from being saved   </h2>
+    </div>
+    <ul>
+      <%= model.errors.full_messages.each do |message|  %>
+        <li> <%= message  %> </li>
+      <% end %>
+    </ul>
+  <% end %>
