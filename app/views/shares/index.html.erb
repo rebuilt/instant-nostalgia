@@ -36,7 +36,7 @@
       <% @shared_with_me.each do |album|  %>
         <li id="share-<%= album.id  %>"class="row mt-6 ">
           <p class="mr-3"> <%= album.title  %> </p>
-          <%= link_to("View", album_path(album), class: "btn btn--primary")  %>
+          <%= link_to("View", album_path(album), class: "btn btn--primary mr-1")  %>
 
           <%= link_to "See on map", maps_path(
           locale: I18n.locale,
