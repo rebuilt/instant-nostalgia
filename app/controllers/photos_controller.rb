@@ -21,9 +21,8 @@ class PhotosController < ApplicationController
     @photo.user = current_user
     respond_to do |format|
       if @photo.save
-        notice = 'Photo uploaded and location data found' if @photo.init
-        notice = "Can't find location in most recently uploaded photo.  Unmappable" unless @photo.init
-        format.html { redirect_to maps_path, notice: notice }
+        successful_upload(format) if @photo.init
+        failure_upload(format) unless @photo.init
       else
         format.html { render :new }
       end
@@ -47,5 +46,15 @@ class PhotosController < ApplicationController
 
   def can_delete_photo?(user, photo)
     user == photo.user
+  end
+
+  def successful_upload(format)
+    notice = 'Photo uploaded and location data found'
+    format.html { redirect_to maps_path, notice: notice }
+  end
+
+  def failure_upload(format)
+    error = 'Photo does not contain location data. Photo is unmappable.'
+    format.html { redirect_to maps_path, alert: error }
   end
 end
