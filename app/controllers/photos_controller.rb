@@ -1,4 +1,6 @@
 class PhotosController < ApplicationController
+  before_action :has_remaining_uploads, only: %i[create]
+
   def index
     @photos = Photo.with_attached_image.belonging_to_user(current_user).order_by_new_to_old
   end
@@ -12,6 +14,8 @@ class PhotosController < ApplicationController
 
   def new
     @photo = Photo.new
+    @uploads_remaining = 100 - current_user.photos.count
+    @uploads_remaining = 0 if @uploads_remaining.negative?
     # TODO: multiple file uploads
     # TODO: drag and drop for uploads
   end
@@ -56,5 +60,9 @@ class PhotosController < ApplicationController
   def failure_upload(format)
     error = 'Photo does not contain location data. Photo is unmappable.'
     format.html { redirect_to maps_path, alert: error }
+  end
+
+  def has_remaining_uploads
+    redirect_to new_photo_path unless (100 - current_user.photos.count).positive?
   end
 end
