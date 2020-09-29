@@ -1,0 +1,6 @@
+<div data-controller="modal"
+               data-modal-id="<%= photo.id  %>"
+               data-modal-url="<%= url_for(photo.image)  %>"
+               data-action="click->modal#showModal">
+               <%= image_tag(photo.image.variant(resize: '300x300')) if photo.image.attached? %>
+          </div>
