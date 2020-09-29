@@ -1,14 +1,13 @@
-<h1>Public Albums</h1>
+<main class="content-wrapper">
+  <h1>Public Albums</h1>
 
-<ul id="albumList" >
-  <% @albums.each do |album| %>
-    <li id="album-<%= album.id  %>" class="row mt-2">
-      <h3><%= link_to album.title, album, class: "btn mr-1" %></h3>
-      <%= link_to 'View', album , class: "btn btn--primary no-radius mr-1"%>
-    <%= link_to "See on map", maps_path(locale: I18n.locale,
-                                        params: { "album[#{album.id}]" => "1" }) ,
-    class: "btn btn--primary  " ,
-    data: {turbolinks: 'false'} %>
-    </li>
-  <% end %>
-</ul>
+  <ul id="albumList" >
+    <% @albums.each do |album| %>
+      <li id="album-<%= album.id  %>" class="row mt-2">
+        <h3><%= link_to album.title, album, class: "btn mr-1" %></h3>
+        <%= link_to 'View', album , class: "btn btn--primary no-radius mr-1"%>
+        <%= render(partial: "to_map_btn", locals: {album: album})  %>
+      </li>
+    <% end %>
+  </ul>
+</main>
