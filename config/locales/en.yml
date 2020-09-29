@@ -37,6 +37,7 @@ en:
   albums: 'My Albums'
   public-albums: 'Public Albums'
   shared: 'Shared'
+  profile: 'Profile'
   sign_up: 'Sign Up'
   login: 'Login'
   logout: 'Log out'
