@@ -1,5 +1,6 @@
 class MapsController < ApplicationController
   def index
+    flash[:message] = 'Results for | '
     if logged_in?
       @photos = load_photos_by_area(:city) if params[:city].present?
       @photos = load_photos_by_area(:state) if params[:state].present?
@@ -7,7 +8,7 @@ class MapsController < ApplicationController
       @photos = load_by_date if date_populated?
       @photos = load_by_date_range if date_range_populated?
       @photos = load_albums if params[:album].present?
-      @photos = Photo.all.with_attached_image.belonging_to_user(current_user).most_recent if @photos.nil?
+      @photos = load_most_recent if @photos.nil?
       @photos = remove_non_geocoded(@photos)
 
       @cities = load_area_names(:city)
@@ -26,10 +27,20 @@ class MapsController < ApplicationController
 
   private
 
+  def load_most_recent
+    add_message('Most recent', '5')
+    Photo.all.with_attached_image.belonging_to_user(current_user).most_recent
+  end
+
+  def add_message(filtered_by, value)
+    flash[:message] = flash[:message] + "  #{filtered_by}: #{value} |"
+  end
+
   def load_photos_by_area(area)
     params[area]&.each do |key, value|
       next unless value == '1'
 
+      add_message(area, key)
       tmp = Photo.with_attached_image.belonging_to_user(current_user).where(area => key)
       @photos = @photos.present? ? @photos.or(tmp) : tmp
     end
@@ -42,6 +53,8 @@ class MapsController < ApplicationController
       next unless value == '1'
       next unless can_view_album?(Album.find(key))
 
+      album = Album.find(key)
+      add_message('album', album.title)
       tmp = Photo.with_attached_image.joins(:albums).where(albums: { id: key })
 
       @photos = @photos.present? ? @photos + tmp : tmp
@@ -58,6 +71,7 @@ class MapsController < ApplicationController
   def load_by_date
     day = params['day-selector']
     month = params['month-selector']
+    add_message('Date', "#{day}-#{month}: (day-month)")
     tmp = Photo.with_attached_image.belonging_to_user(current_user).day_is(day).month_is(month)
     @photos = @photos.present? ? @photos.or(tmp) : tmp
     @photos
@@ -68,6 +82,7 @@ class MapsController < ApplicationController
 
     end_date = parse_date(params['end-date'], 'end')
 
+    add_message('Date range', "#{start_date} - #{end_date}")
     tmp = Photo.with_attached_image.belonging_to_user(current_user).date_between(start_date, end_date)
     @photos = @photos.present? ? @photos.or(tmp) : tmp
     @photos
