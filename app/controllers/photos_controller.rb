@@ -21,8 +21,9 @@ class PhotosController < ApplicationController
     @photo.user = current_user
     respond_to do |format|
       if @photo.save
-        @photo.init
-        format.html { redirect_to maps_path }
+        notice = 'Photo uploaded and location data found' if @photo.init
+        notice = "Can't find location in most recently uploaded photo.  Unmappable" unless @photo.init
+        format.html { redirect_to maps_path, notice: notice }
       else
         format.html { render :new }
       end
