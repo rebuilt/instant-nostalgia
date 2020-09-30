@@ -2,6 +2,7 @@ class SharesController < ApplicationController
   def index
     @my_albums = Album.where(user: current_user)
     @shared_with_me = current_user.authorized_albums
+    @shares = Share.where(user_id: current_user.id).joins(:album)
   end
 
   def new
@@ -33,6 +34,13 @@ class SharesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    @share = Share.find(params[:id])
+    @share.destroy
+
+    redirect_to shares_path
   end
 
   private
