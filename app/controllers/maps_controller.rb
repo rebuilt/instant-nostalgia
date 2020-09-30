@@ -7,10 +7,10 @@ class MapsController < ApplicationController
       @photos = load_photos_by_area(:country) if params[:country].present?
       @photos = load_by_date if date_populated?
       @photos = load_by_date_range if date_range_populated?
-      @photos = load_albums if params[:album].present?
+      @photos = load_albums(:album) if params[:album].present?
+      @photos = load_albums(:publicAlbum) if params[:publicAlbum].present?
       @photos = load_most_recent if @photos.nil?
       @photos = remove_non_geocoded(@photos)
-
       @cities = load_area_names(:city)
       @states = load_area_names(:state)
       @countries = load_area_names(:country)
@@ -18,7 +18,7 @@ class MapsController < ApplicationController
       @shared_albums = current_user.authorized_albums
     else
       # If the user is not signed in
-      @photos = load_albums if params[:album].present?
+      @photos = load_albums(:publicAlbum) if params[:publicAlbum].present?
       @photos = load_default_album if params[:album].nil?
     end
 
@@ -55,13 +55,13 @@ class MapsController < ApplicationController
     @photos
   end
 
-  def load_albums
-    params[:album]&.each do |key, value|
+  def load_albums(name)
+    params[name]&.each do |key, value|
       next unless value == '1'
       next unless can_view_album?(Album.find(key))
 
       album = Album.find(key)
-      add_message('album', album.title)
+      add_message(name, album.title)
       tmp = Photo.with_attached_image.joins(:albums).where(albums: { id: key })
 
       @photos = @photos.present? ? @photos + tmp : tmp
