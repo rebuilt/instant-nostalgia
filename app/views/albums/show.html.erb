@@ -6,7 +6,7 @@
     <%= render(partial: "to_albums_btn")  %>
     <%= render(partial: "to_shares_btn")  %>
     <%= render(partial: "to_map_btn", locals: {album: @album})  %>
-    <%= render(partial: "make_public_btn", locals: {album: @album, public_status: @public_status})  %>
+    <%= render(partial: "make_public_btn", locals: {album: @album})  %>
   </div>
 
   <h1 class="mt-3">Title: <span> <%= @album.title  %> </span> </h1>
