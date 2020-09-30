@@ -11,32 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :username %>
-    <%= form.text_field :username %>
+  <div class="input-group">
+    <%= form.label :username, class: "input-group__label" %>
+    <%= form.text_field :username, class: "input-group__field" %>
   </div>
 
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
+  <div class="input-group">
+    <%= form.label :first_name, class: "input-group__label" %>
+    <%= form.text_field :first_name, class: "input-group__field" %>
   </div>
 
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
+  <div class="input-group">
+    <%= form.label :last_name, class: "input-group__label" %>
+    <%= form.text_field :last_name, class: "input-group__field" %>
   </div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
+  <div class="input-group">
+    <%= form.label :email, class: "input-group__label" %>
+    <%= form.text_field :email, class: "input-group__field" %>
   </div>
 
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.text_field :password %>
+  <div class="input-group">
+    <%= form.label :password, class: "input-group__label" %>
+    <%= form.password_field :password, class: "input-group__field" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn--primary" %>
   </div>
 <% end %>
