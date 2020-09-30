@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       post :toggle_public
     end
     resources :photo_albums, only: %i[update destroy]
-    resources :shares, only: %i[index new create]
+    resources :shares, only: %i[index new create destroy]
     resources :maps, only: %i[index]
     resources :public_albums, only: %i[index]
   end
