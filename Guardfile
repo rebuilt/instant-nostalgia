@@ -15,7 +15,7 @@
 #
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
 
-guard 'livereload', grace_period: 0.7 do
+guard 'livereload' do
   extensions = {
     css: :css,
     scss: :css,
