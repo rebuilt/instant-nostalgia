@@ -109,6 +109,7 @@ class MapsTest < ApplicationSystemTestCase
     photo0 = create_photo(0, user)
     visit maps_path(params: { city: { photo0.city => '1' } })
     assert page.has_content? "Results for | city: #{photo0.city}"
+    assert page.find("#photo-#{photo0.id}")
   end
 
   test 'can filter by state' do
@@ -117,6 +118,7 @@ class MapsTest < ApplicationSystemTestCase
     photo0 = create_photo(0, user)
     visit maps_path(params: { state: { photo0.state => '1' } })
     assert page.has_content? "Results for | state: #{photo0.state}"
+    assert page.find("#photo-#{photo0.id}")
   end
 
   test 'can filter by country' do
@@ -125,6 +127,7 @@ class MapsTest < ApplicationSystemTestCase
     photo0 = create_photo(0, user)
     visit maps_path(params: { country: { photo0.country => '1' } })
     assert page.has_content? "Results for | country: #{photo0.country}"
+    assert page.find("#photo-#{photo0.id}")
   end
 
   test 'can filter by album' do
@@ -142,6 +145,7 @@ class MapsTest < ApplicationSystemTestCase
     page.check("album[#{album.id}]")
     click_on 'Filter'
     assert page.has_content? "Results for | album: #{album.title}"
+    assert page.find("#photo-#{photo0.id}")
   end
 
   test 'can filter by shared albums' do
@@ -154,7 +158,43 @@ class MapsTest < ApplicationSystemTestCase
     share.save
     sign_in(user2)
 
-    visit maps_path(params: { album: {album.id => '1'} })
+    visit maps_path(params: { album: { album.id => '1' } })
     assert page.has_content? "Results for | album: #{album.title}"
+    assert page.find("#photo-#{photo0.id}")
+  end
+
+  test 'can filter by date range' do
+    user = create_user
+    sign_in(user)
+    photo0 = create_photo(0, user)
+    visit maps_path params: { 'start-date' => { 'start-date(1i)' => '2018', 'start-date(2i)' => '1', 'start-date(3i)' => '' }, 'end-date' => { 'end-date(1i)' => '2019', 'end-date(2i)' => '1', 'end-date(3i)' => '' } }
+    assert page.has_content? 'Results for | Date range: '
+    assert page.find("#photo-#{photo0.id}")
+  end
+
+  test 'can use all filters' do
+    user = create_user
+    user2 = create_user('you')
+    album = Album.new(title: 'first', user: user)
+    photo0 = create_photo(0, user)
+    album.photos << photo0
+    share = Share.new(user: user2, album: album)
+    share.save
+    sign_in(user2)
+
+    album2 = create_album(user)
+    album2.public = true
+    album2.save
+
+    day = '10'
+    month = '1'
+    visit maps_path params: { 'day-selector' => day, 'month-selector' => month, city: { photo0.city => '1' }, state: { photo0.state => '1' }, country: { photo0.country => '1' }, publicAlbum: { album2.id => '1' }, album: { album.id => '1' }, 'start-date' => { 'start-date(1i)' => '2018', 'start-date(2i)' => '1', 'start-date(3i)' => '' }, 'end-date' => { 'end-date(1i)' => '2019', 'end-date(2i)' => '1', 'end-date(3i)' => '' } }
+    assert page.has_content? "| Date: #{day}-#{month}"
+    assert page.has_content? '| Date range: '
+    assert page.has_content? "| album: #{album.title}"
+    assert page.has_content? "| city: #{photo0.city}"
+    assert page.has_content? "| state: #{photo0.state}"
+    assert page.has_content? "| country: #{photo0.country}"
+    assert page.find("#photo-#{photo0.id}")
   end
 end
