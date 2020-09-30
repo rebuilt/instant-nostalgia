@@ -1,4 +1,8 @@
 <% if(album.user == current_user)  %>
+  <%
+    public_status = 'Make this album private' if album.public
+    public_status = 'Make this album public' unless album.public
+  %>
   <%= link_to(public_status, album_toggle_public_path(album), id: "public-status-button", remote: true, method: :post,  class: "btn btn--secondary mr-6 ", title: "If made public, this album will be viewable by all users. If private, this album will be visible only by users with which you have explicitly shared this album") %>
   <div id="output" class="delta">
     <% if(album.public)  %>
