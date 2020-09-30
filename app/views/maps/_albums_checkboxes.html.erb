@@ -15,7 +15,7 @@
                   data-filter-key="<%= a.title.downcase  %>" >
 
                   <%= form.label(a.title, a.title)  %>
-                  <%= form.check_box("album[#{a.id}]", value: a)  %>
+                  <%= form.check_box("#{param}[#{a.id}]", checked_value: "1", unchecked_value: "0")  %>
              </div>
            <% end %>
          <% end %>
