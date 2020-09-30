@@ -18,7 +18,10 @@
               <h3 class="mr-5">Shared with:</h3>
               <div class="column">
                 <% album.shares.each do |share|  %>
-                  <p class="mr-3 mt-4"><%= share.user.email  %> </p>
+                  <div class="row mt-3">
+                    <p class="mr-3 "><%= share.user.email  %> </p>
+                    <%= link_to 'Stop sharing', share_path(share), method: :delete, class: "btn btn--secondary no-radius mr-1", data: { confirm: 'Are you sure?', remote: true } %>
+                  </div>
                 <% end %>
               </div>
             </div>
@@ -36,15 +39,11 @@
       <% @shares.each do |share|  %>
         <li id="share-<%= share.album.id  %>"class="row mt-6 ">
           <p class="mr-3"> <%= share.album.title  %> </p>
-          <%= link_to("View", album_path(share.album), class: "btn btn--primary mr-1")  %>
+          <%= link_to("View photos", album_path(share.album), class: "btn btn--primary mr-1")  %>
 
-          <%= link_to "See on map", maps_path(
-          locale: I18n.locale,
-          params: { "album[#{share.album.id}]" => "1" }) ,
-          class: "btn btn--primary btn__inline mr-1" ,
-          data: {turbolinks: 'false'} %>
+        <%= render(partial: "to_map_btn", locals: {album: share.album})  %>
 
-        <%= link_to 'Remove', share_path(share), method: :delete, class: "btn btn--warning no-radius mr-1", data: { confirm: 'Are you sure?', remote: true } %>
+        <%= link_to 'Remove from albums shared with me', share_path(share), method: :delete, class: "btn btn--secondary no-radius mr-1", data: { confirm: 'Are you sure?', remote: true } %>
         </li>
       <% end %>
     </ul>
