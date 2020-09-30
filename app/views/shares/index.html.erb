@@ -33,16 +33,18 @@
     <h1>Albums shared with me</h1>
 
     <ul>
-      <% @shared_with_me.each do |album|  %>
-        <li id="share-<%= album.id  %>"class="row mt-6 ">
-          <p class="mr-3"> <%= album.title  %> </p>
-          <%= link_to("View", album_path(album), class: "btn btn--primary mr-1")  %>
+      <% @shares.each do |share|  %>
+        <li id="share-<%= share.album.id  %>"class="row mt-6 ">
+          <p class="mr-3"> <%= share.album.title  %> </p>
+          <%= link_to("View", album_path(share.album), class: "btn btn--primary mr-1")  %>
 
           <%= link_to "See on map", maps_path(
           locale: I18n.locale,
-          params: { "album[#{album.id}]" => "1" }) ,
-          class: "btn btn--primary btn__inline " ,
+          params: { "album[#{share.album.id}]" => "1" }) ,
+          class: "btn btn--primary btn__inline mr-1" ,
           data: {turbolinks: 'false'} %>
+
+        <%= link_to 'Remove', share_path(share), method: :delete, class: "btn btn--warning no-radius mr-1", data: { confirm: 'Are you sure?', remote: true } %>
         </li>
       <% end %>
     </ul>
