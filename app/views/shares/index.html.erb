@@ -39,11 +39,11 @@
       <% @shares.each do |share|  %>
         <li id="share-<%= share.album.id  %>"class="row mt-6 ">
           <p class="mr-3"> <%= share.album.title  %> </p>
-          <%= link_to("View photos", album_path(share.album), class: "btn btn--primary mr-1")  %>
 
+        <%= render(partial: "show_album_btn", locals: {album: share.album})  %>
         <%= render(partial: "to_map_btn", locals: {album: share.album})  %>
 
-        <%= link_to 'Remove from albums shared with me', share_path(share), method: :delete, class: "btn btn--secondary no-radius mr-1", data: { confirm: 'Are you sure?', remote: true } %>
+        <%= link_to "Remove from 'albums shared with me'", share_path(share), method: :delete, class: "btn btn--secondary no-radius mr-1", data: { confirm: 'Are you sure?', remote: true } %>
         </li>
       <% end %>
     </ul>

@@ -38,7 +38,7 @@
       <% @albums.each do |album| %>
         <li id="album-<%= album.id  %>" class="row end mt-2">
           <h3><%= link_to album.title, album, class: "btn mr-1" %></h3>
-          <%= link_to 'View', album , class: "btn btn--primary no-radius mr-1"%>
+          <%= render(partial: "show_album_btn", locals: {album: album})  %>
           <%= link_to 'Share with a user', new_share_path(album_id: album.id),  class: 'btn btn--primary no-radius mr-1' %>
           <%= link_to 'Remove album', album, method: :delete, class: "btn btn--warning no-radius mr-1", data: { confirm: 'Are you sure?', remote: true } %>
         </li>
