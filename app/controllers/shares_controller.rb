@@ -38,7 +38,7 @@ class SharesController < ApplicationController
 
   def destroy
     @share = Share.find(params[:id])
-    @share.destroy
+    @share.destroy if current_user == @share.album.user || current_user.id == @share.user_id
 
     redirect_to shares_path
   end
