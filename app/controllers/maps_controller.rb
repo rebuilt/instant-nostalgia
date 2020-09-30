@@ -19,7 +19,7 @@ class MapsController < ApplicationController
     else
       # If the user is not signed in
       @photos = load_albums(:publicAlbum) if params[:publicAlbum].present?
-      @photos = load_default_album if params[:album].nil?
+      @photos = load_default_album if @photos.nil?
     end
 
     @public_albums = Album.where(public: true)
