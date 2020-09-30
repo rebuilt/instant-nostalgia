@@ -188,7 +188,21 @@ class MapsTest < ApplicationSystemTestCase
 
     day = '10'
     month = '1'
-    visit maps_path params: { 'day-selector' => day, 'month-selector' => month, city: { photo0.city => '1' }, state: { photo0.state => '1' }, country: { photo0.country => '1' }, publicAlbum: { album2.id => '1' }, album: { album.id => '1' }, 'start-date' => { 'start-date(1i)' => '2018', 'start-date(2i)' => '1', 'start-date(3i)' => '' }, 'end-date' => { 'end-date(1i)' => '2019', 'end-date(2i)' => '1', 'end-date(3i)' => '' } }
+    visit maps_path params: {
+      'day-selector' => day,
+      'month-selector' => month,
+      city: { photo0.city => '1' },
+      state: { photo0.state => '1' },
+      country: { photo0.country => '1' },
+      publicAlbum: { album2.id => '1' },
+      album: { album.id => '1' },
+      'start-date' => { 'start-date(1i)' => '2018',
+                        'start-date(2i)' => '1',
+                        'start-date(3i)' => '' },
+      'end-date' => { 'end-date(1i)' => '2019',
+                      'end-date(2i)' => '1',
+                      'end-date(3i)' => '' }
+    }
     assert page.has_content? "| Date: #{day}-#{month}"
     assert page.has_content? '| Date range: '
     assert page.has_content? "| album: #{album.title}"
