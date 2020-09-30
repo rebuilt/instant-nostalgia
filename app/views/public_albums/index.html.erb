@@ -7,6 +7,7 @@
         <h3><%= link_to album.title, album, class: "btn mr-1" %></h3>
         <%= link_to 'View', album , class: "btn btn--primary no-radius mr-1"%>
         <%= render(partial: "to_map_btn", locals: {album: album})  %>
+        <%= render(partial: "make_public_btn", locals: {album: album})  %>
       </li>
     <% end %>
   </ul>
