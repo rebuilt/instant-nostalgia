@@ -2,6 +2,10 @@
   <h1>User details</h1>
   <p id="notice"><%= notice %></p>
 
+  <div class="input-group">
+    <%= image_tag(@user.avatar.variant(resize: '300x300')) if @user.avatar.attached? %>
+  </div>
+
   <div class="row mt-5">
     <h2 class="mr-3 ">Username:</h2>
     <%= @user.username %>

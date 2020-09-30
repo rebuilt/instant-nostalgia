@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :albums, dependent: :destroy
   has_many :shares, dependent: :destroy
   has_many :authorized_albums, through: :shares, source: :album
+  has_one_attached :avatar, dependent: :purge_later
 
   has_secure_password
 

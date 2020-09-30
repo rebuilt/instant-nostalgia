@@ -12,6 +12,14 @@
   <% end %>
 
   <div class="input-group">
+    <%= image_tag(user.avatar.variant(resize: '300x300')) if user.avatar.attached? %>
+  </div>
+
+  <div class="input-group">
+    <%= form.file_field :avatar, class: 'input-group__file' %>
+  </div>
+
+  <div class="input-group">
     <%= form.label :username, class: "input-group__label" %>
     <%= form.text_field :username, class: "input-group__field" %>
   </div>
