@@ -1,7 +1,6 @@
 <div id="modal" class="modal" data-controller="modal">
 </div>
 
-
 <div class="map-container mt-3">
   <%= form_with(url: maps_path, method: :get, local: true, class: "column filter-form") do |form|  %>
 
@@ -12,10 +11,10 @@
         <%= render partial: "area_checkboxes", locals: {area: @cities, name: "city", form: form}  %>
         <%= render partial: "area_checkboxes", locals: {area: @states, name: "state", form: form}  %>
         <%= render partial: "area_checkboxes", locals: {area: @countries, name: "country", form: form}  %>
-        <%= render partial: "albums_checkboxes", locals: {albums: @albums, name: "My albums", form: form}  %>
-        <%= render partial: "albums_checkboxes", locals: {albums: @shared_albums, name: "Shared albums", form: form}  %>
+        <%= render partial: "albums_checkboxes", locals: {albums: @albums, name: "My albums", form: form, param: "album"}  %>
+        <%= render partial: "albums_checkboxes", locals: {albums: @shared_albums, name: "Shared albums", form: form, param: "album"}  %>
       <% end %>
-      <%= render partial: "albums_checkboxes", locals: {albums: @public_albums, name: "Public albums", form: form}  %>
+      <%= render partial: "albums_checkboxes", locals: {albums: @public_albums, name: "Public albums", form: form, param: "publicAlbum"}  %>
       <%= form.submit("Filter", class: "btn btn--primary mt-3")  %>
     </div>
   <% end %>
