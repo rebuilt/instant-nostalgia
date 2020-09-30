@@ -1,7 +1,7 @@
 <main class="content-wrapper">
   <div class="envelope">
-    <h1>Welcome#index</h1>
-    <p>This is the initial landing page for users who are not signed in</p>
+    <h1>Welcome to the site!</h1>
+    <p>See your photos mapped out.  Easily filter your photoset.  Create albums to share with individual users or share with the world</p>
     <p>To use this website please: </p>
     <div class="row mt-3">
 
@@ -12,6 +12,10 @@
       <div class="ml-3 mr-3">or</div>
       <div>
         <%= link_to t('login'), new_session_path , class: "btn btn--primary welcome " %>
+      </div>
+    </div>
+    <div class="mt-5">
+      <div> Or view public albums on the <%= link_to "Map", maps_path, class: "btn btn--primary max-content", data: {turbolinks: 'false'}  %>
       </div>
     </div>
   </div>
