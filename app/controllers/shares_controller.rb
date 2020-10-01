@@ -1,8 +1,8 @@
 class SharesController < ApplicationController
   def index
-    @my_albums = Album.where(user: current_user)
-    @shared_with_me = current_user.authorized_albums
-    @shares = Share.where(user_id: current_user.id).joins(:album)
+    @my_albums = Album.where(user: current_user).joins(:user)
+    @shared_with_me = current_user.authorized_albums.joins(:album)
+    @shares = Share.where(user_id: current_user.id).joins(:album).joins(:user)
   end
 
   def new
