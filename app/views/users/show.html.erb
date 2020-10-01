@@ -21,7 +21,7 @@
     <%= @user.last_name %>
   </div>
 
-  <% if(current_user == @user)  %>
+  <% if(logged_in? && current_user == @user)  %>
     <div class="row mt-4">
       <h2 class="mr-3">Email:</h2>
       <%= @user.email %>
@@ -30,17 +30,11 @@
     <%= link_to 'Edit', edit_user_path(@user), class: "btn btn--primary max-content mt-5" %>
   <% end %>
 
-
+  <% if(logged_in? && current_user == @user)  %>
+  <h2 class="mt-5">Private Albums</h2>
+  <%= render(partial: "album_list", locals: {albums: @private_albums})  %>
+<% end %>
   <h2 class="mt-5">Public Albums</h2>
 
-  <ul id="albumList" >
-    <% @albums.each do |album| %>
-      <li id="album-<%= album.id  %>" class="row mt-2">
-        <h3><%= link_to album.title, album, class: "btn mr-1" %></h3>
-        <%= render(partial: "show_album_btn", locals: {album: album})  %>
-        <%= render(partial: "to_map_btn", locals: {album: album})  %>
-        <%= render(partial: "make_public_btn", locals: {album: album})  %>
-      </li>
-    <% end %>
-  </ul>
+  <%= render(partial: "album_list", locals: {albums: @public_albums})  %>
 </main>
