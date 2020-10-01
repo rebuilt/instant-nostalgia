@@ -1,6 +1,6 @@
 var comment = {
   id: "id-<%= @comment.id %>",
-  avatar_url: "<%= asset_path('avatar.png') %>",
+  avatar_url: "<%= rails_representation_url(@comment.user.avatar.variant(resize: '100x100'), disposition: "attachment", only_path: true) if @comment.user.avatar.attached? %>",
   created_at: "<%= @comment.created_at %>",
   time_ago: "Posted <%= time_ago_in_words @comment.created_at %> ago",
   body: "<%= @comment.body.to_plain_text.gsub("\n","\\n") %>",
