@@ -27,7 +27,7 @@
   clear: both;
 }
 
-.comments__input .avatar {
+.comments__input {
   float: left;
   margin-top: 2em;
 }
@@ -44,26 +44,32 @@
    ========================================================================== */
 
 .comments__listing {
-  list-style: none;
-  margin: 0 0 3.2rem 0;
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.comment__details {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  justify-content: space-around;
 }
 
 .comment {
   margin-bottom: 3.2rem;
 }
 
-.comment .avatar {
+.comment {
   float: left;
 }
 
-.comment__body {
-  margin-left: 60px;
+.trix-content {
+  margin: 20px 0 0 100px;
+  padding: 2rem;
+  background-color: $primary--lightest;
+  border-radius: 5%;
 }
 
 .comment__title {
-  font-size: 1.6rem;
-  font-size: 16px;
   color: #192127;
 }
 
