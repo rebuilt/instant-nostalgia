@@ -1,0 +1,3 @@
+<% if(logged_in? && current_user == album.user)   %>
+  <%= link_to 'Delete album', album, method: :delete, class: "btn btn--warning no-radius mr-1", data: { confirm: 'Are you sure?'}, remote: true ,title: "Deletes the album.  Does not delete any photos in the album." %>
+<% end %>
