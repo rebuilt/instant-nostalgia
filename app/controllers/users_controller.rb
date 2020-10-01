@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    # empty method
+    @albums = @user.albums.reject { |album| album.public == false }
   end
 
   def new
