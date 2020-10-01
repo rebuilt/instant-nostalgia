@@ -2,7 +2,7 @@ class PhotosController < ApplicationController
   before_action :has_remaining_uploads, only: %i[create]
 
   def index
-    @photos = Photo.with_attached_image.belonging_to_user(current_user).order_by_new_to_old
+    @photos = Photo.with_attached_image.belonging_to_user(current_user).includes(:user).order_by_new_to_old
   end
 
   def show
