@@ -41,6 +41,7 @@
           <%= render(partial: "show_album_btn", locals: {album: album})  %>
           <%= link_to 'Share with a user', new_share_path(album_id: album.id),  class: 'btn btn--primary no-radius mr-1' %>
           <%= link_to 'Remove album', album, method: :delete, class: "btn btn--warning no-radius mr-1", data: { confirm: 'Are you sure?', remote: true } %>
+          <%= render(partial: "make_public_btn", locals: {album: album})  %>
         </li>
       <% end %>
     </ul>
