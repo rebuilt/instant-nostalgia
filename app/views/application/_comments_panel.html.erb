@@ -8,7 +8,7 @@
         </span>
         <time class="comment__time" datetime=<%= "#{commentable.created_at}" %>>
           Posted <%= time_ago_in_words comment.created_at %> ago</time >
-        <% if current_user == comment.user %>
+        <% if logged_in? && current_user == comment.user %>
           <%= button_to  'Delete',  [commentable, comment], method: :delete, remote: true%>
         <% end %>
       </div>
