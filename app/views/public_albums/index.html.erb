@@ -1,13 +1,18 @@
 <main class="content-wrapper">
   <h1>Public Albums</h1>
 
-  <ul id="albumList" >
+  <ul id="albumList" class="albums" >
     <% @albums.each do |album| %>
-      <li id="album-<%= album.id  %>" class="row mt-2">
-        <h3><%= link_to album.title, album, class: "btn mr-1" %></h3>
-        <%= render(partial: "show_album_btn", locals: {album: album})  %>
-        <%= render(partial: "to_map_btn", locals: {album: album})  %>
-        <%= render(partial: "make_public_btn", locals: {album: album})  %>
+      <li id="album-<%= album.id  %>" class="column end mt-2">
+        <div class="row end">
+          <%= render(partial: "to_profile_btn", locals: {user: album.user})  %>
+          <h3><%= link_to album.title, album, class: "btn mr-1" %></h3>
+          <%= render(partial: "show_album_btn", locals: {album: album})  %>
+          <%= render(partial: "to_map_btn", locals: {album: album})  %>
+        </div>
+        <div class="row end">
+          <%= render(partial: "make_public_btn", locals: {album: album})  %>
+        </div>
       </li>
     <% end %>
   </ul>
