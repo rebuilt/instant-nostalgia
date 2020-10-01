@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @albums = @user.albums.reject { |album| album.public == false }
+    @private_albums = @user.albums.reject { |album| album.public == true }
+    @public_albums = @user.albums.reject { |album| album.public == false }
   end
 
   def new
