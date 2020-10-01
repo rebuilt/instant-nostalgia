@@ -7,6 +7,7 @@
     </div>
     <div class="media__body">
       <div class="details">
+          <%= image_tag(@photo.user.avatar.variant(resize: '200x200'), class: "avatar") if @photo.user.avatar.attached? %>
         <div class="details__owner">
           <p> <span class="beta">Photo uploaded by: </span> <span class="alpha"><%= @photo.user.username  %></span> </p>
         </div>
@@ -32,12 +33,12 @@
   </div>
   <div class="content-wrapper">
     <div class="comments">
-      <h2 class="comments__title">Discussion
-          <span id="comment-count-2">
-<%= @comments.count  %> <%= "comment".pluralize(@comments.count) %>
-          </span>
-      </h2>
-
+    <div class="comments_title row mb-5">
+      <h2 class="mr-3">Discussion</h2>
+      <span id="comment-count-2">
+        <%= @comments.count  %> <%= "comment".pluralize(@comments.count) %>
+      </span>
+    </div>
       <%= render partial: "comments_panel", locals: {commentable: @photo, comments: @comments}  %>
       <% if  logged_in?  %>
         <%= render partial: "comment_form", locals: {commentable: @photo, comment: @comment} %>
