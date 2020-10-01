@@ -31,9 +31,9 @@
   <% end %>
 
   <% if(logged_in? && current_user == @user)  %>
-  <h2 class="mt-5">Private Albums</h2>
-  <%= render(partial: "album_list", locals: {albums: @private_albums})  %>
-<% end %>
+    <h2 class="mt-5">Private Albums</h2>
+    <%= render(partial: "album_list", locals: {albums: @private_albums})  %>
+  <% end %>
   <h2 class="mt-5">Public Albums</h2>
 
   <%= render(partial: "album_list", locals: {albums: @public_albums})  %>
