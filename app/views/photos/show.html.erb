@@ -7,11 +7,9 @@
     </div>
     <div class="media__body">
       <div class="details">
-          <%= image_tag(@photo.user.avatar.variant(resize: '200x200'), class: "avatar") if @photo.user.avatar.attached? %>
-        <div class="details__owner">
-          <p> <span class="beta">Photo uploaded by: </span> <span class="alpha"><%= @photo.user.username  %></span> </p>
-        </div>
+        <%= image_tag(@photo.user.avatar.variant(resize: '200x200'), class: "avatar") if @photo.user.avatar.attached? %>
         <div class="details__intro">
+          <p> <span class="beta">Photo uploaded by: </span> <span class="alpha"><%= link_to(@photo.user.username,  user_path(@photo.user))  %></span> </p>
           <p> <span class="beta">File name: </span>  <%= @photo.file_name  %> </p>
           <p> <span class="beta">Date taken: </span> <%= @photo.date_time_digitized  %> </p>
           <p> <span class="beta">Latitude in degrees: </span>  <%= @photo.latitude_in_degrees  %> </p>
@@ -33,12 +31,12 @@
   </div>
   <div class="content-wrapper">
     <div class="comments">
-    <div class="comments_title row mb-5">
-      <h2 class="mr-3">Discussion</h2>
-      <span id="comment-count-2">
-        <%= @comments.count  %> <%= "comment".pluralize(@comments.count) %>
-      </span>
-    </div>
+      <div class="comments_title row mb-5">
+        <h2 class="mr-3">Discussion</h2>
+        <span id="comment-count-2">
+          <%= @comments.count  %> <%= "comment".pluralize(@comments.count) %>
+        </span>
+      </div>
       <%= render partial: "comments_panel", locals: {commentable: @photo, comments: @comments}  %>
       <% if  logged_in?  %>
         <%= render partial: "comment_form", locals: {commentable: @photo, comment: @comment} %>
