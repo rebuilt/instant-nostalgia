@@ -21,10 +21,26 @@
     <%= @user.last_name %>
   </div>
 
-  <div class="row mt-4">
-    <h2 class="mr-3">Email:</h2>
-    <%= @user.email %>
-  </div>
+  <% if(current_user == @user)  %>
+    <div class="row mt-4">
+      <h2 class="mr-3">Email:</h2>
+      <%= @user.email %>
+    </div>
 
-  <%= link_to 'Edit', edit_user_path(@user), class: "btn btn--primary max-content mt-5" %>
+    <%= link_to 'Edit', edit_user_path(@user), class: "btn btn--primary max-content mt-5" %>
+  <% end %>
+
+
+  <h2 class="mt-5">Public Albums</h2>
+
+  <ul id="albumList" >
+    <% @albums.each do |album| %>
+      <li id="album-<%= album.id  %>" class="row mt-2">
+        <h3><%= link_to album.title, album, class: "btn mr-1" %></h3>
+        <%= render(partial: "show_album_btn", locals: {album: album})  %>
+        <%= render(partial: "to_map_btn", locals: {album: album})  %>
+        <%= render(partial: "make_public_btn", locals: {album: album})  %>
+      </li>
+    <% end %>
+  </ul>
 </main>
