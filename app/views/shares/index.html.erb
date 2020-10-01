@@ -6,7 +6,7 @@
         <li id="album-<%= album.id  %>"class="mt-6">
           <%= form_with(url: new_share_path, method: :get, local: true) do |form|  %>
             <div class="row">
-              <h2 class="mr-3">Title:  </h2> <div class="mr-5"> <%= album.title  %> </div>
+              <h2 class="mr-3">Album:  </h2> <div class="mr-5"> <%= album.title  %> </div>
               <%# <p class="mr-5"> Share with additional people </p> %>
               <%= hidden_field_tag("album_id", album.id)  %>
               <%= form.submit("Share album", class: "btn btn--primary")  %>
@@ -19,8 +19,8 @@
               <div class="column">
                 <% album.shares.each do |share|  %>
                   <div class="row mt-3">
-        <%= image_tag(share.user.avatar.variant(resize: '100x100'), class: "avatar mr-3") if share.user.avatar.attached? %>
-        <p class="mr-3"> <%= share.user.username  %> </p>
+                    <%= image_tag(share.user.avatar.variant(resize: '100x100'), class: "avatar mr-3") if share.user.avatar.attached? %>
+                    <p class="mr-3"> <%= share.user.username  %> </p>
                     <p class="mr-3 "><%= share.user.email  %> </p>
                     <%= link_to 'Stop sharing', share_path(share), method: :delete, class: "btn btn--secondary no-radius mr-1", data: { confirm: 'Are you sure?', remote: true } %>
                   </div>
@@ -40,14 +40,14 @@
     <ul>
       <% @shares.each do |share|  %>
         <li id="share-<%= share.album.id  %>"class="row mt-6 ">
-        <%= image_tag(share.album.user.avatar.variant(resize: '100x100'), class: "avatar mr-3") if share.album.user.avatar.attached? %>
-        <p class="mr-3"> <%= share.album.user.username  %> </p>
+          <%= image_tag(share.album.user.avatar.variant(resize: '100x100'), class: "avatar mr-3") if share.album.user.avatar.attached? %>
+          <p class="mr-3"> <%= share.album.user.username  %> </p>
           <p class="mr-3"> <%= share.album.title  %> </p>
 
-        <%= render(partial: "show_album_btn", locals: {album: share.album})  %>
-        <%= render(partial: "to_map_btn", locals: {album: share.album})  %>
+          <%= render(partial: "show_album_btn", locals: {album: share.album})  %>
+          <%= render(partial: "to_map_btn", locals: {album: share.album})  %>
 
-        <%= link_to "Remove from 'albums shared with me'", share_path(share), method: :delete, class: "btn btn--secondary no-radius mr-1", data: { confirm: 'Are you sure?', remote: true } %>
+          <%= link_to "Remove from 'albums shared with me'", share_path(share), method: :delete, class: "btn btn--secondary no-radius mr-1", data: { confirm: 'Are you sure?', remote: true } %>
         </li>
       <% end %>
     </ul>
