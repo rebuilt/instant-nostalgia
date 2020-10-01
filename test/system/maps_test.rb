@@ -32,11 +32,15 @@ class MapsTest < ApplicationSystemTestCase
     user = create_user
     album = create_album(user)
     album.public = true
+    photo0 = create_photo(0, user)
+    album.photos << photo0
     album.save
 
     user2 = create_user('bob')
     album2 = create_album(user2)
     album2.public = true
+    photo1 = create_photo(1, user)
+    album2.photos << photo1
     album2.save
     visit maps_path
     click_on 'Open Public albums'
@@ -44,6 +48,8 @@ class MapsTest < ApplicationSystemTestCase
     page.check("publicAlbum[#{album2.id}]")
     click_on 'Filter'
     assert page.has_content? "Results for | publicAlbum: #{album.title} | publicAlbum: #{album2.title}"
+    assert page.find("#photo-#{photo0.id}")
+    assert page.find("#photo-#{photo1.id}")
   end
 
   test 'registered user can click on public album  ' do
@@ -51,6 +57,8 @@ class MapsTest < ApplicationSystemTestCase
     sign_in(user)
     album = create_album(user)
     album.public = true
+    photo0 = create_photo(0, user)
+    album.photos << photo0
     album.save
 
     visit maps_path
@@ -58,6 +66,7 @@ class MapsTest < ApplicationSystemTestCase
     page.check("publicAlbum[#{album.id}]")
     click_on 'Filter'
     assert page.has_content? "Results for | publicAlbum: #{album.title}"
+    assert page.find("#photo-#{photo0.id}")
   end
 
   test 'registered user can click on multiple public albums  ' do
@@ -65,11 +74,15 @@ class MapsTest < ApplicationSystemTestCase
     sign_in(user)
     album = create_album(user)
     album.public = true
+    photo0 = create_photo(0, user)
+    album.photos << photo0
     album.save
 
     user2 = create_user('bob')
     album2 = create_album(user2)
     album2.public = true
+    photo1 = create_photo(1, user)
+    album2.photos << photo1
     album2.save
 
     visit maps_path
@@ -78,6 +91,9 @@ class MapsTest < ApplicationSystemTestCase
     page.check("publicAlbum[#{album2.id}]")
     click_on 'Filter'
     assert page.has_content? "Results for | publicAlbum: #{album.title}"
+    assert page.has_content? "| publicAlbum: #{album2.title}"
+    assert page.find("#photo-#{photo0.id}")
+    assert page.find("#photo-#{photo1.id}")
   end
 
   test 'most recent photos show up for registered user' do
