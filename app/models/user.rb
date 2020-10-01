@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :email, :username, uniqueness: true
   validates :email, :password, :username, presence: true
   validates :password, length: { minimum: 8 }
-
+  validates :password, confirmation: { case_sensitive: true }
   before_validation :downcase_email
 
   def downcase_email
@@ -18,11 +18,11 @@ class User < ApplicationRecord
   end
 
   scope :search, lambda { |term|
-                   email_contains(term)
-                     .or(username_contains(term))
-                     .or(first_name_contains(term))
-                     .or(last_name_contains(term))
-                 }
+    email_contains(term)
+      .or(username_contains(term))
+      .or(first_name_contains(term))
+      .or(last_name_contains(term))
+  }
   scope :email_contains, ->(term) { where('email LIKE ?', "%#{term}%") }
   scope :username_contains, ->(term) { where('username LIKE ?', "%#{term}%") }
   scope :first_name_contains, ->(term) { where('first_name LIKE ?', "%#{term}%") }

@@ -1,36 +1,8 @@
 <main class="content-wrapper">
   <section class="envelope">
-      <h1 class="gamma">Sign Up</h1>
+      <h1 class="gamma mb-3">Sign Up</h1>
 
-    <div class="errors">
-      <% if(flash.any?)  %>
-        <div class="container message-container">
-          <% flash.each do |name, message|  %>
-            <div class="message <%= name  %> "> <%= message  %> </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
+  <%= render 'form', user: @user %>
 
-    <%= form_with(model: @user, local: true) do |form| %>
-      <div class="input-group">
-        <%= form.label :username , class: "input-group__label" %>
-        <%= form.text_field :username , class: "input-group__field" %>
-      </div>
-
-      <div class="input-group">
-        <%= form.label :email , class: "input-group__label  "%>
-        <%= form.text_field :email, class: "input-group__field" %>
-      </div>
-
-      <div class="input-group">
-        <%= form.label :password, class: "input-group__label" %>
-        <%= form.password_field :password, class: "input-group__field" %>
-      </div>
-
-      <div class="prompt">
-        <%= form.submit "Create Account", class: "btn btn--primary prompt__confirm"%>
-      </div>
-    <% end %>
   </section>
 </main>
