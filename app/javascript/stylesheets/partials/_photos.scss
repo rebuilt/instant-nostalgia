@@ -92,8 +92,6 @@
 
 .avatar {
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
 }
 
 .details {
@@ -102,13 +100,6 @@
 
 .details__owner p {
   margin: 0;
-}
-
-.details__owner .avatar {
-  float: left;
-  width: 20px;
-  height: 20px;
-  margin-right: 0.5em;
 }
 
 .details__meta {
