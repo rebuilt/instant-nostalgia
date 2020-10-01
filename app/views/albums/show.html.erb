@@ -9,7 +9,7 @@
     <%= render(partial: "make_public_btn", locals: {album: @album})  %>
   </div>
 
-  <h1 class="mt-3">Title: <span> <%= @album.title  %> </span> </h1>
+  <h1 class="mt-3">Album: <span> <%= @album.title  %> </span> </h1>
   <div class="photos">
     <div class="gallery">
       <% @album.photos.each do |photo|   %>
