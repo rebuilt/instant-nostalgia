@@ -2,7 +2,7 @@ const Comments = {}
 
 Comments.buildComment = function (comment) {
     const commentElement = document.createElement('li')
-    commentElement.setAttribute('class', 'comment')
+    commentElement.setAttribute('class', 'avatar')
     commentElement.setAttribute('id', comment.id)
 
     const comment__details = document.createElement('div')
@@ -10,7 +10,7 @@ Comments.buildComment = function (comment) {
 
     const avatar = document.createElement('img')
     avatar.setAttribute('alt', 'Avatar')
-    avatar.setAttribute('width', '42')
+    avatar.setAttribute('class', 'avatar')
     avatar.setAttribute('src', comment.avatar_url)
 
     const time = document.createElement('time')
@@ -18,8 +18,8 @@ Comments.buildComment = function (comment) {
     time.setAttribute('class', 'comment__time')
     time.textContent = comment.time_ago
 
-    const comment__body = document.createElement('p')
-    comment__body.setAttribute('class', 'comment__body')
+    const comment__body = document.createElement('div')
+    comment__body.setAttribute('class', 'trix-content')
     comment__body.textContent = comment.body
 
     const comment__name = document.createElement('span')
