@@ -1,18 +1,18 @@
-<ul class="comments__listing" id="commentList">
+<ul class="comments__listing mt-3" id="commentList">
   <% comments.each do |comment| %>
-    <li class="comment" id="id-<%=comment.id %>">
-        <div class="comment__details">
-          <%= image_tag("avatar.png", width: 42) %>
-          <span class="comment__name">
-            <%= comment.user.first_name %>
-          </span>
-          <time class="comment__time" datetime=<%= "#{commentable.created_at}" %>>
-            Posted <%= time_ago_in_words comment.created_at %> ago</time >
-          <% if current_user == comment.user %>
-            <%= button_to  'Delete',  [commentable, comment], method: :delete, remote: true%>
-          <% end %>
-        </div>
-        <p class="comment__body"><%= comment.body %></p>
+    <li class="comment mt-3" id="id-<%=comment.id %>">
+      <div class="comment__details">
+          <%= image_tag(comment.user.avatar.variant(resize: '100x100'), class: "avatar") if comment.user.avatar.attached? %>
+        <span class="comment__name">
+          <%= comment.user.first_name %>
+        </span>
+        <time class="comment__time" datetime=<%= "#{commentable.created_at}" %>>
+          Posted <%= time_ago_in_words comment.created_at %> ago</time >
+        <% if current_user == comment.user %>
+          <%= button_to  'Delete',  [commentable, comment], method: :delete, remote: true%>
+        <% end %>
+      </div>
+      <%= comment.body %>
     </li>
   <% end %>
 </ul>
