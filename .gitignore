@@ -42,3 +42,6 @@ yarn-debug.log*
 
 # ignore profiler output
 profile.log
+
+# ignore i18n config file
+/config/i18n-tasks.yml
