@@ -2,10 +2,10 @@
 <div id="<%= name.tr(" ", "-")  %>" class="filter-panel ml-4" >
     <div class="column mt-3 end">
       <p class="mb-3">This matches a day of any year.  Use it for things like birthdays, anniversaries, etc.</p>
-      <%= form.label("Day", "Day")  %>
+      <%= form.label(:day, "Day")  %>
       <%= form.select("day-selector", options_for_select(1..31), include_blank: true )%>
 
-      <%= form.label("Month", "Month")  %>
+      <%= form.label(:month, "Month")  %>
       <%= form.select("month-selector", options_for_select(1..12), include_blank: true)  %>
     </div>
 </div>
