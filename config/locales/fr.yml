@@ -1,12 +1,12 @@
 ---
-en:
-  albums: My albums
+fr:
+  albums: Albums
   login: Login
   logout: Logout
   map: Map
   photos: Photos
   profile: Profile
-  public_albums: Public albums
+  public-albums: Public-albums
   shared: Shared
   sign_up: Sign up
   upload: Upload

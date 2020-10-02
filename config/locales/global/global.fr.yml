@@ -1,0 +1,18 @@
+---
+fr:
+  global:
+    albums: My Albums
+    helpers:
+      label:
+        day: Day$$
+        month: Month##
+    login: Login
+    logout: Log out
+    map: Map
+    photos: Photos
+    profile: Profile
+    public-albums: Public Albums
+    shared: Shared
+    sign_up: Sign Up
+    upload: Upload
+    welcome: Welcome
