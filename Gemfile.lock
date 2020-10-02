@@ -87,6 +87,9 @@ GEM
     crass (1.0.6)
     debug_inspector (0.0.3)
     e2mmap (0.1.0)
+    easy_translate (0.5.1)
+      thread
+      thread_safe
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
@@ -277,6 +280,7 @@ GEM
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
     thor (1.0.1)
+    thread (0.2.2)
     thread_safe (0.3.6)
     tilt (2.0.10)
     turbolinks (5.2.1)
@@ -317,6 +321,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
+  easy_translate
   flamegraph
   geocoder
   guard-livereload (~> 2.5)
