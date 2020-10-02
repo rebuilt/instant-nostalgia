@@ -1,16 +1,18 @@
 <main class="content-wrapper">
   <section class="envelope">
-      <h1 class="gamma">Login</h1>
+    <h1 class="gamma">Login</h1>
 
-    <div class="errors">
-      <% if(flash.any?)  %>
-        <div class="container message-container">
-          <% flash.each do |name, message|  %>
-            <div class="message <%= name  %> "> <%= message  %> </div>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
           <% end %>
-        </div>
-      <% end %>
-    </div>
+        </ul>
+      </div>
+    <% end %>
 
     <%= form_tag( sessions_path) do %>
       <div class="input-group">
