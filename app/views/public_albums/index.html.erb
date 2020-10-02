@@ -3,7 +3,7 @@
 
   <ul id="albumList" >
     <% @albums.each do |album| %>
-      <li id="album-<%= album.id  %>" class="column end mt-2">
+      <li id="album-<%= album.id  %>" class="column end mt-2 mb-5">
         <div class="row">
           <div class="row">
             <%= render(partial: "show_album_btn", locals: {album: album})  %>
