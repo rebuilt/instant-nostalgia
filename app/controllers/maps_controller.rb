@@ -71,7 +71,7 @@ class MapsController < ApplicationController
       add_message(name, album.title)
       tmp = Photo.with_attached_image.joins(:albums).where(albums: { id: key })
 
-      # Can't use load method here because I have joined on :albums.  This mixes two activerecord model types. Meaning I will not be able to use .or method to join activerecord relations.  Instead I have to use the plus operator to join two arrays.  Any calls to load method after this point using .or will fail because @photos has been changed to an array from an activerecord relation.  Any operations on @photos after this method must assume it is an array, not a relation.  This is related to bug fixed on checkout 585fd28
+      # Can't use load method here because I have joined on :albums.  This mixes two activerecord model types, Photo and Album. Meaning I will not be able to use .or method to add activerecord relations.  Instead I have to use the plus operator to join two arrays.  Any calls to load method after this point using .or will fail because @photos has been changed to an array from an activerecord relation.  Any operations on @photos after this method must assume it is an array.  This is related to bug fixed on checkout 585fd28
       @photos = @photos.present? ? @photos + tmp : tmp
     end
     @photos
