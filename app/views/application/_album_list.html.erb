@@ -1,8 +1,8 @@
 <ul id="albumList" >
   <% albums.each do |album| %>
-    <li id="album-<%= album.id  %>" class="albums__item mt-3">
+    <li id="album-<%= album.id  %>" class="albums__item mt-3 mb-5">
       <div class="row">
-        <h3><%= link_to album.title, album, class: "btn mr-1" %></h3>
+        <h3><%= link_to album.title, album, class: "albums__title btn mr-1" %></h3>
         <%= render(partial: "show_album_btn", locals: {album: album})  %>
         <%= render(partial: "share_album_btn", locals: {album: album})  %>
         <%= render(partial: "delete_album_btn", locals: {album: album})  %>
