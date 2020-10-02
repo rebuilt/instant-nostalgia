@@ -6,9 +6,8 @@
     ========================================================================== */
 
 .content-wrapper {
-  margin: 50px auto;
-  max-width: 100em;
-  // width: 80%;
+  margin: 0;
+  width: 100%;
   padding: 0 1em;
 }
 
@@ -118,6 +117,12 @@
   .masthead .input-inline {
     max-width: 80%;
     margin: 0 auto;
+  }
+  .content-wrapper {
+    margin: 50px auto;
+    max-width: 100em;
+    width: 80%;
+    padding: 0 1em;
   }
 }
 
