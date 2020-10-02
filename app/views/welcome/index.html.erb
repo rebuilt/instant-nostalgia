@@ -1,12 +1,8 @@
 <main class="content-wrapper">
   <div class="envelope">
-    <h1>
-      <%= t('.heading')  %>
-    </h1>
-    <p>
-    <%= t('.message')  %>
-    </p>
-    <p>To use this website please: </p>
+    <h1> <%= t('.heading')  %> </h1>
+    <p> <%= t('.message')  %> </p>
+    <p> <%= t('.prompt')  %> </p>
     <div class="row mt-3">
 
       <div>
@@ -19,8 +15,8 @@
       </div>
     </div>
     <div class="mt-5">
-      <div> Or view public albums on the <%= link_to "Map", maps_path, class: "btn btn--primary max-content", data: {turbolinks: 'false'}  %>
-      </div>
+      <p class="mb-3"> <%= t('.option')  %> </p>
+        <%= link_to "Map", maps_path, class: "btn btn--primary max-content", data: {turbolinks: 'false'}  %>
     </div>
   </div>
 </main>
