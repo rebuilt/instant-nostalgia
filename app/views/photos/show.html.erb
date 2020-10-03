@@ -7,7 +7,7 @@
     </div>
     <div class="media__body">
       <div class="details">
-        <%= image_tag(@photo.user.avatar.variant(resize: '200x200'), class: "avatar") if @photo.user.avatar.attached? %>
+        <%= image_tag(@photo.user.avatar.variant(resize: '100x100'), class: "avatar end") if @photo.user.avatar.attached? %>
         <div class="details__intro">
           <p> <span class="beta">Photo uploaded by: </span> <span class="alpha"><%= link_to(@photo.user.username,  user_path(@photo.user))  %></span> </p>
           <p> <span class="beta">File name: </span>  <%= @photo.file_name  %> </p>
