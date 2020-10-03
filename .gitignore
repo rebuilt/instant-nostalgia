@@ -44,4 +44,4 @@ yarn-debug.log*
 profile.log
 
 # ignore i18n config file
-/config/i18n-tasks.yml
+config/i18n-tasks.yml
