@@ -20,6 +20,7 @@ module CapstoneProjectWadC5S4750
       g.test_framework :test_unit, fixture: false
     end
 
+    I18n.available_locales = %i[en es fr]
     config.i18n.default_locale = :en
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
