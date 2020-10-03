@@ -2,7 +2,7 @@ require_relative 'date_tools'
 
 class MapsController < ApplicationController
   def index
-    flash[:message] = 'Results for | '
+    flash.now[:message] = 'Results for | '
     if logged_in?
       load_photos_by_area(:city) if params[:city].present?
       load_photos_by_area(:state) if params[:state].present?
@@ -46,7 +46,7 @@ class MapsController < ApplicationController
   end
 
   def add_message(filtered_by, value)
-    flash[:message] = flash[:message] + "  #{filtered_by}: #{value} |"
+    flash.now[:message] = flash.now[:message] + "  #{filtered_by}: #{value} |"
   end
 
   def load_photos_by_area(area)
