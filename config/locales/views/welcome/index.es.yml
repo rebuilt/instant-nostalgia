@@ -1,0 +1,8 @@
+---
+es:
+  welcome:
+    index:
+      heading: Bienvenido al sitio!
+      message: Vea sus fotos mapeadas. Filtra fácilmente tu conjunto de fotos. Cree álbumes para compartir con usuarios individuales o compartir con el mundo
+      option: O vea álbumes públicos en
+      prompt: 'Para utilizar este sitio web:'

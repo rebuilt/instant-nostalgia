@@ -1,12 +1,12 @@
 ---
 fr:
-  albums: Albums
-  login: Login
-  logout: Logout
-  map: Map
+  albums: Mes albums
+  login: S'identifier
+  logout: Se déconnecter
+  map: Carte
   photos: Photos
-  profile: Profile
-  public-albums: Public-albums
-  shared: Shared
-  sign_up: Sign up
-  upload: Upload
+  profile: Profil
+  public_albums: Albums publics
+  shared: partagé
+  sign_up: S'inscrire
+  upload: Télécharger

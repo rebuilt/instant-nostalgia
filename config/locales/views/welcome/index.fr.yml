@@ -2,5 +2,7 @@
 fr:
   welcome:
     index:
-      heading: Welcome to the site!
-      message: See your photos mapped out.  Easily filter your photoset.  Create albums to share with individual users or share with the world
+      heading: Bienvenue sur le site!
+      message: Voir vos photos tracées. Filtrez facilement votre ensemble de photos. Créez des albums à partager avec des utilisateurs individuels ou à partager avec le monde
+      option: Ou consultez les albums publics sur le
+      prompt: 'Pour utiliser ce site Web, veuillez:'
