@@ -1,5 +1,17 @@
 ---
 fr:
+  activerecord:
+    attributes:
+      user:
+        avatar: Image de profil
+        email: Email
+        first_name: Prénom
+        last_name: Nom de famille
+        password: Mot de passe
+        password_confirmation: Confirmation mot de passe
+        username: Nom d'utilisateur
+    models:
+      user: Utilisateur
   albums: Mes albums
   login: S'identifier
   logout: Se déconnecter

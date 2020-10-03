@@ -10,3 +10,15 @@ en:
   shared: Shared
   sign_up: Sign up
   upload: Upload
+  activerecord:
+    models:
+      user: User
+    attributes:
+      user:
+        email: Email
+        password: Password
+        username: Username
+        first_name: First name
+        last_name: Last name
+        avatar: Profile image
+        password_confirmation: Password Confirmation

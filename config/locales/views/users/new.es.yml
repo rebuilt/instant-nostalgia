@@ -1,0 +1,5 @@
+---
+es:
+  users:
+    new:
+      error: 'prohibió que este usuario se salve:'

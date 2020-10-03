@@ -1,7 +1,7 @@
 <%= form_with(model: user, local: true) do |form| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h2><%= pluralize(user.errors.count, "error") %> <%= t('error')  %> </h2>
 
       <ul>
         <% user.errors.full_messages.each do |message| %>
@@ -16,7 +16,7 @@
   </div>
 
   <div class="input-group">
-    <%= form.label "Profile image", class: "input-group__label" %>
+    <%= form.label User.human_attribute_name(:avatar), class: "input-group__label" %>
     <%= form.file_field :avatar, class: 'input-group__file' %>
   </div>
 
