@@ -5,7 +5,7 @@ class MapsTest < ApplicationSystemTestCase
     sign_in(create_user)
     visit maps_path
     assert_current_path maps_path
-    assert page.has_content? 'Most recent'
+    assert page.has_content? I18n.t('controllers.maps.recent')
   end
 
   test 'anonymous user visits index' do
@@ -102,7 +102,7 @@ class MapsTest < ApplicationSystemTestCase
     photo0 = create_photo(0, user)
     photo1 = create_photo(1, user)
     visit maps_path
-    assert page.has_content? 'Most recent'
+    assert page.has_content? I18n.t('controllers.maps.recent')
     assert page.find("#photo-#{photo0.id}")
     assert page.find("#photo-#{photo1.id}")
   end
