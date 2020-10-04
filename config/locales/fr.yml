@@ -29,6 +29,11 @@ fr:
   albums: Mes albums
   change_privacy_prompt: Créez cet album
   change_privacy_title: S'il est rendu public, cet album sera visible par tous les utilisateurs. S'il est privé, cet album ne sera visible que par les utilisateurs avec lesquels vous avez explicitement partagé cet album
+  date:
+    order:
+    - :day
+    - :month
+    - :year
   login: S'identifier
   logout: Se déconnecter
   map: Carte

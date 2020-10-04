@@ -29,6 +29,11 @@ es:
   albums: Mis álbumes
   change_privacy_prompt: Hacer este álbum
   change_privacy_title: Si se hace público, todos los usuarios podrán ver este álbum. Si es privado, este álbum solo será visible para los usuarios con los que hayas compartido explícitamente este álbum.
+  date:
+    order:
+    - :day
+    - :month
+    - :year
   login: Iniciar sesión
   logout: Cerrar sesión
   map: Mapa
