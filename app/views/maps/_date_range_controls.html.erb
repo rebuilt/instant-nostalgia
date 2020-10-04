@@ -2,8 +2,8 @@
 <div id="<%= name.tr(" ", "-")  %>" class="filter-panel ml-4" >
     <div class="column mt-3 ">
 
-      <%= form.label("Start Date", "Start Date", class: "gamma mb-1")  %>
-      <%= date_select("start-date", "start-date", start_year: 2010, prompt: true)  %>
+      <%= form.label(t('start_date'), "Start Date", class: "gamma mb-1")  %>
+      <%= date_select(t('start-date'), "start-date", start_year: 2010, prompt: true)  %>
     </div>
 
     <div class="column mt-3 ">

@@ -1,0 +1,9 @@
+---
+fr:
+  photos:
+    new:
+      description_end: plus de photos
+      description_start: Vous pouvez télécharger
+      instructions: Faites glisser et déposez des photos ici
+      or: ou
+      upload_title: Télécharger des photos

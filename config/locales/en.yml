@@ -4,15 +4,30 @@ en:
   login: Login
   logout: Logout
   map: Map
-  photos: Photos
   profile: Profile
   public_albums: Public albums
   shared: Shared
   sign_up: Sign up
   upload: Upload
+  to_album: View photos
+  to_album_title: View the photos of this album
+  to_map: "Plot on map"
+  to_map_title: "Go to maps page and plot photos from this album on the map"
+  public: public
+  private: private
+  change_privacy_prompt: Make this album
+  change_privacy_title:  "If made public, this album will be viewable by all users. If private, this album will be visible only by users with which you have explicitly shared this album"
   activerecord:
     models:
-      user: User
+      user:
+        one: User
+        other: Users
+      album:
+        one: Album
+        other: Albums
+      photo:
+        one: Photo
+        other: Photos
     attributes:
       user:
         email: Email

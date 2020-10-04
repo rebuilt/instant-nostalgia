@@ -11,14 +11,25 @@ fr:
         password_confirmation: Confirmation mot de passe
         username: Nom d'utilisateur
     models:
+      album: Album
+      photo:
+        one: Photo
+        other: Photos
       user: Utilisateur
   albums: Mes albums
+  change_privacy_prompt: Créez cet album
+  change_privacy_title: S'il est rendu public, cet album sera visible par tous les utilisateurs. S'il est privé, cet album ne sera visible que par les utilisateurs avec lesquels vous avez explicitement partagé cet album
   login: S'identifier
   logout: Se déconnecter
   map: Carte
-  photos: Photos
+  private: privé
   profile: Profil
+  public: Publique
   public_albums: Albums publics
   shared: partagé
   sign_up: S'inscrire
+  to_album: Voir les photos
+  to_album_title: Voir les photos de cet album
+  to_map: Tracer sur la carte
+  to_map_title: Accédez à la page des cartes et tracez les photos de cet album sur la carte
   upload: Télécharger

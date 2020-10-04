@@ -11,14 +11,25 @@ es:
         password_confirmation: Confirmación de contraseña
         username: Nombre de usuario
     models:
+      album: Álbum
+      photo:
+        one: Foto
+        other: Fotos
       user: Usuario
   albums: Mis álbumes
+  change_privacy_prompt: Hacer este álbum
+  change_privacy_title: Si se hace público, todos los usuarios podrán ver este álbum. Si es privado, este álbum solo será visible para los usuarios con los que hayas compartido explícitamente este álbum.
   login: Iniciar sesión
   logout: Cerrar sesión
   map: Mapa
-  photos: Fotos
+  private: privado
   profile: Perfil
+  public: público
   public_albums: Álbumes públicos
   shared: Compartido
   sign_up: Regístrate
+  to_album: Ver fotos
+  to_album_title: Ver las fotos de este álbum
+  to_map: Trazar en mapa
+  to_map_title: Vaya a la página de mapas y trace las fotos de este álbum en el mapa
   upload: Subir

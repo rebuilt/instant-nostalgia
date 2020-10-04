@@ -1,0 +1,6 @@
+---
+es:
+  maps:
+    index:
+      start-date: fecha de inicio
+      start_date: Fecha de inicio

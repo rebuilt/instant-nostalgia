@@ -1,0 +1,9 @@
+---
+es:
+  photos:
+    new:
+      description_end: más fotos
+      description_start: Puedes subir
+      instructions: Arrastra y suelta fotos aquí
+      or: o
+      upload_title: Subir fotos

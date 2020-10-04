@@ -1,6 +1,6 @@
-<%= link_to "Plot on map",
+<%= link_to t('to_map'),
   maps_path(locale: I18n.locale,
             params: { "album[#{album.id}]" => "1" }) ,
             class: "btn btn--primary mr-1  " ,
             data: {turbolinks: 'false'},
-            title: "Go to maps page and plot photos from this album on the map" %>
+            title: t('to_map_title')%>
