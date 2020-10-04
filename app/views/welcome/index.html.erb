@@ -9,14 +9,14 @@
         <%= link_to t('sign_up'), new_user_path, class: "btn btn--primary mr-3 welcome"  %>
       </div>
 
-      <div class="ml-3 mr-3">or</div>
+      <div class="ml-3 mr-3"> <%= t('photos.new.or')  %> </div>
       <div>
         <%= link_to t('login'), new_session_path , class: "btn btn--primary welcome " %>
       </div>
     </div>
     <div class="mt-5">
       <p class="mb-3"> <%= t('.option')  %> </p>
-        <%= link_to "Map", maps_path, class: "btn btn--primary max-content", data: {turbolinks: 'false'}  %>
+        <%= link_to t('map'), maps_path, class: "btn btn--primary max-content", data: {turbolinks: 'false'}  %>
     </div>
   </div>
 </main>

@@ -2,3 +2,5 @@ en:
   users:
     new:
       error: "prohibited this user from being saved: "
+    form:
+      submit: "Submit"

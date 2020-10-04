@@ -28,6 +28,12 @@ en:
       photo:
         one: Photo
         other: Photos
+    errors:
+      models:
+        user:
+          attributes:
+            password_confirmation:
+              confirmation: does not match password
     attributes:
       user:
         email: Email

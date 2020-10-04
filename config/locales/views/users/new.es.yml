@@ -1,5 +1,10 @@
 ---
 es:
   users:
+    form:
+      submit: Crear usuario
     new:
       error: 'prohibió que este usuario se salve:'
+      form:
+        submit: Crear usuario
+      submit: Crear usuario

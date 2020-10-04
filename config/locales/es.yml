@@ -10,12 +10,22 @@ es:
         password: Contraseña
         password_confirmation: Confirmación de contraseña
         username: Nombre de usuario
+    errors:
+      models:
+        user:
+          attributes:
+            password_confirmation:
+              confirmation: no coincide con la contraseña
     models:
-      album: Álbum
+      album:
+        one: Álbum
+        other: Álbumes
       photo:
         one: Foto
         other: Fotos
-      user: Usuario
+      user:
+        one: Usuario
+        other: Usuarios
   albums: Mis álbumes
   change_privacy_prompt: Hacer este álbum
   change_privacy_title: Si se hace público, todos los usuarios podrán ver este álbum. Si es privado, este álbum solo será visible para los usuarios con los que hayas compartido explícitamente este álbum.
