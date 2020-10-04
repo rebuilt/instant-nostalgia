@@ -1,6 +1,5 @@
 ---
 en:
-  albums: My albums
   login: Login
   logout: Logout
   map: Map
@@ -9,14 +8,7 @@ en:
   shared: Shared
   sign_up: Sign up
   upload: Upload
-  to_album: View photos
-  to_album_title: View the photos of this album
-  to_map: "Plot on map"
-  to_map_title: "Go to maps page and plot photos from this album on the map"
-  public: public
-  private: private
-  change_privacy_prompt: Make this album
-  change_privacy_title:  "If made public, this album will be viewable by all users. If private, this album will be visible only by users with which you have explicitly shared this album"
+  edit: Edit
   activerecord:
     models:
       user:
@@ -43,5 +35,7 @@ en:
         last_name: Last name
         avatar: Profile image
         password_confirmation: Password Confirmation
+      album:
+        title: Title
   date:
     order: [ !ruby/symbol day, !ruby/symbol month, !ruby/symbol year ]

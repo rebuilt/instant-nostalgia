@@ -3,7 +3,7 @@
 <main class="content-wrapper">
   <p id="notice"><%= notice %></p>
 
-  <h1>Albums</h1>
+  <h1> <%= Album.model_name.human(count: 2)  %> </h1>
 
   <div class="column">
 
@@ -29,7 +29,7 @@
         </div>
 
         <div class="input-group">
-          <%= form.submit class: "btn btn--primary"%>
+          <%= form.submit t('.submit'), class: "btn btn--primary"%>
         </div>
       </div>
     <% end %>
@@ -38,15 +38,17 @@
   </div>
 
   <div class="photos mt-5 pt-5">
-    <h2 class="mb-5">Your Photos</h2>
+    <h2 class="mb-5">
+      <%= t('.photo_heading')  %>
+    </h2>
 
     <%= form_with(url: photo_album_path(1), method: :patch, local: true) do |form| %>
       <div class="actions row">
-        <p class="mr-4"> Select an album  </p>
+        <p class="mr-4"> <%= t('.select')  %> </p>
         <div class="mr-5">
           <%= select_tag("album-selector", options_from_collection_for_select(current_user.albums, "id", "title" ))  %>
         </div>
-        <%= form.submit("Add to album", class: "btn btn--primary ml-5") %>
+        <%= form.submit(t('.add'), class: "btn btn--primary ml-5") %>
       </div>
 
       <div class="gallery mt-5">

@@ -2,6 +2,8 @@
 es:
   activerecord:
     attributes:
+      album:
+        title: Título
       user:
         avatar: Imagen de perfil
         email: Correo electrónico
@@ -26,7 +28,9 @@ es:
       user:
         one: Usuario
         other: Usuarios
-  albums: Mis álbumes
+  albums:
+    form:
+      submit: Crear albúm
   change_privacy_prompt: Hacer este álbum
   change_privacy_title: Si se hace público, todos los usuarios podrán ver este álbum. Si es privado, este álbum solo será visible para los usuarios con los que hayas compartido explícitamente este álbum.
   date:
@@ -34,6 +38,7 @@ es:
     - :day
     - :month
     - :year
+  edit: Editar
   login: Iniciar sesión
   logout: Cerrar sesión
   map: Mapa

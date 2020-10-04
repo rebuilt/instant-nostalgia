@@ -1,14 +1,14 @@
 <% if(logged_in? && album.user == current_user)  %>
   <%
-  public_status = "#{t('change_privacy_prompt')} #{t('private')}" if album.public
-  public_status = "#{t('change_privacy_prompt')} #{t('public')}" unless album.public
+  public_status = "#{t('global.buttons.change_privacy_prompt')} #{t('global.private')}" if album.public
+  public_status = "#{t('global.buttons.change_privacy_prompt')} #{t('global.public')}" unless album.public
 %>
-<%= link_to(public_status, album_toggle_public_path(album), id: "public-status-button-#{album.id}", remote: true, method: :post,  class: "btn btn--secondary mr-3 ", title: t('change_privacy_title')) %>
+<%= link_to(public_status, album_toggle_public_path(album), id: "public-status-button-#{album.id}", remote: true, method: :post,  class: "btn btn--secondary mr-3 ", title: t('global.buttons.change_privacy_title')) %>
 <div id="output-<%= album.id  %>" class="delta">
   <% if(album.public)  %>
-    <%= t('public').capitalize  %> <%= Album.model_name.human  %>
+    <%= t('global.public').capitalize  %> <%= Album.model_name.human  %>
   <% else  %>
-    <%= t('private').capitalize  %> <%= Album.model_name.human  %>
+    <%= t('global.private').capitalize  %> <%= Album.model_name.human  %>
   <% end %>
 </div>
 <% end %>

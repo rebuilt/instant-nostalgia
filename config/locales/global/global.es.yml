@@ -1,4 +1,18 @@
 ---
 es:
   global:
+    albums: Mis álbumes
+    buttons:
+      change_privacy_prompt: Hacer este álbum
+      change_privacy_title: Si se hace público, todos los usuarios podrán ver este álbum. Si es privado, este álbum solo será visible para los usuarios con los que hayas compartido explícitamente este álbum.
+      delete_album: Eliminar álbum
+      delete_album_title: Elimina el álbum. No elimina ninguna foto del álbum.
+      share_with: Compartir con un usuario
+      share_with_title: Comparta estos álbumes con una persona específica. Esto hace que el álbum sea visible solo para las personas con las que eligió compartir.
+      to_album: Ver fotos
+      to_album_title: Ver las fotos de este álbum
+      to_map: Trazar en mapa
+      to_map_title: Vaya a la página de mapas y trace las fotos de este álbum en el mapa
+    private: privado
+    public: público
     welcome: Bienvenido

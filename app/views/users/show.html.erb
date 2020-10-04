@@ -1,5 +1,5 @@
 <main class="content-wrapper">
-  <h1>User details</h1>
+  <h1> <%= t('.title')  %> </h1>
   <p id="notice"><%= notice %></p>
 
   <div class="input-group">
@@ -7,34 +7,35 @@
   </div>
 
   <div class="row mt-5">
-    <h2 class="mr-3 ">Username:</h2>
+    <h2 class="mr-3 ">
+      <%= User.human_attribute_name(:username) %>:</h2>
     <%= @user.username %>
   </div>
 
   <div class="row mt-4">
-    <h2 class="mr-3">First name:</h2>
+    <h2 class="mr-3"> <%= User.human_attribute_name(:first_name)  %>:</h2>
     <%= @user.first_name %>
   </div>
 
   <div class="row mt-4">
-    <h2 class="mr-3">Last name:</h2>
+    <h2 class="mr-3"> <%= User.human_attribute_name(:last_name)  %>: </h2>
     <%= @user.last_name %>
   </div>
 
   <% if(logged_in? && current_user == @user)  %>
     <div class="row mt-4">
-      <h2 class="mr-3">Email:</h2>
+      <h2 class="mr-3"> <%= User.human_attribute_name(:email)  %>:</h2>
       <%= @user.email %>
     </div>
 
-    <%= link_to 'Edit', edit_user_path(@user), class: "btn btn--primary max-content mt-5" %>
+    <%= link_to t('.edit'), edit_user_path(@user), class: "btn btn--primary max-content mt-5" %>
   <% end %>
 
   <% if(logged_in? && current_user == @user)  %>
-    <h2 class="mt-5">Private Albums</h2>
+    <h2 class="mt-5"> <%= t('.private_albums')  %> </h2>
     <%= render(partial: "album_list", locals: {albums: @private_albums})  %>
   <% end %>
-  <h2 class="mt-5">Public Albums</h2>
+  <h2 class="mt-5"> <%= t('public_albums')  %> </h2>
 
   <%= render(partial: "album_list", locals: {albums: @public_albums})  %>
 </main>

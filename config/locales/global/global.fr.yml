@@ -2,6 +2,17 @@
 fr:
   global:
     albums: My Albums
+    buttons:
+      change_privacy_prompt: Créez cet album
+      change_privacy_title: S'il est rendu public, cet album sera visible par tous les utilisateurs. S'il est privé, cet album ne sera visible que par les utilisateurs avec lesquels vous avez explicitement partagé cet album
+      delete_album: Supprimer l'album
+      delete_album_title: Supprime l'album. Ne supprime aucune photo de l'album.
+      share_with: Partager avec un utilisateur
+      share_with_title: Partagez ces albums avec une personne spécifique. Cela rend l'album visible uniquement par les personnes avec lesquelles vous avez choisi de partager.
+      to_album: Voir les photos
+      to_album_title: Voir les photos de cet album
+      to_map: Tracer sur la carte
+      to_map_title: Accédez à la page des cartes et tracez les photos de cet album sur la carte
     helpers:
       label:
         day: Day$$
@@ -10,7 +21,9 @@ fr:
     logout: Log out
     map: Map
     photos: Photos
+    private: privé
     profile: Profile
+    public: Publique
     public-albums: Public Albums
     shared: Shared
     sign_up: Sign Up

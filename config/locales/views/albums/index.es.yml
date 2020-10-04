@@ -1,0 +1,11 @@
+---
+es:
+  albums:
+    index:
+      add: Agregar al álbum
+      form:
+        submit: Crear albúm
+      photo_heading: Tus fotos
+      select: Seleccionar un álbum
+      submit: Crear albúm
+      title: Título

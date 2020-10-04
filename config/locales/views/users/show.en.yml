@@ -1,0 +1,6 @@
+en:
+  users:
+    show:
+      title: User details
+      edit: Edit
+      private_albums: Private Albums

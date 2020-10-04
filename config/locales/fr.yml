@@ -2,6 +2,8 @@
 fr:
   activerecord:
     attributes:
+      album:
+        title: Titre
       user:
         avatar: Image de profil
         email: Email
@@ -26,7 +28,9 @@ fr:
       user:
         one: Utilisateur
         other: Utilisateurs
-  albums: Mes albums
+  albums:
+    form:
+      submit: Créer un album
   change_privacy_prompt: Créez cet album
   change_privacy_title: S'il est rendu public, cet album sera visible par tous les utilisateurs. S'il est privé, cet album ne sera visible que par les utilisateurs avec lesquels vous avez explicitement partagé cet album
   date:
@@ -34,6 +38,7 @@ fr:
     - :day
     - :month
     - :year
+  edit: Éditer
   login: S'identifier
   logout: Se déconnecter
   map: Carte
