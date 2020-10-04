@@ -17,6 +17,9 @@ fr:
       to_map_title: Accédez à la page des cartes et tracez les photos de cet album sur la carte
       to_photo: Afficher les détails
       to_photo_title: Voir les détails de la photo et les commentaires
+    date_range: Plage de dates
+    day: journée
+    day_of_year: Jour de l'année
     helpers:
       label:
         day: Day$$
@@ -24,6 +27,7 @@ fr:
     login: Login
     logout: Log out
     map: Map
+    month: Mois
     photos: Photos
     private: privé
     profile: Profile

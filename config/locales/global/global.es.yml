@@ -17,6 +17,10 @@ es:
       to_map_title: Vaya a la página de mapas y trace las fotos de este álbum en el mapa
       to_photo: Mostrar detalles
       to_photo_title: Ver detalles de la foto y comentarios
+    date_range: Rango de fechas
+    day: Día
+    day_of_year: Día del año
+    month: Mes
     private: privado
     public: público
     welcome: Bienvenido

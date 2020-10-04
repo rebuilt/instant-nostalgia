@@ -6,11 +6,11 @@
 
     <div class="filters" data-controller="collapsible">
       <% if(logged_in?)  %>
-        <%= render partial: "date_controls", locals: {name: "Day of year", form: form}  %>
-        <%= render partial: "date_range_controls", locals: {name: "Date range", form: form}  %>
-        <%= render partial: "area_checkboxes", locals: {area: @cities, name: "city", form: form}  %>
-        <%= render partial: "area_checkboxes", locals: {area: @states, name: "state", form: form}  %>
-        <%= render partial: "area_checkboxes", locals: {area: @countries, name: "country", form: form}  %>
+        <%= render partial: "date_controls", locals: {name: t('global.day_of_year'), form: form}  %>
+        <%= render partial: "date_range_controls", locals: {name: t('global.date_range'), form: form}  %>
+        <%= render partial: "area_checkboxes", locals: {area: @cities, name: Photo.human_attribute_name(:city), param: 'city', form: form}  %>
+        <%= render partial: "area_checkboxes", locals: {area: @states, name: "state", param: 'state', form: form}  %>
+        <%= render partial: "area_checkboxes", locals: {area: @countries, name: "country", param: 'country', form: form}  %>
         <%= render partial: "albums_checkboxes", locals: {albums: @albums, name: "My albums", form: form, param: "album"}  %>
         <%= render partial: "albums_checkboxes", locals: {albums: @shared_albums, name: "Shared albums", form: form, param: "album"}  %>
       <% end %>
@@ -38,7 +38,7 @@
     <% @photos.each do |photo|  %>
       <div id="photo-<%= photo.id  %>" class="tartist-tiny-slider__item column" data-controller="map" data-map-id="<%=  photo.id  %>" data-action="click->map#center">
         <%= image_tag(photo.image.variant(resize: '200x200'), class: "tns-lazy-img", data: { src: rails_representation_url(photo.image.variant(resize: '200x200')) }) if photo.image.attached? %>
-        <%= link_to "Show details", photo_path(photo), class: "btn btn--secondary btn--img__small "  %>
+        <%= link_to t('global.buttons.to_photo'), photo_path(photo), class: "btn btn--secondary btn--img__small ", title: t('global.buttons.to_photo_title')  %>
       </div>
     <% end %>
   <% else  %>

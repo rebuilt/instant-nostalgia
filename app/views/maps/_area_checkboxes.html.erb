@@ -1,6 +1,6 @@
 <button type="button" class="collapsible" data-target="collapsible.button" data-action="click->collapsible#toggle">Open <%= name.pluralize.capitalize %> </button>
-<div id="<%= name.tr(" ", "-")  %>" class="filter-panel ml-4" data-controller="filterable" >
-  <input id="input-<%= name  %>"
+<div id="<%= param.tr(" ", "-")  %>" class="filter-panel ml-4" data-controller="filterable" >
+  <input id="input-<%= param  %>"
          data-target="filterable.source"
          data-action="input->filterable#filter"
          type="text"
@@ -12,7 +12,7 @@
                 data-target="filterable.filterable"
                 data-filter-key="<%= a.downcase  %>" >
                 <%= form.label(a, a)  %>
-                <%= form.check_box("#{name}[#{a}]", value: a)  %>
+                <%= form.check_box("#{param}[#{a}]", value: a)  %>
            </div>
          <% end %>
 </div>

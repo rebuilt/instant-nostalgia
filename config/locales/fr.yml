@@ -51,15 +51,49 @@ fr:
     - :year
   datetime:
     distance_in_words:
+      about_x_hours:
+        one: Environ 1 heure
+        other: environ %{count} heures
+      about_x_months:
+        one: environ 1 mois
+        other: environ %{count} mois
+      about_x_years:
+        one: environ 1 an
+        other: environ %{count} ans
+      almost_x_years:
+        one: presque 1 an
+        other: presque %{count} ans
+      half_a_minute: une demi-minute
       less_than_x_minutes:
-        one: une minute
-        other: "%{count} minutes"
+        one: moins d'une minute
+        other: moins de %{count} minutes
+      less_than_x_seconds:
+        one: moins d'une seconde
+        other: moins de %{count} secondes
+      over_x_years:
+        one: sur 1 an
+        other: sur %{count} ans
       x_days:
         one: Un jour
         other: "%{count} jours"
       x_minutes:
-        one: une minute
+        one: 1 minute
         other: "%{count} minutes"
+      x_months:
+        one: 1 mois
+        other: "%{count} mois"
+      x_seconds:
+        one: 1 seconde
+        other: "%{count} secondes"
+      x_years:
+        one: 1 an
+    prompts:
+      day: journée
+      hour: Heure
+      minute: Minute
+      month: Mois
+      second: Seconde
+      year: Année
   delete: Effacer
   edit: Éditer
   login: S'identifier

@@ -5,6 +5,10 @@ en:
     public: public
     private: private
     albums: My Albums
+    day: Day
+    month: Month
+    day_of_year: "Day of year"
+    date_range: "Date range"
     buttons:
       share_with: Share with a user
       share_with_title: "Share this albums with a specific person.  This makes the album visible only to the people you chose to share with."
