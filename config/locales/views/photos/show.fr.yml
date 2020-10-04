@@ -1,0 +1,11 @@
+---
+fr:
+  photos:
+    show:
+      add: Ajouter un commentaire
+      comment: commentaire
+      directions: Obtenir des directions
+      discussion: Discussion
+      submit: Publier
+      upload_by: 'Photo téléchargée par:'
+      uploaded_on: Téléchargé le

@@ -3,6 +3,7 @@ es:
   albums:
     index:
       add: Agregar al álbum
+      error: 'prohibió que este álbum se guarde:'
       form:
         submit: Crear albúm
       photo_heading: Tus fotos

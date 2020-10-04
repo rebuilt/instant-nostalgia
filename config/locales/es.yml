@@ -4,6 +4,15 @@ es:
     attributes:
       album:
         title: Título
+      photo:
+        city: Ciudad
+        country: País
+        file_name: Nombre del archivo
+        latitude_in_decimal: Latitud en decimal
+        latitude_in_degrees: Latitud en grados
+        longitude_in_decimal: Longitud en decimal
+        longitude_in_degrees: Longitud en grados
+        state: Estado
       user:
         avatar: Imagen de perfil
         email: Correo electrónico
@@ -28,28 +37,36 @@ es:
       user:
         one: Usuario
         other: Usuarios
-  albums:
-    form:
-      submit: Crear albúm
-  change_privacy_prompt: Hacer este álbum
-  change_privacy_title: Si se hace público, todos los usuarios podrán ver este álbum. Si es privado, este álbum solo será visible para los usuarios con los que hayas compartido explícitamente este álbum.
+  application:
+    comment_form:
+      add: Añadir un comentario
+      submit: Enviar
+    comments_panel:
+      ago: hace
+      posted: Al corriente
   date:
     order:
     - :day
     - :month
     - :year
+  datetime:
+    distance_in_words:
+      less_than_x_minutes:
+        one: un minuto
+        other: "%{count} minutos"
+      x_days:
+        one: 1 día
+        other: "%{count} días"
+      x_minutes:
+        one: un minuto
+        other: "%{count} minutos"
+  delete: Eliminar
   edit: Editar
   login: Iniciar sesión
   logout: Cerrar sesión
   map: Mapa
-  private: privado
   profile: Perfil
-  public: público
   public_albums: Álbumes públicos
   shared: Compartido
   sign_up: Regístrate
-  to_album: Ver fotos
-  to_album_title: Ver las fotos de este álbum
-  to_map: Trazar en mapa
-  to_map_title: Vaya a la página de mapas y trace las fotos de este álbum en el mapa
   upload: Subir

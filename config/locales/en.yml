@@ -9,6 +9,7 @@ en:
   sign_up: Sign up
   upload: Upload
   edit: Edit
+  delete: Delete
   activerecord:
     models:
       user:
@@ -37,5 +38,32 @@ en:
         password_confirmation: Password Confirmation
       album:
         title: Title
+      photo:
+        file_name: File name
+        latitude_in_degrees: "Latitude in degrees"
+        longitude_in_degrees: "Longitude in degrees"
+        latitude_in_decimal: "Latitude in decimal"
+        longitude_in_decimal: "Longitude in decimal"
+        city: "City"
+        state: "State"
+        country: "Country"
   date:
     order: [ !ruby/symbol day, !ruby/symbol month, !ruby/symbol year ]
+  datetime:
+    distance_in_words:
+      x_days:
+        one: '1 day'
+        other: '%{count} days'
+      less_than_x_minutes:
+        one: 'one minute'
+        other: '%{count} minutes'
+      x_minutes:
+        one: 'one minute'
+        other: '%{count} minutes'
+  application:
+    comment_form:
+      submit: "Post"
+      add: "Add a comment"
+    comments_panel:
+      posted: "Posted"
+      ago: "ago"

@@ -3,6 +3,7 @@ fr:
   albums:
     index:
       add: Ajouter à l'album
+      error: 'interdit l''enregistrement de cet album:'
       form:
         submit: Créer un album
       photo_heading: Tes photos

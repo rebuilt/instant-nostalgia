@@ -10,7 +10,7 @@
     <%= form_with(model: @album, class: "mr-3 mb-5") do |form| %>
       <% if @album.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
+          <h2><%= pluralize(@album.errors.count, "error") %> <%= t('.error')  %> </h2>
 
           <ul>
             <% @album.errors.full_messages.each do |message| %>

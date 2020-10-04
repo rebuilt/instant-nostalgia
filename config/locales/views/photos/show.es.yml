@@ -1,0 +1,11 @@
+---
+es:
+  photos:
+    show:
+      add: Añadir un comentario
+      comment: comentario
+      directions: Obtener las direcciones
+      discussion: Discusión
+      submit: Enviar
+      upload_by: 'Foto subida por:'
+      uploaded_on: Subido en

@@ -9,21 +9,21 @@
       <div class="details">
         <%= image_tag(@photo.user.avatar.variant(resize: '100x100'), class: "avatar end") if @photo.user.avatar.attached? %>
         <div class="details__intro">
-          <p> <span class="beta">Photo uploaded by: </span> <span class="alpha"><%= link_to(@photo.user.username,  user_path(@photo.user))  %></span> </p>
-          <p> <span class="beta">File name: </span>  <%= @photo.file_name  %> </p>
-          <p> <span class="beta">Date taken: </span> <%= @photo.date_time_digitized  %> </p>
-          <p> <span class="beta">Latitude in degrees: </span>  <%= @photo.latitude_in_degrees  %> </p>
-          <p> <span class="beta">Longitude in degrees: </span> <%= @photo.longitude_in_degrees  %> </p>
-          <p> <span class="beta">Latitude in decimal: </span> <%= @photo.latitude_in_decimal %> </p>
-          <p> <span class="beta">Longitude in decimal: </span> <%= @photo.longitude_in_decimal %> </p>
-          <p> <span class="beta">City: </span> <%= @photo.city %> </p>
-          <p> <span class="beta">State: </span> <%= @photo.state %> </p>
-          <p> <span class="beta">Country: </span>  <%= @photo.country %> </p>
-          <p> <a href="https://www.google.com/maps/search/?api=1&query=<%= @photo.latitude_in_decimal  %>,<%= @photo.longitude_in_decimal  %>" target="blank">Get directions</a></p>
+          <p> <span class="beta"> <%= t('.upload_by')  %> </span> <span class="alpha"><%= link_to(@photo.user.username,  user_path(@photo.user))  %></span> </p>
+          <p> <span class="beta"> <%= Photo.human_attribute_name(:file_name)  %>: </span>  <%= @photo.file_name  %> </p>
+          <p> <span class="beta">: </span> <%= @photo.date_time_digitized  %> </p>
+          <p> <span class="beta"> <%= Photo.human_attribute_name(:latitude_in_degrees)  %>: </span>  <%= @photo.latitude_in_degrees  %> </p>
+          <p> <span class="beta"> <%= Photo.human_attribute_name(:longitude_in_degrees)  %>: </span> <%= @photo.longitude_in_degrees  %> </p>
+          <p> <span class="beta"> <%= Photo.human_attribute_name(:longitude_in_decimal)  %>: </span> <%= @photo.latitude_in_decimal %> </p>
+          <p> <span class="beta"> <%= Photo.human_attribute_name(:longitude_in_decimal)  %>: </span> <%= @photo.longitude_in_decimal %> </p>
+          <p> <span class="beta"> <%= Photo.human_attribute_name(:city)  %>: </span> <%= @photo.city %> </p>
+          <p> <span class="beta"> <%= Photo.human_attribute_name(:state)  %>: </span> <%= @photo.state %> </p>
+          <p> <span class="beta"> <%= Photo.human_attribute_name(:country)  %>: </span>  <%= @photo.country %> </p>
+          <p> <a href="https://www.google.com/maps/search/?api=1&query=<%= @photo.latitude_in_decimal  %>,<%= @photo.longitude_in_decimal  %>" target="blank"> <%= t('.directions')  %> </a></p>
         </div>
         <div class="details__meta">
-          <span>Uploaded on <time datetime="<%= @photo.created_at.strftime("%d %b '%y")  %>"><%= @photo.created_at.strftime("%d %b '%y")  %></time></span>
-          <span id="comment-count-1"><%= @comments.count  %> <%= "comment".pluralize(@comments.count) %></span>
+          <span> <%= t('.uploaded_on')  %> <time datetime="<%= @photo.created_at.strftime("%d %b '%y")  %>"><%= @photo.created_at.strftime("%d %b '%y")  %></time></span>
+          <span id="comment-count-1"><%= @comments.count  %> <%= t('.comment').pluralize(@comments.count) %></span>
         </div>
       </div>
     </div>
@@ -32,9 +32,9 @@
   <div class="content-wrapper">
     <div class="comments">
       <div class="comments_title row mb-5">
-        <h2 class="mr-3">Discussion</h2>
+        <h2 class="mr-3"> <%= t('.discussion')  %> </h2>
         <span id="comment-count-2">
-          <%= @comments.count  %> <%= "comment".pluralize(@comments.count) %>
+          <%= @comments.count  %> <%= t('.comment').pluralize(@comments.count) %>
         </span>
       </div>
       <%= render partial: "comments_panel", locals: {commentable: @photo, comments: @comments}  %>

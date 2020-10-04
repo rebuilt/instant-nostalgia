@@ -2,9 +2,9 @@
 <%= form_for([commentable, comment], remote: true) do |form| %>
 
   <div class="field">
-    <%= form.label(:body, 'Add a comment', class: 'input-group__label') %>
+    <%= form.label(:body, t('.add'), class: 'input-group__label') %>
     <%= form.text_area(:body, class: 'input-group__field', rows: 10) %>
   </div>
 
-  <%= form.submit('Post')%>
+  <%= form.submit(t('.submit'))%>
 <% end %>

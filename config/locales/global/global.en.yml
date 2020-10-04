@@ -16,3 +16,7 @@ en:
       change_privacy_title:  "If made public, this album will be viewable by all users. If private, this album will be visible only by users with which you have explicitly shared this album"
       delete_album: Delete album
       delete_album_title: "Deletes the album.  Does not delete any photos in the album."
+      to_photo: Show details
+      to_photo_title: "See details of the photo and comments"
+      delete_photo: Delete photo
+      delete_photo_title:  "Deletes the photo and all comments associated with the photo.  Deleted photos are not recoverable."
