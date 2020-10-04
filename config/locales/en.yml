@@ -43,3 +43,5 @@ en:
         last_name: Last name
         avatar: Profile image
         password_confirmation: Password Confirmation
+  date:
+    order: [ !ruby/symbol day, !ruby/symbol month, !ruby/symbol year ]
