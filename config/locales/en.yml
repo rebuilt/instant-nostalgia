@@ -101,3 +101,7 @@ en:
     comments_panel:
       posted: "Posted"
       ago: "ago"
+  controllers:
+    maps:
+      results: "Results for | "
+      recent: "Most recent"

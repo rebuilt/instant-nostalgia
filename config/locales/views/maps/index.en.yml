@@ -3,3 +3,6 @@ en:
     index:
       start_date: "Start Date"
       start-date: "start-date"
+      shared: "Shared albums"
+      submit: "Filter"
+      no_results: "No results"

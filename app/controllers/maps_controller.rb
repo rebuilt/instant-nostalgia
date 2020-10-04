@@ -2,16 +2,16 @@ require_relative 'date_tools'
 
 class MapsController < ApplicationController
   def index
-    flash.now[:message] = 'Results for | '
+    flash.now[:message] = I18n.t 'controllers.maps.results'
     if logged_in?
-      load_photos_by_area(:city) if params[:city].present?
-      load_photos_by_area(:state) if params[:state].present?
-      load_photos_by_area(:country) if params[:country].present?
-      load_by_date if DateTools.date_populated?(params)
-      load_by_date_range if DateTools.date_range_populated?(params)
-      load_albums(:album) if params[:album].present?
-      load_albums(:publicAlbum) if params[:publicAlbum].present?
-      load_most_recent if @photos.nil?
+      @photos = load_photos_by_area(:city) if params[:city].present?
+      @photos = load_photos_by_area(:state) if params[:state].present?
+      @photos = load_photos_by_area(:country) if params[:country].present?
+      @photos = load_by_date if DateTools.date_populated?(params)
+      @photos = load_by_date_range if DateTools.date_range_populated?(params)
+      @photos = load_albums(:album) if params[:album].present?
+      @photos = load_albums(:publicAlbum) if params[:publicAlbum].present?
+      @photos = load_most_recent if @photos.nil?
       @photos = remove_non_geocoded(@photos)
       @cities = load_area_names(:city)
       @states = load_area_names(:state)
@@ -20,7 +20,7 @@ class MapsController < ApplicationController
       @shared_albums = current_user.authorized_albums
     else
       # If the user is not signed in
-      load_albums(:publicAlbum) if params[:publicAlbum].present?
+      @photos = load_albums(:publicAlbum) if params[:publicAlbum].present?
       load_default_album if @photos.nil?
     end
 
@@ -41,7 +41,7 @@ class MapsController < ApplicationController
 
   def load_most_recent
     count = 5
-    add_message('Most recent', count.to_s)
+    add_message(I18n.t('controllers.maps.recent'), count.to_s)
     @photos = Photo.all.with_attached_image.belonging_to_user(current_user).most_recent_mappable(count)
   end
 
