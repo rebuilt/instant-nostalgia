@@ -9,6 +9,7 @@ class MapsController < ApplicationController
       @photos = load_photos_by_area(:country) if params[:country].present?
       @photos = load_by_date if DateTools.date_populated?(params)
       @photos = load_by_date_range if DateTools.date_range_populated?(params)
+      # Before this comment @photos is an activerecord relation.  After this comment, @photos is an array
       @photos = load_albums(:album) if params[:album].present?
       @photos = load_albums(:publicAlbum) if params[:publicAlbum].present?
       @photos = load_most_recent if @photos.nil?
