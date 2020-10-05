@@ -6,7 +6,6 @@ class PhotosController < ApplicationController
   end
 
   def show
-    # TODO: change this from belonging_to_user to belonging_or_shared_with(current_user)
     @photo = Photo.with_attached_image.find(params[:id])
     @comments = Comment.with_rich_text_body.order_by_old_to_new.where(commentable_id: @photo).includes(:user)
     @comment = Comment.new
@@ -14,17 +13,16 @@ class PhotosController < ApplicationController
 
   def new
     @photo = Photo.new
-    @uploads_remaining = 100 - current_user.photos.count
-    @uploads_remaining = 0 if @uploads_remaining.negative?
-    # TODO: multiple file uploads
-    # TODO: drag and drop for uploads
+    @uploads_remaining = current_user.remaining_uploads
   end
 
   def create
     @photo = Photo.new(photo_params)
     @photo.user = current_user
+    @uploads_remaining = current_user.remaining_uploads
+
     respond_to do |format|
-      if @photo.save
+      if @uploads_remaining.positive? && @photo.save
         successful_upload(format) if @photo.init
         failure_upload(format) unless @photo.init
       else
@@ -63,6 +61,6 @@ class PhotosController < ApplicationController
   end
 
   def has_remaining_uploads
-    redirect_to new_photo_path unless (100 - current_user.photos.count).positive?
+    redirect_to new_photo_path unless current_user.has_remaining_uploads?
   end
 end

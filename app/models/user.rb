@@ -17,6 +17,20 @@ class User < ApplicationRecord
     self.email = email.downcase if email.present?
   end
 
+  def remaining_uploads
+    output = upload_limit - photos.count
+    output = 0 if output.negative?
+    output
+  end
+
+  def upload_limit
+    1
+  end
+
+  def has_remaining_uploads?
+    remaining_uploads.positive?
+  end
+
   scope :search, lambda { |term|
     email_contains(term)
       .or(username_contains(term))
