@@ -4,7 +4,7 @@ class SharesTest < ApplicationSystemTestCase
   test 'visiting the index' do
     sign_in(create_user)
     visit shares_path
-    assert_selector 'h1', text: 'My albums'
+    assert_selector 'h1', text: I18n.t('global.albums')
   end
 
   test 'To Shares button redirects to share#index' do
@@ -13,7 +13,7 @@ class SharesTest < ApplicationSystemTestCase
     album = create_album(user)
     visit shares_path
 
-    assert_selector 'h1', text: 'My albums'
+    assert_selector 'h1', text: I18n.t('global.albums')
 
     visit new_share_path(album_id: album.id)
 
@@ -29,7 +29,7 @@ class SharesTest < ApplicationSystemTestCase
     album = create_album(user)
     visit shares_path
 
-    assert_selector 'h1', text: 'My albums'
+    assert_selector 'h1', text: I18n.t('global.albums')
 
     within "#album-#{album.id}" do
       click_on 'Share album'
@@ -72,7 +72,7 @@ class SharesTest < ApplicationSystemTestCase
     click_on "Share #{album.title} with #{user2.username}"
     assert page.has_content? user2.email
     assert_current_path shares_path
-    click_on 'Log out'
+    click_on I18n.t('logout')
     sign_in(user2)
     visit shares_path
 

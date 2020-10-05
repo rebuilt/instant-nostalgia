@@ -2,5 +2,8 @@
 es:
   maps:
     index:
+      no_results: No hay resultados
+      shared: Álbumes compartidos
       start-date: fecha de inicio
       start_date: Fecha de inicio
+      submit: Filtrar

@@ -44,6 +44,10 @@ fr:
     comments_panel:
       ago: depuis
       posted: Publié
+  controllers:
+    maps:
+      recent: Le plus récent
+      results: Résultats pour |
   date:
     order:
     - :day

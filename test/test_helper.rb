@@ -30,7 +30,9 @@ class ActiveSupport::TestCase
     visit new_session_path
     fill_in :email, with: user.email
     fill_in :password, with: user.password
-    click_on 'Log in'
+    within '.envelope' do
+      click_on I18n.t('login')
+    end
   end
 
   def create_photo(index, user)

@@ -24,3 +24,5 @@ en:
       to_photo_title: "See details of the photo and comments"
       delete_photo: Delete photo
       delete_photo_title:  "Deletes the photo and all comments associated with the photo.  Deleted photos are not recoverable."
+      search_user: Search for User
+      search_user_title: Find a user by first name, last name, user name or email

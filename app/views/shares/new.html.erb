@@ -2,9 +2,9 @@
   <%= link_to "To Shares", shares_path, class: "btn btn--primary btn__inline"  %>
   <%= link_to "To Albums", albums_path, class: "btn btn--primary btn__inline"  %>
 
-  <h1 class="mt-5">Share your album</h1>
+  <h1 class="mt-5"> <%= t('.title')  %> </h1>
   <h2>
-    Album title: <%= @album.title  %>
+    <%= Album.model_name.human  %>: <%= @album.title  %>
   </h2>
 
   <% if @share.errors.any? %>
@@ -24,14 +24,14 @@
       <%= form_with(url: new_share_path , method: :get) do |form| %>
         <div class="row mt-3">
           <h4 class="input-group mr-3">
-            <%= label_tag :search, "Who would you like to share #{@album.title} with?", class: "input-group__label"%>
+            <%= label_tag :search, t('.prompt'), class: "input-group__label"%>
           </h4>
           <div class="input-group mr-3">
             <%= form.text_field :search, class: "input-group__field m-0 " %>
           </div>
           <%= hidden_field_tag "album_id", @album.id %>
           <div class="actions">
-            <%= form.submit("Search for User", class: "btn btn--primary") %>
+            <%= form.submit(t('.search_user'), class: "btn btn--primary", title: t('.search_user_title')) %>
           </div>
         </div>
       <% end %>
@@ -39,13 +39,19 @@
 
     <div id="results" class="results mt-5" >
       <div id="termDiv" class="row">
-        <h3 class="mr-3"> You searched for: </h3> <span id="term"> <%= @term  %> </span>
+        <h3 class="mr-3"> <%= t('.term')  %> </h3> <span id="term"> <%= @term  %> </span>
       </div>
       <% if(@users.present?)%>
         <div id="headerDiv" class="three-column-grid mt-4">
-          <h3>Username</h3>
-          <h3>Email</h3>
-          <h3>Action</h3>
+          <h3>
+            <%= User.human_attribute_name(:username)  %>
+          </h3>
+          <h3>
+            <%= User.human_attribute_name(:email)  %>
+          </h3>
+          <h3>
+            <%= t('.action')  %>
+          </h3>
         </div>
         <% @users.each do |user|  %>
             <div class="three-column-grid mt-3">

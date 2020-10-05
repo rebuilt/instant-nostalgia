@@ -31,7 +31,11 @@
     <%= yield %>
 
     <% I18n.available_locales.each do |locale| %>
+      <% if current_page?(controller: 'maps', action: 'index')  %>
       <%= link_to locale, url_for(locale: locale), data: {turbolinks: false} %>
+    <% else  %>
+      <%= link_to locale, url_for(locale: locale) %>
+    <% end %>
     <% end %>
   </body>
 </html>

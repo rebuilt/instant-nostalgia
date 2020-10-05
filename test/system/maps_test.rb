@@ -157,7 +157,7 @@ class MapsTest < ApplicationSystemTestCase
     album.save
 
     visit maps_path
-    click_on 'Open My albums'
+    click_on "Open #{I18n.t('global.albums')}"
     page.check("album[#{album.id}]")
     click_on 'Filter'
     assert page.has_content? "Results for | album: #{album.title}"

@@ -59,7 +59,7 @@ class AlbumsTest < ApplicationSystemTestCase
 
     album = Album.last
     within "#album-#{album.id}" do
-      click_on 'Share album'
+      click_on I18n.t('global.buttons.share_with')
     end
 
     assert current_url.include? new_share_path
@@ -75,7 +75,7 @@ class AlbumsTest < ApplicationSystemTestCase
 
     album = Album.last
     within "#album-#{album.id}" do
-      click_on 'Remove album'
+      click_on I18n.t('global.buttons.delete_album')
     end
     page.driver.browser.switch_to.alert.accept
     assert 0, all("#album-#{album.id}").count

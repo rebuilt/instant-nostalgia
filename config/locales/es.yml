@@ -44,6 +44,10 @@ es:
     comments_panel:
       ago: hace
       posted: Al corriente
+  controllers:
+    maps:
+      recent: Más reciente
+      results: Resultados para |
   date:
     order:
     - :day
