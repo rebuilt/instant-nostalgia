@@ -1,0 +1,9 @@
+---
+de:
+  photos:
+    new:
+      description_end: mehr Fotos
+      description_start: Sie können hochladen
+      instructions: Ziehen Sie hier Fotos per Drag & Drop
+      or: oder
+      upload_title: Fotos hochladen

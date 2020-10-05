@@ -1,0 +1,11 @@
+---
+pt:
+  shares:
+    index:
+      confirm: Você tem certeza?
+      remove: Remover de 'álbuns compartilhados comigo'
+      share_album: Compartilhar álbum
+      share_album_title: Compartilhe este álbum com outro usuário
+      shared_with: 'Compartilhado com:'
+      shared_with_me: Álbuns compartilhados comigo
+      stop_sharing: Pare de compartilhar

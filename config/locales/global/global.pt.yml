@@ -1,0 +1,28 @@
+---
+pt:
+  global:
+    albums: Meus álbuns
+    buttons:
+      change_privacy_prompt: Faça este álbum
+      change_privacy_title: Se tornado público, este álbum poderá ser visto por todos os usuários. Se for privado, este álbum ficará visível apenas para usuários com os quais você o compartilhou explicitamente
+      delete_album: Apagar álbum
+      delete_album_title: Exclui o álbum. Não exclui nenhuma foto do álbum.
+      delete_photo: Deletar foto
+      delete_photo_title: Exclui a foto e todos os comentários associados a ela. As fotos excluídas não são recuperáveis.
+      search_user: Pesquisar por usuário
+      search_user_title: Encontre um usuário por nome, sobrenome, nome de usuário ou e-mail
+      share_with: Compartilhe com um usuário
+      share_with_title: Compartilhe este álbum com uma pessoa específica. Isso torna o álbum visível apenas para as pessoas com quem você escolheu compartilhar.
+      to_album: Ver fotos
+      to_album_title: Veja as fotos deste álbum
+      to_map: Plotar no mapa
+      to_map_title: Vá para a página de mapas e plote as fotos deste álbum no mapa
+      to_photo: Mostrar detalhes
+      to_photo_title: Veja detalhes da foto e comentários
+    date_range: Intervalo de datas
+    day: Dia
+    day_of_year: Dia do ano
+    month: Mês
+    private: privado
+    public: público
+    welcome: Bem-vinda

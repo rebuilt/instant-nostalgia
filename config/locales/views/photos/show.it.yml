@@ -1,0 +1,9 @@
+---
+it:
+  photos:
+    show:
+      comment: commento
+      directions: Ottenere indicazioni
+      discussion: Discussione
+      upload_by: 'Foto caricata da:'
+      uploaded_on: Caricato in data

@@ -1,0 +1,7 @@
+---
+it:
+  users:
+    form:
+      submit: Invia
+    new:
+      error: 'ha vietato a questo utente di essere salvato:'

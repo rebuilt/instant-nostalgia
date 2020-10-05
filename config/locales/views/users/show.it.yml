@@ -1,0 +1,7 @@
+---
+it:
+  users:
+    show:
+      edit: modificare
+      private_albums: Album privati
+      title: Dettagli utente

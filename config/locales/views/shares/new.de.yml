@@ -1,0 +1,10 @@
+---
+de:
+  shares:
+    new:
+      action: Aktion
+      prompt: Mit wem möchtest du dieses Album teilen?
+      search_user: Suche nach Benutzer
+      search_user_title: Suchen Sie einen Benutzer nach Vorname, Nachname, Benutzername oder E-Mail
+      term: 'Sie suchten nach:'
+      title: Teile dein Album

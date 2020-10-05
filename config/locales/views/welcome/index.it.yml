@@ -1,0 +1,8 @@
+---
+it:
+  welcome:
+    index:
+      heading: Benvenuto nel sito!
+      message: Guarda le tue foto mappate. Filtra facilmente il tuo set di foto. Crea album da condividere con singoli utenti o da condividere con il mondo
+      option: Oppure visualizza gli album pubblici su
+      prompt: 'Per utilizzare questo sito Web:'

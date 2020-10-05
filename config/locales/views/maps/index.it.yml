@@ -1,0 +1,9 @@
+---
+it:
+  maps:
+    index:
+      no_results: Nessun risultato
+      shared: Album condivisi
+      start-date: data d'inizio
+      start_date: Data d'inizio
+      submit: Filtro

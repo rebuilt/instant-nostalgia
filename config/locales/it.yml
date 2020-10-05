@@ -1,0 +1,110 @@
+---
+it:
+  activerecord:
+    attributes:
+      album:
+        title: Titolo
+      photo:
+        city: Città
+        country: Nazione
+        file_name: Nome del file
+        latitude_in_decimal: Latitudine in decimale
+        latitude_in_degrees: Latitudine in gradi
+        longitude_in_decimal: Longitudine in decimale
+        longitude_in_degrees: Longitudine in gradi
+        state: Stato
+      user:
+        avatar: Immagine del profilo
+        email: E-mail
+        first_name: nome di battesimo
+        last_name: Cognome
+        password: Parola d'ordine
+        password_confirmation: Conferma password
+        username: Nome utente
+    errors:
+      models:
+        user:
+          attributes:
+            password_confirmation:
+              confirmation: non corrisponde alla password
+    models:
+      album:
+        one: Album
+        other: Album
+      photo:
+        one: Foto
+        other: Fotografie
+      user:
+        one: Utente
+        other: Utenti
+  application:
+    comment_form:
+      add: Aggiungi un commento
+      submit: Inviare
+    comments_panel:
+      ago: fa
+      posted: Inserito
+  controllers:
+    maps:
+      recent: Piu recente
+      results: Risultati per |
+  date:
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: circa 1 ora
+        other: circa %{count} ore
+      about_x_months:
+        one: circa 1 mese
+        other: circa %{count} mesi
+      about_x_years:
+        one: circa 1 anno
+        other: circa %{count} anni
+      almost_x_years:
+        one: quasi 1 anno
+        other: quasi %{count} anni
+      half_a_minute: mezzo minuto
+      less_than_x_minutes:
+        one: meno di un minuto
+        other: meno di %{count} minuti
+      less_than_x_seconds:
+        one: meno di 1 secondo
+        other: meno di %{count} secondi
+      over_x_years:
+        one: oltre 1 anno
+        other: oltre %{count} anni
+      x_days:
+        one: 1 giorno
+        other: "%{count} giorni"
+      x_minutes:
+        one: 1 minuto
+        other: "%{count} minuti"
+      x_months:
+        one: 1 mese
+        other: "%{count} mesi"
+      x_seconds:
+        one: 1 secondo
+        other: "%{count} secondi"
+      x_years:
+        one: 1 anno
+    prompts:
+      day: Giorno
+      hour: Ora
+      minute: Minuto
+      month: Mese
+      second: Secondo
+      year: Anno
+  delete: Elimina
+  edit: modificare
+  login: Accesso
+  logout: Disconnettersi
+  map: Carta geografica
+  profile: Profilo
+  public_albums: Album pubblici
+  shared: Condivisa
+  sign_up: Iscriviti
+  upload: Caricare

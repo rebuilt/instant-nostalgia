@@ -1,0 +1,9 @@
+---
+de:
+  albums:
+    index:
+      add: Zum Album hinzufügen
+      error: 'verbot das Speichern dieses Albums:'
+      photo_heading: Deine Fotos
+      select: Wählen Sie ein Album aus
+      submit: Album erstellen
