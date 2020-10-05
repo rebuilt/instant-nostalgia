@@ -1,0 +1,9 @@
+en:
+  photos:
+    new:
+      upload_title: Upload Photos
+      description_start: You can upload
+      description_end: more photos
+      instructions: Drag and drop photos here
+      or: or
+
