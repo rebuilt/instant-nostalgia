@@ -9,6 +9,8 @@ fr:
       delete_album_title: Supprime l'album. Ne supprime aucune photo de l'album.
       delete_photo: Supprimer la photo
       delete_photo_title: Supprime la photo et tous les commentaires associés à la photo. Les photos supprimées ne sont pas récupérables.
+      search_user: Rechercher un utilisateur
+      search_user_title: Rechercher un utilisateur par prénom, nom, nom d'utilisateur ou e-mail
       share_with: Partager avec un utilisateur
       share_with_title: Partagez ces albums avec une personne spécifique. Cela rend l'album visible uniquement par les personnes avec lesquelles vous avez choisi de partager.
       to_album: Voir les photos

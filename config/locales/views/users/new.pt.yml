@@ -1,0 +1,7 @@
+---
+pt:
+  users:
+    form:
+      submit: Enviar
+    new:
+      error: 'proibiu este usuário de ser salvo:'

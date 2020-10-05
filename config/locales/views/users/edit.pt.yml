@@ -1,0 +1,6 @@
+---
+pt:
+  users:
+    edit:
+      title: Atualizar os detalhes do usuário
+      to_show: Para detalhes

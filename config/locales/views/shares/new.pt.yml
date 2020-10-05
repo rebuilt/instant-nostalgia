@@ -1,0 +1,10 @@
+---
+pt:
+  shares:
+    new:
+      action: Açao
+      prompt: Com quem você gostaria de compartilhar este álbum?
+      search_user: Pesquisar por usuário
+      search_user_title: Encontre um usuário por nome, sobrenome, nome de usuário ou e-mail
+      term: 'Você pesquisou por:'
+      title: Compartilhe seu álbum

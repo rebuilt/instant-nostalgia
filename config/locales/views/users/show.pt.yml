@@ -1,0 +1,7 @@
+---
+pt:
+  users:
+    show:
+      edit: Editar
+      private_albums: Álbuns privados
+      title: Detalhes do usuario

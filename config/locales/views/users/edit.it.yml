@@ -1,0 +1,6 @@
+---
+it:
+  users:
+    edit:
+      title: Aggiorna i dettagli dell'utente
+      to_show: Ai dettagli

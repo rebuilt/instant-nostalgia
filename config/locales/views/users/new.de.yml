@@ -1,0 +1,7 @@
+---
+de:
+  users:
+    form:
+      submit: einreichen
+    new:
+      error: 'verbot diesem Benutzer das Speichern:'

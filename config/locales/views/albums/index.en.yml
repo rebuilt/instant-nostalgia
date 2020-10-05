@@ -1,8 +1,0 @@
-en:
-  albums:
-    index:
-      submit: Create Album
-      add: Add to album
-      select:  Select an album
-      photo_heading: Your photos
-      error: "prohibited this album from being saved:"
