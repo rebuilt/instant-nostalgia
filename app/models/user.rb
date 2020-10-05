@@ -24,7 +24,7 @@ class User < ApplicationRecord
   end
 
   def upload_limit
-    1
+    100
   end
 
   def has_remaining_uploads?
