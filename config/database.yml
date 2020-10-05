@@ -82,4 +82,6 @@ production:
   <<: *default
   database: capstone_project_wad_c5_s4_750_production
   username: capstone_project_wad_c5_s4_750
-  password: <%= ENV['CAPSTONE_PROJECT_WAD_C5_S4_750_DATABASE_PASSWORD'] %>
+  host: localhost
+  pool: 5
+  password: "&fNsYF42Mf^7=w8d"
