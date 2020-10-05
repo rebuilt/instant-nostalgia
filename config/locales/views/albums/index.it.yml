@@ -1,0 +1,9 @@
+---
+it:
+  albums:
+    index:
+      add: Aggiungi all'album
+      error: 'vietato il salvataggio di questo album:'
+      photo_heading: Le tue foto
+      select: Seleziona un album
+      submit: Crea album

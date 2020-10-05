@@ -1,0 +1,9 @@
+---
+pt:
+  albums:
+    index:
+      add: Adicionar ao álbum
+      error: 'proibiu este álbum de ser salvo:'
+      photo_heading: Suas fotos
+      select: Selecione um álbum
+      submit: Criar álbum

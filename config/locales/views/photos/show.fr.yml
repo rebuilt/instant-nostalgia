@@ -1,0 +1,9 @@
+---
+fr:
+  photos:
+    show:
+      comment: commentaire
+      directions: Obtenir des directions
+      discussion: Discussion
+      upload_by: 'Photo téléchargée par:'
+      uploaded_on: Téléchargé le

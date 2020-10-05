@@ -1,0 +1,9 @@
+---
+fr:
+  albums:
+    index:
+      add: Ajouter à l'album
+      error: 'interdit l''enregistrement de cet album:'
+      photo_heading: Tes photos
+      select: Sélectionnez un album
+      submit: Créer un album

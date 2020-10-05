@@ -2,6 +2,7 @@
   <h1> <%= t('.upload_title')  %> </h1>
 
   <%= render(partial: "error_messages", locals: {model: @photo})  %>
+
   <p> <%= "#{t('.description_start')} #{@uploads_remaining} #{t('.description_end')}"  %> </p>
   <% if(@uploads_remaining > 0 )  %>
     <p> <%= t('.instructions')  %> </p>

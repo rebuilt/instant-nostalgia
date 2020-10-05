@@ -1,7 +1,7 @@
 ---
 fr:
   global:
-    albums: My Albums
+    albums: Mes albums
     buttons:
       change_privacy_prompt: Créez cet album
       change_privacy_title: S'il est rendu public, cet album sera visible par tous les utilisateurs. S'il est privé, cet album ne sera visible que par les utilisateurs avec lesquels vous avez explicitement partagé cet album
@@ -22,20 +22,7 @@ fr:
     date_range: Plage de dates
     day: journée
     day_of_year: Jour de l'année
-    helpers:
-      label:
-        day: Day$$
-        month: Month##
-    login: Login
-    logout: Log out
-    map: Map
     month: Mois
-    photos: Photos
     private: privé
-    profile: Profile
     public: Publique
-    public-albums: Public Albums
-    shared: Shared
-    sign_up: Sign Up
-    upload: Upload
-    welcome: Welcome
+    welcome: Bienvenue

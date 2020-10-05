@@ -1,0 +1,9 @@
+---
+pt:
+  photos:
+    show:
+      comment: Comente
+      directions: Obter direções
+      discussion: Discussão
+      upload_by: 'Foto enviada por:'
+      uploaded_on: Carregado em

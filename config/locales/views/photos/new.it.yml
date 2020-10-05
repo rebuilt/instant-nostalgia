@@ -1,0 +1,9 @@
+---
+it:
+  photos:
+    new:
+      description_end: più foto
+      description_start: Puoi caricare
+      instructions: Trascina le foto qui
+      or: o
+      upload_title: Caricare foto

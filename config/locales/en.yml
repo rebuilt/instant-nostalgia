@@ -27,6 +27,10 @@ en:
           attributes:
             password_confirmation:
               confirmation: does not match password
+        photo:
+          attributes:
+            image:
+              content_type: Photo must be of type .jpeg or .jpg
     attributes:
       user:
         email: Email
