@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy if can_delete?
+    @comment.destroy if is_owner?(current_user, @comment)
     @count = count(@commentable.comments.count)
     respond_to do |format|
       format.html { redirect_to @commentable }
@@ -28,10 +28,6 @@ class CommentsController < ApplicationController
   end
 
   private
-
-  def can_delete?
-    current_user == @comment.user
-  end
 
   def allowed_params
     params.require(:comment).permit(:body, :user_id, :commentable_id)
