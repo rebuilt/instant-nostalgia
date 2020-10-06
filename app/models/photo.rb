@@ -6,6 +6,7 @@ class Photo < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :albums
   has_many :comments, as: :commentable
+  has_many :authorized_users, through: :shares, source: :user, dependent: :destroy
   validates :image, presence: true, blob: { content_type: ['image/jpg', 'image/jpeg', 'image/png'], size_range: 1..25.megabytes }
 
   geocoded_by :address

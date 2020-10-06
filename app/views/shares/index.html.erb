@@ -16,11 +16,11 @@
             <div class="row mt-3">
               <h3 class="mr-5"> <%= t('.shared_with')  %> </h3>
               <div class="column">
-                <% album.shares.each do |share|  %>
+                <% album.shares.select(:album_id, :user_id).distinct.each do |share|  %>
                   <div class="row mt-3">
           <%= render(partial: "to_profile_btn", locals: {user: share.user})  %>
                     <p class="mr-3 "><%= share.user.email  %> </p>
-                    <%= link_to t('.stop_sharing'), share_path(share), method: :delete, class: "btn btn--secondary no-radius mr-1", data: { confirm: t('.confirm'), remote: true } %>
+                    <%= link_to t('.stop_sharing'), share_path(id: "0", params: {user_id: share.user.id, album_id: share.album.id}), method: :delete, class: "btn btn--secondary no-radius mr-1", data: { confirm: t('.confirm'), remote: true } %>
                   </div>
                 <% end %>
               </div>
@@ -44,7 +44,7 @@
           <%= render(partial: "show_album_btn", locals: {album: share.album})  %>
           <%= render(partial: "to_map_btn", locals: {album: share.album})  %>
 
-          <%= link_to t('.remove'), share_path(share), method: :delete, class: "btn btn--secondary no-radius mr-1", data: { confirm: t('.confirm'), remote: true } %>
+          <%= link_to t('.remove'), share_path(id: "0", params: {user_id: share.user.id, album_id: share.album.id}), method: :delete, class: "btn btn--secondary no-radius mr-1", data: { confirm: t('.confirm'), remote: true } %>
         </li>
       <% end %>
     </ul>

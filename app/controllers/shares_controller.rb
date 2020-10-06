@@ -1,12 +1,11 @@
 class SharesController < ApplicationController
   before_action :ensure_logged_in
   before_action :authorized_to_create, only: %i[new create]
-  before_action :authorized_to_destroy, only: %i[destroy]
 
   def index
-    @my_albums = Album.where(user: current_user).joins(:user)
+    @my_albums = Album.where(user: current_user)
     @shared_with_me = current_user.authorized_albums.joins(:album)
-    @shares = Share.where(user_id: current_user.id).joins(:album).joins(:user)
+    @shares = Share.where(user_id: current_user.id).joins(:album).joins(:user).select(:album_id, :user_id).distinct
   end
 
   def new
@@ -30,19 +29,25 @@ class SharesController < ApplicationController
   def create
     user_id = params[:user_id]
     album_id = params[:album_id]
-    @share = Share.new(user_id: user_id, album_id: album_id)
-    if @share.save
-      respond_to do |format|
-        format.html { redirect_to shares_path }
+    @album = Album.find(album_id)
+
+    @album.photos.each do |photo|
+      @share = Share.new(user_id: user_id, album_id: album_id, photo_id: photo.id)
+      if @share.save
+        redirect_to shares_path
+      else
+        render :new
       end
-    else
-      render :new
     end
   end
 
   def destroy
-    @share = Share.find(params[:id])
-    @share.destroy if current_user == @share.album.user || current_user.id == @share.user_id
+    @shares = Share.where(user_id: params[:user_id],
+                          album_id: params[:album_id])
+
+    @shares.each do |share|
+      share.destroy if can_destroy(share)
+    end
 
     redirect_to shares_path
   end
@@ -67,8 +72,7 @@ class SharesController < ApplicationController
     redirect_to login_path unless is_owner?(current_user, @album)
   end
 
-  def authorized_to_destroy
-    @share = Share.find(params[:id])
-    redirect_to login_path unless current_user == @share.album.user || current_user.id == @share.user_id
+  def can_destroy(share)
+    current_user == share.album.user || current_user.id == share.user_id
   end
 end
