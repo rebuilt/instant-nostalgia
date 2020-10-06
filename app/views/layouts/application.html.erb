@@ -32,8 +32,7 @@
 
     <footer>
       <div class="content-wrapper mt-3">
-        Language:   <%= select("language", "code", I18n.available_locales.collect {|country_code| [ country_code , url_for(locale: country_code)]}, include_blank: true ) %>
-
+        <%= t('language')  %>:   <%= select("language", "code", I18n.available_locales.collect {|country_code| [ country_code , url_for(locale: country_code)]}, include_blank: true ) %>
       </div>
     </footer>
 
