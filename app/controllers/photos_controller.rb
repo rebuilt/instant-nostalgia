@@ -1,13 +1,20 @@
 class PhotosController < ApplicationController
   before_action :has_remaining_uploads, only: %i[create]
+  before_action :ensure_logged_in, only: %i[index new create destroy]
 
   def index
-    @photos = Photo.with_attached_image.belonging_to_user(current_user).includes(:user).order_by_new_to_old
+    @photos = Photo.with_attached_image
+                   .belonging_to_user(current_user)
+                   .includes(:user)
+                   .order_by_new_to_old
   end
 
   def show
     @photo = Photo.with_attached_image.find(params[:id])
-    @comments = Comment.with_rich_text_body.order_by_old_to_new.where(commentable_id: @photo).includes(:user)
+    @comments = Comment.with_rich_text_body
+                       .order_by_old_to_new
+                       .where(commentable_id: @photo)
+                       .includes(:user)
     @comment = Comment.new
   end
 
@@ -33,7 +40,7 @@ class PhotosController < ApplicationController
 
   def destroy
     @photo = Photo.find(params[:id])
-    @photo.destroy if can_delete_photo?(current_user, @photo)
+    @photo.destroy if is_owner?(current_user, @photo)
     respond_to do |format|
       format.html { redirect_to photos_path }
       format.js { render :destroy }
@@ -44,10 +51,6 @@ class PhotosController < ApplicationController
 
   def photo_params
     params.require(:photo).permit(:image)
-  end
-
-  def can_delete_photo?(user, photo)
-    user == photo.user
   end
 
   def successful_upload(format)
