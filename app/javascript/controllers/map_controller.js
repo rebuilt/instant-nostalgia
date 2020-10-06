@@ -63,6 +63,7 @@ export default class extends Controller {
         const id = this.data.get('id')
         let marker = this.getMarker(id)
         marker = this.stackOnTop(marker)
+        marker.setVisible(true)
         map.panTo(marker.position)
     }
 
