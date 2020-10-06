@@ -1,4 +1,8 @@
 class SharesController < ApplicationController
+  before_action :ensure_logged_in
+  before_action :authorized_to_create, only: %i[new create]
+  before_action :authorized_to_destroy, only: %i[destroy]
+
   def index
     @my_albums = Album.where(user: current_user).joins(:user)
     @shared_with_me = current_user.authorized_albums.joins(:album)
@@ -56,5 +60,15 @@ class SharesController < ApplicationController
       users = users.reject { |user| user == already_authorized_user }
     end
     users
+  end
+
+  def authorized_to_create
+    @album = Album.find(params[:album_id])
+    redirect_to login_path unless is_owner?(current_user, @album)
+  end
+
+  def authorized_to_destroy
+    @share = Share.find(params[:id])
+    redirect_to login_path unless current_user == @share.album.user || current_user.id == @share.user_id
   end
 end
