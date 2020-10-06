@@ -2,6 +2,7 @@ class AlbumsController < ApplicationController
   before_action :ensure_logged_in, only: %i[toggle_public index create destroy]
   before_action :load_album, only: %i[toggle_public destroy]
   before_action :ensure_owner, only: %i[toggle_public destroy]
+  before_action :authorized_to_view, only: %i[show]
 
   def index
     @album = Album.new
@@ -10,7 +11,7 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    @album = Album.include_images.find(params[:id])
+    # empty method.  @album populated by before_action
   end
 
   def create
@@ -56,5 +57,14 @@ class AlbumsController < ApplicationController
 
   def ensure_owner
     redirect_to album_path(@album) unless is_owner?(current_user, @album)
+  end
+
+  def authorized_to_view
+    @album = Album.include_images.find(params[:id])
+    can_view = false
+    can_view = true if logged_in? && is_owner?(current_user, @album)
+    can_view = true if @album.public
+    can_view = true if logged_in? && current_user.authorized_albums.include?(@album)
+    redirect_to login_path unless can_view
   end
 end
