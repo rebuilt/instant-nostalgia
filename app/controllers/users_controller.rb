@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    # empty method. Has before_actions
+    # empty method. Loads user through before_actions
   end
 
   def update
