@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :load_user, only: %i[show edit update destroy]
   before_action :authorized_to_edit, only: %i[edit update]
+  before_action :authorized_to_destroy, only: %i[destroy]
 
   def show
     @private_albums = @user.albums.reject { |album| album.public == true }
@@ -38,9 +39,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user.destroy
+    session.delete(:user_id)
+    redirect_to login_path
+  end
+
   private
 
   def authorized_to_edit
+    redirect_to login_path unless current_user == @user
+  end
+
+  def authorized_to_destroy
+    @user = User.find(params[:id])
     redirect_to login_path unless current_user == @user
   end
 

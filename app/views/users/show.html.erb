@@ -28,7 +28,9 @@
       <%= @user.email %>
     </div>
 
-    <%= link_to t('.edit'), edit_user_path(@user), class: "btn btn--primary max-content mt-5" %>
+    <%= link_to t('.edit'), edit_user_path(@user), class: "btn btn--primary max-content mr-1 mt-5" %>
+    <%= link_to t('.delete'), user_path(@user), class: "btn btn--warning max-content mt-5", method: :delete, title: t('.delete_title'), data: {confirm: 'Are you sure you want to delete your account?  This action cannot be undone'}  %>
+
   <% end %>
 
   <% if(logged_in? && current_user == @user)  %>
