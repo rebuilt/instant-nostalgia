@@ -139,3 +139,15 @@ hr {
 ul {
   list-style-type: none;
 }
+
+footer {
+  color: $primary--lightest;
+  margin-top: 20rem;
+  min-height: 10vh;
+  background-color: $primary--darker;
+  padding: 20px;
+}
+
+footer a {
+  color: $primary--lightest;
+}
