@@ -1,5 +1,7 @@
 class AlbumsController < ApplicationController
-  before_action :ensure_owner, only: %i[toggle_public]
+  before_action :ensure_logged_in, only: %i[toggle_public index create destroy]
+  before_action :load_album, only: %i[toggle_public destroy]
+  before_action :ensure_owner, only: %i[toggle_public destroy]
 
   def index
     @album = Album.new
@@ -26,17 +28,17 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-    @album = Album.find(params[:id])
-
-    @album.destroy if can_delete_album?(current_user, @album)
     respond_to do |format|
-      format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
-      format.js { render :destroy }
+      if @album.destroy
+        format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
+        format.js { render :destroy }
+      else
+        redirect_to albums_url, notice: 'Error.  Album was not destroyed.'
+      end
     end
   end
 
   def toggle_public
-    @album = Album.find(params[:album_id])
     @album.toggle! :public
   end
 
@@ -46,12 +48,13 @@ class AlbumsController < ApplicationController
     params.require(:album).permit(:title, :user_id, :photos_id)
   end
 
-  def can_delete_album?(user, album)
-    user == album.user
+  def load_album
+    @album = Album.find(params[:id]) if params[:id].present?
+    @album = Album.find(params[:album_id]) if @album.nil?
+    @album
   end
 
   def ensure_owner
-    album = Album.find(params[:album_id])
-    redirect_to album_path(album) unless current_user == album.user
+    redirect_to album_path(@album) unless is_owner?(current_user, @album)
   end
 end
