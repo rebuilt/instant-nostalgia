@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :photos, only: %i[index show new create destroy] do
       resources :comments, only: %i[create destroy]
     end
-    resources :users, only: %i[index show new create edit update]
+    resources :users, only: %i[show new create edit update]
     resources :sessions, only: %i[new create destroy]
     resources :albums, only: %i[index show create destroy] do
       post :toggle_public
