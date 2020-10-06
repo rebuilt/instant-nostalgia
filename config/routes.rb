@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: 'welcome#index'
-  get 'login', to: 'session#new'
+  get 'login', to: 'sessions#new'
   get 'signup', to: 'user#new'
   scope '/:locale' do
     resources :photos, only: %i[index show new create destroy] do
