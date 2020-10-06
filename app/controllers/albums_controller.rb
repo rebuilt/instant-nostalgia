@@ -8,8 +8,6 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    # TODO: pagify album contents
-
     @album = Album.include_images.find(params[:id])
   end
 
