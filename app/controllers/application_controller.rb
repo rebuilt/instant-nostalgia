@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_locale
-  helper_method :logged_in?, :current_user
+  helper_method :logged_in?, :current_user, :ensure_logged_in, :is_owner?
   add_flash_types :success
 
   def set_locale
@@ -19,5 +19,13 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= User.find(session[:user_id])
+  end
+
+  def ensure_logged_in
+    redirect_to login_path unless logged_in?
+  end
+
+  def is_owner?(user, model)
+    user == model.user
   end
 end
