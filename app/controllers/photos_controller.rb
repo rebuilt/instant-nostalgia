@@ -1,6 +1,7 @@
 class PhotosController < ApplicationController
   before_action :has_remaining_uploads, only: %i[create]
   before_action :ensure_logged_in, only: %i[index new create destroy]
+  before_action :authorized_to_view, only: %i[show]
 
   def index
     @photos = Photo.with_attached_image
@@ -65,5 +66,25 @@ class PhotosController < ApplicationController
 
   def has_remaining_uploads
     redirect_to new_photo_path unless current_user.has_remaining_uploads?
+  end
+
+  def authorized_to_view
+    @photo = Photo.find(params[:id])
+    can_view = false
+
+    # Can view the photo if it's public
+    @photo.albums.each do |album|
+      can_view = true if album.public
+    end
+
+    # Can view the photo if it's been shared with them
+    @photo.authorized_users.each do |user|
+      can_view = true if logged_in? && current_user == user
+    end
+
+    # Can view the photo if it belongs to them
+    can_view = true if logged_in? && current_user == @photo.user
+
+    redirect_to login_path unless can_view
   end
 end
