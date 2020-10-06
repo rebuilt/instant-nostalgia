@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :ensure_logged_in, only: %i[destroy]
+
   def new
     @user = User.new
   end
@@ -17,7 +19,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session.delete(:user_id)
-    @current_user = nil
     redirect_to root_path
   end
 end
