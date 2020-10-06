@@ -3,4 +3,6 @@ en:
     show:
       title: User details
       edit: Edit
+      delete: Delete account
+      delete_title: This deletes your account and all photos you have uploaded.  Also deletes your albums and shares.  Deleted accounts cannot be recovered.
       private_albums: Private Albums
