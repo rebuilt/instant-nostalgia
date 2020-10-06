@@ -23,6 +23,10 @@ es:
         username: Nombre de usuario
     errors:
       models:
+        photo:
+          attributes:
+            image:
+              content_type: La foto debe ser de tipo .jpeg o .jpg
         user:
           attributes:
             password_confirmation:
@@ -100,6 +104,7 @@ es:
       year: Año
   delete: Eliminar
   edit: Editar
+  language: Idioma
   login: Iniciar sesión
   logout: Cerrar sesión
   map: Mapa

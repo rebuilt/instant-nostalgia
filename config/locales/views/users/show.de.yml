@@ -2,6 +2,8 @@
 de:
   users:
     show:
+      delete: Konto löschen
+      delete_title: Dadurch werden Ihr Konto und alle von Ihnen hochgeladenen Fotos gelöscht. Löscht auch Ihre Alben und Freigaben. Gelöschte Konten können nicht wiederhergestellt werden.
       edit: Bearbeiten
       private_albums: Private Alben
       title: Nutzerdetails

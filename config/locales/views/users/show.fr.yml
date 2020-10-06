@@ -2,6 +2,8 @@
 fr:
   users:
     show:
+      delete: Supprimer le compte
+      delete_title: Cela supprime votre compte et toutes les photos que vous avez téléchargées. Supprime également vos albums et vos partages. Les comptes supprimés ne peuvent pas être récupérés.
       edit: Éditer
       private_albums: Albums privés
       title: Détails de l'utilisateur

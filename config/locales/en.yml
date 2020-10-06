@@ -10,6 +10,7 @@ en:
   upload: Upload
   edit: Edit
   delete: Delete
+  language: Language
   activerecord:
     models:
       user:

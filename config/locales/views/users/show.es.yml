@@ -2,6 +2,8 @@
 es:
   users:
     show:
+      delete: Borrar cuenta
+      delete_title: Esto elimina su cuenta y todas las fotos que ha subido. También elimina tus álbumes y acciones. Las cuentas eliminadas no se pueden recuperar.
       edit: Editar
       private_albums: Álbumes privados
       title: Detalles de usuario

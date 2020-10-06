@@ -2,6 +2,8 @@
 it:
   users:
     show:
+      delete: Eliminare l'account
+      delete_title: Questo elimina il tuo account e tutte le foto che hai caricato. Elimina anche i tuoi album e condivisioni. Gli account eliminati non possono essere recuperati.
       edit: modificare
       private_albums: Album privati
       title: Dettagli utente

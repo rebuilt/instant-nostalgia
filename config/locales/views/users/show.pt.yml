@@ -2,6 +2,8 @@
 pt:
   users:
     show:
+      delete: Deletar conta
+      delete_title: Isso exclui sua conta e todas as fotos que você carregou. Também exclui seus álbuns e compartilhamentos. Contas excluídas não podem ser recuperadas.
       edit: Editar
       private_albums: Álbuns privados
       title: Detalhes do usuario
