@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
   before_action :load_user, only: %i[show edit update destroy]
-  def index
-    @users = User.all
-  end
+  before_action :authorized_to_edit, only: %i[edit update]
 
   def show
     @private_albums = @user.albums.reject { |album| album.public == true }
@@ -25,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    # empty method
+    # empty method. Has before_actions
   end
 
   def update
@@ -41,6 +39,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def authorized_to_edit
+    redirect_to login_path unless current_user == @user
+  end
 
   def user_params
     params.require(:user).permit(:avatar, :username, :first_name, :last_name, :email, :password, :password_confirmation)
