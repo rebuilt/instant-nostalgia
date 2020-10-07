@@ -42,4 +42,4 @@ class Gps
   private_class_method :divide
 end
 
-Coordinates = Struct.new(:latitude, :longitude)
+Coordinates ||= Struct.new(:latitude, :longitude)
