@@ -15,5 +15,6 @@ Rails.application.routes.draw do
     resources :shares, only: %i[index new create destroy]
     resources :maps, only: %i[index]
     resources :public_albums, only: %i[index]
+    resources :photo_uploads, only: %i[create]
   end
 end
