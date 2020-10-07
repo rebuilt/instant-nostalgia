@@ -31,13 +31,20 @@ class SharesController < ApplicationController
     album_id = params[:album_id]
     @album = Album.find(album_id)
 
+    has_errors = false
+
     @album.photos.each do |photo|
       @share = Share.new(user_id: user_id, album_id: album_id, photo_id: photo.id)
       if @share.save
-        redirect_to shares_path
       else
-        render :new
+        has_errors = true
       end
+    end
+
+    if has_errors
+      render :new
+    else
+      redirect_to shares_path
     end
   end
 
