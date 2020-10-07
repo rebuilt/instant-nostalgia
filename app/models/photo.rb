@@ -29,6 +29,10 @@ class Photo < ApplicationRecord
     metadata = read_image_metadata
     populate_with(metadata)
     initialize_latlong_decimals
+    save && location?
+  end
+
+  def init_address
     reverse_geocode
     save && location?
   end
