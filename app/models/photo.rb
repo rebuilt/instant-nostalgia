@@ -62,10 +62,13 @@ class Photo < ApplicationRecord
 
   def read_image_metadata
     metadata = MiniMagick::Image.open(image).exif
-    Metadata.new(metadata)
+    output = Metadata.new(metadata) unless metadata.nil?
+    output
   end
 
   def populate_with(metadata)
+    return if metadata.nil?
+
     if metadata.has_location?
       update(file_name: image.filename,
              latitude_in_degrees: metadata.latitude,
@@ -82,8 +85,6 @@ class Photo < ApplicationRecord
   end
 
   def initialize_latlong_decimals
-    return unless location?
-
     coordinates = Coordinates.new(latitude_in_degrees, longitude_in_degrees)
     coordinates = Gps.to_decimal(coordinates)
     update(latitude_in_decimal: coordinates.latitude,
