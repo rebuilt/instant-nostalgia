@@ -1,7 +1,7 @@
 <div id="modal" class="modal" data-controller="modal"> </div>
 
 <div class="content-wrapper">
-  <h1> <%= Photo.model_name.human(count: 2) %> </h1>
+  <h1> <%= Photo.model_name.human(count: 2) %> (<span id="count"><%= @photos.count  %></span>)</h1>
 
   <%= render(partial: "flash_messages")  %>
 
