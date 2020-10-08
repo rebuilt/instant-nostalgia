@@ -2,15 +2,18 @@
   <h1> <%= t('.upload_title')  %> </h1>
 
   <%= render(partial: "error_messages", locals: {model: @photo})  %>
+  <%= render(partial: "flash_messages")  %>
 
   <p> <%= "#{t('.description_start')} #{@uploads_remaining} #{t('.description_end')}"  %> </p>
   <% if(@uploads_remaining > 0 )  %>
     <p> <%= t('.instructions')  %> </p>
-    <%# <p> <%= t('.or')  %1> </p> %>
 
-  <%= form_with(url: photo_uploads_path, class: "mt-3") do |form|  %>
+    <%= form_with(url: photo_uploads_path, class: "mt-3") do |form|  %>
       <%= form.file_field :image, multiple: true, direct_upload: true, class: 'input-group__file' %>
       <%= form.submit t('.upload_title'), id: 'upload', class: 'btn btn--primary' %>
+    <% end %>
+
+    <div id="message" class="mt-3"></div>
+    <div id="status" class="mt-3"></div>
   <% end %>
-<% end %>
 </main>
