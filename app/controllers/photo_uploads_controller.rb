@@ -1,8 +1,12 @@
 class PhotoUploadsController < ApplicationController
+  before_action :ensure_logged_in, only: %i[create]
+
   def create
     @uploads_remaining = current_user.remaining_uploads
+
+    puts params[:image]
     params[:image].each_with_index do |blob, index|
-      next unless @uploads_remaining.positive?
+      break unless @uploads_remaining.positive?
 
       @photo = Photo.create(image: blob, user: current_user)
       @photo.init
@@ -11,11 +15,5 @@ class PhotoUploadsController < ApplicationController
 
       ReverseGeocodeJob.set(wait: index.seconds).perform_later(@photo)
     end
-  end
-
-  private
-
-  def photo_params
-    params.require(:image).permit(:blob)
   end
 end
