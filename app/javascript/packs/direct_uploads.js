@@ -46,3 +46,13 @@ addEventListener('direct-upload:end', (event) => {
     const element = document.getElementById(`direct-upload-${id}`)
     element.classList.add('direct-upload--complete')
 })
+
+addEventListener('direct-uploads:end', (event) => {
+    const status = document.getElementById('status')
+    status.innerHTML =
+    '<a class="btn btn--primary max-content mt-3" href="/en/photos">View photos</a>'
+    document.getElementById('upload').style.display = 'none'
+    const message = document.getElementById('message')
+    message.textContent =
+    'Images uploaded.  Address information will continue to process in the background.  If latitude and longitude show up as "0", then no address information was found in image.'
+})
