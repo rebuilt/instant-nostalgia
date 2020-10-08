@@ -3,6 +3,8 @@
 <div class="content-wrapper">
   <h1> <%= Photo.model_name.human(count: 2) %> </h1>
 
+  <%= render(partial: "flash_messages")  %>
+
   <div class="gallery">
     <% @photos.each do |photo|   %>
       <%= render(partial: "editable_photo_card", locals: {photo: photo})  %>
