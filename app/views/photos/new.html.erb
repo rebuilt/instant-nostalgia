@@ -9,8 +9,8 @@
     <%# <p> <%= t('.or')  %1> </p> %>
 
   <%= form_with(url: photo_uploads_path, class: "mt-3") do |form|  %>
-      <%= form.file_field :image, multiple: true, class: 'input-group__file' %>
-      <%= form.submit t('.upload_title'), class: 'btn btn--primary' %>
+      <%= form.file_field :image, multiple: true, direct_upload: true, class: 'input-group__file' %>
+      <%= form.submit t('.upload_title'), id: 'upload', class: 'btn btn--primary' %>
   <% end %>
 <% end %>
 </main>
