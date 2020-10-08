@@ -5,6 +5,5 @@ class ReverseGeocodeJob < ApplicationJob
     photo = args[0]
     photo.init_address
     photo.save
-    puts photo
   end
 end
