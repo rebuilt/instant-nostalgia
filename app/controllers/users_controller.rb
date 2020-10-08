@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to new_photo_path
     else
-      flash[:alert] = @user.errors.full_messages
+      flash.now[:alert] = @user.errors.full_messages
       render 'new'
     end
   end
