@@ -9,6 +9,7 @@ class MapsController < ApplicationController
       @photos = load_photos_by_area(:country) if params[:country].present?
       @photos = load_by_date if DateTools.date_populated?(params)
       @photos = load_by_date_range if DateTools.date_range_populated?(params)
+      @photos = load_by_id if params[:photo_id].present?
       # Before this comment @photos is an activerecord relation.  After this comment, @photos is an array
       @photos = load_albums(:album) if params[:album].present?
       @photos = load_albums(:publicAlbum) if params[:publicAlbum].present?
@@ -48,6 +49,11 @@ class MapsController < ApplicationController
 
   def add_message(filtered_by, value)
     flash.now[:message] = flash.now[:message] + "  #{filtered_by}: #{value} |"
+  end
+
+  def load_by_id
+    tmp = Photo.with_attached_image.where(id: params[:photo_id])
+    load(tmp)
   end
 
   def load_photos_by_area(area)
