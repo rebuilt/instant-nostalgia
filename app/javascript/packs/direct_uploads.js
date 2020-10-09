@@ -54,5 +54,5 @@ addEventListener('direct-uploads:end', (event) => {
     document.getElementById('upload').style.display = 'none'
     const message = document.getElementById('message')
     message.textContent =
-    'Images uploaded.  Address information will continue to process in the background.  If latitude and longitude show up as "0", then no address information was found in image.'
+    'Images uploaded.  Address information will continue to process in the background.  If latitude and longitude show up as "0", then no address information is embedded in the image.'
 })
