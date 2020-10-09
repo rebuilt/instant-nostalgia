@@ -59,24 +59,6 @@ class MapsController < ApplicationController
     load(tmp) if photo.location? && can_view_photo?(photo)
   end
 
-  def can_view_photo?(photo)
-    can_view = false
-
-    # Can view the photo if it's public
-    photo.albums.each do |album|
-      can_view = true if album.public
-    end
-
-    # Can view the photo if it's been shared with them
-    photo.authorized_users.each do |user|
-      can_view = true if logged_in? && current_user == user
-    end
-
-    # Can view the photo if it belongs to them
-    can_view = true if logged_in? && current_user == photo.user
-    can_view
-  end
-
   def load_photos_by_area(area)
     params[area]&.each do |key, value|
       next unless value == '1'
@@ -105,12 +87,6 @@ class MapsController < ApplicationController
     @photos
   end
 
-  def can_view_album?(album)
-    return true if album.public
-
-    logged_in? && (current_user == album.user || current_user.authorized_albums.include?(album))
-  end
-
   def load_by_date
     day = params['day-selector']
     month = params['month-selector']
@@ -129,6 +105,30 @@ class MapsController < ApplicationController
     tmp = Photo.with_attached_image.belonging_to_user(current_user).date_between(start_date, end_date)
 
     load(tmp)
+  end
+
+  def can_view_album?(album)
+    return true if album.public
+
+    logged_in? && (current_user == album.user || current_user.authorized_albums.include?(album))
+  end
+
+  def can_view_photo?(photo)
+    can_view = false
+
+    # Can view the photo if it's public
+    photo.albums.each do |album|
+      can_view = true if album.public
+    end
+
+    # Can view the photo if it's been shared with them
+    photo.authorized_users.each do |user|
+      can_view = true if logged_in? && current_user == user
+    end
+
+    # Can view the photo if it belongs to them
+    can_view = true if logged_in? && current_user == photo.user
+    can_view
   end
 
   def remove_non_geocoded(photos)
