@@ -7,7 +7,7 @@ Albums.buildLinks = function (album) {
 
     const title = document.createElement('h3')
     const titleLink = document.createElement('a')
-    titleLink.setAttribute('class', 'btn mr-1')
+    titleLink.setAttribute('class', 'albums__title btn mr-1')
     titleLink.setAttribute('href', `/${album.locale}/albums/${album.id}`)
     titleLink.textContent = album.title
     title.appendChild(titleLink)
