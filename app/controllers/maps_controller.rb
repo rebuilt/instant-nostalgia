@@ -53,7 +53,7 @@ class MapsController < ApplicationController
 
   def load_by_id
     tmp = Photo.with_attached_image.where(id: params[:photo_id])
-    load(tmp)
+    load(tmp) if tmp[0].location?
   end
 
   def load_photos_by_area(area)
