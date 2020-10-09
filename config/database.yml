@@ -84,4 +84,4 @@ production:
   username: capstone_project_wad_c5_s4_750
   host: localhost
   port: 5432
-  password: "<%= ENV['DATABASE_PASSWORD']  %>"
+  password: "<%= Rails.application.credentials.database_password  %>"
