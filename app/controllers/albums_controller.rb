@@ -7,7 +7,7 @@ class AlbumsController < ApplicationController
   def index
     @album = Album.new
     @albums = Album.where(user: current_user.id)
-    @photos = Photo.with_attached_image.belonging_to_user(current_user)
+    @pagy, @photos = pagy(Photo.with_attached_image.belonging_to_user(current_user))
   end
 
   def show

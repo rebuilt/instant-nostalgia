@@ -43,7 +43,7 @@
     </h2>
 
     <%= form_with(url: photo_album_path(1), method: :patch, local: true) do |form| %>
-      <div class="actions row">
+      <div class="actions row mb-5">
         <p class="mr-4"> <%= t('.select')  %> </p>
         <div class="mr-5">
           <%= select_tag("album-selector", options_from_collection_for_select(current_user.albums, "id", "title" ))  %>
@@ -51,11 +51,15 @@
         <%= form.submit(t('.add'), class: "btn btn--primary ml-5") %>
       </div>
 
+      <%== pagy_nav(@pagy) %>
+
       <div class="gallery mt-5">
         <% @photos.each do |photo|   %>
           <%= render(partial: "photo_selector_card", locals: {photo: photo})  %>
         <% end %>
       </div>
+
+      <%== pagy_nav(@pagy) %>
 
     <% end %>
   </div>
