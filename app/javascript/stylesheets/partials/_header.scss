@@ -1,6 +1,6 @@
 @import "colors";
 
-nav {
+.global-nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -29,6 +29,34 @@ nav {
 
 .nav-item {
   float: left;
+}
+
+.pagy-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.page {
+  padding: 7px;
+}
+
+.pagination .page a {
+  color: $primary--darker;
+  background-color: $primary--lightest;
+}
+.pagination .page a:hover {
+  background-color: $primary;
+}
+.pagination .active {
+  color: white;
+  background-color: $primary--dark;
+}
+.pagination .active:after {
+  content: "";
 }
 
 .burger {
