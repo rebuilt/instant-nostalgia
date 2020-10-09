@@ -83,5 +83,5 @@ production:
   database: capstone_project_wad_c5_s4_750_production
   username: capstone_project_wad_c5_s4_750
   host: localhost
-  pool: 5
-  password: "&fNsYF42Mf^7=w8d"
+  port: 5432
+  password: "<%= ENV['DATABASE_PASSWORD']  %>"
