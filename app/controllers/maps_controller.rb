@@ -53,7 +53,28 @@ class MapsController < ApplicationController
 
   def load_by_id
     tmp = Photo.with_attached_image.where(id: params[:photo_id])
-    load(tmp) if tmp[0].location?
+    photo = tmp[0]
+
+    add_message('Photo', photo.id)
+    load(tmp) if photo.location? && can_view_photo?(photo)
+  end
+
+  def can_view_photo?(photo)
+    can_view = false
+
+    # Can view the photo if it's public
+    photo.albums.each do |album|
+      can_view = true if album.public
+    end
+
+    # Can view the photo if it's been shared with them
+    photo.authorized_users.each do |user|
+      can_view = true if logged_in? && current_user == user
+    end
+
+    # Can view the photo if it belongs to them
+    can_view = true if logged_in? && current_user == photo.user
+    can_view
   end
 
   def load_photos_by_area(area)
