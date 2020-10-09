@@ -1,3 +1,5 @@
+include Pagy::Backend
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
@@ -14,6 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
+    # session[:user_id].destroy unless User.exists?(session[:user_id])
     session[:user_id].present?
   end
 
