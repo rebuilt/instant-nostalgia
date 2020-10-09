@@ -4,7 +4,6 @@ class PhotoUploadsController < ApplicationController
   def create
     @uploads_remaining = current_user.remaining_uploads
 
-    puts params[:image]
     params[:image].each_with_index do |blob, index|
       break unless @uploads_remaining.positive?
 
