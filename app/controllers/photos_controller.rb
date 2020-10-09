@@ -4,10 +4,10 @@ class PhotosController < ApplicationController
   before_action :authorized_to_view, only: %i[show]
 
   def index
-    @photos = Photo.with_attached_image
+    @pagy, @photos = pagy(Photo.with_attached_image
                    .belonging_to_user(current_user)
                    .includes(:user)
-                   .order_by_new_to_old
+                   .order_by_new_to_old)
   end
 
   def show

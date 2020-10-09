@@ -1,13 +1,17 @@
 <div id="modal" class="modal" data-controller="modal"> </div>
 
 <div class="content-wrapper">
-  <h1> <%= Photo.model_name.human(count: 2) %> (<span id="count"><%= @photos.count  %></span>)</h1>
+  <h1> <%= Photo.model_name.human(count: 2) %> (<span id="count"><%= current_user.photos.count  %></span>)</h1>
 
   <%= render(partial: "flash_messages")  %>
+
+  <%== pagy_nav(@pagy) %>
 
   <div class="gallery">
     <% @photos.each do |photo|   %>
       <%= render(partial: "editable_photo_card", locals: {photo: photo})  %>
     <% end %>
   </div>
+
+  <%== pagy_nav(@pagy) %>
 </div>
