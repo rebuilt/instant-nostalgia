@@ -20,7 +20,7 @@
           <p> <span class="beta"> <%= Photo.human_attribute_name(:state)  %>: </span> <%= @photo.state %> </p>
           <p> <span class="beta"> <%= Photo.human_attribute_name(:country)  %>: </span>  <%= @photo.country %> </p>
           <p>
-          <%= render partial: "to_map_with_photo_id", locals: {photo_id: @photo.id}  %>
+          <%= render partial: "to_map_with_photo_id", locals: {photo: @photo}  %>
           </p>
           <p> <a href="https://www.google.com/maps/search/?api=1&query=<%= @photo.latitude_in_decimal  %>,<%= @photo.longitude_in_decimal  %>" target="blank"> <%= t('.directions')  %> </a></p>
         </div>
