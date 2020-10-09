@@ -58,18 +58,3 @@
 .pagination .active:after {
   content: "";
 }
-
-.burger {
-  display: none;
-}
-.burger div {
-  width: 25px;
-  height: 2px;
-  background-color: rgb(226, 226, 226);
-  margin: 5px;
-}
-
-@media screen and (max-width: 768px) {
-  .burger {
-  }
-}
