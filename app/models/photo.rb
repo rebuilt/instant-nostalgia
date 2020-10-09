@@ -53,7 +53,9 @@ class Photo < ApplicationRecord
   }
 
   def location?
-    return false if latitude_in_decimal == 0.0 && longitude_in_decimal == 0.0
+    if (latitude_in_decimal.nil? || latitude_in_decimal == 0.0) && (longitude_in_decimal.nil? || longitude_in_decimal == 0.0)
+      return false
+    end
 
     true
   end
