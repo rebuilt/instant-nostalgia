@@ -1,5 +1,7 @@
 class Gps
   def self.to_decimal(coordinates)
+    return Coordinates.new(0, 0) if coordinates.latitude == '0' || coordinates.longitude == '0'
+
     Coordinates.new(convertDMSToDD(coordinates.latitude), convertDMSToDD(coordinates.longitude))
   end
 
@@ -26,11 +28,14 @@ class Gps
     output[:degrees] = divide(coordinate[0])
     output[:minutes] = divide(coordinate[1])
     output[:seconds] = divide(coordinate[2])
+    coordinate[3] ||= ''
     output[:direction] = coordinate[3].strip
     output
   end
 
   def self.divide(statement)
+    return 0 if statement.nil?
+
     numbers = statement.split('/')
     (numbers[0].to_f / numbers[1].to_f)
   end
