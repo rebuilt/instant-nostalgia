@@ -80,8 +80,8 @@ test:
 #
 production:
   <<: *default
-  database: capstone_project_wad_c5_s4_750_production
-  username: capstone_project_wad_c5_s4_750
+  database:   "<%= Rails.application.credentials.database_name %>"
+  username:  "<%= Rails.application.credentials.database_user  %>"
   host: localhost
   port: 5432
   password: "<%= Rails.application.credentials.database_password  %>"
