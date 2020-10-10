@@ -8,7 +8,7 @@ class Photo < ApplicationRecord
   has_many :comments, as: :commentable
   has_many :shares, dependent: :destroy
   has_many :authorized_users, through: :shares, source: :user, dependent: :destroy
-  validates :image, presence: true, blob: { content_type: ['image/jpg', 'image/jpeg', 'image/png'], size_range: 1..25.megabytes }
+  validates :image, blob: { content_type: ['image/jpg', 'image/jpeg', 'image/png'], size_range: 1..25.megabytes }
 
   geocoded_by :address
   reverse_geocoded_by :latitude_in_decimal, :longitude_in_decimal do |obj, results|
