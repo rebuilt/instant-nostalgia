@@ -31,17 +31,23 @@ class SharesController < ApplicationController
     album_id = params[:album_id]
     @album = Album.find(album_id)
 
-    has_errors = false
-
     @album.photos.each do |photo|
       @share = Share.new(user_id: user_id, album_id: album_id, photo_id: photo.id)
       if @share.save
       else
-        has_errors = true
+        flash.now[:alert] = 'Error sharing album'
+        render :new
       end
     end
 
+    has_errors = false
+    if @album.photos.count.zero?
+      has_errors = true
+      flash.now[:alert] = "Can't share an empty album.  Please add photos before sharing album"
+    end
+
     if has_errors
+      @share ||= Share.new
       render :new
     else
       redirect_to shares_path
