@@ -170,7 +170,7 @@ class MapsTest < ApplicationSystemTestCase
     album = Album.new(title: 'first', user: user)
     photo0 = create_photo(0, user)
     album.photos << photo0
-    share = Share.new(user: user2, album: album)
+    share = Share.new(user: user2, album: album, photo: photo0)
     share.save
     sign_in(user2)
 
@@ -194,7 +194,7 @@ class MapsTest < ApplicationSystemTestCase
     album = Album.new(title: 'first', user: user)
     photo0 = create_photo(0, user)
     album.photos << photo0
-    share = Share.new(user: user2, album: album)
+    share = Share.new(user: user2, album: album, photo: photo0)
     share.save
     sign_in(user2)
 

@@ -43,6 +43,8 @@ class SharesTest < ApplicationSystemTestCase
     user2 = create_user('second_user')
     sign_in(user)
     album = create_album(user)
+    photo = create_photo_with_attachment(user)
+    album.photos << photo
     visit new_share_path(album_id: album.id)
 
     assert current_url.include? new_share_path
@@ -61,6 +63,8 @@ class SharesTest < ApplicationSystemTestCase
     user2 = create_user('second_user')
     sign_in(user)
     album = create_album(user)
+    photo = create_photo_with_attachment(user)
+    album.photos << photo
     visit new_share_path(album_id: album.id)
 
     assert current_url.include? new_share_path
