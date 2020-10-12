@@ -134,6 +134,8 @@ bundle exec guard
 
 - To start the memory profiler uncomment all the lines in config/initializers/memory_profiler.rb. This will start a profiling session when the rails server starts. On stopping a rails server, it will print a log to the command line
 
+- Mini profiler is enabled by default. You'll see a display of the time in miliseconds it takes for a page to load on the top left of every page you visit. This time is not accurate if you have auto-reload enabled since it slows down page loads by half a second.
+
 ## Development log
 
 ### Differences between proposal and final product
