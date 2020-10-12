@@ -25,7 +25,6 @@ The website allows users to see their photos on a map. A marker is placed on the
 - Geocoder gem - Upon creation of a photo record, reverse geocode the lat/long coordinates embedded in a photo to populate the address tags for the Photo
 - pagy - for pagination
 - image_processing - for resizing photos
-- pg - Postgres database
 
 ### Standalone app requirements
 
@@ -45,6 +44,8 @@ The website allows users to see their photos on a map. A marker is placed on the
 - Database: PostgreSQL, pg gem
 - Rails 6
 - Action text - rich text for comments
+- Active Storage - to coordinate storing files
+- Webpacker - to compile images, stylesheets and javascript
 
 #### Development
 
@@ -102,7 +103,7 @@ rails test:system
 
 #### Reverse geocode job
 
-- Uses geocoder to get an address based on a latitude and logitude embedded in the photo data. Populates City, State, and Country columns of the Photo model.
+- app/jobs/reverse_geocode_job.rb - Uses geocoder to get an address based on a latitude and logitude embedded in the photo data. Populates City, State, and Country columns of the Photo model.
 
 ### Deployment instructions
 
@@ -113,7 +114,7 @@ rails test:system
 - a valid google maps api key. I have locked down the current production api key to the heroku address https://aqueous-mesa-56772.herokuapp.com because the api key can be read by looking at the page source. In order to prevent anonymous internet users from using the key, I have added the heroku address as the only site that can use that particular key.  
   For convenience, I have included a develpment api key on line 70 of maps/index.html.erb. No action needs to be taken for it to work correctly in develpment. The api key only needs to be changed when pushing to production.
 
-#### starting app in development
+#### Starting app in development
 
 - Commands to get up and running
 
@@ -134,9 +135,9 @@ rails s
 bundle exec guard
 ```
 
-- To start the memory profiler uncomment all the lines in config/initializers/memory_profiler.rb. This will start a profiling session when the rails server starts. On stopping a rails server, it will print a log to the command line
+- To start the memory profiler uncomment all the lines in config/initializers/memory_profiler.rb. This will start a profiling session when the rails server starts. On stopping a rails server, it will print a log to the command line. This will take several minutes depending on the amount of time spent profiling. Be patient, it has not crashed.
 
-- Mini profiler is enabled by default. You'll see a display of the time in miliseconds it takes for a page to load on the top left of every page you visit. This time is not accurate if you have auto-reload enabled since it slows down page loads by half a second.
+- Mini profiler is enabled by default. You'll see a display of the time in milliseconds it takes for a page to load on the top left of every page you visit. This time is not accurate if you have auto-reload enabled since auto-reload slows down page loads by half a second, unless loading page from turbolinks cache.
 
 ## Development log
 
@@ -155,13 +156,13 @@ bundle exec guard
 URI::InvalidURIError: bad URI(is not URI?).  "postgres://capstone_project_wad_c5_s4_750:&fNsYF42Mf^7=w8d@localhost/capstone_project_wad_c5_s4_750_production".
 ```
 
-I could no longer start the rails server. Every rails command resulted in the same invalid uri error. Rails test, rails c, rails s, etc all resulted in the uri error. I tried running other projects and got the same uri error. I ran rails new and got the uri error. I checked postres, it was alive and accepting requests. The database existed and I could run manual operations against the database. I think the problem was that the password I used contained special characters that messed up postgres in some way. Changing the password in database.yml did not help. I reset the password in posgres. That did not help. I removed and reinstalled postgres. That still did not fix the error. I was still getting the invalid uri error when running rails new. I had to reboot to clear the old password from memory and the new instance of postgres finally picked up the updated password. Since the password gets concatinated into a url for the postgres requests, my guess is that the & ampersand symbol is the problem since it's a reserved character in url encoding. I probably did not have to reinstall postgres. I should have killed the daemon process to clear the bad password from memory.
+I could no longer start the rails server. Every rails command resulted in the same invalid uri error. Rails test, rails c, rails s, etc all resulted in the uri error. I tried running other projects and got the same uri error. I ran rails new and got the uri error. I checked postres, it was alive and accepting requests. The database existed and I could run manual operations against the database. I think the problem was that the password I used contained special characters that messed up postgres in some way. Changing the password in database.yml did not help. I reset the password in posgres. That did not help. I removed and reinstalled postgres. That still did not fix the error. I was still getting the invalid uri error when running rails new. I had to reboot to clear the old password from memory and the new instance of postgres finally picked up the updated password. Since the password gets concatinated into a url for the postgres requests, my guess is that the & ampersand symbol is the problem since it's a reserved character in url encoding. The rails server attempted to make a request to the database using the malformed uri and the connection was left open, being blocked by the & character. I probably did not have to reinstall postgres. I should have killed the daemon process after changing the password in postgres to clear the bad password from memory.
 
-- I moved from using sprockets to webpacker. This mean moving my images and stylesheets to app/javascript/stylesheets. I moved the files to the new folder and configured webpacker to use my new stylesheets. Everything looked good. No problems with the styles. But now when I tried to submit a comment, I got the following error:
+- I moved from using sprockets to webpacker. This meant moving my images and stylesheets to app/javascript/stylesheets. I moved the files to the new folder and configured webpacker to use my new stylesheets. Everything looked good. No problems with the styles. But now when I tried to submit a comment, I got the following error:
 
 ```
  ActionView::Template::Error - link_directory argument must be a directory:   app/views/comments/create.js.erb:0:in `view template'
 ```
 
-I only moved the stylesheets over. I did not touch the view folder at all. I did't alter any javascript files either. The error turned out to be a general sprokets error. I had deleted the app/assets/stylesheets directory and sprockets expects that directory to exist, even if it's empty. I added the folder back and everything worked correctly.  
-Moving all assets from sprockets to webpacker was well worth it because it fixed the race condition that made my tests fail incorrectly. Under sprockets, when the entire test suite was launched at once, tests would run and fail before sprockets had finished compiling the assets. Running a single test file under sprockets worked fine but multiple test files would intermittently fail. Now, with webpacker, all tests pass and I don't get incorrectly failing tests.
+I only moved the stylesheets over. I did not touch the view folder at all. I didn't alter any javascript files either. The error turned out to be a general sprokets error. I had deleted the app/assets/stylesheets directory and sprockets expects that directory to exist, even if it's empty. I added the folder back and everything worked correctly.  
+Moving all assets from sprockets to webpacker was well worth it because it fixed the race condition that made my tests fail incorrectly. Under sprockets, when the entire test suite was launched at once, tests would run and fail before sprockets had finished compiling the assets. Running a single test file under sprockets worked fine but multiple test files would intermittently fail. Now, with webpacker, all tests pass and I only get failed test the first time webpacker needs to rebuild the stylesheets.  After the first run, stylesheets have already been compiled and tests pass without incorrect failures.
