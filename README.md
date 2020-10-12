@@ -4,6 +4,8 @@ This is the repository for the Instant Nostalgia website, live here:
 
 https://aqueous-mesa-56772.herokuapp.com
 
+The website allows users to see their photos on a map. A marker is placed on the map corresponding to the location the photo was taken. Users can create albums and share those albums with specific users. Or they can make an album public and share it with the world.
+
 ## Third party services
 
 ### External APIs
