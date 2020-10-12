@@ -51,7 +51,7 @@ class PhotosController < ApplicationController
   private
 
   def photo_params
-    params.require(:photo).permit(:image)
+    params.require(:photo).permit(images: [])
   end
 
   def successful_upload(format)
