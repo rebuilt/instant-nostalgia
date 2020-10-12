@@ -188,6 +188,53 @@ class MapsTest < ApplicationSystemTestCase
     assert page.find("#photo-#{photo0.id}")
   end
 
+  test 'can view individual photo' do
+    user = create_user
+    sign_in(user)
+    photo0 = create_photo(0, user)
+    visit maps_path params: { 'photo_id' => photo0.id }
+    assert page.has_content? "Results for | Photo: #{photo0.id}"
+    assert page.find("#photo-#{photo0.id}")
+  end
+
+  test 'cannot view private photo' do
+    user = create_user
+    user2 = create_user(username: 'two')
+    photo0 = create_photo(0, user)
+    sign_in(user2)
+    visit maps_path params: { 'photo_id' => photo0.id }
+    assert page.has_content? "Results for | Photo: #{photo0.id}"
+    assert_not page.has_selector?("#photo-#{photo0.id}")
+  end
+
+  test 'can view photo placed in public album' do
+    user = create_user
+    user2 = create_user(username: 'two')
+    photo0 = create_photo(0, user)
+    album = create_album(user)
+    album.photos << photo0
+    album.public = true
+    album.save
+    sign_in(user2)
+    visit maps_path params: { 'photo_id' => photo0.id }
+    assert page.has_content? "Results for | Photo: #{photo0.id}"
+    assert page.has_selector?("#photo-#{photo0.id}")
+  end
+
+  test 'can view photo in a shared album' do
+    user = create_user
+    user2 = create_user(username: 'two')
+    photo0 = create_photo(0, user)
+    album = create_album(user)
+    album.photos << photo0
+    album.save
+    Share.create(user: user2, album: album, photo: photo0)
+    sign_in(user2)
+    visit maps_path params: { 'photo_id' => photo0.id }
+    assert page.has_content? "Results for | Photo: #{photo0.id}"
+    assert page.has_selector?("#photo-#{photo0.id}")
+  end
+
   test 'can use all filters' do
     user = create_user
     user2 = create_user('you')
