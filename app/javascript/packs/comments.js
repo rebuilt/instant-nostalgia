@@ -21,6 +21,11 @@ Comments.buildComment = function (comment) {
     const comment__body = document.createElement('div')
     comment__body.setAttribute('class', 'trix-content')
     comment__body.textContent = comment.body
+    // unsuccessful attempt to load rich text on ajax requests
+    // files:  create.js.erb, comments.js, comments_controller#create
+    // comment__body.insertAdjacentHTML('afterbegin', comment.body)
+    console.log('body follows')
+    console.log(comment.body)
 
     const comment__name = document.createElement('span')
     comment__name.setAttribute('class', 'comment__name')

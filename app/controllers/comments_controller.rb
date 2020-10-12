@@ -5,7 +5,12 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.new(allowed_params)
     @comment.commentable = @commentable
     @comment.user = current_user
-
+    # unsuccessful attempt to load rich text on ajax requests
+    # files:  create.js.erb, comments.js, comments_controller#create
+    # @body = @comment.body.body.as_json
+    # @body = @comment.body.body.to_html
+    # @body = @comment.body.to_plain_text
+    puts @body
     if @comment.save
       @count = count(@commentable.comments.count)
       respond_to do |format|

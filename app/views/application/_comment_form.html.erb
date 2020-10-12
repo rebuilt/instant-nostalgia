@@ -3,7 +3,7 @@
 
   <div class="field">
     <%= form.label(:body, t('.add'), class: 'input-group__label') %>
-    <%= form.text_area(:body, class: 'input-group__field', rows: 10) %>
+    <%= form.rich_text_area(:body, class: 'input-group__field', rows: 10) %>
   </div>
 
   <%= form.submit(t('.submit'))%>
