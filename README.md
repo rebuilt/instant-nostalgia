@@ -18,6 +18,7 @@ The website allows users to see their photos on a map. A marker is placed on the
 
 - Stimulus - For linking html elements to javascript objects and binding javascript methods to html element events.
 - Tiny slider - A javascript library for populating the maps view with a row of photos.
+- Dropzone.js - For drag and drop file upload
 
 ### Gem requirements
 
@@ -145,7 +146,6 @@ bundle exec guard
 
 - I decided not to go with bootstrap because of performace concerns. Removing bootstrap improved response time for my pages from 60ms to 37ms.
 - I decided to swap out kaminari with pagy because of memory use.
-- I was not able to implement the drag and drop file upload. I spent many hours trying to get drop.js to work but I was unable to make it work. I have left that file in the project but I'm not using it.
 - I used rich text for comments but was not able to display rich text when updating the page on an ajax request. You can see formatting on page load or page refresh but not on ajax update.
 
 ### Major setbacks in development
@@ -165,4 +165,4 @@ I could no longer start the rails server. Every rails command resulted in the sa
 ```
 
 I only moved the stylesheets over. I did not touch the view folder at all. I didn't alter any javascript files either. The error turned out to be a general sprokets error. I had deleted the app/assets/stylesheets directory and sprockets expects that directory to exist, even if it's empty. I added the folder back and everything worked correctly.  
-Moving all assets from sprockets to webpacker was well worth it because it fixed the race condition that made my tests fail incorrectly. Under sprockets, when the entire test suite was launched at once, tests would run and fail before sprockets had finished compiling the assets. Running a single test file under sprockets worked fine but multiple test files would intermittently fail. Now, with webpacker, all tests pass and I only get failed test the first time webpacker needs to rebuild the stylesheets.  After the first run, stylesheets have already been compiled and tests pass without incorrect failures.
+Moving all assets from sprockets to webpacker was well worth it because it fixed the race condition that made my tests fail incorrectly. Under sprockets, when the entire test suite was launched at once, tests would run and fail before sprockets had finished compiling the assets. Running a single test file under sprockets worked fine but multiple test files would intermittently fail. Now, with webpacker, all tests pass and I only get failed test the first time webpacker needs to rebuild the stylesheets. After the first run, stylesheets have already been compiled and tests pass without incorrect failures.
