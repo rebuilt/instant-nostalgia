@@ -49,7 +49,7 @@ class Photo < ApplicationRecord
                      where('EXTRACT(MONTH FROM date_time_digitized) = ?', month)
                    }
   scope :date_between, lambda { |start_date, end_date|
-    where(date_time_digitized: start_date..end_date)
+    where(date_time_digitized: start_date..(end_date + 1.day))
   }
 
   def location?
