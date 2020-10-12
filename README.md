@@ -106,17 +106,12 @@ rails test:system
 
 - install ruby 2.7.2
 - install postgres - project uses postgres for test, development, and production. Also make sure the current profile has a role that can createdb and login
-- a valid google maps api key. Replace line 18 in application.html.erb to include a valid maps api key. I have locked down the current api key to the heroku address https://aqueous-mesa-56772.herokuapp.com because the api key can be read by looking at the page source. In order to prevent anonymous internet users from using the key, I have added the heroku address as the only site that can use that particular key.  
-  For convenience, you can use the following line. I will delete this key after the project is done.
-
-```html
-<script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXUiv9CdegdCtqiPFDXezeYgsA857lsXU&callback=initMap&libraries=&v=weekly"
-  defer
-></script>
-```
+- a valid google maps api key. I have locked down the current production api key to the heroku address https://aqueous-mesa-56772.herokuapp.com because the api key can be read by looking at the page source. In order to prevent anonymous internet users from using the key, I have added the heroku address as the only site that can use that particular key.  
+  For convenience, I have included a develpment api key on line 70 of maps/index.html.erb. No action needs to be taken for it to work correctly in develpment. The api key only needs to be changed when pushing to production.
 
 #### starting app in development
+
+- Commands to get up and running
 
 ```bash
 git clone https://github.com/epfl-extension-school/capstone-project-wad-c5-s2-750-2181.git
@@ -124,10 +119,18 @@ cd capstone-project-wad-c5-s2-750-2181
 bundle install
 rails db:setup
 rails webpacker:install
-./bin/webpack-dev-server
+./bin/webpack-dev-server        - or compile assets manually
 sudo apt install imagemagick
 rails s
 ```
+
+- If you want to enable live reloading when changes to the app are made start the guard process before the rails webserver
+
+```bash
+bundle exec guard
+```
+
+- To start the memory profiler uncomment all the lines in config/initializers/memory_profiler.rb. This will start a profiling session when the rails server starts. On stopping a rails server, it will print a log to the command line
 
 ## Development log
 
@@ -153,4 +156,5 @@ I could no longer start the rails server. Every rails command resulted in the sa
  ActionView::Template::Error - link_directory argument must be a directory:   app/views/comments/create.js.erb:0:in `view template'
 ```
 
-I only moved the stylesheets over. I did not touch the view folder at all. I did't alter any javascript files either. The error turned out to be a general sprokets error. I had deleted the app/assets/stylesheets directory and sprockets expects that directory to exist, even if it's empty. I added the folder back and everything worked correctly.
+I only moved the stylesheets over. I did not touch the view folder at all. I did't alter any javascript files either. The error turned out to be a general sprokets error. I had deleted the app/assets/stylesheets directory and sprockets expects that directory to exist, even if it's empty. I added the folder back and everything worked correctly.  
+Moving all assets from sprockets to webpacker was well worth it because it fixed the race condition that made my tests fail incorrectly. Under sprockets, when the entire test suite was launched at once, tests would run and fail before sprockets had finished compiling the assets. Running a single test file under sprockets worked fine but multiple test files would intermittently fail. Now, with webpacker, all tests pass and I don't get incorrectly failing tests.
