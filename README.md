@@ -25,6 +25,7 @@ The website allows users to see their photos on a map. A marker is placed on the
 - Geocoder gem - Upon creation of a photo record, reverse geocode the lat/long coordinates embedded in a photo to populate the address tags for the Photo
 - pagy - for pagination
 - image_processing - for resizing photos
+- pg - Postgres database
 
 ### Standalone app requirements
 
@@ -32,7 +33,7 @@ The website allows users to see their photos on a map. A marker is placed on the
 
 ### CSS requirements
 
-- All pages will use custom css
+- All pages are based on custom css
 
 ### Rails stack
 
@@ -43,6 +44,7 @@ The website allows users to see their photos on a map. A marker is placed on the
 - Password hashing: bcrypt gem
 - Database: PostgreSQL, pg gem
 - Rails 6
+- Action text - rich text for comments
 
 #### Development
 
@@ -143,6 +145,7 @@ bundle exec guard
 - I decided not to go with bootstrap because of performace concerns. Removing bootstrap improved response time for my pages from 60ms to 37ms.
 - I decided to swap out kaminari with pagy because of memory use.
 - I was not able to implement the drag and drop file upload. I spent many hours trying to get drop.js to work but I was unable to make it work. I have left that file in the project but I'm not using it.
+- I used rich text for comments but was not able to display rich text when updating the page on an ajax request. You can see formatting on page load or page refresh but not on ajax update.
 
 ### Major setbacks in development
 
