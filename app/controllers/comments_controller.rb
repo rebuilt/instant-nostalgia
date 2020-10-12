@@ -10,7 +10,6 @@ class CommentsController < ApplicationController
     # @body = @comment.body.body.as_json
     # @body = @comment.body.body.to_html
     # @body = @comment.body.to_plain_text
-    puts @body
     if @comment.save
       @count = count(@commentable.comments.count)
       respond_to do |format|
@@ -18,7 +17,7 @@ class CommentsController < ApplicationController
         format.js { render :create }
       end
     else
-      redirect_to @commentable, notice: 'could not save comment'
+      redirect_to @commentable, notice: @comment.errors.full_messages
     end
   end
 
