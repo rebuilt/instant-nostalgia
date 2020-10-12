@@ -7,6 +7,7 @@ it:
       photo:
         city: Città
         country: Nazione
+        date_time_digitized: Data presa
         file_name: Nome del file
         latitude_in_decimal: Latitudine in decimale
         latitude_in_degrees: Latitudine in gradi

@@ -7,6 +7,7 @@ de:
       photo:
         city: Stadt
         country: Land
+        date_time_digitized: Aufnahmedatum
         file_name: Dateiname
         latitude_in_decimal: Breitengrad in Dezimalzahl
         latitude_in_degrees: Breitengrad in Grad

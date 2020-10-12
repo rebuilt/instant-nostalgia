@@ -45,6 +45,7 @@ en:
         title: Title
       photo:
         file_name: File name
+        date_time_digitized: "Date taken"
         latitude_in_degrees: "Latitude in degrees"
         longitude_in_degrees: "Longitude in degrees"
         latitude_in_decimal: "Latitude in decimal"

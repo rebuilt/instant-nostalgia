@@ -7,6 +7,7 @@ es:
       photo:
         city: Ciudad
         country: País
+        date_time_digitized: Fecha que se tendrá
         file_name: Nombre del archivo
         latitude_in_decimal: Latitud en decimal
         latitude_in_degrees: Latitud en grados

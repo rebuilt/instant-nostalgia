@@ -11,7 +11,7 @@
         <div class="details__intro">
           <p> <span class="beta"> <%= t('.upload_by')  %> </span> <span class="alpha"><%= link_to(@photo.user.username,  user_path(@photo.user))  %></span> </p>
           <p> <span class="beta"> <%= Photo.human_attribute_name(:file_name)  %>: </span>  <%= @photo.file_name  %> </p>
-          <p> <span class="beta">: </span> <%= @photo.date_time_digitized  %> </p>
+          <p> <span class="beta"> <%= Photo.human_attribute_name(:date_time_digitized)  %>: </span> <%= @photo.date_time_digitized  %> </p>
           <p> <span class="beta"> <%= Photo.human_attribute_name(:latitude_in_degrees)  %>: </span>  <%= @photo.latitude_in_degrees  %> </p>
           <p> <span class="beta"> <%= Photo.human_attribute_name(:longitude_in_degrees)  %>: </span> <%= @photo.longitude_in_degrees  %> </p>
           <p> <span class="beta"> <%= Photo.human_attribute_name(:longitude_in_decimal)  %>: </span> <%= @photo.latitude_in_decimal %> </p>

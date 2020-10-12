@@ -7,6 +7,7 @@ fr:
       photo:
         city: Ville
         country: Pays
+        date_time_digitized: Date prise
         file_name: Nom de fichier
         latitude_in_decimal: Latitude en décimal
         latitude_in_degrees: Latitude en degrés
