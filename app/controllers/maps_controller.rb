@@ -114,21 +114,20 @@ class MapsController < ApplicationController
   end
 
   def can_view_photo?(photo)
-    can_view = false
-
     # Can view the photo if it's public
     photo.albums.each do |album|
-      can_view = true if album.public
+      return true if album.public
     end
 
     # Can view the photo if it's been shared with them
     photo.authorized_users.each do |user|
-      can_view = true if logged_in? && current_user == user
+      return true if logged_in? && current_user == user
     end
 
     # Can view the photo if it belongs to them
-    can_view = true if logged_in? && current_user == photo.user
-    can_view
+    return true if logged_in? && current_user == photo.user
+
+    false
   end
 
   def remove_non_geocoded(photos)
