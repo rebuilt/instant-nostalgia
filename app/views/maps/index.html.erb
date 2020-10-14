@@ -64,13 +64,13 @@
 </script>
 
 <%# ****************   Production API Key ******************** %>
-<%# <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.maps_api_key  %1>&callback=initMap&libraries=&v=weekly" defer ></script> %>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.maps_api_key  %>&callback=initMap&libraries=&v=weekly" defer ></script>
 
 <%# ****************   Development API Key ******************** %>
-<script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXUiv9CdegdCtqiPFDXezeYgsA857lsXU&callback=initMap&libraries=&v=weekly"
-  defer
-></script>
+<%# <script %>
+<%#   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXUiv9CdegdCtqiPFDXezeYgsA857lsXU&callback=initMap&libraries=&v=weekly" %>
+<%#   defer %>
+<%# ></script> %>
 
 <script>
   var map;
