@@ -12,6 +12,7 @@ export default class extends Controller {
             let data = window.MapData.getData()
             this.addMarkers(data)
             hasInitialized = true
+            this.attachZoomListener()
         }
     }
 
@@ -75,5 +76,40 @@ export default class extends Controller {
 
     getMarker(id) {
         return markers.find((item) => item.id == id)
+    }
+
+    attachZoomListener() {
+        map.addListener('zoom_changed', () => {
+            let size = 200
+            switch (map.zoom) {
+            case 13:
+                size = 150
+                break
+            case 12:
+                size = 100
+                break
+            case 11:
+                size = 50
+                break
+            case 10:
+            case 9:
+            case 8:
+            case 7:
+            case 6:
+            case 5:
+            case 4:
+            case 3:
+            case 2:
+            case 1:
+            case 0:
+                size = 20
+                break
+            }
+            console.log(size)
+            console.log(map.zoom)
+            markers.forEach(
+                (marker) => (marker.icon.size = new google.maps.Size(size, size))
+            )
+        })
     }
 }
