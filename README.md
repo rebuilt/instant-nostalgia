@@ -45,8 +45,6 @@ The website allows users to see their photos on a map. A marker is placed on the
 - Database: PostgreSQL, pg gem
 - Rails 6
 - Action text - rich text for comments
-- Active Storage - to coordinate storing files
-- Webpacker - to compile images, stylesheets and javascript
 
 #### Development
 
