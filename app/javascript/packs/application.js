@@ -20,6 +20,3 @@ require('@rails/actiontext')
 
 import 'controllers'
 import '../stylesheets/application'
-
-require("trix")
-require("@rails/actiontext")
