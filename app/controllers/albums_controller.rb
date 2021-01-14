@@ -11,7 +11,7 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    # empty method.  @album populated by before_action
+    # empty method.  @album variable populated by before_action, :authorized_to_view
   end
 
   def create
