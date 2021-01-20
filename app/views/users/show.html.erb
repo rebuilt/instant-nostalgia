@@ -22,7 +22,7 @@
     <%= @user.last_name %>
   </div>
 
-  <% if(logged_in? && current_user == @user)  %>
+  <% if(can_edit_user?(@user))  %>
     <div class="row mt-4">
       <h2 class="mr-3"> <%= User.human_attribute_name(:email)  %>:</h2>
       <%= @user.email %>
@@ -33,7 +33,7 @@
 
   <% end %>
 
-  <% if(logged_in? && current_user == @user)  %>
+  <% if(can_edit_user?(@user))  %>
     <h2 class="mt-5"> <%= t('.private_albums')  %> </h2>
     <%= render(partial: "album_list", locals: {albums: @private_albums})  %>
   <% end %>
