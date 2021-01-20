@@ -40,19 +40,12 @@ export default class extends Controller {
       dropzone.on('complete', function (file) {
           const upload = document.getElementById('upload')
           upload.style.display = 'block'
+          upload.disabled = false
           upload.addEventListener('click', function () {
-              const view = document.getElementById('view')
-              if (view == null) {
-                  const status = document.getElementById('status')
-                  status.insertAdjacentHTML(
-                      'beforebegin',
-                      '<a id="view" class="btn btn--secondary max-content mt-3" href="/en/photos">View photos</a>'
-                  )
-                  document.getElementById('upload').style.display = 'none'
-                  const message = document.getElementById('message')
-                  message.textContent =
-            'Images uploaded.  Address information will continue to process in the background.  If latitude and longitude show up as "0", then no address information is embedded in the image.'
-              }
+              const controls = document.getElementById('upload-controls')
+              controls.style.display = 'none'
+              const result = document.getElementById('result')
+              result.style.display = 'block'
           })
       })
   }
