@@ -1,4 +1,6 @@
 class SharesController < ApplicationController
+  include SharesHelper
+
   before_action :ensure_logged_in
   before_action :authorized_to_create, only: %i[new create]
 
@@ -59,7 +61,7 @@ class SharesController < ApplicationController
                           album_id: params[:album_id])
 
     @shares.each do |share|
-      share.destroy if can_destroy(share)
+      share.destroy if can_destroy_share?(share)
     end
 
     redirect_to shares_path
@@ -67,25 +69,8 @@ class SharesController < ApplicationController
 
   private
 
-  def remove_current_user(users)
-    # don't include self in list of users to share with
-    users.reject { |user| user == current_user }
-  end
-
-  def remove_already_authorized_users(album, users)
-    # don't include users that already have access to the album
-    album.users.each do |already_authorized_user|
-      users = users.reject { |user| user == already_authorized_user }
-    end
-    users
-  end
-
   def authorized_to_create
     @album = Album.find(params[:album_id])
     redirect_to login_path unless is_owner?(current_user, @album)
-  end
-
-  def can_destroy(share)
-    current_user == share.album.user || current_user.id == share.user_id
   end
 end
