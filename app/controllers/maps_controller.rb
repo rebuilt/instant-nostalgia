@@ -1,6 +1,7 @@
 require_relative 'date_tools'
 
 class MapsController < ApplicationController
+  include MapsHelper
   def index
     flash.now[:message] = I18n.t 'controllers.maps.results'
     if logged_in?
@@ -45,10 +46,6 @@ class MapsController < ApplicationController
     count = 5
     add_message(I18n.t('controllers.maps.recent'), count.to_s)
     @photos = Photo.all.with_attached_image.belonging_to_user(current_user).most_recent_mappable(count)
-  end
-
-  def add_message(filtered_by, value)
-    flash.now[:message] = flash.now[:message] + "  #{filtered_by}: #{value} |"
   end
 
   def load_by_id
@@ -105,37 +102,5 @@ class MapsController < ApplicationController
     tmp = Photo.with_attached_image.belonging_to_user(current_user).date_between(start_date, end_date)
 
     load(tmp)
-  end
-
-  def can_view_album?(album)
-    return true if album.public
-
-    logged_in? && (current_user == album.user || current_user.authorized_albums.include?(album))
-  end
-
-  def can_view_photo?(photo)
-    # Can view the photo if it's public
-    photo.albums.each do |album|
-      return true if album.public
-    end
-
-    # Can view the photo if it's been shared with them
-    photo.authorized_users.each do |user|
-      return true if logged_in? && current_user == user
-    end
-
-    # Can view the photo if it belongs to them
-    return true if logged_in? && current_user == photo.user
-
-    false
-  end
-
-  def remove_non_geocoded(photos)
-    photos.reject { |photo| photo.location? == false }
-  end
-
-  def load_area_names(area)
-    locations = Photo.belonging_to_user(current_user).distinct.pluck(area)
-    locations.reject(&:nil?)
   end
 end
