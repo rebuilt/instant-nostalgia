@@ -1,15 +1,11 @@
 class CommentsController < ApplicationController
+  include CommentsHelper
   before_action :load_commentable
 
   def create
     @comment = @commentable.comments.new(allowed_params)
     @comment.commentable = @commentable
     @comment.user = current_user
-    # unsuccessful attempt to load rich text on ajax requests
-    # files:  create.js.erb, comments.js, comments_controller#create
-    # @body = @comment.body.body.as_json
-    # @body = @comment.body.body.to_html
-    # @body = @comment.body.to_plain_text
     if @comment.save
       @count = count(@commentable.comments.count)
       respond_to do |format|
@@ -40,9 +36,5 @@ class CommentsController < ApplicationController
   def load_commentable
     resource, id = request.path.split('/')[2, 3]
     @commentable = resource.singularize.classify.constantize.find(id)
-  end
-
-  def count(num)
-    "#{num} #{'comment'.pluralize(num)}"
   end
 end
