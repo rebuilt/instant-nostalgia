@@ -309,7 +309,7 @@ GEM
       sprockets (>= 3.0.0)
     stackprof (0.2.16)
     terminal-table (1.6.0)
-    thor (1.0.1)
+    thor (1.1.0)
     thread (0.2.2)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -385,4 +385,4 @@ RUBY VERSION
    ruby 2.7.2p137
 
 BUNDLED WITH
-   2.2.3
+   2.2.6
