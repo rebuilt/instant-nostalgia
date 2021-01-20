@@ -52,6 +52,7 @@ group :development do
 
   # For call-stack profiling flamegraphs
   gem 'flamegraph'
+  gem 'rubocop-rails', require: false
   gem 'stackprof'
 end
 
