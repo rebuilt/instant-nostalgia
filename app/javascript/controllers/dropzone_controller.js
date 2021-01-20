@@ -13,8 +13,8 @@ export default class extends Controller {
       this.inputTarget.style.display = 'none'
       const dropzone = new Dropzone(this.element, {
           url: '/',
-          maxFiles: '10',
-          maxFilesize: '10',
+          maxFiles: '100',
+          maxFilesize: '20',
           autoQueue: false,
       })
 
