@@ -54,4 +54,8 @@ class ApplicationController < ActionController::Base
 
     logged_in? && (current_user == album.user || current_user.authorized_albums.include?(album))
   end
+
+  def can_destroy(share)
+    current_user == share.album.user || current_user.id == share.user_id
+  end
 end
