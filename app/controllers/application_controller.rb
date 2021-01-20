@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_locale
-  helper_method :logged_in?, :current_user, :ensure_logged_in, :is_owner?, :can_view_photo?, :can_view_album?
+  helper_method :logged_in?, :current_user, :ensure_logged_in, :is_owner?, :can_view_photo?, :can_view_album?, :can_destroy_share?
   add_flash_types :success
 
   def set_locale
@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
     logged_in? && (current_user == album.user || current_user.authorized_albums.include?(album))
   end
 
-  def can_destroy(share)
+  def can_destroy_share?(share)
     current_user == share.album.user || current_user.id == share.user_id
   end
 end
