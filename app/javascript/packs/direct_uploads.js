@@ -2,8 +2,8 @@ addEventListener('direct-upload:initialize', (event) => {
     const { target, detail } = event
     const { id, file } = detail
     console.log('inside initialize event')
-    const submit = document.getElementById('upload')
-    submit.disabled = true
+    // const submit = document.getElementById('upload')
+    // submit.disabled = true
     const directUpload = document.getElementById(`direct-upload-${id}`)
     if (directUpload === null) {
         target.insertAdjacentHTML(
