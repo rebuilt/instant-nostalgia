@@ -50,10 +50,10 @@ addEventListener('direct-upload:end', (event) => {
 })
 
 addEventListener('direct-uploads:end', (event) => {
-    const controls = document.getElementById('upload-controls')
-    controls.style.display = 'none'
-    const result = document.getElementById('result')
-    result.style.display = 'block'
+    // const controls = document.getElementById('upload-controls')
+    // controls.style.display = 'none'
+    // const result = document.getElementById('result')
+    // result.style.display = 'block'
 
     const { target, detail } = event
     const { id, file } = detail
