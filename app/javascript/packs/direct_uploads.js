@@ -56,7 +56,12 @@ addEventListener('direct-uploads:end', (event) => {
     if (directUpload != null) {
         directUpload.parent.removeChild(directUpload)
     }
-    var upload_btn = document.getElementById('upload')
+})
+
+const fileSelect = document.getElementById('file-select')
+fileSelect.addEventListener('change', function () {
+    const upload_btn = document.getElementById('upload')
+    upload_btn.style.display = 'block'
     upload_btn.addEventListener('click', () => {
         const controls = document.getElementById('upload-controls')
         if (controls != null) {
@@ -67,10 +72,4 @@ addEventListener('direct-uploads:end', (event) => {
             result.style.display = 'block'
         }
     })
-})
-
-const fileSelect = document.getElementById('file-select')
-fileSelect.addEventListener('change', function () {
-    const upload = document.getElementById('upload')
-    upload.style.display = 'block'
 })
