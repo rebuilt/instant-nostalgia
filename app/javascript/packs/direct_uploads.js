@@ -58,7 +58,7 @@ addEventListener('direct-uploads:end', (event) => {
     }
 })
 
-const upload_btn = document.getElementById('upload')
+var upload_btn = document.getElementById('upload')
 upload_btn.addEventListener('click', () => {
     const controls = document.getElementById('upload-controls')
     if (controls != null) {
