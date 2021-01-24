@@ -65,7 +65,9 @@ upload_btn.addEventListener('click', () => {
         controls.style.display = 'none'
     }
     const result = document.getElementById('result')
-    result.style.display = 'block'
+    if (result != null) {
+        result.style.display = 'block'
+    }
 })
 
 const fileSelect = document.getElementById('file-select')

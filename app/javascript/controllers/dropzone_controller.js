@@ -47,7 +47,10 @@ export default class extends Controller {
                   controls.style.display = 'none'
               }
               const result = document.getElementById('result')
-              result.style.display = 'block'
+
+              if (result != null) {
+                  result.style.display = 'block'
+              }
           })
       })
   }
