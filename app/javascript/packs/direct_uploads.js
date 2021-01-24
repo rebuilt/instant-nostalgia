@@ -58,6 +58,16 @@ addEventListener('direct-uploads:end', (event) => {
     }
 })
 
+const upload_btn = document.getElementById('upload')
+upload_btn.addEventListener('click', () => {
+    const controls = document.getElementById('upload-controls')
+    if (controls != null) {
+        controls.style.display = 'none'
+    }
+    const result = document.getElementById('result')
+    result.style.display = 'block'
+})
+
 const fileSelect = document.getElementById('file-select')
 fileSelect.addEventListener('change', function () {
     const upload = document.getElementById('upload')

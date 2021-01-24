@@ -42,15 +42,12 @@ export default class extends Controller {
           const upload_btn = document.getElementById('upload')
           upload_btn.style.display = 'block'
           upload_btn.addEventListener('click', function () {
-              if (document.contains('upload-controls')) {
-                  const controls = document.getElementById('upload-controls')
+              const controls = document.getElementById('upload-controls')
+              if (controls != null) {
                   controls.style.display = 'none'
               }
-
-              if (document.contains('result')) {
-                  const result = document.getElementById('result')
-                  result.style.display = 'block'
-              }
+              const result = document.getElementById('result')
+              result.style.display = 'block'
           })
       })
   }
