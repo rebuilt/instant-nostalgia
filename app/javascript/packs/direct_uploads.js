@@ -23,8 +23,6 @@ addEventListener('direct-upload:start', (event) => {
     const { id } = event.detail
     const element = document.getElementById(`direct-upload-${id}`)
     element.classList.remove('direct-upload--pending')
-    const upload_btn = document.getElementById('upload')
-    upload_btn.style.display = 'none'
 })
 
 addEventListener('direct-upload:progress', (event) => {
@@ -33,6 +31,8 @@ addEventListener('direct-upload:progress', (event) => {
         `direct-upload-progress-${id}`
     )
     progressElement.style.width = `${progress}%`
+    const upload_btn = document.getElementById('upload')
+    upload_btn.style.display = 'none'
 })
 
 addEventListener('direct-upload:error', (event) => {
