@@ -1,3 +1,7 @@
+const Upload = {}
+Upload.uploading = false
+window.Upload = Upload
+
 addEventListener('direct-upload:initialize', (event) => {
     console.log('in direct-upload initialize event')
     const { target, detail } = event
@@ -25,6 +29,7 @@ addEventListener('direct-upload:start', (event) => {
     element.classList.remove('direct-upload--pending')
     const upload_btn = document.getElementById('upload')
     upload_btn.style.display = 'none'
+    Upload.uploading = true
 })
 
 addEventListener('direct-upload:progress', (event) => {
@@ -56,6 +61,7 @@ addEventListener('direct-uploads:end', (event) => {
     if (directUpload != null) {
         directUpload.parent.removeChild(directUpload)
     }
+    Upload.uploading = false
 })
 
 const fileSelect = document.getElementById('file-select')

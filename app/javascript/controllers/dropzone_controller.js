@@ -39,8 +39,10 @@ export default class extends Controller {
       })
 
       dropzone.on('complete', function (file) {
-          const upload_btn = document.getElementById('upload')
-          upload_btn.style.display = 'block'
+          if (!window.Upload.uploading) {
+              const upload_btn = document.getElementById('upload')
+              upload_btn.style.display = 'block'
+          }
       })
   }
 

@@ -2,14 +2,14 @@ const Shares = {}
 
 let resultsElement
 
-function getResultsElement(){
-    if(resultsElement == null){
+function getResultsElement() {
+    if (resultsElement == null) {
         resultsElement = document.getElementById('results')
     }
     return resultsElement
 }
 
-Shares.addTermDiv = function(term){
+Shares.addTermDiv = function (term) {
     const h3 = document.createElement('h3')
     h3.setAttribute('class', 'mr-3')
     h3.textContent = 'You searched for:'
@@ -23,9 +23,9 @@ Shares.addTermDiv = function(term){
     results.appendChild(span)
 }
 
-Shares.addHeaderDiv = function(){
+Shares.addHeaderDiv = function () {
     let headerDiv = document.getElementById('headerDiv')
-    if(headerDiv == null){
+    if (headerDiv == null) {
         headerDiv = document.createElement('div')
         headerDiv.setAttribute('id', 'headerDiv')
         headerDiv.setAttribute('class', 'three-column-grid mt-4')
@@ -48,14 +48,14 @@ Shares.addHeaderDiv = function(){
     }
 }
 
-Shares.clearResultsDiv = function() {
+Shares.clearResultsDiv = function () {
     const results = getResultsElement()
-    while(results.hasChildNodes()){
+    while (results.hasChildNodes()) {
         results.removeChild(results.lastChild)
     }
 }
 
-Shares.addResults = function(users, album, locale){
+Shares.addResults = function (users, album, locale) {
     const results = getResultsElement()
     users.forEach((user) => {
         const row = document.createElement('div')
@@ -73,7 +73,10 @@ Shares.addResults = function(users, album, locale){
         action.setAttribute('class', 'btn btn--primary')
         action.setAttribute('rel', 'nofollow')
         action.setAttribute('data-method', 'post')
-        action.setAttribute('href', `/${locale}/shares?album_id=${album.id}&amp;user_id=${user.id}` )
+        action.setAttribute(
+            'href',
+            `/${locale}/shares?album_id=${album.id}&amp;user_id=${user.id}`
+        )
         action.textContent = `Share ${album.title} with ${user.username}`
 
         row.appendChild(username)
