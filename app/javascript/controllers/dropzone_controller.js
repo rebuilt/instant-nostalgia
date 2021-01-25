@@ -41,6 +41,9 @@ export default class extends Controller {
 
       dropzone.on('complete', function (file) {
           console.log('in dropzone completed event')
+      })
+
+      dropzone.on('addedfile', function (file) {
           const upload_btn = document.getElementById('upload')
           upload_btn.style.display = 'block'
       })
