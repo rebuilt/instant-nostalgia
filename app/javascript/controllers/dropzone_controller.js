@@ -43,17 +43,17 @@ export default class extends Controller {
           console.log('in dropzone completed event')
           const upload_btn = document.getElementById('upload')
           upload_btn.style.display = 'block'
-          upload_btn.addEventListener('click', function () {
-              const controls = document.getElementById('upload-controls')
-              if (controls != null) {
-                  controls.style.display = 'none'
-              }
-              const result = document.getElementById('result')
+          // upload_btn.addEventListener('click', function () {
+          //     const controls = document.getElementById('upload-controls')
+          //     if (controls != null) {
+          //         controls.style.display = 'none'
+          //     }
+          //     const result = document.getElementById('result')
 
-              if (result != null) {
-                  result.style.display = 'block'
-              }
-          })
+      //     if (result != null) {
+      //         result.style.display = 'block'
+      //     }
+      // })
       })
   }
 
