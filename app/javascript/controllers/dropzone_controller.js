@@ -19,6 +19,7 @@ export default class extends Controller {
       })
 
       dropzone.on('addedfile', (file) => {
+          console.log('in dropzone added file event')
           setTimeout(() => {
               if (file.accepted) {
                   const upload = new DirectUpload(file, this.url)
@@ -39,6 +40,7 @@ export default class extends Controller {
       })
 
       dropzone.on('complete', function (file) {
+          console.log('in dropzone completed event')
           const upload_btn = document.getElementById('upload')
           upload_btn.style.display = 'block'
           upload_btn.addEventListener('click', function () {

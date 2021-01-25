@@ -20,6 +20,7 @@ class PhotosController < ApplicationController
   end
 
   def new
+    puts 'in photo.new controller method'
     @photo = Photo.new
     @uploads_remaining = current_user.remaining_uploads
   end

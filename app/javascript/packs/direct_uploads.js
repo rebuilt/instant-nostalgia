@@ -1,9 +1,7 @@
 addEventListener('direct-upload:initialize', (event) => {
+    console.log('in direct-upload initialize event')
     const { target, detail } = event
     const { id, file } = detail
-    console.log('inside initialize event')
-    // const submit = document.getElementById('upload')
-    // submit.disabled = true
     const directUpload = document.getElementById(`direct-upload-${id}`)
     if (directUpload === null) {
         target.insertAdjacentHTML(
@@ -22,12 +20,14 @@ addEventListener('direct-upload:initialize', (event) => {
 })
 
 addEventListener('direct-upload:start', (event) => {
+    console.log('in direct-upload start event')
     const { id } = event.detail
     const element = document.getElementById(`direct-upload-${id}`)
     element.classList.remove('direct-upload--pending')
 })
 
 addEventListener('direct-upload:progress', (event) => {
+    console.log('in direct-upload progress event')
     const { id, progress } = event.detail
     const progressElement = document.getElementById(
         `direct-upload-progress-${id}`
@@ -36,6 +36,7 @@ addEventListener('direct-upload:progress', (event) => {
 })
 
 addEventListener('direct-upload:error', (event) => {
+    console.log('in direct-upload error event')
     event.preventDefault()
     const { id, error } = event.detail
     const element = document.getElementById(`direct-upload-${id}`)
@@ -44,12 +45,14 @@ addEventListener('direct-upload:error', (event) => {
 })
 
 addEventListener('direct-upload:end', (event) => {
+    console.log('in direct-upload end single event')
     const { id } = event.detail
     const element = document.getElementById(`direct-upload-${id}`)
     element.classList.add('direct-upload--complete')
 })
 
 addEventListener('direct-uploads:end', (event) => {
+    console.log('in direct-upload end multiple event')
     const { target, detail } = event
     const { id, file } = detail
     const directUpload = document.getElementById(`direct-upload-${id}`)
@@ -68,6 +71,7 @@ addEventListener('direct-uploads:end', (event) => {
 
 const fileSelect = document.getElementById('file-select')
 fileSelect.addEventListener('change', function () {
+    console.log('in fileselect event')
     const upload_btn = document.getElementById('upload')
     upload_btn.style.display = 'block'
 })
