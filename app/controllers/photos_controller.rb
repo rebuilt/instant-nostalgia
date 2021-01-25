@@ -26,18 +26,25 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = Photo.new(photo_params)
-    @photo.user = current_user
+    puts '######################  in create method    ####################################'
     @uploads_remaining = current_user.remaining_uploads
 
-    respond_to do |format|
-      if @uploads_remaining.positive? && @photo.save
-        successful_upload(format) if @photo.init
-        failure_upload(format) unless @photo.init
+    params[:image].each_with_index do |blob, index|
+      break unless @uploads_remaining.positive?
+
+      @photo = Photo.new(image: blob, user: current_user)
+      if @photo.save
+        puts '*********************  saving photo without errors *********************'
+        @photo.init
+
+        @uploads_remaining -= 1
+
+        ReverseGeocodeJob.set(wait: index.seconds).perform_later(@photo)
       else
-        format.html { render :new }
+        puts '*********************   error saving photo *********************'
       end
     end
+    render :create
   end
 
   def destroy

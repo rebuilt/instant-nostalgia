@@ -9,7 +9,7 @@
     <% if(@uploads_remaining > 0 )  %>
       <p> <%= t('.instructions')  %> </p>
 
-      <%= form_with(url: photo_uploads_path, class: "mt-3") do |form|  %>
+      <%= form_with(url: photos_path, class: "mt-3") do |form|  %>
         <div class="field">
           <div class="dropzone" data-controller='dropzone'>
             <%= form.file_field :image, multiple: true, direct_upload: true, id: 'droparea', class: 'input-group__file', data: {target: 'dropzone.input'} %>
