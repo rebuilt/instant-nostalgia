@@ -62,6 +62,9 @@ addEventListener('direct-uploads:end', (event) => {
         directUpload.parent.removeChild(directUpload)
     }
     Upload.uploading = false
+
+    const inProgressMessage = document.getElementById('upload-in-progress')
+    inProgressMessage.style.display = 'block'
 })
 
 const fileSelect = document.getElementById('file-select')
