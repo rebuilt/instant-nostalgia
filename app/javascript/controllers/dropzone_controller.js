@@ -39,6 +39,8 @@ export default class extends Controller {
       })
 
       dropzone.on('complete', function (file) {
+          const inProgressMessage = document.getElementById('upload-in-progress')
+          inProgressMessage.style.display = 'block'
           if (!window.Upload.uploading) {
               const upload_btn = document.getElementById('upload')
               upload_btn.style.display = 'block'
