@@ -16,6 +16,8 @@ class Metadata
   end
 
   def date_time_digitized
-    DateTime.strptime(@metadata['DateTime'], '%Y:%m:%d %H:%M:%S')
+    output = DateTime.strptime(@metadata['DateTime'], '%Y:%m:%d %H:%M:%S') if @metadata['DateTime']
+    output ||= Time.now.strftime('%Y:%m:%d %H:%M:%S')
+    output
   end
 end
