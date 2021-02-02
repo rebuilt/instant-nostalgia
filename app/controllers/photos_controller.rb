@@ -41,10 +41,10 @@ class PhotosController < ApplicationController
 
         ReverseGeocodeJob.set(wait: index.seconds).perform_later(@photo)
       else
-        puts '*********************   error saving photo *********************'
+        flash.now[:alert] = @photo.errors.full_messages
       end
     end
-    render :create
+    render :new
   end
 
   def destroy
