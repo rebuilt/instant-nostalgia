@@ -56,7 +56,8 @@
   border-color: $primary--darker;
 }
 
-.btn--warning {
+.btn--warning,
+.warning {
   white-space: nowrap;
   background-color: $warning;
   color: #fff;
