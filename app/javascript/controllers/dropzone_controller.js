@@ -4,6 +4,7 @@ import 'dropzone/dist/min/dropzone.min.css'
 import 'dropzone/dist/min/basic.min.css'
 import { DirectUpload } from '@rails/activestorage'
 
+let filesProcessing = 0
 export default class extends Controller {
   static targets = ['input'];
 
@@ -12,7 +13,7 @@ export default class extends Controller {
       this.inputTarget.disable = true
       this.inputTarget.style.display = 'none'
       const dropzone = new Dropzone(this.element, {
-          url: '/',
+          url: '/photos',
           maxFiles: '100',
           maxFilesize: '20',
           autoQueue: false,
@@ -20,7 +21,11 @@ export default class extends Controller {
       })
 
       dropzone.on('addedfile', (file) => {
+          const submitBtn = document.getElementById('submit-btn')
+          submitBtn.style.visibility = 'hidden'
+          filesProcessing++
           setTimeout(() => {
+              filesProcessing--
               if (file.accepted) {
                   const upload = new DirectUpload(file, this.url)
                   upload.create((error, blob) => {
@@ -34,16 +39,27 @@ export default class extends Controller {
                       )
                       dropzone.emit('success', file)
                       dropzone.emit('complete', file)
+                      if (filesProcessing === 0) {
+                          dropzone.emit('queuecomplete')
+                      }
                   })
               }
           }, 500)
       })
 
-      dropzone.on('complete', function (file) {
-      // const inProgressMessage = document.getElementById('upload-in-progress')
-      // inProgressMessage.style.display = 'block'
-      // const upload_btn = document.getElementById('upload')
-      // upload_btn.style.visibility = 'hidden'
+      // dropzone.on('complete', function (file) { })
+
+      dropzone.on('queuecomplete', function (file) {
+          console.log('files have finished uploading')
+          const submitBtn = document.getElementById('submit-btn')
+          submitBtn.style.visibility = 'visible'
+          submitBtn.addEventListener('click', function () {
+              const result = document.getElementById('result')
+              result.style.visibility = 'visible'
+              const uploadControls = document.getElementById('upload-controls')
+              uploadControls.style.display = 'none'
+              submitBtn.style.visibility = 'hidden'
+          })
       })
   }
 
