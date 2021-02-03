@@ -51,7 +51,9 @@
         <%= form.submit(t('.add'), class: "btn btn--primary ml-5") %>
       </div>
 
-      <%== pagy_nav(@pagy) %>
+      <% if @pagy.last>1 %>
+        <%== pagy_nav(@pagy) %>
+      <% end %>
 
       <div class="gallery mt-5">
         <% @photos.each do |photo|   %>
@@ -59,7 +61,10 @@
         <% end %>
       </div>
 
-      <%== pagy_nav(@pagy) %>
+
+      <% if @pagy.last>1 %>
+        <%== pagy_nav(@pagy) %>
+      <% end %>
 
     <% end %>
   </div>
