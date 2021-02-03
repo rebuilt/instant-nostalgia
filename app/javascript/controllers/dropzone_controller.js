@@ -15,8 +15,9 @@ export default class extends Controller {
       const dropzone = new Dropzone(this.element, {
           url: '/photos',
           maxFiles: '100',
-          maxFilesize: '20',
+          maxFilesize: '25',
           autoQueue: false,
+          acceptedFiles: '.png, .jpg, .jpeg',
           timeout: 600000,
       })
 
@@ -25,8 +26,8 @@ export default class extends Controller {
           submitBtn.style.visibility = 'hidden'
           filesProcessing++
           setTimeout(() => {
-              filesProcessing--
               if (file.accepted) {
+                  filesProcessing--
                   const upload = new DirectUpload(file, this.url)
                   upload.create((error, blob) => {
                       this.hiddenInput = document.createElement('input')
@@ -39,7 +40,10 @@ export default class extends Controller {
                       )
                       dropzone.emit('success', file)
                       dropzone.emit('complete', file)
-                      if (filesProcessing === 0) {
+                      if (
+                          dropzone.getUploadingFiles().length === 0 &&
+              dropzone.getQueuedFiles().length === 0
+                      ) {
                           dropzone.emit('queuecomplete')
                       }
                   })
