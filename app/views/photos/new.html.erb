@@ -13,9 +13,14 @@
         <div class="field">
           <div class="dropzone" data-controller='dropzone'>
             <%= form.file_field :image, multiple: true, direct_upload: true, id: 'droparea', class: 'input-group__file', data: {target: 'dropzone.input'} %>
+            <p class="row end">Or click to choose files</p>
           </div>
         </div>
-        <%= form.submit t('.upload_title'), id: 'submit-btn', class: 'btn btn--primary hidden' %>
+        <div id='submit-btn' class='hidden'>
+          <p>Please wait until all files finish loading before clicking upload button</p>
+
+        <%= form.submit t('.upload_title'),  class: 'btn btn--primary ' %>
+        </div>
       <% end %>
     <% end %>
   </div>
@@ -27,4 +32,3 @@
     </div>
   </div>
 </main>
-<%= javascript_pack_tag 'direct_uploads'  %>
