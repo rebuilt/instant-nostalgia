@@ -4,7 +4,6 @@ import 'dropzone/dist/min/dropzone.min.css'
 import 'dropzone/dist/min/basic.min.css'
 import { DirectUpload } from '@rails/activestorage'
 
-let filesProcessing = 0
 export default class extends Controller {
   static targets = ['input'];
 
@@ -13,21 +12,19 @@ export default class extends Controller {
       this.inputTarget.disable = true
       this.inputTarget.style.display = 'none'
       const dropzone = new Dropzone(this.element, {
-          url: '/photos',
+          url: '/', // this does not actually get used but it's required
           maxFiles: '100',
           maxFilesize: '25',
           autoQueue: false,
           acceptedFiles: '.png, .jpg, .jpeg',
-          timeout: 600000,
+          timeout: 6000000,
       })
 
       dropzone.on('addedfile', (file) => {
           const submitBtn = document.getElementById('submit-btn')
           submitBtn.style.visibility = 'hidden'
-          filesProcessing++
           setTimeout(() => {
               if (file.accepted) {
-                  filesProcessing--
                   const upload = new DirectUpload(file, this.url)
                   upload.create((error, blob) => {
                       this.hiddenInput = document.createElement('input')
@@ -40,20 +37,14 @@ export default class extends Controller {
                       )
                       dropzone.emit('success', file)
                       dropzone.emit('complete', file)
-                      if (
-                          dropzone.getUploadingFiles().length === 0 &&
-              dropzone.getQueuedFiles().length === 0
-                      ) {
-                          dropzone.emit('queuecomplete')
-                      }
+                      file.complete = true
+                      console.log(upload)
                   })
               }
           }, 500)
       })
 
-      // dropzone.on('complete', function (file) { })
-
-      dropzone.on('queuecomplete', function (file) {
+      dropzone.on('complete', function (file) {
           console.log('files have finished uploading')
           const submitBtn = document.getElementById('submit-btn')
           submitBtn.style.visibility = 'visible'
