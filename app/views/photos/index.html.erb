@@ -1,11 +1,17 @@
 <div id="modal" class="modal" data-controller="modal"> </div>
 
 <div class="content-wrapper">
+
+  <div class="row">
+  <%= link_to "Go To Delete Photos Page", photos_delete_path, class: "btn btn--primary mr-1" , title: "Delete photos" %>
+  </div>
+
   <h1> <%= Photo.model_name.human(count: 2) %> (<span id="count"><%= current_user.photos.count  %></span>)</h1>
 
   <%= render(partial: "flash_messages")  %>
-
+  <% if @pagy.last>1 %>
   <%== pagy_nav(@pagy) %>
+<% end %>
 
   <div class="gallery">
     <% @photos.each do |photo|   %>
@@ -13,5 +19,7 @@
     <% end %>
   </div>
 
+  <% if @pagy.last>1 %>
   <%== pagy_nav(@pagy) %>
+<% end %>
 </div>

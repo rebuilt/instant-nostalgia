@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   get 'signup', to: 'user#new'
   scope '/:locale' do
+    get '/photos/delete', to: 'photos#delete'
     resources :photos, only: %i[index show new create destroy] do
       resources :comments, only: %i[create destroy]
     end
