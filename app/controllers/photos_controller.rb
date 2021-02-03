@@ -47,12 +47,27 @@ class PhotosController < ApplicationController
     render :new
   end
 
+  def delete
+    @pagy, @photos = pagy(Photo.with_attached_image
+                   .belonging_to_user(current_user)
+                   .includes(:user)
+                   .order_by_new_to_old)
+  end
+
   def destroy
-    @photo = Photo.find(params[:id])
-    @photo.destroy if is_owner?(current_user, @photo)
+    params[:checked].each do |photo_id, _value|
+      @photo = Photo.find(photo_id)
+      @photo.destroy if is_owner?(current_user, @photo)
+    end
+
+    @pagy, @photos = pagy(Photo.with_attached_image
+                   .belonging_to_user(current_user)
+                   .includes(:user)
+                   .order_by_new_to_old)
+
     respond_to do |format|
-      format.html { redirect_to photos_path }
-      format.js { render :destroy }
+      format.html { render :delete }
+      # format.js { render :destroy }
     end
   end
 
