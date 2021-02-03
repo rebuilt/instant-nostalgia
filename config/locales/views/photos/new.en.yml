@@ -4,5 +4,5 @@ en:
       upload_title: Upload Photos
       description_start: You can upload
       description_end: more photos
-      instructions: Select the photos here
+      instructions: Drag and drop photos or click the dropzone to select files
       or: or
