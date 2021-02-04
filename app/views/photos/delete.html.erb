@@ -9,7 +9,11 @@
   </div>
   <%= form_with(url: photo_path(1), method: :delete, local: true) do |form| %>
     <%= render(partial: "flash_messages")  %>
-    <%= form.submit("Delete selected photos", class: "btn btn--warning ml-5") %>
+    <div class="row">
+      <%= button_tag 'Select All', id: 'select-all', type: 'button' , class: "btn btn--secondary" %>
+      <%= button_tag 'Select None', id: 'select-none', type: 'button',class: "btn btn--secondary"  %>
+      <%= form.submit("Delete selected photos", class: "btn btn--warning ml-5") %>
+    </div>
     <% if @pagy.last>1 %>
       <%== pagy_nav(@pagy) %>
     <% end %>
@@ -25,3 +29,22 @@
     <% end %>
   <% end %>
 </div>
+<script>
+  const selectAllBtn = document.getElementById('select-all')
+  selectAllBtn.addEventListener('click', function(){
+    var inputs = document.querySelectorAll("input[type='checkbox']");
+    for(var i = 0; i < inputs.length; i++) {
+      inputs[i].checked = true;
+    }
+
+  })
+
+  const selectNoneBtn = document.getElementById('select-none')
+  selectNoneBtn.addEventListener('click', function(){
+    var inputs = document.querySelectorAll("input[type='checkbox']");
+    for(var i = 0; i < inputs.length; i++) {
+      inputs[i].checked = false;
+    }
+  }
+  )
+</script>
