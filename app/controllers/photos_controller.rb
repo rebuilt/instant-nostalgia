@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   before_action :has_remaining_uploads, only: %i[create]
-  before_action :ensure_logged_in, only: %i[index new create destroy]
+  before_action :ensure_logged_in, only: %i[index new create delete destroy]
   before_action :authorized_to_view, only: %i[show]
 
   def index
@@ -20,13 +20,11 @@ class PhotosController < ApplicationController
   end
 
   def new
-    puts 'in photo.new controller method'
     @photo = Photo.new
     @uploads_remaining = current_user.remaining_uploads
   end
 
   def create
-    puts '######################  in create method    ####################################'
     @uploads_remaining = current_user.remaining_uploads
 
     params[:image].each_with_index do |blob, index|
@@ -34,14 +32,13 @@ class PhotosController < ApplicationController
 
       @photo = Photo.new(image: blob, user: current_user)
       if @photo.save
-        puts '*********************  saving photo without errors *********************'
         @photo.init
 
         @uploads_remaining -= 1
 
         ReverseGeocodeJob.set(wait: index.seconds).perform_later(@photo)
       else
-        flash.now[:alert] = @photo.errors.full_messages
+        flash[:alert] = @photo.errors.full_messages
       end
     end
     render :new
@@ -60,15 +57,7 @@ class PhotosController < ApplicationController
       @photo.destroy if is_owner?(current_user, @photo)
     end
 
-    @pagy, @photos = pagy(Photo.with_attached_image
-                   .belonging_to_user(current_user)
-                   .includes(:user)
-                   .order_by_new_to_old)
-
-    respond_to do |format|
-      format.html { render :delete }
-      # format.js { render :destroy }
-    end
+    redirect_to photos_delete_path
   end
 
   private
