@@ -2,7 +2,7 @@
 
 <div class="content-wrapper">
   <div class="row">
-    <%= link_to "Show Photos", photos_path, class: "btn btn--primary mr-1" , title: "View your photos" %>
+    <%= render( partial: "to_photos_btn" )  %>
   </div>
   <div class="row">
     <h1 class="p-2"> Delete <%= Photo.model_name.human(count: 2) %> (<span id="count"><%= current_user.photos.count  %></span>)</h1>
