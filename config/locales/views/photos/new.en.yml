@@ -1,8 +1,11 @@
+---
 en:
   photos:
     new:
-      upload_title: Upload Photos
-      description_start: You can upload
       description_end: more photos
+      description_start: You can upload
       instructions: Drag and drop photos or click the dropzone to select files
       or: or
+      result_message: Images uploaded.  Address information will continue to process in the background.  If latitude and longitude show up as 0, then no address information is embedded in the image. Please allow one second per photo uploaded
+      upload_title: Upload Photos
+      wait: Please wait until all files finish loading before clicking upload button

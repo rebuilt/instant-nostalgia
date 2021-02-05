@@ -105,6 +105,7 @@ es:
       year: Año
   delete: Eliminar
   edit: Editar
+  error: Error
   language: Idioma
   login: Iniciar sesión
   logout: Cerrar sesión

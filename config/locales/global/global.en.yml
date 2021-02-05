@@ -1,28 +1,33 @@
 ---
 en:
   global:
-    welcome: Welcome
-    public: public
-    private: private
     albums: My Albums
-    day: Day
-    month: Month
-    day_of_year: "Day of year"
-    date_range: "Date range"
     buttons:
-      share_with: Share with a user
-      share_with_title: "Share this albums with a specific person.  This makes the album visible only to the people you chose to share with."
-      to_album: View photos
-      to_album_title: View the photos of this album
-      to_map: "Plot on map"
-      to_map_title: "Go to maps page and plot photos from this album on the map"
       change_privacy_prompt: Make this album
-      change_privacy_title:  "If made public, this album will be viewable by all users. If private, this album will be visible only by users with which you have explicitly shared this album"
+      change_privacy_title: If made public, this album will be viewable by all users. If private, this album will be visible only by users with which you have explicitly shared this album
       delete_album: Delete album
-      delete_album_title: "Deletes the album.  Does not delete any photos in the album."
-      to_photo: Show details
-      to_photo_title: "See details of the photo and comments"
-      delete_photo: Delete photo
-      delete_photo_title:  "Deletes the photo and all comments associated with the photo.  Deleted photos are not recoverable."
+      delete_album_title: Deletes the album.  Does not delete any photos in the album.
+      delete_photo: Deletar foto
+      delete_photo_title: Deletes the photo and all comments associated with the photo.  Deleted photos are not recoverable.
+      delete_photos: Delete Photos
       search_user: Search for User
       search_user_title: Find a user by first name, last name, user name or email
+      share_with: Share with a user
+      share_with_title: Share this albums with a specific person.  This makes the album visible only to the people you chose to share with.
+      to_album: View photos
+      to_album_title: View the photos of this album
+      to_delete_photo: Go To Delete Photos Page
+      to_map: Plot on map
+      to_map_title: Go to maps page and plot photos from this album on the map
+      to_photo: Show details
+      to_photo_title: See details of the photo and comments
+      to_photos: View Photos
+      to_photos_title: View your photos
+      upload_more: Upload More
+    date_range: Date range
+    day: Day
+    day_of_year: Day of year
+    month: Month
+    private: private
+    public: public
+    welcome: Welcome

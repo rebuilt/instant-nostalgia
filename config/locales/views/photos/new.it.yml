@@ -4,6 +4,8 @@ it:
     new:
       description_end: più foto
       description_start: Puoi caricare
-      instructions: Trascina le foto qui
+      instructions: Trascina e rilascia le foto o fai clic sulla dropzone per selezionare i file
       or: o
+      result_message: Immagini caricate. Le informazioni sull'indirizzo continueranno a essere elaborate in background. Se la latitudine e la longitudine vengono visualizzate come 0, nell'immagine non viene incorporata alcuna informazione sull'indirizzo. Consenti un secondo per ogni foto caricata
       upload_title: Caricare foto
+      wait: Attendi fino al termine del caricamento di tutti i file prima di fare clic sul pulsante di caricamento

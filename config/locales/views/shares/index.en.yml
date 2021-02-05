@@ -1,10 +1,11 @@
+---
 en:
   shares:
     index:
-      share_album: "Share album"
-      share_album_title: "Share this album with another user"
-      shared_with: "Shared with:"
-      stop_sharing: "Stop sharing"
-      confirm: "Are you sure?"
-      shared_with_me: "Albums shared with me"
-      remove:  "Remove from 'albums shared with me'"
+      confirm: Are you sure?
+      remove: Remove from 'albums shared with me'
+      share_album: Share album
+      share_album_title: Share this album with another user
+      shared_with: 'Shared with:'
+      shared_with_me: Albums shared with me
+      stop_sharing: Stop sharing

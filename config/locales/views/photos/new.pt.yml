@@ -4,6 +4,8 @@ pt:
     new:
       description_end: mais fotos
       description_start: Você pode fazer upload
-      instructions: Arraste e solte as fotos aqui
+      instructions: Arraste e solte as fotos ou clique na zona de soltar para selecionar os arquivos
       or: ou
+      result_message: Imagens enviadas. As informações de endereço continuarão sendo processadas em segundo plano. Se a latitude e a longitude forem mostradas como 0, nenhuma informação de endereço será incorporada à imagem. Por favor, aguarde um segundo por foto carregada
       upload_title: Upload fotos
+      wait: Aguarde até que todos os arquivos terminem de carregar antes de clicar no botão de upload

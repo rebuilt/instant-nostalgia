@@ -7,22 +7,27 @@ es:
       change_privacy_title: Si se hace público, todos los usuarios podrán ver este álbum. Si es privado, este álbum solo será visible para los usuarios con los que hayas compartido explícitamente este álbum.
       delete_album: Eliminar álbum
       delete_album_title: Elimina el álbum. No elimina ninguna foto del álbum.
-      delete_photo: Borrar foto
+      delete_photo: Deletar foto
       delete_photo_title: Elimina la foto y todos los comentarios asociados con la foto. Las fotos eliminadas no se pueden recuperar.
+      delete_photos: Eliminar fotos
       search_user: Buscar usuario
       search_user_title: Encuentre un usuario por nombre, apellido, nombre de usuario o correo electrónico
       share_with: Compartir con un usuario
       share_with_title: Comparta estos álbumes con una persona específica. Esto hace que el álbum sea visible solo para las personas con las que eligió compartir.
       to_album: Ver fotos
       to_album_title: Ver las fotos de este álbum
+      to_delete_photo: Ir a la página Eliminar fotos
       to_map: Trazar en mapa
       to_map_title: Vaya a la página de mapas y trace las fotos de este álbum en el mapa
       to_photo: Mostrar detalles
       to_photo_title: Ver detalles de la foto y comentarios
+      to_photos: Ver fotos
+      to_photos_title: Ver tus fotos
+      upload_more: Cargar más
     date_range: Rango de fechas
     day: Día
     day_of_year: Día del año
     month: Mes
     private: privado
     public: público
-    welcome: Bienvenido
+    welcome: Bienvenidos

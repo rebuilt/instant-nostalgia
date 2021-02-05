@@ -105,6 +105,7 @@ pt:
       year: Ano
   delete: Excluir
   edit: Editar
+  error: Error
   language: Língua
   login: Conecte-se
   logout: Sair

@@ -4,6 +4,8 @@ fr:
     new:
       description_end: plus de photos
       description_start: Vous pouvez télécharger
-      instructions: Faites glisser et déposez des photos ici
+      instructions: Faites glisser et déposez des photos ou cliquez sur la zone de dépôt pour sélectionner des fichiers
       or: ou
+      result_message: Images téléchargées. Les informations d'adresse continueront d'être traitées en arrière-plan. Si la latitude et la longitude sont égales à 0, aucune information d'adresse n'est intégrée à l'image. Veuillez prévoir une seconde par photo téléchargée
       upload_title: Télécharger des photos
+      wait: Veuillez attendre la fin du chargement de tous les fichiers avant de cliquer sur le bouton de téléchargement

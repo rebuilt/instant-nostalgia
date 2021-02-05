@@ -9,16 +9,21 @@ it:
       delete_album_title: Elimina l'album. Non elimina le foto dall'album.
       delete_photo: Elimina foto
       delete_photo_title: Elimina la foto e tutti i commenti associati alla foto. Le foto eliminate non sono recuperabili.
+      delete_photos: Elimina foto
       search_user: Cerca utente
       search_user_title: Trova un utente per nome, cognome, nome utente o e-mail
       share_with: Condividi con un utente
       share_with_title: Condividi questi album con una persona specifica. Questo rende l'album visibile solo alle persone con cui hai scelto di condividerlo.
       to_album: Guarda le foto
       to_album_title: Guarda le foto di questo album
+      to_delete_photo: Vai alla pagina Elimina foto
       to_map: Traccia sulla mappa
       to_map_title: Vai alla pagina delle mappe e traccia le foto di questo album sulla mappa
       to_photo: Mostra dettagli
       to_photo_title: Vedi i dettagli della foto e dei commenti
+      to_photos: Visualizza foto
+      to_photos_title: Visualizza le tue foto
+      upload_more: Carica altro
     date_range: Intervallo di date
     day: Giorno
     day_of_year: Giorno dell'anno

@@ -1,60 +1,63 @@
 ---
 en:
-  login: Login
-  logout: Logout
-  map: Map
-  profile: Profile
-  public_albums: Public albums
-  shared: Shared
-  sign_up: Sign up
-  upload: Upload
-  edit: Edit
-  delete: Delete
-  language: Language
   activerecord:
-    models:
+    attributes:
+      album:
+        title: Title
+      photo:
+        city: City
+        country: Country
+        date_time_digitized: Date taken
+        file_name: File name
+        latitude_in_decimal: Latitude in decimal
+        latitude_in_degrees: Latitude in degrees
+        longitude_in_decimal: Longitude in decimal
+        longitude_in_degrees: Longitude in degrees
+        state: State
       user:
-        one: User
-        other: Users
+        avatar: Profile image
+        email: Email
+        first_name: First name
+        last_name: Last name
+        password: Password
+        password_confirmation: Password Confirmation
+        username: Username
+    errors:
+      models:
+        photo:
+          attributes:
+            image:
+              content_type: Photo must be of type .jpeg or .jpg
+        user:
+          attributes:
+            password_confirmation:
+              confirmation: does not match password
+    models:
       album:
         one: Album
         other: Albums
       photo:
         one: Photo
         other: Photos
-    errors:
-      models:
-        user:
-          attributes:
-            password_confirmation:
-              confirmation: does not match password
-        photo:
-          attributes:
-            image:
-              content_type: Photo must be of type .jpeg or .jpg
-    attributes:
       user:
-        email: Email
-        password: Password
-        username: Username
-        first_name: First name
-        last_name: Last name
-        avatar: Profile image
-        password_confirmation: Password Confirmation
-      album:
-        title: Title
-      photo:
-        file_name: File name
-        date_time_digitized: "Date taken"
-        latitude_in_degrees: "Latitude in degrees"
-        longitude_in_degrees: "Longitude in degrees"
-        latitude_in_decimal: "Latitude in decimal"
-        longitude_in_decimal: "Longitude in decimal"
-        city: "City"
-        state: "State"
-        country: "Country"
+        one: User
+        other: Users
+  application:
+    comment_form:
+      add: Add a comment
+      submit: Post
+    comments_panel:
+      ago: ago
+      posted: Posted
+  controllers:
+    maps:
+      recent: Most recent
+      results: 'Results for | '
   date:
-    order: [ !ruby/symbol day, !ruby/symbol month, !ruby/symbol year ]
+    order:
+    - :day
+    - :month
+    - :year
   datetime:
     distance_in_words:
       about_x_hours:
@@ -70,44 +73,45 @@ en:
         one: almost 1 year
         other: almost %{count} years
       half_a_minute: half a minute
-      less_than_x_seconds:
-        one: less than 1 second
-        other: less than %{count} seconds
       less_than_x_minutes:
         one: less than a minute
         other: less than %{count} minutes
+      less_than_x_seconds:
+        one: less than 1 second
+        other: less than %{count} seconds
       over_x_years:
         one: over 1 year
         other: over %{count} years
-      x_seconds:
-        one: 1 second
-        other: "%{count} seconds"
-      x_minutes:
-        one: 1 minute
-        other: "%{count} minutes"
       x_days:
         one: 1 day
         other: "%{count} days"
+      x_minutes:
+        one: 1 minute
+        other: "%{count} minutes"
       x_months:
         one: 1 month
         other: "%{count} months"
+      x_seconds:
+        one: 1 second
+        other: "%{count} seconds"
       x_years:
         one: 1 year
     prompts:
-      second: Second
-      minute: Minute
-      hour: Hour
       day: Day
+      hour: Hour
+      minute: Minute
       month: Month
+      second: Second
       year: Year
-  application:
-    comment_form:
-      submit: "Post"
-      add: "Add a comment"
-    comments_panel:
-      posted: "Posted"
-      ago: "ago"
-  controllers:
-    maps:
-      results: "Results for | "
-      recent: "Most recent"
+  delete: Delete
+  edit: Edit
+  error: Error
+  language: Language
+  login: Login
+  logout: Logout
+  map: Map
+  profile: Profile
+  public_albums: Public albums
+  shared: Shared
+  sign_up: Sign up
+  upload: Upload

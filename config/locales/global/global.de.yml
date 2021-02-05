@@ -7,18 +7,23 @@ de:
       change_privacy_title: Wenn dieses Album veröffentlicht wird, kann es von allen Benutzern angezeigt werden. Wenn privat, ist dieses Album nur für Benutzer sichtbar, mit denen Sie dieses Album explizit geteilt haben
       delete_album: Album löschen
       delete_album_title: Löscht das Album. Löscht keine Fotos im Album.
-      delete_photo: Foto löschen
+      delete_photo: Deletar Foto
       delete_photo_title: Löscht das Foto und alle mit dem Foto verknüpften Kommentare. Gelöschte Fotos können nicht wiederhergestellt werden.
+      delete_photos: Fotos löschen
       search_user: Suche nach Benutzer
       search_user_title: Suchen Sie einen Benutzer nach Vorname, Nachname, Benutzername oder E-Mail
       share_with: Mit einem Benutzer teilen
       share_with_title: Teile diese Alben mit einer bestimmten Person. Dadurch wird das Album nur für die Personen sichtbar, mit denen Sie es teilen möchten.
       to_album: Fotos ansehen
       to_album_title: Sehen Sie sich die Fotos dieses Albums an
+      to_delete_photo: Gehen Sie zur Seite Fotos löschen
       to_map: Grundstück auf Karte
       to_map_title: Gehen Sie zur Kartenseite und zeichnen Sie Fotos von diesem Album auf der Karte
       to_photo: Zeige Details
       to_photo_title: Siehe Details des Fotos und Kommentare
+      to_photos: Fotos ansehen
+      to_photos_title: Sehen Sie sich Ihre Fotos an
+      upload_more: Lade mehr hoch
     date_range: Datumsbereich
     day: Tag
     day_of_year: Tag des Jahres

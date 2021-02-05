@@ -1,8 +1,9 @@
+---
 en:
   albums:
     index:
-      submit: Create Album
       add: Add to album
-      select:  Select an album
+      error: 'prohibited this album from being saved:'
       photo_heading: Your photos
-      error: "prohibited this album from being saved:"
+      select: Select an album
+      submit: Create Album

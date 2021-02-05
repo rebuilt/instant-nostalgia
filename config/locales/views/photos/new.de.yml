@@ -4,6 +4,8 @@ de:
     new:
       description_end: mehr Fotos
       description_start: Sie können hochladen
-      instructions: Ziehen Sie hier Fotos per Drag & Drop
+      instructions: Ziehen Sie Fotos per Drag & Drop oder klicken Sie auf die Dropzone, um Dateien auszuwählen
       or: oder
+      result_message: Bilder hochgeladen. Adressinformationen werden im Hintergrund weiter verarbeitet. Wenn Breiten- und Längengrad als 0 angezeigt werden, sind keine Adressinformationen in das Bild eingebettet. Bitte erlauben Sie eine Sekunde pro hochgeladenem Foto
       upload_title: Fotos hochladen
+      wait: Bitte warten Sie, bis alle Dateien vollständig geladen sind, bevor Sie auf die Schaltfläche zum Hochladen klicken

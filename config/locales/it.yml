@@ -105,6 +105,7 @@ it:
       year: Anno
   delete: Elimina
   edit: modificare
+  error: Errore
   language: linguaggio
   login: Accesso
   logout: Disconnettersi

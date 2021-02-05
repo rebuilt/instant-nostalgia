@@ -1,5 +1,6 @@
+---
 en:
   users:
     edit:
-      to_show: "To details"
-      title: "Update user details"
+      title: Update user details
+      to_show: To details

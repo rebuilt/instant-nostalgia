@@ -1,9 +1,10 @@
+---
 en:
   shares:
     new:
-      title: Share your album
+      action: Action
       prompt: Who would you like to share this album with?
       search_user: Search for User
       search_user_title: Find a user by first name, last name, user name or email
-      term: "You searched for: "
-      action: Action
+      term: 'You searched for: '
+      title: Share your album

@@ -2,7 +2,7 @@
 en:
   welcome:
     index:
-      heading: "Welcome to the site!"
-      message: "See your photos mapped out.  Easily filter your photoset.  Create albums to share with individual users or share with the world"
-      prompt: "To use this website please:"
-      option: "Or view public albums on the "
+      heading: Welcome to the site!
+      message: See your photos mapped out.  Easily filter your photoset.  Create albums to share with individual users or share with the world
+      option: 'Or view public albums on the '
+      prompt: 'To use this website please:'

@@ -4,6 +4,8 @@ es:
     new:
       description_end: más fotos
       description_start: Puedes subir
-      instructions: Arrastra y suelta fotos aquí
+      instructions: Arrastre y suelte fotos o haga clic en la zona de colocación para seleccionar archivos
       or: o
+      result_message: Imágenes subidas. La información de la dirección continuará procesándose en segundo plano. Si la latitud y la longitud se muestran como 0, entonces no hay información de dirección incrustada en la imagen. Por favor, espere un segundo por foto cargada.
       upload_title: Subir fotos
+      wait: Espere hasta que todos los archivos terminen de cargarse antes de hacer clic en el botón de carga
