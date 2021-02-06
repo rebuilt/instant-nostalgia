@@ -64,7 +64,7 @@ The website allows users to see their photos on a map. A marker is placed on the
 
 ## Rails version
 
-- Rails 6.0.3.4
+- Rails 6.1.1
 
 ## System dependencies
 
