@@ -28,9 +28,14 @@ class MapsController < ApplicationController
     end
 
     @public_albums = Album.where(public: true)
+    @public_albums = remove_empty_albums(@public_albums)
   end
 
   private
+
+  def remove_empty_albums(albums)
+    albums.reject { |album| album.photos.length < 1 }
+  end
 
   def load(photos)
     @photos = @photos.present? ? @photos.or(photos) : photos
