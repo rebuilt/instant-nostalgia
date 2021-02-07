@@ -34,7 +34,10 @@ class MapsController < ApplicationController
   private
 
   def remove_empty_albums(albums)
-    albums.reject { |album| album.photos.length < 1 }
+    # remove any albums that don't have photos
+    albums = albums.reject { |album| album.photos.length < 1 }
+    # select only albums that have photos with locations
+    albums.select { |album| album.photos.any? { |photo| photo.location? } }
   end
 
   def load(photos)
