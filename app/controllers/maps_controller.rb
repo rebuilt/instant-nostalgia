@@ -29,14 +29,18 @@ class MapsController < ApplicationController
 
     @public_albums = Album.where(public: true)
     @public_albums = remove_empty_albums(@public_albums)
+    @public_albums = remove_unmappable_albums(@public_albums)
   end
 
   private
 
+  # remove any albums that don't have photos
   def remove_empty_albums(albums)
-    # remove any albums that don't have photos
     albums = albums.reject { |album| album.photos.length < 1 }
-    # select only albums that have photos with locations
+  end
+
+  # select only albums that have photos with locations
+  def remove_unmappable_albums(albums)
     albums.select { |album| album.photos.any? { |photo| photo.location? } }
   end
 
