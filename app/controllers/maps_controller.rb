@@ -36,7 +36,7 @@ class MapsController < ApplicationController
 
   # remove any albums that don't have photos
   def remove_empty_albums(albums)
-    albums = albums.reject { |album| album.photos.length < 1 }
+    albums.reject { |album| album.photos.empty? }
   end
 
   # select only albums that have photos with locations
