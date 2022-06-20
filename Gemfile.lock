@@ -116,6 +116,7 @@ GEM
     crass (1.0.6)
     debug_inspector (1.1.0)
     diff-lcs (1.5.0)
+    digest (3.1.0)
     e2mmap (0.1.0)
     easy_translate (0.5.1)
       thread
@@ -194,6 +195,12 @@ GEM
     msgpack (1.5.2)
     multi_json (1.15.0)
     nenv (0.3.0)
+    net-protocol (0.1.3)
+      timeout
+    net-smtp (0.3.1)
+      digest
+      net-protocol
+      timeout
     nio4r (2.5.8)
     nokogiri (1.13.6)
       mini_portile2 (~> 2.8.0)
@@ -279,6 +286,16 @@ GEM
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     rubyzip (2.3.2)
+    sass-rails (6.0.0)
+      sassc-rails (~> 2.1, >= 2.1.1)
+    sassc (2.4.0)
+      ffi (~> 1.9)
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
     selenium-webdriver (4.2.1)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -320,6 +337,7 @@ GEM
     thread (0.2.2)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    timeout (0.3.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -372,6 +390,7 @@ DEPENDENCIES
   listen (~> 3.2)
   memory_profiler
   mini_magick
+  net-smtp (>= 0.3.1)
   pagy (~> 3.5)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
@@ -379,6 +398,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails (~> 6.1.6, >= 6.0.3.3)
   rubocop-rails
+  sass-rails
   selenium-webdriver
   solargraph
   spring
